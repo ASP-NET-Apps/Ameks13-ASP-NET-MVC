@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MyWoodenHouse.Data.Models;
+using MyWoodenHouse.Data.Provider;
+using MyWoodenHouse.Data.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +19,11 @@ namespace MyWoodenHouse.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
+            var context = new MyWoodenHouseDbContext();
+            var categoryService = new CategoryService(context);
+
+            IList<Category> categories = categoryService.GetAll().ToList();
 
             return View();
         }

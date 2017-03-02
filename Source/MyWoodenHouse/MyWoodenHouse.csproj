@@ -188,6 +188,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Configuration\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\TODO.EDIT-Consts.general.config" />
+    <Content Include="Configuration\TODO.EDIT-CustomErrors.config" />
+    <Content Include="Configuration\TODO.EDIT-Rewritemaps.config" />
+    <Content Include="Configuration\TODO.EDIT-RewriteRules.config" />
+    <Content Include="Configuration\TODO.EDIT-SiteMap.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -200,7 +208,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -245,6 +255,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
+      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
+      <Name>MyWoodenHouse.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj">
+      <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
+      <Name>MyWoodenHouse.Data.Provider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj">
+      <Project>{639cc1e7-b4b4-4b7f-9a54-4bfec88f7b36}</Project>
+      <Name>MyWoodenHouse.Data.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
