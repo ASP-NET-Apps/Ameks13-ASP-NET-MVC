@@ -1,5 +1,7 @@
-# MyWoodenHome Todo list
-.
+# MyWoodenHome Todo list #
+
+Do not forget to update the ToDo list immer wieder :)!
+----------
 ## Features Driven Development
 
 ### Categories Feature
@@ -10,10 +12,8 @@
 - [ ] Extract and use data model interface;
 - [ ] Define guard constants;
 - [ ] Set data model guard attributes in MetaData file;
-
 - [ ] Service Data class and implement the base functionalities;
 - [ ] Bind all in the used container-Ninject.
-
 - [ ] Grid view in admin part Preview, Edit, Insert, Delete;
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
@@ -26,9 +26,10 @@
 2. [ ] Jenkins integration - research.
 3. [ ] Upload in the Cloud - research
 
-## Cowboy Driven Development
+----------
 
-## Single Tasks
+## Cowboy Driven Development - Single Tasks
+
 ### Models ###
 1. [ ] Model Interfaces;
 1. [ ] Add [Key] and other attributes to models;
