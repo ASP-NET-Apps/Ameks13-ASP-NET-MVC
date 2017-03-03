@@ -21,9 +21,9 @@ namespace MyWoodenHouse.Controllers
             ViewBag.Message = "Your application description page.";
 
             var context = new MyWoodenHouseDbContext();
-            var categoryService = new CategoryService(context);
+            var categoryService = new CategoryServiceCrudOperatons(context);
 
-            IList<Category> categories = categoryService.GetAll().ToList();
+            IList<Category> categories = categoryService.Select().ToList();
 
             return View();
         }

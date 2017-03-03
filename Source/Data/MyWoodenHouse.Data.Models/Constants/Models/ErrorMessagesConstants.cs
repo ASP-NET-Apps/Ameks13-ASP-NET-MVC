@@ -20,6 +20,16 @@ namespace MyWoodenHouse.Data.Models.Constants.Models
             public struct ErrorMessage
             {
                 public static string AnInstanceOfObjectIsRequiredToConstructClass = "An instance of {0} is required to use this {1}";
+                public static string DbContextDoesNotContainDbSet = "DbContext does not contain DbSet<{0}>}";
+            }
+        };
+
+        public struct DeleteData
+        {
+            public struct ErrorMessage
+            {
+                public static string DeleteByIdIsPossibleOnlyWithPositiveParameter = "Delete by Id is only possible positive Id parameter. Id = {0}";
+                public static string NoEntryFoundWithTheProvidedId = "No entry found with the provided Id = {0}";
             }
         };
     }
