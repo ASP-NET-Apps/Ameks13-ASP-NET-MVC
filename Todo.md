@@ -13,7 +13,7 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Define guard constants;
 - [x] Set data model constraints in MSSQL;
 - [x] Set data model guard attributes in MetaData file;
-- [x] Create Service Data class and implement the baseic CRUD (Create, Read, Update, Delete) operations;
+- [x] Create Service Data class and implement the basic CRUD (Create, Read, Update, Delete) operations;
 - [ ] Bind all in the used container-Ninject.
 - [ ] Grid view in admin part Preview, Edit, Insert, Delete;
 - [ ] Routing and base Redirects/Rewrites;
