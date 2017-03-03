@@ -24,8 +24,9 @@ Do not forget to update the ToDo list immer wieder :)!
 
 ### General Tasks
 1. [ ] Separate in project .Identity;
-2. [ ] Jenkins integration - research.
-3. [ ] Upload in the Cloud - research
+1. [ ] Jenkins integration - research.
+1. [ ] Upload in the Cloud - research
+1. [ ] Change the favicon
 
 ----------
 
