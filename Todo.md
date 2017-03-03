@@ -14,19 +14,21 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Set data model constraints in MSSQL;
 - [x] Set data model guard attributes in MetaData file;
 - [x] Create Service Data class and implement the basic CRUD (Create, Read, Update, Delete) operations;
-- [ ] Bind all in the used container-Ninject.
-- [ ] Grid view in admin part Preview, Edit, Insert, Delete;
+- [x] Bind all in the used container-Ninject.
+- [x] Raw view for Preview, Edit, Insert, Delete;
+- [x] Test every single function from the service Preview, Edit, Insert, Delete;
+- [ ] Put some absic UI styles;
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
-- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 - [ ] Unit testing;
 - [ ] Local IIS Deployment and manual test.
 
 ### General Tasks
 1. [ ] Separate in project .Identity;
-1. [ ] Jenkins integration - research.
-1. [ ] Upload in the Cloud - research
-1. [ ] Change the favicon
+1. [ ] Jenkins integration - research;
+1. [ ] Upload in the Cloud - research;
+1. [ ] Change the favicon;
+1. [ ] Create SiteMap file. 
 
 ----------
 
