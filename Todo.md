@@ -7,12 +7,13 @@ Do not forget to update the ToDo list immer wieder :)!
 ### Categories Feature
 - [x] Create and execute seed insert stored procedure;
     - [x] Insert Into-Categories.sql
-- [ ] Database maping;
-- [ ] Create data model second partial class;
-- [ ] Extract and use data model interface;
-- [ ] Define guard constants;
-- [ ] Set data model guard attributes in MetaData file;
-- [ ] Service Data class and implement the base functionalities;
+- [x] Database maping;
+- [x] Extract and use data model interface;
+- [x] Create data model second partial class and inherit the respective Interface;
+- [x] Define guard constants;
+- [x] Set data model constraints in MSSQL;
+- [x] Set data model guard attributes in MetaData file;
+- [ ] Create Service Data class and implement the base functionalities;
 - [ ] Bind all in the used container-Ninject.
 - [ ] Grid view in admin part Preview, Edit, Insert, Delete;
 - [ ] Routing and base Redirects/Rewrites;
