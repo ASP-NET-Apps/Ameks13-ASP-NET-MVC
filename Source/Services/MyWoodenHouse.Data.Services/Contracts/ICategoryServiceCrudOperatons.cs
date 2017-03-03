@@ -7,7 +7,7 @@ namespace MyWoodenHouse.Data.Services.Contracts
 {
     public interface ICategoryServiceCrudOperatons
     {
-        Category SelectById(int id);
+        Category SelectById(int? id);
 
         IEnumerable<Category> Select();
 
@@ -19,7 +19,7 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         void Delete(Category category);
 
-        void Delete(int id);
+        void Delete(int? id);
 
         void SaveChanges();
     }

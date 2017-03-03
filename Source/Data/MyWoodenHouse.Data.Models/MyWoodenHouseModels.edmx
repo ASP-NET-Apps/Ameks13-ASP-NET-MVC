@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Value" Type="real" />
           <Property Name="Currency" Type="varchar" MaxLength="10" />
           <Property Name="PerSquareMeter" Type="real" Nullable="false" />
@@ -265,17 +265,12 @@
       <Schema Namespace="MyWoodenHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MyWoodenHouseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Buildings" EntityType="MyWoodenHouseModel.Building" />
-          <EntitySet Name="Categories" EntityType="MyWoodenHouseModel.Category" />
           <EntitySet Name="Materials" EntityType="MyWoodenHouseModel.Material" />
           <EntitySet Name="Pictures" EntityType="MyWoodenHouseModel.Picture" />
           <EntitySet Name="PriceCategories" EntityType="MyWoodenHouseModel.PriceCategory" />
           <EntitySet Name="Prices" EntityType="MyWoodenHouseModel.Price" />
           <EntitySet Name="Products" EntityType="MyWoodenHouseModel.Product" />
           <EntitySet Name="sysdiagrams" EntityType="MyWoodenHouseModel.sysdiagram" />
-          <AssociationSet Name="FK_Building_Categories" Association="MyWoodenHouseModel.FK_Building_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Building" EntitySet="Buildings" />
-          </AssociationSet>
           <AssociationSet Name="FK_Building_Products" Association="MyWoodenHouseModel.FK_Building_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="Building" EntitySet="Buildings" />
@@ -296,6 +291,11 @@
             <End Role="PriceCategory" EntitySet="PriceCategories" />
             <End Role="Price" EntitySet="Prices" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="MyWoodenHouseModel.Category" />
+          <AssociationSet Name="FK_Building_Categories" Association="MyWoodenHouseModel.FK_Building_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Building" EntitySet="Buildings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Building">
           <Key>
@@ -309,18 +309,10 @@
           <Property Name="BathroomsCount" Type="Int32" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="MyWoodenHouseModel.FK_Building_Categories" FromRole="Building" ToRole="Category" />
           <NavigationProperty Name="Product" Relationship="MyWoodenHouseModel.FK_Building_Products" FromRole="Building" ToRole="Product" />
           <NavigationProperty Name="Materials" Relationship="MyWoodenHouseModel.BuildingsMaterials" FromRole="Building" ToRole="Material" />
           <NavigationProperty Name="Pictures" Relationship="MyWoodenHouseModel.BuildingsPictures" FromRole="Building" ToRole="Picture" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.FK_Building_Categories" FromRole="Category" ToRole="Building" />
+          <NavigationProperty Name="Category" Relationship="MyWoodenHouseModel.FK_Building_Categories" FromRole="Building" ToRole="Category" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -381,18 +373,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Building_Categories">
-          <End Type="MyWoodenHouseModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Building">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Building_Products">
           <End Type="MyWoodenHouseModel.Product" Role="Product" Multiplicity="1" />
           <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
@@ -429,6 +409,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.FK_Building_Categories" FromRole="Category" ToRole="Building" />
+        </EntityType>
+        <Association Name="FK_Building_Categories">
+          <End Type="MyWoodenHouseModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -445,14 +445,6 @@
                 <ScalarProperty Name="FloorsCount" ColumnName="FloorsCount" />
                 <ScalarProperty Name="BuiltUpArea" ColumnName="BuiltUpArea" />
                 <ScalarProperty Name="UsableArea" ColumnName="UsableArea" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="MyWoodenHouseModel.Category">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -540,6 +532,14 @@
               <ScalarProperty Name="Id" ColumnName="PriceId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

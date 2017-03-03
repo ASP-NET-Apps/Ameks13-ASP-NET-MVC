@@ -26,12 +26,12 @@ namespace MyWoodenHouse.Data.Models
         }
     
         public virtual DbSet<Building> Buildings { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<PriceCategory> PriceCategories { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
     }
 }

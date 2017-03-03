@@ -36,18 +36,42 @@ namespace MyWoodenHouse.Data.Services
             }
         }
 
-        protected IMyWoodenHouseDbContext Context { get; set; }
-
-        protected IDbSet<Category> DbSet { get; set; }
-
-        public Category SelectById(int id)
+        protected IMyWoodenHouseDbContext Context
         {
-            return this.DbSet.Find(id);
+            get
+            {
+                return this.context;
+            }
+        }
+
+
+        protected IDbSet<Category> CategoryDbSet
+        {
+            get
+            {
+                return this.categoryDbSet;
+            }
+        }
+
+        public Category SelectById(int? id)
+        {
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithNotNullableParameter);
+                throw new ArgumentException(errorMessage);
+            }
+            if (id <= 0)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithPositiveParameter, id);
+                throw new ArgumentException(errorMessage);
+            }
+
+            return this.CategoryDbSet.Find(id);
         }
 
         public IEnumerable<Category> Select()
         {
-            IEnumerable<Category> categoriesToReturn = this.categoryDbSet.Select(c => c);
+            IEnumerable<Category> categoriesToReturn = this.CategoryDbSet.Select(c => c);
 
             return categoriesToReturn;
         }
@@ -62,7 +86,7 @@ namespace MyWoodenHouse.Data.Services
             }
             else
             {
-                categoriesToReturn = this.categoryDbSet.Where(filterExpression).Select(c => c);
+                categoriesToReturn = this.CategoryDbSet.Where(filterExpression).Select(c => c);
             }
 
             return categoriesToReturn;
@@ -82,7 +106,8 @@ namespace MyWoodenHouse.Data.Services
             }
             else
             {
-                this.DbSet.Add(category);
+                category.Id = this.GetMaxId() + 1;
+                this.CategoryDbSet.Add(category);
             }
         }
 
@@ -96,7 +121,7 @@ namespace MyWoodenHouse.Data.Services
             DbEntityEntry entry = this.Context.Entry(category);
             if(entry.State != EntityState.Detached)
             {
-                this.DbSet.Attach(category);
+                this.CategoryDbSet.Attach(category);
             }
 
             entry.State = EntityState.Modified;
@@ -116,12 +141,12 @@ namespace MyWoodenHouse.Data.Services
             }
             else
             {
-                this.DbSet.Attach(category);
-                this.DbSet.Remove(category);
+                this.CategoryDbSet.Attach(category);
+                this.CategoryDbSet.Remove(category);
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             if (id <= 0)
             {
@@ -133,11 +158,26 @@ namespace MyWoodenHouse.Data.Services
 
             if (category == null)
             {
-                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.NoEntryFoundWithTheProvidedId, id);
+                string errorMessage = string.Format(Consts.GeneralData.ErrorMessage.NoEntryFoundWithTheProvidedId, id);
                 throw new ArgumentException(errorMessage);
             }
 
             this.Delete(category);
+        }
+
+        public int GetMaxId()
+        {
+            int maxId = this.categoryDbSet.Max(c => c.Id);
+
+            bool isValidId = (maxId > 0);
+            if (!isValidId)
+            {
+                // TODO extract constant
+                string errorMessage = string.Format("Category MaxId is not valid id = {0}", maxId);
+                throw new ArgumentException();
+            }        
+
+            return maxId;
         }
 
         public void SaveChanges()
@@ -150,7 +190,7 @@ namespace MyWoodenHouse.Data.Services
         //    DbEntityEntry<Category> entryToReturn = this.Context.Entry(category);
         //    if (entryToReturn.State == EntityState.Detached)
         //    {
-        //        this.DbSet.Attach(category);
+        //        this.CategoryDbSet.Attach(category);
         //    }
 
         //    return entryToReturn;

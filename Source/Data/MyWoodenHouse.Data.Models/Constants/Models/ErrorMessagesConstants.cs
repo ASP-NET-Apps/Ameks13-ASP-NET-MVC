@@ -24,12 +24,28 @@ namespace MyWoodenHouse.Data.Models.Constants.Models
             }
         };
 
+        public struct GeneralData
+        {
+            public struct ErrorMessage
+            {
+                public static string NoEntryFoundWithTheProvidedId = "No entry found with the provided Id = {0}";
+            }
+        };
+
+        public struct SelectData
+        {
+            public struct ErrorMessage
+            {
+                public static string SelectByIdIsPossibleOnlyWithNotNullableParameter = "Select by Id is only possible with not nullable id parameter";
+                public static string SelectByIdIsPossibleOnlyWithPositiveParameter = "Select by Id is only possible positive Id parameter. Id = {0}";
+            }
+        };
+
         public struct DeleteData
         {
             public struct ErrorMessage
             {
                 public static string DeleteByIdIsPossibleOnlyWithPositiveParameter = "Delete by Id is only possible positive Id parameter. Id = {0}";
-                public static string NoEntryFoundWithTheProvidedId = "No entry found with the provided Id = {0}";
             }
         };
     }
