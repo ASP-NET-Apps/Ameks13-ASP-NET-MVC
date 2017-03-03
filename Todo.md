@@ -1,49 +1,67 @@
-# MyWoodenHome Todo list
-.
+# MyWoodenHome Todo list #
+
+Do not forget to update the ToDo list immer wieder :)!
+----------
 ## Features Driven Development
-### Categories
-- [x] Create and execute seed insert sp   
+
+### Categories Feature
+- [x] Create and execute seed insert stored procedure;
     - [x] Insert Into-Categories.sql
-- Create model, guard attributes and constants
-- Database maping;
-- Service layer
-- Ninject config and inject
-- Grid view in admin part Edit, Insert, Delete;
-- Unit testing;
+- [x] Database maping;
+- [x] Extract and use data model interface;
+- [x] Create data model second partial class and inherit the respective Interface;
+- [x] Define guard constants;
+- [x] Set data model constraints in MSSQL;
+- [x] Set data model guard attributes in MetaData file;
+- [x] Create Service Data class and implement the basic CRUD (Create, Read, Update, Delete) operations;
+- [ ] Bind all in the used container-Ninject.
+- [ ] Grid view in admin part Preview, Edit, Insert, Delete;
+- [ ] Routing and base Redirects/Rewrites;
+- [ ] Add to the Sitemap file and navigation;
+- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+- [ ] Unit testing;
+- [ ] Local IIS Deployment and manual test.
 
+### General Tasks
+1. [ ] Separate in project .Identity;
+2. [ ] Jenkins integration - research.
+3. [ ] Upload in the Cloud - research
 
-## Single Tasks
+----------
+
+## Cowboy Driven Development - Single Tasks
+
 ### Models ###
-1. Model Interfaces;
-1. Add [Key] and other attributes to models;
-1. Constants;
-	- Models validation constants;
+1. [ ] Model Interfaces;
+1. [ ] Add [Key] and other attributes to models;
+1. [ ] Constants;
+	- [ ] Models validation constants.
 
 ### Database ###
-1. Create databse and main tables relations;
-1. IsDeleted field for all Models and Delete() Method change;
-1. Extract the connnectionStrings in separate file and add the file as sourceFile in all projects;
-1. Add Services project;
+1. [ ] Create databse and main tables relations;
+1. [ ] IsDeleted field for all Models and Delete() Method change;
+1. [ ] Extract the connnectionStrings in separate file and add the file as sourceFile in all projects;
+1. [ ] Add Services project;
 
 ### General ###
-1. Documentation:
-	- General writings;
-	- Simple models description;
-1. Automantion Testing;
-1. Sitemap file and navigation;
+1. [ ] Documentation:
+	- [ ] General writings;
+	- [ ] Simple models description;
+1. [ ] Automantion Testing;
+1. [ ] Sitemap file and navigation;
 
-1. Local IIS Deployment;
-1. Rowrite and Redirects;
-1. AdminPanel.
+1. [ ] Local IIS Deployment;
+1. [ ] Rewrite and Redirects;
+1. [ ] AdminPanel.
 
 ### Identity
-1. Separate in project .Identity
+1. [ ] Separate in project .Identity
 
 
 ### Continuous Integration and Deployment
-1. Start with Unit Testing
-2. Jenkins integration
-3. Upload in the Cloud
+1. [ ] Start with Unit Testing
+2. [ ] Jenkins integration
+3. [ ] Upload in the Cloud
 
 
 
