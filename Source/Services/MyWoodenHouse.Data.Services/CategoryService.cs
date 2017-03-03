@@ -1,4 +1,5 @@
 ﻿using MyWoodenHouse.Data.Models;
+using MyWoodenHouse.Data.Models.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,13 @@ namespace MyWoodenHouse.Data.Services
         private readonly IDbSet<Category> categoryDbSet;
 
         public CategoryService(IMyWoodenHouseDbContext context)
-        {
+        {           
+            if (context == null)
+            {
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "MyWoodenHouseDbContext", "Data CategoryService");
+                throw new ArgumentNullException(errorMessage);
+            }
+
             this.context = context;
             this.categoryDbSet = this.context.Set<Category>();
         }

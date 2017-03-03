@@ -15,13 +15,12 @@ namespace MyWoodenHouse.Data.Models.Constants.Models
         //[StringLength(255, MinimumLength = 4, ErrorMessageResourceName = "ValidationErrorBadUserNameLength", ErrorMessageResourceType = typeof(ErrorResources))]
         //public string UserName { get; set; }
 
-        //public struct Name
-        //{
-        //    public struct ErrorMessage
-        //    {
-        //        public static string MaxLength = "{0} name length should be less than {1} symbols.";
-        //        public const string MinLength = "{0} name length should be more than {1} symbols.";
-        //    }
-        //};
+        public struct Constuctor
+        {
+            public struct ErrorMessage
+            {
+                public static string AnInstanceOfObjectIsRequiredToConstructClass = "An instance of {0} is required to use this {1}";
+            }
+        };
     }
 }

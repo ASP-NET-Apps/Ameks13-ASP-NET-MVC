@@ -34,7 +34,6 @@ namespace MyWoodenHouse.Data.Models.Constants.Models
                 public const string ErrorMessageMaxLength = "Category name length should be less than " + "50" + " symbols.";
                 public const string ErrorMessageMinLength = "Category name length should be more than " + "2" + " symbols.";
             }
-            
         };
 
         public struct Material
