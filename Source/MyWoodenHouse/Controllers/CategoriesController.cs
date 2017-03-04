@@ -56,6 +56,7 @@ namespace MyWoodenHouse.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            string str = "Category";
             return View();
         }
 

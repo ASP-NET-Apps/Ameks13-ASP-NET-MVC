@@ -13,5 +13,7 @@ namespace MyWoodenHouse.Data.Models.Contracts
         string Name { get; set; }
 
         ICollection<Building> Buildings { get; set; }
+
+        string ModelName { get; }
     }
 }
