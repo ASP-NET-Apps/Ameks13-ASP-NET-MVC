@@ -17,7 +17,7 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Bind all in the used container-Ninject.
 - [x] Raw view for Preview, Edit, Insert, Delete;
 - [x] Test every single function from the service Preview, Edit, Insert, Delete;
-- [ ] Put some absic UI styles;
+- [ ] Put some basic UI styles;
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
 - [ ] Unit testing;
