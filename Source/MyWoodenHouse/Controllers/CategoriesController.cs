@@ -12,6 +12,7 @@ using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.App_Start;
 using Ninject;
 using MyWoodenHouse.Data.Services.Contracts;
+using System.Web.Helpers;
 
 namespace MyWoodenHouse.Controllers
 {
@@ -56,7 +57,6 @@ namespace MyWoodenHouse.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
-            string str = "Category";
             return View();
         }
 
@@ -65,8 +65,11 @@ namespace MyWoodenHouse.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Category category)
+        public ActionResult Create([Bind(Include = "Id, Name")] Category category)
         {
+            // TODO optimise if possible
+            ModelState["Id"].Errors.Clear();
+
             if (ModelState.IsValid)
             {
                 this.CategoryServiceCrudOperatons.Insert(category);
@@ -103,6 +106,7 @@ namespace MyWoodenHouse.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Category category)
         {
+            
             if (ModelState.IsValid)
             {
                 this.CategoryServiceCrudOperatons.Update(category);

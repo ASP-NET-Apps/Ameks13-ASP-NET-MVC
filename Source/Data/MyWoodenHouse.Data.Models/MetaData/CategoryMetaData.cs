@@ -23,6 +23,8 @@ namespace MyWoodenHouse.Data.Models.MetaData
 
         public ICollection<Building> Buildings { get; set; }
 
+        // TODO Remove next line when DB models are separated from View models
+        [NotMapped]
         [Display(Name = "Category")]
         public string ModelName { get; }
     }
