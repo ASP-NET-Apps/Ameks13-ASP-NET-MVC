@@ -18,11 +18,11 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Raw view for Preview, Edit, Insert, Delete;
 - [ ] Views:
 	- [ ] Index View:
-		- [ ] Put some basic UI styles;
+		- [x] Put some basic UI styles;
 		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Create View:
-		- [ ] Put some basic UI styles;
+		- [x] Put some basic UI styles;
 		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Details View:
@@ -41,6 +41,7 @@ Do not forget to update the ToDo list immer wieder :)!
 
 ### General Tasks
 1. [ ] Separate in project .Identity;
+1. [ ] Validation, Forms, Models, Client Side and Server Side - research;
 1. [ ] Jenkins integration - research;
 1. [ ] Upload in the Cloud - research;
 1. [ ] Change the favicon;
