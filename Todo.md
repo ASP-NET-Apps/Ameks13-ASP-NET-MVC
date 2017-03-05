@@ -16,8 +16,24 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Create Service Data class and implement the basic CRUD (Create, Read, Update, Delete) operations;
 - [x] Bind all in the used container-Ninject.
 - [x] Raw view for Preview, Edit, Insert, Delete;
-- [x] Test every single function from the service Preview, Edit, Insert, Delete;
-- [ ] Put some basic UI styles;
+- [ ] Views:
+	- [ ] Index View:
+		- [ ] Put some basic UI styles;
+		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
+		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [ ] Create View:
+		- [ ] Put some basic UI styles;
+		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
+		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [ ] Details View:
+		- [ ] Put some basic UI styles;
+	- [ ] Edit View:
+		- [ ] Put some basic UI styles;
+		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
+		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [ ] Delete Confirm View:
+		- [ ] Put some basic UI styles;
+		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
 - [ ] Unit testing;
