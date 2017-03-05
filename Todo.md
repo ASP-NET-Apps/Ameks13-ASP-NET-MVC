@@ -19,14 +19,11 @@ Do not forget to update the ToDo list immer wieder :)!
 - [ ] Views:
 	- [ ] Index View:
 		- [x] Put some basic UI styles;
-		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Create View:
 		- [x] Put some basic UI styles;
-		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
+		- [x] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Details View:
-		- [ ] Put some basic UI styles;
 	- [ ] Edit View:
 		- [ ] Put some basic UI styles;
 		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
