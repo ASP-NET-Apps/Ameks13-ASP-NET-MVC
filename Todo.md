@@ -17,18 +17,18 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Bind all in the used container-Ninject.
 - [x] Raw view for Preview, Edit, Insert, Delete;
 - [ ] Views:
-	- [ ] Index View:
+	- [x] Index View:
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Create View:
+	- [x] Create View:
 		- [x] Put some basic UI styles;
 		- [x] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Edit View:
-		- [ ] Put some basic UI styles;
-		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
-		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Delete Confirm View:
+	- [x] Edit View:
+		- [x] Put some basic UI styles;
+		- [x] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
+		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [x] Delete Confirm View:
 		- [x] Extraxt delete consifm in modal form;
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
@@ -39,11 +39,17 @@ Do not forget to update the ToDo list immer wieder :)!
 - [ ] Local IIS Deployment and manual test.
 
 ### General Tasks
-1. [ ] Separate in project .Identity;
-1. [ ] Crate separate View Models and Mapper;
+1. [ ] Separate the Identity in project .Identity;
+1. [ ] Crate separate View Models and Mapper, and AutoMapper;
+	- https://lostechies.com/jimmybogard/2009/06/30/how-we-do-mvc-view-models/
 1. [x] Validation, Forms, Models, Client Side and Server Side - research;
 1. [x] Modal forms with Bootstrap - research;
+	- https://www.codeproject.com/Tips/826002/Bootstrap-Modal-Dialog-Loading-Content-from-MVC-Pa
 1. [ ] Jenkins integration - research;
+1. [ ] Resource files integration - research;
+	- http://www.devcurry.com/2013/02/aspnet-mvc-using-resource-files-to.html
+1. [ ] Install and make bundle for jQuery UI;
+	- http://stackoverflow.com/questions/20081328/how-to-add-jqueryui-library-in-mvc-5-project
 1. [ ] Upload in the Cloud - research;
 1. [ ] Change the favicon;
 1. [ ] Create SiteMap file. 
