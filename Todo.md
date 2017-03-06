@@ -40,10 +40,16 @@ Do not forget to update the ToDo list immer wieder :)!
 
 ### General Tasks
 1. [ ] Separate the Identity in project .Identity;
-1. [ ] Crate separate View Models and Mapper;
+1. [ ] Crate separate View Models and Mapper, and AutoMapper;
+	- https://lostechies.com/jimmybogard/2009/06/30/how-we-do-mvc-view-models/
 1. [x] Validation, Forms, Models, Client Side and Server Side - research;
 1. [x] Modal forms with Bootstrap - research;
+	- https://www.codeproject.com/Tips/826002/Bootstrap-Modal-Dialog-Loading-Content-from-MVC-Pa
 1. [ ] Jenkins integration - research;
+1. [ ] Resource files integration - research;
+	- http://www.devcurry.com/2013/02/aspnet-mvc-using-resource-files-to.html
+1. [ ] Install and make bundle for jQuery UI;
+	- http://stackoverflow.com/questions/20081328/how-to-add-jqueryui-library-in-mvc-5-project
 1. [ ] Upload in the Cloud - research;
 1. [ ] Change the favicon;
 1. [ ] Create SiteMap file. 
