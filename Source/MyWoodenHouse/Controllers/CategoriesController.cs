@@ -87,8 +87,7 @@ namespace MyWoodenHouse.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Category category)
-        {
-            
+        {            
             if (ModelState.IsValid)
             {
                 this.CategoryServiceCrudOperatons.Update(category);
@@ -100,27 +99,25 @@ namespace MyWoodenHouse.Controllers
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(int? id)
+        public PartialViewResult ViewDeleteConfirm(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // TODO research if better whay could be used
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // TODO extract constant
+                throw new ArgumentNullException("Item to delete id can not be null.");
             }
 
             Category category = this.CategoryServiceCrudOperatons.SelectById(id);
 
             if (category == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                // TODO extract constant
+                string errorMessage = string.Format("Item to delete can not be found by id = {0}", id);
+                throw new ArgumentNullException(errorMessage);
             }
-
-            return View(category);
-        }
-
-        
-        public PartialViewResult ViewDeleteConfirm(int id)
-        {
-            Category category = this.CategoryServiceCrudOperatons.SelectById(id);
 
             return PartialView("_DeleteConfirm", category); 
         }
@@ -128,8 +125,13 @@ namespace MyWoodenHouse.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             this.CategoryServiceCrudOperatons.Delete(id);
             this.CategoryServiceCrudOperatons.SaveChanges();
 

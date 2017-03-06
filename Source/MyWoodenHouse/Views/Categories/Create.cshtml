@@ -93,20 +93,26 @@
                                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         <tr>
                             <td style="background-color:lightsteelblue"></td>
-                            <td style="background-color:lightsteelblue">
+                            <td style="background-color:lightsteelblue">                                
+                                <button type="reset"
+                                        id="resetButton"
+                                        onclick="location.href='@Url.Action("Index","Categories")'"
+                                        class="btn btn-default">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    Cancel
+                                </button>
                                 <button type="submit"
                                         id="saveButton"
                                         value="Create"
                                         onclick="location.href='@Url.Action("Create","Categories")'"
                                         class="btn btn-default disabled">
-                                    <span class="glyphicon glyphicon-floppy-save">
-                                    </span>
+                                    <span class="glyphicon glyphicon-floppy-save"></span>                                    
                                     Save
                                 </button>
                             </td>
