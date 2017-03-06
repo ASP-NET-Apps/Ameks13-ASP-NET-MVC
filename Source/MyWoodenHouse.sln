@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Provider
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Services", "Services\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj", "{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{D32BEFAF-CF18-4016-9A35-E72474C83B0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Default.Auth", "MyWoodenHouse.Auth\MyWoodenHouse.Default.Auth.csproj", "{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,5 +53,6 @@ Global
 		{6F34D14E-273A-4B8E-A909-870B57336D95} = {798D3A30-1277-49B0-94D7-7E4CE36E47FC}
 		{6DA1EB95-FF6F-466E-BB19-3DB65164E75A} = {798D3A30-1277-49B0-94D7-7E4CE36E47FC}
 		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36} = {77ED7E77-929E-4DB7-8BBE-33843DC354C0}
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6} = {D32BEFAF-CF18-4016-9A35-E72474C83B0C}
 	EndGlobalSection
 EndGlobal

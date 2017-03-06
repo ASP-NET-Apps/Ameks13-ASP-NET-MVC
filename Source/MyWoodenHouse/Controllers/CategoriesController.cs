@@ -29,6 +29,7 @@ namespace MyWoodenHouse.Controllers
         protected ICategoryServiceCrudOperatons CategoryServiceCrudOperatons { get; private set; }
 
         // GET: Categories
+        [HttpGet]
         public ActionResult Index()
         {
             IList<Category> allCategories = this.CategoryServiceCrudOperatons.Select().ToList();
@@ -37,6 +38,7 @@ namespace MyWoodenHouse.Controllers
         }
 
         // GET: Categories/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -64,6 +66,7 @@ namespace MyWoodenHouse.Controllers
         }
 
         // GET: Categories/Edit/5
+        [HttpGet]
         public ActionResult Edit(int? id)
         {
             if (id == null)
