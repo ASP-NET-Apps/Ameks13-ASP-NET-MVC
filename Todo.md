@@ -39,7 +39,7 @@ Do not forget to update the ToDo list immer wieder :)!
 - [ ] Local IIS Deployment and manual test.
 
 ### General Tasks
-1. [ ] Separate in project .Identity;
+1. [ ] Separate the Identity in project .Identity;
 1. [ ] Crate separate View Models and Mapper;
 1. [x] Validation, Forms, Models, Client Side and Server Side - research;
 1. [x] Modal forms with Bootstrap - research;
