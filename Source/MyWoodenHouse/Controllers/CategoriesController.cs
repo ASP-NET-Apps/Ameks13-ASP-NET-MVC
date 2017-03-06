@@ -36,24 +36,6 @@ namespace MyWoodenHouse.Controllers
             return View(allCategories);
         }
 
-        // GET: Categories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Category category = this.CategoryServiceCrudOperatons.SelectById(id);
-
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(category);
-        }
-
         // GET: Categories/Create
         public ActionResult Create()
         {
@@ -133,6 +115,14 @@ namespace MyWoodenHouse.Controllers
             }
 
             return View(category);
+        }
+
+        
+        public PartialViewResult ViewDeleteConfirm(int id)
+        {
+            Category category = this.CategoryServiceCrudOperatons.SelectById(id);
+
+            return PartialView("_DeleteConfirm", category); 
         }
 
         // POST: Categories/Delete/5

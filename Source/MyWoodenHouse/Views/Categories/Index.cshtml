@@ -57,10 +57,12 @@
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     Edit
                                 </a>
-                                <a href="@Url.Action("Delete", "Categories", new { id=item.Id })" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                <a href="@Url.Action("ViewDeleteConfirm", "Categories", new { id=item.Id })" class="btn btn-danger modal-link">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     Delete
                                 </a>
+
+
                             </td>
                         </tr>
                     }
@@ -79,5 +81,7 @@
             </div>
         </div>
     </div>
+
+
 </body>
 </html>
