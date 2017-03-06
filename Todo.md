@@ -19,18 +19,20 @@ Do not forget to update the ToDo list immer wieder :)!
 - [ ] Views:
 	- [ ] Index View:
 		- [x] Put some basic UI styles;
-		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Create View:
 		- [x] Put some basic UI styles;
 		- [x] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
-		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Edit View:
 		- [ ] Put some basic UI styles;
 		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Delete Confirm View:
-		- [ ] Put some basic UI styles;
-		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+		- [x] Extraxt delete consifm in modal form;
+		- [x] Put some basic UI styles;
+		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
 - [ ] Unit testing;
@@ -38,7 +40,9 @@ Do not forget to update the ToDo list immer wieder :)!
 
 ### General Tasks
 1. [ ] Separate in project .Identity;
-1. [ ] Validation, Forms, Models, Client Side and Server Side - research;
+1. [ ] Crate separate View Models and Mapper;
+1. [x] Validation, Forms, Models, Client Side and Server Side - research;
+1. [x] Modal forms with Bootstrap - research;
 1. [ ] Jenkins integration - research;
 1. [ ] Upload in the Cloud - research;
 1. [ ] Change the favicon;
