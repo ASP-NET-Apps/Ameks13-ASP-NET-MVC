@@ -17,18 +17,18 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Bind all in the used container-Ninject.
 - [x] Raw view for Preview, Edit, Insert, Delete;
 - [ ] Views:
-	- [ ] Index View:
+	- [x] Index View:
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Create View:
+	- [x] Create View:
 		- [x] Put some basic UI styles;
 		- [x] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Edit View:
-		- [ ] Put some basic UI styles;
-		- [ ] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
-		- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Delete Confirm View:
+	- [x] Edit View:
+		- [x] Put some basic UI styles;
+		- [x] Validation, Html.ValidationMessage, Html.ValidationSummary, Validation.RequireField;
+		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [x] Delete Confirm View:
 		- [x] Extraxt delete consifm in modal form;
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
