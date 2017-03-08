@@ -36,7 +36,12 @@ Do not forget to update the ToDo list immer wieder :)!
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
 - [ ] Unit testing;
-- [ ] Local IIS Deployment and manual test.
+- [x] Local IIS Deployment and manual test.
+	http://www.mywoodenhouse.com
+- [x] Azure Deployment;
+	http://mywoodenhouse.azurewebsites.net/
+- [ ] Continuous integrationa and delivery with Jenkins;
+
 
 ### General Tasks
 1. [ ] Separate the Identity in project .Identity;
