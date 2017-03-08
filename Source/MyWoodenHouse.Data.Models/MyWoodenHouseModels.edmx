@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyWoodenHouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buildings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsableArea" Type="real" />
+          <Property Name="BuiltUpArea" Type="real" />
+          <Property Name="FloorsCount" Type="int" />
+          <Property Name="RoomsCount" Type="int" />
+          <Property Name="BathroomsCount" Type="int" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildingsMaterials">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+            <PropertyRef Name="MaterialId" />
+          </Key>
+          <Property Name="BuildingId" Type="int" Nullable="false" />
+          <Property Name="MaterialId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BuildingsPictures">
+          <Key>
+            <PropertyRef Name="BuildingId" />
+            <PropertyRef Name="PictureId" />
+          </Key>
+          <Property Name="BuildingId" Type="int" Nullable="false" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="PictureContent" Type="varbinary(max)" />
+          <Property Name="PictureUrl" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PriceCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="real" />
+          <Property Name="Currency" Type="varchar" MaxLength="10" />
+          <Property Name="PerSquareMeter" Type="real" Nullable="false" />
+          <Property Name="PriceCategory" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ProductsPrices">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="PriceId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="PriceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Building_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Buildings">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Building_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Buildings">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildingsMaterials_Building">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+          <End Role="BuildingsMaterials" Type="Self.BuildingsMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuildingsMaterials">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildingsMaterials_Materials">
+          <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+          <End Role="BuildingsMaterials" Type="Self.BuildingsMaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materials">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuildingsMaterials">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildingsPictures_Building">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+          <End Role="BuildingsPictures" Type="Self.BuildingsPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuildingsPictures">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BuildingsPictures_Pictures">
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="1" />
+          <End Role="BuildingsPictures" Type="Self.BuildingsPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BuildingsPictures">
+              <PropertyRef Name="PictureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prices_PriceCategories">
+          <End Role="PriceCategories" Type="Self.PriceCategories" Multiplicity="1" />
+          <End Role="Prices" Type="Self.Prices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prices">
+              <PropertyRef Name="PriceCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsPrices_Prices">
+          <End Role="Prices" Type="Self.Prices" Multiplicity="1" />
+          <End Role="ProductsPrices" Type="Self.ProductsPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsPrices">
+              <PropertyRef Name="PriceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsPrices_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsPrices" Type="Self.ProductsPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsPrices">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyWoodenHouseModelStoreContainer">
+          <EntitySet Name="Buildings" EntityType="Self.Buildings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildingsMaterials" EntityType="Self.BuildingsMaterials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildingsPictures" EntityType="Self.BuildingsPictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceCategories" EntityType="Self.PriceCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsPrices" EntityType="Self.ProductsPrices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Building_Categories" Association="Self.FK_Building_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Buildings" EntitySet="Buildings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Building_Products" Association="Self.FK_Building_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Buildings" EntitySet="Buildings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildingsMaterials_Building" Association="Self.FK_BuildingsMaterials_Building">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="BuildingsMaterials" EntitySet="BuildingsMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildingsMaterials_Materials" Association="Self.FK_BuildingsMaterials_Materials">
+            <End Role="Materials" EntitySet="Materials" />
+            <End Role="BuildingsMaterials" EntitySet="BuildingsMaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildingsPictures_Building" Association="Self.FK_BuildingsPictures_Building">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="BuildingsPictures" EntitySet="BuildingsPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BuildingsPictures_Pictures" Association="Self.FK_BuildingsPictures_Pictures">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="BuildingsPictures" EntitySet="BuildingsPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_PriceCategories" Association="Self.FK_Prices_PriceCategories">
+            <End Role="PriceCategories" EntitySet="PriceCategories" />
+            <End Role="Prices" EntitySet="Prices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsPrices_Prices" Association="Self.FK_ProductsPrices_Prices">
+            <End Role="Prices" EntitySet="Prices" />
+            <End Role="ProductsPrices" EntitySet="ProductsPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsPrices_Products" Association="Self.FK_ProductsPrices_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsPrices" EntitySet="ProductsPrices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyWoodenHouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MyWoodenHouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buildings" EntityType="MyWoodenHouseModel.Building" />
+          <EntitySet Name="Materials" EntityType="MyWoodenHouseModel.Material" />
+          <EntitySet Name="Pictures" EntityType="MyWoodenHouseModel.Picture" />
+          <EntitySet Name="PriceCategories" EntityType="MyWoodenHouseModel.PriceCategory" />
+          <EntitySet Name="Prices" EntityType="MyWoodenHouseModel.Price" />
+          <EntitySet Name="Products" EntityType="MyWoodenHouseModel.Product" />
+          <EntitySet Name="sysdiagrams" EntityType="MyWoodenHouseModel.sysdiagram" />
+          <AssociationSet Name="FK_Building_Products" Association="MyWoodenHouseModel.FK_Building_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Building" EntitySet="Buildings" />
+          </AssociationSet>
+          <AssociationSet Name="BuildingsMaterials" Association="MyWoodenHouseModel.BuildingsMaterials">
+            <End Role="Building" EntitySet="Buildings" />
+            <End Role="Material" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="BuildingsPictures" Association="MyWoodenHouseModel.BuildingsPictures">
+            <End Role="Building" EntitySet="Buildings" />
+            <End Role="Picture" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsPrices" Association="MyWoodenHouseModel.ProductsPrices">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prices_PriceCategories" Association="MyWoodenHouseModel.FK_Prices_PriceCategories">
+            <End Role="PriceCategory" EntitySet="PriceCategories" />
+            <End Role="Price" EntitySet="Prices" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="MyWoodenHouseModel.Category" />
+          <AssociationSet Name="FK_Building_Categories" Association="MyWoodenHouseModel.FK_Building_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Building" EntitySet="Buildings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsableArea" Type="Single" />
+          <Property Name="BuiltUpArea" Type="Single" />
+          <Property Name="FloorsCount" Type="Int32" />
+          <Property Name="RoomsCount" Type="Int32" />
+          <Property Name="BathroomsCount" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="MyWoodenHouseModel.FK_Building_Products" FromRole="Building" ToRole="Product" />
+          <NavigationProperty Name="Materials" Relationship="MyWoodenHouseModel.BuildingsMaterials" FromRole="Building" ToRole="Material" />
+          <NavigationProperty Name="Pictures" Relationship="MyWoodenHouseModel.BuildingsPictures" FromRole="Building" ToRole="Picture" />
+          <NavigationProperty Name="Category" Relationship="MyWoodenHouseModel.FK_Building_Categories" FromRole="Building" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.BuildingsMaterials" FromRole="Material" ToRole="Building" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PictureUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.BuildingsPictures" FromRole="Picture" ToRole="Building" />
+        </EntityType>
+        <EntityType Name="PriceCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Prices" Relationship="MyWoodenHouseModel.FK_Prices_PriceCategories" FromRole="PriceCategory" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Single" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PerSquareMeter" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="MyWoodenHouseModel.ProductsPrices" FromRole="Price" ToRole="Product" />
+          <Property Name="PriceCategory" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.FK_Building_Products" FromRole="Product" ToRole="Building" />
+          <NavigationProperty Name="Prices" Relationship="MyWoodenHouseModel.ProductsPrices" FromRole="Product" ToRole="Price" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Building_Products">
+          <End Type="MyWoodenHouseModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BuildingsMaterials">
+          <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
+          <End Type="MyWoodenHouseModel.Material" Role="Material" Multiplicity="*" />
+        </Association>
+        <Association Name="BuildingsPictures">
+          <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
+          <End Type="MyWoodenHouseModel.Picture" Role="Picture" Multiplicity="*" />
+        </Association>
+        <Association Name="ProductsPrices">
+          <End Type="MyWoodenHouseModel.Price" Role="Price" Multiplicity="*" />
+          <End Type="MyWoodenHouseModel.Product" Role="Product" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Prices_PriceCategories">
+          <End Type="MyWoodenHouseModel.PriceCategory" Role="PriceCategory" Multiplicity="1" />
+          <End Type="MyWoodenHouseModel.Price" Role="Price" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PriceCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Price">
+              <PropertyRef Name="PriceCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.FK_Building_Categories" FromRole="Category" ToRole="Building" />
+        </EntityType>
+        <Association Name="FK_Building_Categories">
+          <End Type="MyWoodenHouseModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="MyWoodenHouseModel.Building" Role="Building" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Building">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyWoodenHouseModelStoreContainer" CdmEntityContainer="MyWoodenHouseEntities">
+          <EntitySetMapping Name="Buildings">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Building">
+              <MappingFragment StoreEntitySet="Buildings">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="BathroomsCount" ColumnName="BathroomsCount" />
+                <ScalarProperty Name="RoomsCount" ColumnName="RoomsCount" />
+                <ScalarProperty Name="FloorsCount" ColumnName="FloorsCount" />
+                <ScalarProperty Name="BuiltUpArea" ColumnName="BuiltUpArea" />
+                <ScalarProperty Name="UsableArea" ColumnName="UsableArea" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Material">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
+                <ScalarProperty Name="PictureContent" ColumnName="PictureContent" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceCategories">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.PriceCategory">
+              <MappingFragment StoreEntitySet="PriceCategories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Price">
+              <MappingFragment StoreEntitySet="Prices">
+                <ScalarProperty Name="PriceCategory" ColumnName="PriceCategory" />
+                <ScalarProperty Name="PerSquareMeter" ColumnName="PerSquareMeter" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BuildingsMaterials" TypeName="MyWoodenHouseModel.BuildingsMaterials" StoreEntitySet="BuildingsMaterials">
+            <EndProperty Name="Material">
+              <ScalarProperty Name="Id" ColumnName="MaterialId" />
+            </EndProperty>
+            <EndProperty Name="Building">
+              <ScalarProperty Name="Id" ColumnName="BuildingId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="BuildingsPictures" TypeName="MyWoodenHouseModel.BuildingsPictures" StoreEntitySet="BuildingsPictures">
+            <EndProperty Name="Picture">
+              <ScalarProperty Name="Id" ColumnName="PictureId" />
+            </EndProperty>
+            <EndProperty Name="Building">
+              <ScalarProperty Name="Id" ColumnName="BuildingId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProductsPrices" TypeName="MyWoodenHouseModel.ProductsPrices" StoreEntitySet="ProductsPrices">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" />
+            </EndProperty>
+            <EndProperty Name="Price">
+              <ScalarProperty Name="Id" ColumnName="PriceId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MyWoodenHouseModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

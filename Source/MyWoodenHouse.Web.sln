@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Default.Auth", "MyWoodenHouse.Auth\MyWoodenHouse.Default.Auth.csproj", "{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{7967609B-E82A-4D91-89BE-2F73A1523A16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Models", "MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj", "{6F34D14E-273A-4B8E-A909-870B57336D95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EC25B855-4239-4F2F-A28E-0197694E32A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Provider", "MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj", "{6DA1EB95-FF6F-466E-BB19-3DB65164E75A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Services", "MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj", "{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C185A67F-EF6A-4E16-81FF-68830E558B17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{85F14AD6-1B87-4B02-A844-16B8BA1990B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Client.Web", "MyWoodenHouse.Client.Web\MyWoodenHouse.Client.Web.csproj", "{707B3C20-650E-4870-908B-69243F1F3AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F34D14E-273A-4B8E-A909-870B57336D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F34D14E-273A-4B8E-A909-870B57336D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F34D14E-273A-4B8E-A909-870B57336D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F34D14E-273A-4B8E-A909-870B57336D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA1EB95-FF6F-466E-BB19-3DB65164E75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA1EB95-FF6F-466E-BB19-3DB65164E75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA1EB95-FF6F-466E-BB19-3DB65164E75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA1EB95-FF6F-466E-BB19-3DB65164E75A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{707B3C20-650E-4870-908B-69243F1F3AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{707B3C20-650E-4870-908B-69243F1F3AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{707B3C20-650E-4870-908B-69243F1F3AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{707B3C20-650E-4870-908B-69243F1F3AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6} = {7967609B-E82A-4D91-89BE-2F73A1523A16}
+		{6F34D14E-273A-4B8E-A909-870B57336D95} = {EC25B855-4239-4F2F-A28E-0197694E32A8}
+		{6DA1EB95-FF6F-466E-BB19-3DB65164E75A} = {EC25B855-4239-4F2F-A28E-0197694E32A8}
+		{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36} = {C185A67F-EF6A-4E16-81FF-68830E558B17}
+		{707B3C20-650E-4870-908B-69243F1F3AFE} = {85F14AD6-1B87-4B02-A844-16B8BA1990B1}
+	EndGlobalSection
+EndGlobal
