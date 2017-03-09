@@ -21,5 +21,16 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatons
             Assert.IsTrue(true);
         }
 
+        [TestMethod]
+        public void ReturnCategory_WhenValidIdParameterPassed_NotPassing()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+            Assert.IsTrue(false);
+        }
+
     }
 }
