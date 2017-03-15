@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatons
+namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 {
     [TestClass]
     public class SelectById_Should
@@ -20,17 +20,5 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatons
             // Assert
             Assert.IsTrue(true);
         }
-
-        [TestMethod]
-        public void ReturnCategory_WhenValidIdParameterPassed_NotPassing()
-        {
-            // Arrange
-
-            // Act
-
-            // Assert
-            Assert.IsTrue(false);
-        }
-
     }
 }

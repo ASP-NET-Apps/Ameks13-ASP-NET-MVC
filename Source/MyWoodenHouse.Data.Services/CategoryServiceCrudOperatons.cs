@@ -36,16 +36,15 @@ namespace MyWoodenHouse.Data.Services
             }
         }
 
-        protected IMyWoodenHouseDbContext Context
+        public IMyWoodenHouseDbContext Context
         {
             get
             {
                 return this.context;
             }
         }
-
-
-        protected IDbSet<Category> CategoryDbSet
+        
+        public IDbSet<Category> CategoryDbSet
         {
             get
             {
