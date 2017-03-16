@@ -20,7 +20,7 @@ namespace MyWoodenHouse.Data.Models.Constants.Models
             public struct ErrorMessage
             {
                 public static string AnInstanceOfObjectIsRequiredToConstructClass = "An instance of {0} is required to use this {1}";
-                public static string DbContextDoesNotContainDbSet = "DbContext does not contain DbSet<{0}>}";
+                public static string DbContextDoesNotContainDbSet = "DbContext does not contain DbSet<{0}>";
             }
         };
 

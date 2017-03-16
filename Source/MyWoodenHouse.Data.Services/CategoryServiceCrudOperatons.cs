@@ -32,7 +32,7 @@ namespace MyWoodenHouse.Data.Services
             if (this.categoryDbSet == null)
             {
                 string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.DbContextDoesNotContainDbSet, typeof(Category).Name);
-                throw new ArgumentException(errorMessage);
+                throw new ArgumentNullException(errorMessage);
             }
         }
 

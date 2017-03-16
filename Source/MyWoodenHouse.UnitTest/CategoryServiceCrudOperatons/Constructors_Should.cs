@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using MyWoodenHouse.Data.Services;
-using MyWoodenHouse.Data.Provider.Contracts;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Data.Entity;
 using MyWoodenHouse.Data.Models;
+using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Services;
+using MyWoodenHouse.Extensions;
+using System;
+using System.Data.Entity;
 
 namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 {
@@ -18,25 +14,27 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
     {
         //global for the test run
         private static TestContext context;
+
         private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext testContext)
         {   
-            // Default stuff
+            // Default class context
             context = testContext;
 
             // Arrange
-            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
-            mockedDbSet = new Mock<DbSet<Category>>();
+            //mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            //mockedDbSet = new Mock<DbSet<Category>>();
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        [TestInitialize]
+        public void TestInit()
         {
-            // Cleanup
-            mockedMyWoodenHouseDbContext = null;
+            // Arrange
+            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            mockedDbSet = new Mock<DbSet<Category>>();
         }
 
         [TestMethod]
@@ -54,6 +52,17 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         }
 
         [TestMethod]
+        public void ThrowArgumentNullException_WhenDbSetIsNull()
+        {
+            // Arrange
+            DbSet<Category> nullDbSet = null;
+            mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(nullDbSet);
+
+            // Act & Assert
+            Assert.ThrowsException<ArgumentNullException>(() => new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object));
+        }
+
+        [TestMethod]
         public void InvokeDbContextSetMethodOnce_WhenArgumentDbContextIsValid()
         {
             // Arrange
@@ -66,6 +75,9 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             mockedMyWoodenHouseDbContext.Verify(mock => mock.Set<Category>(), Times.Once);
         }
 
+        
+
+
         [TestMethod]
         public void ProvideAccessToTheInjectedDbContext_WhenArgumentDbContextIsValid()
         {
@@ -77,6 +89,34 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             
             // Assert
             Assert.AreSame(mockedMyWoodenHouseDbContext.Object, actualInstance.Context);
+        }
+
+        [TestMethod]
+        public void CreateCategoryDbSet_WhenArgumentDbContextIsValid()
+        {
+            // Arrange
+            mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(mockedDbSet.Object);
+
+            // Act
+            var actualInstance = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+            
+            // Assert
+            Assert.AreSame(mockedDbSet.Object, actualInstance.CategoryDbSet);
+        }
+
+        [ClassCleanup()]
+        public static void ClassCleanup()
+        {
+            // Cleanup
+            //mockedMyWoodenHouseDbContext = null;
+            //mockedDbSet = null;
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            mockedMyWoodenHouseDbContext = null;
+            mockedDbSet = null;
         }
     }
 }

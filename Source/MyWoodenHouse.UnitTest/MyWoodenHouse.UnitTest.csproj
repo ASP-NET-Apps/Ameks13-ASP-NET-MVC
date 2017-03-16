@@ -75,6 +75,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CategoryServiceCrudOperatons\Constructors_Should.cs" />
+    <Compile Include="CategoryServiceCrudOperatons\HasProperties_Should.cs" />
     <Compile Include="CategoryServiceCrudOperatons\SelectById_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -94,6 +95,10 @@
     <ProjectReference Include="..\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj">
       <Project>{639cc1e7-b4b4-4b7f-9a54-4bfec88f7b36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Extensions\MyWoodenHouse.Extensions.csproj">
+      <Project>{63ae3e17-17f7-41e7-9e66-906fe9f73e2e}</Project>
+      <Name>MyWoodenHouse.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
