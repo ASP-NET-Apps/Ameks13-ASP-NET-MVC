@@ -1,0 +1,16 @@
+diff a/Todo.md b/Todo.md	(rejected hunks)
+@@ -50,12 +50,12 @@
+ 1. [x] Validation, Forms, Models, Client Side and Server Side - research;
+ 1. [x] Modal forms with Bootstrap - research;
+ 	- https://www.codeproject.com/Tips/826002/Bootstrap-Modal-Dialog-Loading-Content-from-MVC-Pa
+-1. [ ] Jenkins integration - research;
++1. [x] Jenkins integration - research;
+ 1. [ ] Resource files integration - research;
+ 	- http://www.devcurry.com/2013/02/aspnet-mvc-using-resource-files-to.html
+ 1. [ ] Install and make bundle for jQuery UI;
+ 	- http://stackoverflow.com/questions/20081328/how-to-add-jqueryui-library-in-mvc-5-project
+-1. [ ] Upload in the Cloud - research;
++1. [x] Upload in the Cloud - research;
+ 1. [ ] Change the favicon;
+ 1. [ ] Create SiteMap file. 
+ 
