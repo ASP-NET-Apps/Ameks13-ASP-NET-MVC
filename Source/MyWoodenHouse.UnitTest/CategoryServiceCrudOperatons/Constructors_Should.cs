@@ -40,8 +40,11 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         [TestMethod]
         public void BePublic()
         {
-            // TODO
-            Assert.IsTrue(true);
+            // Arrange & Act
+            bool hasPublicConstructors = typeof(CategoryServiceCrudOperatons).HasPublicConstructor();
+
+            // Assert
+            Assert.IsTrue(hasPublicConstructors);
         }
 
         [TestMethod]
