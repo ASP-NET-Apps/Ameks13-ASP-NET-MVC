@@ -13,21 +13,21 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
     public class Constructors_Should
     {
         //global for the test run
-        private static TestContext context;
+        //private static TestContext context;
 
         private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
 
-        [ClassInitialize()]
-        public static void ClassInit(TestContext testContext)
-        {   
-            // Default class context
-            context = testContext;
+        //[ClassInitialize()]
+        //public static void ClassInit(TestContext testContext)
+        //{   
+        //    // Default class context
+        //    context = testContext;
 
-            // Arrange
-            //mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
-            //mockedDbSet = new Mock<DbSet<Category>>();
-        }
+        //    // Arrange
+        //    //mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+        //    //mockedDbSet = new Mock<DbSet<Category>>();
+        //}
 
         [TestInitialize]
         public void TestInit()
@@ -79,9 +79,6 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             mockedMyWoodenHouseDbContext.Verify(mock => mock.Set<Category>(), Times.Once);
         }
 
-        
-
-
         [TestMethod]
         public void ProvideAccessToTheInjectedDbContext_WhenArgumentDbContextIsValid()
         {
@@ -108,19 +105,20 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             Assert.AreSame(mockedDbSet.Object, actualInstance.CategoryDbSet);
         }
 
-        [ClassCleanup()]
-        public static void ClassCleanup()
-        {
-            // Cleanup
-            //mockedMyWoodenHouseDbContext = null;
-            //mockedDbSet = null;
-        }
-
+        
         [TestCleanup]
         public void TestCleanup()
         {
             mockedMyWoodenHouseDbContext = null;
             mockedDbSet = null;
         }
+
+        //[ClassCleanup()]
+        //public static void ClassCleanup()
+        //{
+        //    // Cleanup
+        //    //mockedMyWoodenHouseDbContext = null;
+        //    //mockedDbSet = null;
+        //}
     }
 }
