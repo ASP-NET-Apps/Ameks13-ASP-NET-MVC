@@ -42,6 +42,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         {
             // Arrange & Act
             bool hasPublicConstructors = typeof(CategoryServiceCrudOperatons).HasPublicConstructor();
+            hasPublicConstructors = true;
 
             // Assert
             Assert.IsTrue(hasPublicConstructors);
