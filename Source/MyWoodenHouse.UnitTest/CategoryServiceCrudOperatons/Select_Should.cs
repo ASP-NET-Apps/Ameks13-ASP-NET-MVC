@@ -14,13 +14,23 @@ using System.Threading.Tasks;
 namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 {
     [TestClass]
-    public class Select_Should
+    public class SelectById_Should
     {
         private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
 
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext testContext)
+        // TODO Research isue
+        // ClassInitialize works in Visual Studio 2015 but 
+        // causes Error when triggered inside Jenkins ?!
+        //[ClassInitialize]
+        //public static void ClassInitialize(TestContext testContext)
+        //{
+        //    mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+        //    mockedDbSet = new Mock<DbSet<Category>>();
+        //}
+
+        [TestInitialize]
+        public void TestInitialize()
         {
             mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
             mockedDbSet = new Mock<DbSet<Category>>();
@@ -70,8 +80,18 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             Assert.AreEqual(0, actualCategories.Count());
         }
 
-        [ClassCleanup]
-        public static void ClassCleanup()
+        // TODO Research isue
+        // ClassInitialize works in Visual Studio 2015 but 
+        // causes Error when triggered inside Jenkins ?!
+        //[ClassCleanup]
+        //public static void ClassCleanup()
+        //{
+        //    mockedMyWoodenHouseDbContext = null;
+        //    mockedDbSet = null;
+        //}
+
+        [TestCleanup]
+        public void TestCleanup()
         {
             mockedMyWoodenHouseDbContext = null;
             mockedDbSet = null;
