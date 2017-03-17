@@ -53,14 +53,37 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 
             // Act
             var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Select();
+            var actualCategories = actualService.Get();
 
             // Assert
             Assert.IsInstanceOfType(actualCategories, typeof(IEnumerable<Category>));
         }
-        
+
+        // TODO Investigate or delete
+        //[TestMethod]
+        //public void BeExecutedOnce_WhenCalled()
+        //{
+        //    // Arrange
+        //    var fakeData = new List<Category>().AsQueryable();
+        //    //fakeData.Add(new Mock<Category>().Object);
+
+        //    mockedDbSet.As<IQueryable<Category>>().Setup(m => m.Provider).Returns(fakeData.Provider);
+        //    mockedDbSet.As<IQueryable<Category>>().Setup(m => m.Expression).Returns(fakeData.Expression);
+        //    mockedDbSet.As<IQueryable<Category>>().Setup(m => m.ElementType).Returns(fakeData.ElementType);
+        //    mockedDbSet.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(fakeData.GetEnumerator());
+
+        //    mockedMyWoodenHouseDbContext.Setup(c => c.Set<Category>()).Returns(mockedDbSet.Object);
+
+        //    // Act
+        //    var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+        //    var actualCategories = actualService.Get();
+
+        //    // Assert
+        //    mockedDbSet.Verify(c => c.Select(It.IsAny<Func<Category, int>>()), Times.Once );
+        //}
+
         [TestMethod]
-        public void ContainZeroCategories_WhenZeroCategoriesInside()
+        public void ReturnZeroCategories_WhenZeroCategoriesInside()
         {
             // Arrange
             var fakeData = new List<Category>().AsQueryable();
@@ -74,10 +97,36 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 
             // Act
             var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Select();
+            var actualCategories = actualService.Get();
 
             // Assert
             Assert.AreEqual(0, actualCategories.Count());
+        }
+
+        [TestMethod]
+        public void ReturnFourCategories_WhenTheyAreFourCategoriesInside()
+        {
+            // Arrange
+            var fakeData = new List<Category> {
+                new Category { Name = "House" },
+                new Category { Name = "Garage" },
+                new Category { Name = "Cabin" },
+                new Category { Name = "Bungalow" }
+            }.AsQueryable();
+
+            mockedDbSet.As<IQueryable<Category>>().Setup(m => m.Provider).Returns(fakeData.Provider);
+            mockedDbSet.As<IQueryable<Category>>().Setup(m => m.Expression).Returns(fakeData.Expression);
+            mockedDbSet.As<IQueryable<Category>>().Setup(m => m.ElementType).Returns(fakeData.ElementType);
+            mockedDbSet.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(fakeData.GetEnumerator());
+
+            mockedMyWoodenHouseDbContext.Setup(c => c.Set<Category>()).Returns(mockedDbSet.Object);
+
+            // Act
+            var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+            var actualCategories = actualService.Get();
+
+            // Assert
+            Assert.AreEqual(4, actualCategories.Count());
         }
 
         // TODO Research isue
