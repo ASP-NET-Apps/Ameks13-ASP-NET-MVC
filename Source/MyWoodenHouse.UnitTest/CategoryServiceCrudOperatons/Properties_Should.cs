@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 {
     [TestClass]
-    public class HasProperties_Should
+    public class Properties_Should
     {
         private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;

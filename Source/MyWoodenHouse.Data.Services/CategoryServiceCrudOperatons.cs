@@ -16,7 +16,7 @@ namespace MyWoodenHouse.Data.Services
     public class CategoryServiceCrudOperatons : ICategoryServiceCrudOperatons
     {
         private readonly IMyWoodenHouseDbContext context;
-        private readonly IDbSet<Category> categoryDbSet;
+        private readonly DbSet<Category> categoryDbSet;
 
         public CategoryServiceCrudOperatons(IMyWoodenHouseDbContext context)
         {           
@@ -44,7 +44,7 @@ namespace MyWoodenHouse.Data.Services
             }
         }
         
-        public IDbSet<Category> CategoryDbSet
+        public DbSet<Category> CategoryDbSet
         {
             get
             {
