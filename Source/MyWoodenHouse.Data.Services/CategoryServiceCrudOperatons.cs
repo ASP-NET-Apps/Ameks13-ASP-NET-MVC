@@ -68,20 +68,20 @@ namespace MyWoodenHouse.Data.Services
             return this.CategoryDbSet.Find(id);
         }
 
-        public IEnumerable<Category> Get()
+        public IEnumerable<Category> Select()
         {
             IEnumerable<Category> categoriesToReturn = this.CategoryDbSet.Select(c => c);
 
             return categoriesToReturn;
         }
 
-        public IEnumerable<Category> Get(Expression<Func<Category, bool>> filterExpression)
+        public IEnumerable<Category> Select(Expression<Func<Category, bool>> filterExpression)
         {
             IEnumerable<Category> categoriesToReturn = null;
 
             if (filterExpression == null)
             {
-                categoriesToReturn = this.Get();
+                categoriesToReturn = this.Select();
             }
             else
             {

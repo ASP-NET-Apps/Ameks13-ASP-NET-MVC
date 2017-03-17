@@ -32,7 +32,7 @@ namespace MyWoodenHouse.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IList<Category> allCategories = this.CategoryServiceCrudOperatons.Get().ToList();
+            IList<Category> allCategories = this.CategoryServiceCrudOperatons.Select().ToList();
 
             return View(allCategories);
         }

@@ -9,9 +9,9 @@ namespace MyWoodenHouse.Data.Services.Contracts
     {
         Category SelectById(int? id);
 
-        IEnumerable<Category> Get();
+        IEnumerable<Category> Select();
 
-        IEnumerable<Category> Get(Expression<Func<Category, bool>> filterExpression);
+        IEnumerable<Category> Select(Expression<Func<Category, bool>> filterExpression);
 
         void Insert(Category category);
 

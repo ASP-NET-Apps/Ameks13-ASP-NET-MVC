@@ -23,7 +23,7 @@ namespace MyWoodenHouse.Controllers
             var context = new MyWoodenHouseDbContext();
             var categoryService = new CategoryServiceCrudOperatons(context);
 
-            IList<Category> categories = categoryService.Get().ToList();
+            IList<Category> categories = categoryService.Select().ToList();
 
             return View();
         }

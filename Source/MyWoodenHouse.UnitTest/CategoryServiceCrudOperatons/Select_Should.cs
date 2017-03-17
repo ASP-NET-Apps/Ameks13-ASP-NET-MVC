@@ -1,15 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Models;
-using MyWoodenHouse.Data.Models.Contracts;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 {
@@ -53,7 +49,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 
             // Act
             var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Get();
+            var actualCategories = actualService.Select();
 
             // Assert
             Assert.IsInstanceOfType(actualCategories, typeof(IEnumerable<Category>));
@@ -97,7 +93,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 
             // Act
             var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Get();
+            var actualCategories = actualService.Select();
 
             // Assert
             Assert.AreEqual(0, actualCategories.Count());
@@ -123,7 +119,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 
             // Act
             var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Get();
+            var actualCategories = actualService.Select();
 
             // Assert
             Assert.AreEqual(4, actualCategories.Count());
