@@ -14,6 +14,8 @@ namespace MyWoodenHouse.App_Start
     using Data.Provider;
     using Data.Services.Contracts;
     using Data.Services;
+    using Factories.Contracts;
+    using Factories;
 
     public static class NinjectWebCommon 
     {
@@ -74,6 +76,8 @@ namespace MyWoodenHouse.App_Start
             kernel.Bind<IMyWoodenHouseDbContext>().To<MyWoodenHouseDbContext>().InRequestScope();
 
             kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
+
+            kernel.Bind<IMyMapper>().To<MyMapper>().InSingletonScope();
         }        
     }
 }

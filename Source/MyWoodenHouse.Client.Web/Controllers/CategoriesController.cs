@@ -26,14 +26,14 @@ namespace MyWoodenHouse.Controllers
         {
             this.MyWoodenHouseDbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
             this.CategoryServiceCrudOperatons = NinjectWebCommon.Kernel.Get<ICategoryServiceCrudOperatons>();
-            this.MyMaper = new MyMapper();
+            this.MyMaper = NinjectWebCommon.Kernel.Get<IMyMapper>();
         }
 
         protected IMyWoodenHouseDbContext MyWoodenHouseDbContext { get; private set; }
 
         protected ICategoryServiceCrudOperatons CategoryServiceCrudOperatons { get; private set; }
 
-        protected MyMapper MyMaper { get; private set; }
+        protected IMyMapper MyMaper { get; private set; }
 
         // GET: Categories
         [HttpGet]
