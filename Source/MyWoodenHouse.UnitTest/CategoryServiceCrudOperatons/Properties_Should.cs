@@ -27,7 +27,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         }
 
         [TestMethod]
-        public void HasPropertyContext()
+        public void ExistContextProperty()
         {
             // Arrange
             mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(mockedDbSet.Object);
@@ -40,7 +40,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         }
 
         [TestMethod]
-        public void HasPropertyCategoryDbSet()
+        public void ExistCategoryDbSetProperty()
         {
             // Arrange
             mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(mockedDbSet.Object);

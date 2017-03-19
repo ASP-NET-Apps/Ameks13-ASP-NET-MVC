@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="CategoryServiceCrudOperatons\Constructors_Should.cs" />
     <Compile Include="CategoryServiceCrudOperatons\Properties_Should.cs" />
+    <Compile Include="CategoryServiceCrudOperatons\SelectFiltered_Should.cs" />
     <Compile Include="CategoryServiceCrudOperatons\Select_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
