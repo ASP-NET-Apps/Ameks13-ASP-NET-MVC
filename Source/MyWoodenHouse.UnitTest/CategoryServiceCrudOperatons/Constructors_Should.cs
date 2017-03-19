@@ -42,7 +42,6 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         {
             // Arrange & Act
             bool hasPublicConstructors = typeof(CategoryServiceCrudOperatons).HasPublicConstructor();
-            hasPublicConstructors = true;
 
             // Assert
             Assert.IsTrue(hasPublicConstructors);
@@ -105,7 +104,19 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             Assert.AreSame(mockedDbSet.Object, actualInstance.CategoryDbSet);
         }
 
-        
+        [TestMethod]
+        public void CreateValidCategoryServiceCrudOperatonsInstance_WhenArgumentDbContextIsValid()
+        {
+            // Arrange
+            mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(mockedDbSet.Object);
+
+            // Act
+            var actualInstance = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+
+            // Assert
+            Assert.IsInstanceOfType(actualInstance, typeof(CategoryServiceCrudOperatons));
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
