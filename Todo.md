@@ -33,6 +33,7 @@ Do not forget to update the ToDo list immer wieder :)!
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
 	- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+- [x] Add View Model with validation attributes;	
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
 - [ ] Unit testing;
