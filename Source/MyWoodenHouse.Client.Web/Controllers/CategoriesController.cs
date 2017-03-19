@@ -13,6 +13,10 @@ using MyWoodenHouse.App_Start;
 using Ninject;
 using MyWoodenHouse.Data.Services.Contracts;
 using System.Web.Helpers;
+using MyWoodenHouse.Models;
+using MyWoodenHouse.Factories.Contracts;
+using MyWoodenHouse.Models.Contracts;
+using MyWoodenHouse.Factories;
 
 namespace MyWoodenHouse.Controllers
 {
@@ -22,19 +26,29 @@ namespace MyWoodenHouse.Controllers
         {
             this.MyWoodenHouseDbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
             this.CategoryServiceCrudOperatons = NinjectWebCommon.Kernel.Get<ICategoryServiceCrudOperatons>();
+            this.MyMaper = new MyMapper();
         }
 
         protected IMyWoodenHouseDbContext MyWoodenHouseDbContext { get; private set; }
 
         protected ICategoryServiceCrudOperatons CategoryServiceCrudOperatons { get; private set; }
 
+        protected MyMapper MyMaper { get; private set; }
+
         // GET: Categories
         [HttpGet]
         public ActionResult Index()
         {
             IList<Category> allCategories = this.CategoryServiceCrudOperatons.Select().ToList();
+            IList<ICategoryVM> allCategoriesVm = new List<ICategoryVM>();
 
-            return View(allCategories);
+            foreach (Category category in allCategories)
+            {
+                var c = MyMaper.CreateCategoryVM(category);
+                allCategoriesVm.Add(c);
+            }
+            
+            return View(allCategoriesVm);
         }
 
         // GET: Categories/Create

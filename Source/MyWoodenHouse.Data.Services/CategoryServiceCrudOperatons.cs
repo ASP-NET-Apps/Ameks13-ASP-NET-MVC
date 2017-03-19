@@ -166,9 +166,25 @@ namespace MyWoodenHouse.Data.Services
 
         public int GetMaxId()
         {
-            int maxId = this.categoryDbSet.Max(c => c.Id);
+            int maxId = -1;
 
-            bool isValidId = (maxId > 0);
+            try
+            {
+                maxId = this.categoryDbSet.Max(c => c.Id);
+            }
+            catch (InvalidOperationException)
+            {
+                // When Categories table is empty, EntityFramework returns InvalidOperationException
+                // We assign Zero to the current Id and the first inserted item will be with
+                // Id = 0 + 1; 
+                maxId = 0;
+            }
+            catch
+            {
+                throw new ArgumentException();
+            }
+
+            bool isValidId = (maxId >= 0);
             if (!isValidId)
             {
                 // TODO extract constant
