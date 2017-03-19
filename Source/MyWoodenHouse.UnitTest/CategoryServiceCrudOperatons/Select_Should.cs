@@ -10,7 +10,7 @@ using System.Linq;
 namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
 {
     [TestClass]
-    public class SelectById_Should
+    public class Select_Should
     {
         private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
