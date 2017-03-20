@@ -9,6 +9,10 @@ namespace MyWoodenHouse.Data.Provider.Contracts
     {
         IDbSet<Category> Categories { get; set; }
 
+        EntityState GetEntityState(object entity);
+
+        void SetEntityState(object entity, EntityState state);
+
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

@@ -28,6 +28,18 @@ namespace MyWoodenHouse.Data.Provider
         }
 
         public virtual IDbSet<Category> Categories { get; set; }
+        
+        public EntityState GetEntityState(object entity)
+        {
+            EntityState stateToReturn = Entry(entity).State;
+
+            return stateToReturn;
+        }
+
+        public void SetEntityState(object entity, EntityState state)
+        {
+            Entry(entity).State = state;
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

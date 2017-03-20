@@ -91,26 +91,51 @@ namespace MyWoodenHouse.Data.Services
             return categoriesToReturn;
         }
 
-        public void Insert(Category category)
+        //public int Insert(Category category)
+        //{
+        //    if (category == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(category));
+        //    }
+
+        //    DbEntityEntry entry = this.Context.Entry(category);
+        //    if (entry.State != EntityState.Detached)
+        //    {
+        //        entry.State = EntityState.Added;
+        //    }
+        //    else
+        //    {
+        //        category.Id = this.GetMaxId() + 1;
+        //        this.CategoryDbSet.Add(category);
+        //    }
+
+        //    return category.Id;
+        //}
+
+        public int Insert(Category category)
         {
             if (category == null)
             {
                 throw new ArgumentNullException(nameof(category));
             }
 
-            DbEntityEntry entry = this.Context.Entry(category);
-            if(entry.State != EntityState.Detached)
+            //DbEntityEntry entry = this.Context.Entry(category);
+            bool isStateDetached = this.Context.GetEntityState(category) == EntityState.Detached;
+            if (!isStateDetached)
             {
-                entry.State = EntityState.Added;
+                //entry.State = EntityState.Added;
+                this.Context.SetEntityState(category, EntityState.Added);
             }
             else
             {
                 category.Id = this.GetMaxId() + 1;
                 this.CategoryDbSet.Add(category);
             }
+
+            return category.Id;
         }
 
-        public void Update(Category category)
+        public int Update(Category category)
         {
             if (category == null)
             {
@@ -124,6 +149,8 @@ namespace MyWoodenHouse.Data.Services
             }
 
             entry.State = EntityState.Modified;
+
+            return category.Id;
         }
 
         public void Delete(Category category)

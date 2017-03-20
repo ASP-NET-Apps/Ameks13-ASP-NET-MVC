@@ -152,6 +152,5 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             mockedDbSet = null;
             fakeData = null;
         }
-
     }
 }

@@ -13,9 +13,9 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         IEnumerable<Category> Select(Expression<Func<Category, bool>> filterExpression);
 
-        void Insert(Category category);
+        int Insert(Category category);
 
-        void Update(Category category);
+        int Update(Category category);
 
         void Delete(Category category);
 
