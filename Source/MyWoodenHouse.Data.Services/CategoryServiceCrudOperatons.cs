@@ -163,10 +163,12 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(nameof(category));
             }
 
-            DbEntityEntry entry = this.Context.Entry(category);
-            if (entry.State != EntityState.Deleted)
+            //DbEntityEntry entry = this.Context.Entry(category);
+            bool isStateDeleted = this.Context.GetEntityState(category) == EntityState.Deleted;
+            if (!isStateDeleted)
             {
-                entry.State = EntityState.Deleted;
+                //entry.State = EntityState.Deleted;
+                this.Context.SetEntityState(category, EntityState.Deleted);
             }
             else
             {
@@ -194,7 +196,7 @@ namespace MyWoodenHouse.Data.Services
             this.Delete(category);
         }
 
-        public int GetMaxId()
+        private int GetMaxId()
         {
             int maxId = -1;
 
