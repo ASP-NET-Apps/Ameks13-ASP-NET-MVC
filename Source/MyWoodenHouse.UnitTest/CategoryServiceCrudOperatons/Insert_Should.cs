@@ -93,6 +93,38 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             Assert.AreEqual(categoryToAdd.Name, actualCategory.Name);
         }
 
+        [TestMethod]
+        public void VerifyThatDbContextGetEntityStateMethodIsCalledOnce_WhenCalledWithValidCategoryObject()
+        {
+            // Arrange
+            var categoryToAdd = new Category { Name = "The Fifth Category" };
+            mockedMyWoodenHouseDbContext.Setup(c => c.GetEntityState(It.IsAny<Category>()))
+                .Returns(() => EntityState.Detached);
+
+            // Act
+            var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+            var id = actualService.Insert(categoryToAdd);
+
+            // Assert
+            mockedMyWoodenHouseDbContext.Verify(c => c.GetEntityState(It.IsAny<Category>()), Times.Once);
+        }
+
+        [TestMethod]
+        public void VerifyThatDbSetAddMethodIsCalledOnce_WhenCalledWithValidCategoryObject()
+        {
+            // Arrange
+            var categoryToAdd = new Category { Name = "The Fifth Category" };
+            mockedMyWoodenHouseDbContext.Setup(c => c.GetEntityState(It.IsAny<Category>()))
+                .Returns(() => EntityState.Detached);
+
+            // Act
+            var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+            var id = actualService.Insert(categoryToAdd);
+
+            // Assert
+            mockedDbSet.Verify(s => s.Add(It.IsAny<Category>()), Times.Once);
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
