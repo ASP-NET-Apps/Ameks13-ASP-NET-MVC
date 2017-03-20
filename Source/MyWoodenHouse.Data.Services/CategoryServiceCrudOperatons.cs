@@ -142,14 +142,17 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(nameof(category));
             }
 
-            DbEntityEntry entry = this.Context.Entry(category);
-            if(entry.State != EntityState.Detached)
+            // DbEntityEntry entry = this.Context.Entry(category);
+            bool isStateDetached = this.Context.GetEntityState(category) == EntityState.Detached;
+
+            if (!isStateDetached)
             {
                 this.CategoryDbSet.Attach(category);
             }
 
-            entry.State = EntityState.Modified;
-
+            //entry.State = EntityState.Modified;
+            this.Context.SetEntityState(category, EntityState.Modified);
+            
             return category.Id;
         }
 
