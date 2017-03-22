@@ -92,6 +92,23 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
             Assert.AreEqual(countCategoriesBeforeDelete - 1, fakeData.Count);
         }
 
+        [TestMethod]
+        public void DeleteTheCorrectItem_WhenCalledWithValidCategoryObject()
+        {
+            // Arrange
+            mockedMyWoodenHouseDbContext.Setup(c => c.GetEntityState(It.IsAny<Category>()))
+                .Returns(() => EntityState.Deleted);
+
+            // Act
+            var actualService = new CategoryServiceCrudOperatons(mockedMyWoodenHouseDbContext.Object);
+            var id = 1;
+            var categoryToDelete = actualService.SelectById(id);
+            actualService.Delete(categoryToDelete);
+
+            // Assert
+            Assert.AreSame(null, actualService.SelectById(id));
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {

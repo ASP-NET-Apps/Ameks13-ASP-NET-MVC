@@ -91,27 +91,6 @@ namespace MyWoodenHouse.Data.Services
             return categoriesToReturn;
         }
 
-        //public int Insert(Category category)
-        //{
-        //    if (category == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(category));
-        //    }
-
-        //    DbEntityEntry entry = this.Context.Entry(category);
-        //    if (entry.State != EntityState.Detached)
-        //    {
-        //        entry.State = EntityState.Added;
-        //    }
-        //    else
-        //    {
-        //        category.Id = this.GetMaxId() + 1;
-        //        this.CategoryDbSet.Add(category);
-        //    }
-
-        //    return category.Id;
-        //}
-
         public int Insert(Category category)
         {
             if (category == null)
@@ -142,7 +121,6 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(nameof(category));
             }
 
-            // DbEntityEntry entry = this.Context.Entry(category);
             bool isStateDetached = this.Context.GetEntityState(category) == EntityState.Detached;
 
             if (!isStateDetached)
@@ -150,7 +128,6 @@ namespace MyWoodenHouse.Data.Services
                 this.CategoryDbSet.Attach(category);
             }
 
-            //entry.State = EntityState.Modified;
             this.Context.SetEntityState(category, EntityState.Modified);
             
             return category.Id;
@@ -163,11 +140,9 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(nameof(category));
             }
 
-            //DbEntityEntry entry = this.Context.Entry(category);
             bool isStateDeleted = this.Context.GetEntityState(category) == EntityState.Deleted;
             if (!isStateDeleted)
             {
-                //entry.State = EntityState.Deleted;
                 this.Context.SetEntityState(category, EntityState.Deleted);
             }
             else
