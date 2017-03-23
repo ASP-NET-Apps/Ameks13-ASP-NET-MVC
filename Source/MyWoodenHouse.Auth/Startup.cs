@@ -2,8 +2,9 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using MyWoodenHouse.Auth.Data;
-using MyWoodenHouse.Auth.Models;
+using MyWoodenHouse.Default.Auth.Data;
+using MyWoodenHouse.Default.Auth.Managers;
+using MyWoodenHouse.Default.Auth.Models;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: OwinStartupAttribute(typeof(MyWoodenHouse.Auth.Startup))]
-namespace MyWoodenHouse.Auth
+[assembly: OwinStartupAttribute(typeof(MyWoodenHouse.Default.Auth.Startup))]
+namespace MyWoodenHouse.Default.Auth
 {
     public class Startup
     {

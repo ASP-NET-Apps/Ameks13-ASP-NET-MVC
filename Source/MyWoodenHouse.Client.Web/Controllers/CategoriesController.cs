@@ -1,24 +1,18 @@
-﻿using System;
+﻿using MyWoodenHouse.Client.Web.App_Start;
+using MyWoodenHouse.Client.Web.Factories.Contracts;
+using MyWoodenHouse.Client.Web.ViewModels;
+using MyWoodenHouse.Client.Web.ViewModels.Contracts;
+using MyWoodenHouse.Data.Models;
+using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Services.Contracts;
+using Ninject;
+using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using MyWoodenHouse.Data.Models;
-using MyWoodenHouse.Data.Provider;
-using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.App_Start;
-using Ninject;
-using MyWoodenHouse.Data.Services.Contracts;
-using System.Web.Helpers;
-using MyWoodenHouse.Models;
-using MyWoodenHouse.Factories.Contracts;
-using MyWoodenHouse.Models.Contracts;
-using MyWoodenHouse.Factories;
 
-namespace MyWoodenHouse.Controllers
+namespace MyWoodenHouse.Client.Web.Controllers
 {
     public class CategoriesController : Controller
     {
@@ -26,12 +20,15 @@ namespace MyWoodenHouse.Controllers
         {
             this.MyWoodenHouseDbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
             this.CategoryServiceCrudOperatons = NinjectWebCommon.Kernel.Get<ICategoryServiceCrudOperatons>();
+            this.EfDbContextSaveChanges = NinjectWebCommon.Kernel.Get<IEfDbContextSaveChanges>();
             this.MyMaper = NinjectWebCommon.Kernel.Get<IMyMapper>();
         }
 
         protected IMyWoodenHouseDbContext MyWoodenHouseDbContext { get; private set; }
 
         protected ICategoryServiceCrudOperatons CategoryServiceCrudOperatons { get; private set; }
+
+        protected IEfDbContextSaveChanges EfDbContextSaveChanges { get; private set; }
 
         protected IMyMapper MyMaper { get; private set; }
 
@@ -40,15 +37,15 @@ namespace MyWoodenHouse.Controllers
         public ActionResult Index()
         {
             IList<Category> allCategories = this.CategoryServiceCrudOperatons.Select().ToList();
-            IList<ICategoryVM> allCategoriesVm = new List<ICategoryVM>();
+            IList<CategoryViewModel> allCategoriesViewModel = new List<CategoryViewModel>();
 
             foreach (Category category in allCategories)
             {
-                var c = MyMaper.CreateCategoryVM(category);
-                allCategoriesVm.Add(c);
+                var c = MyMaper.CreateCategoryViewModel(category);
+                allCategoriesViewModel.Add(c);
             }
             
-            return View(allCategoriesVm);
+            return View(allCategoriesViewModel);
         }
 
         // GET: Categories/Create
@@ -71,7 +68,7 @@ namespace MyWoodenHouse.Controllers
             if (ModelState.IsValid)
             {
                 this.CategoryServiceCrudOperatons.Insert(category);
-                this.CategoryServiceCrudOperatons.SaveChanges();
+                this.EfDbContextSaveChanges.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -108,7 +105,7 @@ namespace MyWoodenHouse.Controllers
             if (ModelState.IsValid)
             {
                 this.CategoryServiceCrudOperatons.Update(category);
-                this.CategoryServiceCrudOperatons.SaveChanges();
+                this.EfDbContextSaveChanges.SaveChanges();
 
                 return RedirectToAction("Index");
             }
@@ -150,7 +147,7 @@ namespace MyWoodenHouse.Controllers
             }
 
             this.CategoryServiceCrudOperatons.Delete(id);
-            this.CategoryServiceCrudOperatons.SaveChanges();
+            this.EfDbContextSaveChanges.SaveChanges();
 
             return RedirectToAction("Index");
         }

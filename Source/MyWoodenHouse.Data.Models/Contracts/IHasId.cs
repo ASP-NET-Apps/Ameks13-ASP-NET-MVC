@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.Models.Contracts
+namespace MyWoodenHouse.Data.Models.Contracts
 {
-    public interface ICategoryVM
+    public interface IHasIntId
     {
         int Id { get; set; }
-
-        string Name { get; set; }
     }
 }

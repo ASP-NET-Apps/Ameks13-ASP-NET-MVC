@@ -2,15 +2,16 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using MyWoodenHouse.Auth.Data;
-using MyWoodenHouse.Auth.Services;
-
+using MyWoodenHouse.Default.Auth.Contracts;
+using MyWoodenHouse.Default.Auth.Data;
+using MyWoodenHouse.Default.Auth.Models;
+using MyWoodenHouse.Default.Auth.Services;
 using System;
 
-namespace MyWoodenHouse.Auth.Models
+namespace MyWoodenHouse.Default.Auth.Managers
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser>, IUserService
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
@@ -62,6 +63,11 @@ namespace MyWoodenHouse.Auth.Models
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        public ApplicationUser FindById(string userId)
+        {
+            return UserManagerExtensions.FindById(this, userId);
         }
     }
 }

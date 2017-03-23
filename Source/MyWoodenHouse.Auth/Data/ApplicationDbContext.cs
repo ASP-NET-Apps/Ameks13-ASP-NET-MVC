@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using MyWoodenHouse.Auth.Models;
+using MyWoodenHouse.Default.Auth.Models;
 
-namespace MyWoodenHouse.Auth.Data
+namespace MyWoodenHouse.Default.Auth.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

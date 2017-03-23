@@ -21,6 +21,6 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         void Delete(int? id);
 
-        void SaveChanges();
+        //void SaveChanges();
     }
 }

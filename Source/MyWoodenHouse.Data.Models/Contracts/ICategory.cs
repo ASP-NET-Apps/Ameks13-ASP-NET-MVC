@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Models.Contracts
 {
-    public interface ICategory
+    public interface ICategory : IHasIntId
     {        
-        int Id { get; set; }
+        //int Id { get; set; }
 
         string Name { get; set; }
 

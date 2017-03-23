@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyWoodenHouse.Models
+namespace MyWoodenHouse.Client.Web.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

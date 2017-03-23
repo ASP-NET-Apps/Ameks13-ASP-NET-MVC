@@ -202,10 +202,10 @@ namespace MyWoodenHouse.Data.Services
             return maxId;
         }
 
-        public void SaveChanges()
-        {
-            this.Context.SaveChanges();
-        }
+        //public void SaveChanges()
+        //{
+        //    this.Context.SaveChanges();
+        //}
 
         //private DbEntityEntry<Category> AttachIfDeteched(Category category)
         //{

@@ -1,15 +1,10 @@
-﻿using MyWoodenHouse.Data.Models.Contracts;
-using MyWoodenHouse.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MyWoodenHouse.Client.Web.ViewModels;
+using MyWoodenHouse.Data.Models.Contracts;
 
-namespace MyWoodenHouse.Factories.Contracts
+namespace MyWoodenHouse.Client.Web.Factories.Contracts
 {
     public interface IMyMapper
     {
-        ICategoryVM CreateCategoryVM(ICategory category);
+        CategoryViewModel CreateCategoryViewModel(ICategory category);
     }
 }

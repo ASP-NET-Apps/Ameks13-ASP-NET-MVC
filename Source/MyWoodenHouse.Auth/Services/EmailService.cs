@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.Auth.Services
+namespace MyWoodenHouse.Default.Auth.Services
 {
     public class EmailService : IIdentityMessageService
     {

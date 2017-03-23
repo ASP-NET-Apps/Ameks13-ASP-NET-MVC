@@ -18,7 +18,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceCrudOperatonsTests
         private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
 
-        //[ClassInitialize()]
+        //[ClassInitialize]
         //public static void ClassInit(TestContext testContext)
         //{   
         //    // Default class context

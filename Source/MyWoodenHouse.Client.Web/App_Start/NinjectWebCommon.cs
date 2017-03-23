@@ -1,22 +1,24 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MyWoodenHouse.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MyWoodenHouse.App_Start.NinjectWebCommon), "Stop")]
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using MyWoodenHouse.Client.Web.App_Start;
+using MyWoodenHouse.Client.Web.Factories;
+using MyWoodenHouse.Client.Web.Factories.Contracts;
+using MyWoodenHouse.Data.Provider;
+using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Services;
+using MyWoodenHouse.Data.Services.Contracts;
+using MyWoodenHouse.Default.Auth.Contracts;
+using MyWoodenHouse.Default.Auth.Managers;
+using Ninject;
+using Ninject.Web.Common;
+using System;
+using System.Web;
 
-namespace MyWoodenHouse.App_Start
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+
+namespace MyWoodenHouse.Client.Web.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using Data.Provider.Contracts;
-    using Data.Provider;
-    using Data.Services.Contracts;
-    using Data.Services;
-    using Factories.Contracts;
-    using Factories;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -43,7 +45,7 @@ namespace MyWoodenHouse.App_Start
         /// Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
-        private static IKernel CreateKernel()
+        public static IKernel CreateKernel()
         {
             Kernel = new StandardKernel();
             try
@@ -75,8 +77,17 @@ namespace MyWoodenHouse.App_Start
         {
             kernel.Bind<IMyWoodenHouseDbContext>().To<MyWoodenHouseDbContext>().InRequestScope();
 
+            // Auth services
+            kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
+            kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+
+            // Data services
             kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
 
+            kernel.Bind(typeof(IEfCrudOperatons<>)).To(typeof(EfCrudOperatons<>));
+            kernel.Bind<IEfDbContextSaveChanges>().To<EfDbContextSaveChanges>();
+
+            // Other helpers
             kernel.Bind<IMyMapper>().To<MyMapper>().InSingletonScope();
         }        
     }

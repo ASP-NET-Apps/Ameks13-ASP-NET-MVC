@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace MyWoodenHouse
+namespace MyWoodenHouse.Client.Web.App_Start
 {
     public class FilterConfig
     {

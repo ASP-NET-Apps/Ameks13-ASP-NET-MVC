@@ -1,19 +1,15 @@
-﻿using MyWoodenHouse.Data.Models.Contracts;
-using MyWoodenHouse.Factories.Contracts;
-using MyWoodenHouse.Models;
-using MyWoodenHouse.Models.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MyWoodenHouse.Client.Web.Factories.Contracts;
+using MyWoodenHouse.Client.Web.ViewModels;
+using MyWoodenHouse.Client.Web.ViewModels.Contracts;
+using MyWoodenHouse.Data.Models.Contracts;
 
-namespace MyWoodenHouse.Factories
+namespace MyWoodenHouse.Client.Web.Factories
 {
     public class MyMapper : IMyMapper
     {
-        public ICategoryVM CreateCategoryVM(ICategory category)
+        public CategoryViewModel CreateCategoryViewModel(ICategory category)
         {
-            var newCategoryVM = new CategoryVM(category);
+            var newCategoryVM = new CategoryViewModel(category);
 
             return newCategoryVM;
         }

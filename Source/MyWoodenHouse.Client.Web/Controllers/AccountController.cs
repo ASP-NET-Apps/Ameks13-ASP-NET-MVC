@@ -1,56 +1,27 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using MyWoodenHouse.Client.Web.ViewModels;
+using MyWoodenHouse.Default.Auth.Contracts;
+using MyWoodenHouse.Default.Auth.Models;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using MyWoodenHouse.Auth.Models;
-using MyWoodenHouse.Models;
+//using MyWoodenHouse.Models;
 
-namespace MyWoodenHouse.Controllers
+namespace MyWoodenHouse.Client.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private readonly ISignInService signInService;
+        private readonly IUserService userService;
 
-        public AccountController()
+        public AccountController(ISignInService signInService, IUserService userService)
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            this.signInService = signInService;
+            this.userService = userService;
         }
 
         //
@@ -76,7 +47,7 @@ namespace MyWoodenHouse.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await this.signInService.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -98,7 +69,7 @@ namespace MyWoodenHouse.Controllers
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
-            if (!await SignInManager.HasBeenVerifiedAsync())
+            if (!await this.signInService.HasBeenVerifiedAsync())
             {
                 return View("Error");
             }
@@ -121,7 +92,7 @@ namespace MyWoodenHouse.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await this.signInService.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -153,14 +124,14 @@ namespace MyWoodenHouse.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await this.userService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await this.signInService.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // string code = await this.userService.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
@@ -182,7 +153,7 @@ namespace MyWoodenHouse.Controllers
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            var result = await this.userService.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
@@ -203,8 +174,8 @@ namespace MyWoodenHouse.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await this.userService.FindByNameAsync(model.Email);
+                if (user == null || !(await this.userService.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -212,9 +183,9 @@ namespace MyWoodenHouse.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                // string code = await this.userService.GeneratePasswordResetTokenAsync(user.Id);
                 // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // await this.userService.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -249,13 +220,13 @@ namespace MyWoodenHouse.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await this.userService.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await this.userService.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
@@ -288,12 +259,12 @@ namespace MyWoodenHouse.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
-            var userId = await SignInManager.GetVerifiedUserIdAsync();
+            var userId = await this.signInService.GetVerifiedUserIdAsync();
             if (userId == null)
             {
                 return View("Error");
             }
-            var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var userFactors = await this.userService.GetValidTwoFactorProvidersAsync(userId);
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
@@ -311,7 +282,7 @@ namespace MyWoodenHouse.Controllers
             }
 
             // Generate the token and send it
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await this.signInService.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
             }
@@ -330,7 +301,7 @@ namespace MyWoodenHouse.Controllers
             }
 
             // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await this.signInService.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -368,14 +339,14 @@ namespace MyWoodenHouse.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new Auth.Models.ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
+                var user = new Default.Auth.Models.ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await this.userService.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await this.userService.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await this.signInService.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -408,16 +379,16 @@ namespace MyWoodenHouse.Controllers
         {
             if (disposing)
             {
-                if (_userManager != null)
+                if (this.userService != null)
                 {
-                    _userManager.Dispose();
-                    _userManager = null;
+                    this.userService.Dispose();
+                    //this.userService = null;
                 }
 
-                if (_signInManager != null)
+                if (this.signInService != null)
                 {
-                    _signInManager.Dispose();
-                    _signInManager = null;
+                    this.signInService.Dispose();
+                    //_signInManager = null;
                 }
             }
 
