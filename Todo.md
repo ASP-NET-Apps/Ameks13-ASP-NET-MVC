@@ -60,6 +60,9 @@ Do not forget to update the ToDo list immer wieder :)!
 1. [ ] Change the favicon;
 1. [ ] Create SiteMap file. 
 
+1. [ ] Unit test за Моделите няма смисъл да се тества, дали моделът връща обект от правилният тип. Има смисъл да се провери, дали даден клас имплементира определен интерфейс
+1. [ ] Интегратион тестовете могат да бъдат пълно копие на Unit тестовете, само че без да се ползват Mock-нати обекти
+
 ----------
 
 ## Cowboy Driven Development - Single Tasks
