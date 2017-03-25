@@ -90,9 +90,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
-      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Data.Models</Name>
+    <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
+      <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
+      <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj">
       <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
@@ -101,6 +101,10 @@
     <ProjectReference Include="..\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj">
       <Project>{639cc1e7-b4b4-4b7f-9a54-4bfec88f7b36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
+      <Name>MyWoodenHouse.Ef.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Extensions\MyWoodenHouse.Extensions.csproj">
       <Project>{63ae3e17-17f7-41e7-9e66-906fe9f73e2e}</Project>

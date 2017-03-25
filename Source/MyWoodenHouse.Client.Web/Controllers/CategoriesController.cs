@@ -2,9 +2,12 @@
 using MyWoodenHouse.Client.Web.Factories.Contracts;
 using MyWoodenHouse.Client.Web.ViewModels;
 using MyWoodenHouse.Client.Web.ViewModels.Contracts;
-using MyWoodenHouse.Data.Models;
+
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services.Contracts;
+using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Ef.Models.Contracts;
+using MyWoodenHouse.Pure.Models;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -16,12 +19,15 @@ namespace MyWoodenHouse.Client.Web.Controllers
 {
     public class CategoriesController : Controller
     {
+        private readonly ICategoryService categoryService;
+
         public CategoriesController()
         {
             this.MyWoodenHouseDbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
             this.CategoryServiceCrudOperatons = NinjectWebCommon.Kernel.Get<ICategoryServiceCrudOperatons>();
             this.EfDbContextSaveChanges = NinjectWebCommon.Kernel.Get<IEfDbContextSaveChanges>();
-            this.MyMaper = NinjectWebCommon.Kernel.Get<IMyMapper>();
+            this.MyViewModelsMapper = NinjectWebCommon.Kernel.Get<IMyViewModelsMapper>();
+            this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
         }
 
         protected IMyWoodenHouseDbContext MyWoodenHouseDbContext { get; private set; }
@@ -30,22 +36,16 @@ namespace MyWoodenHouse.Client.Web.Controllers
 
         protected IEfDbContextSaveChanges EfDbContextSaveChanges { get; private set; }
 
-        protected IMyMapper MyMaper { get; private set; }
+        protected IMyViewModelsMapper MyViewModelsMapper { get; private set; }
 
         // GET: Categories
         [HttpGet]
         public ActionResult Index()
         {
-            IList<Category> allCategories = this.CategoryServiceCrudOperatons.Select().ToList();
-            IList<CategoryViewModel> allCategoriesViewModel = new List<CategoryViewModel>();
-
-            foreach (Category category in allCategories)
-            {
-                var c = MyMaper.CreateCategoryViewModel(category);
-                allCategoriesViewModel.Add(c);
-            }
+            IEnumerable<CategoryModel> categoriesModel = this.categoryService.GetAllCategoriesSortedById();
+            IEnumerable<CategoryMainViewModel> categoriesViewModel = categoriesModel.Select(c => this.MyViewModelsMapper.CategoryModel2CategoryViewModel(c));
             
-            return View(allCategoriesViewModel);
+            return View(categoriesViewModel);
         }
 
         // GET: Categories/Create
@@ -60,40 +60,47 @@ namespace MyWoodenHouse.Client.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name")] Category category)
+        public ActionResult Create([Bind(Include = "Id, Name")] CategoryMainViewModel categoryMainViewModel)
         {
             // TODO optimise if possible
-            ModelState["Id"].Errors.Clear();
+            if (ModelState["Id"] != null)
+            {
+                if (ModelState["Id"].Errors.Count > 0)
+                {
+                    ModelState["Id"].Errors.Clear();
+                }
+            }                        
 
             if (ModelState.IsValid)
             {
-                this.CategoryServiceCrudOperatons.Insert(category);
-                this.EfDbContextSaveChanges.SaveChanges();
+                CategoryModel categoryModel = this.MyViewModelsMapper.CategoryViewModel2CategoryModel(categoryMainViewModel);
+                this.categoryService.InsertCategory(categoryModel);
 
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(categoryMainViewModel);
         }
 
         // GET: Categories/Edit/5
         [HttpGet]
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-            Category category = this.CategoryServiceCrudOperatons.SelectById(id);
+        //    Category category = this.CategoryServiceCrudOperatons.SelectById(id);
 
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
+        //    if (category == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    CategoryViewModel categoryViewModel = MyViewModelsMapper.CreateCategoryViewModel(category);
 
-            return View(category);
-        }
+        //    return View(categoryViewModel);
+        //}
 
         // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -113,28 +120,29 @@ namespace MyWoodenHouse.Client.Web.Controllers
         }
 
         // GET: Categories/Delete/5
-        public PartialViewResult ViewDeleteConfirm(int? id)
-        {
-            if (id == null)
-            {
-                // TODO research if better whay could be used
-                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                // TODO extract constant
-                throw new ArgumentNullException("Item to delete id can not be null.");
-            }
+        //public PartialViewResult ViewDeleteConfirm(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        // TODO research if better whay could be used
+        //        // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        // TODO extract constant
+        //        throw new ArgumentNullException("The id of the item to be deleted can not be null.");
+        //    }
 
-            Category category = this.CategoryServiceCrudOperatons.SelectById(id);
+        //    Category category = this.CategoryServiceCrudOperatons.SelectById(id);
 
-            if (category == null)
-            {
-                //return HttpNotFound();
-                // TODO extract constant
-                string errorMessage = string.Format("Item to delete can not be found by id = {0}", id);
-                throw new ArgumentNullException(errorMessage);
-            }
+        //    if (category == null)
+        //    {
+        //        //return HttpNotFound();
+        //        // TODO extract constant
+        //        string errorMessage = string.Format("Item to be deleted can not be found by the provided id = {0}", id);
+        //        throw new ArgumentNullException(errorMessage);
+        //    }
+        //    CategoryViewModel categoryViewModel = MyMaper.CreateCategoryViewModel(category);
 
-            return PartialView("_DeleteConfirm", category); 
-        }
+        //    return PartialView("_DeleteConfirm", categoryViewModel); 
+        //}
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]

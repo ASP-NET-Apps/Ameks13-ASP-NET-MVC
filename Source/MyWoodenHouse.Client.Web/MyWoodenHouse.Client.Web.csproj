@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyWoodenHouse</RootNamespace>
-    <AssemblyName>MyWoodenHouse</AssemblyName>
+    <RootNamespace>MyWoodenHouse.Client.Web</RootNamespace>
+    <AssemblyName>MyWoodenHouse.Client.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -187,14 +187,14 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Factories\Contracts\IMyMapper.cs" />
-    <Compile Include="Factories\MyMapper.cs" />
+    <Compile Include="Factories\Contracts\IMyViewModelsMapper.cs" />
+    <Compile Include="Factories\MyViewModelsMapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Contracts\ICategoryViewModel.cs" />
+    <Compile Include="ViewModels\CategoryMainViewModel.cs" />
+    <Compile Include="ViewModels\Contracts\ICategoryMainViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
@@ -291,9 +291,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
-      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Data.Models</Name>
+    <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
+      <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
+      <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj">
       <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
@@ -306,6 +306,22 @@
     <ProjectReference Include="..\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj">
       <Project>{639cc1e7-b4b4-4b7f-9a54-4bfec88f7b36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+      <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
+      <Name>MyWoodenHouse.Ef.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
+      <Project>{f1f6c39a-fe72-494e-9995-ec3dfaa605e2}</Project>
+      <Name>MyWoodenHouse.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Models.Services\MyWoodenHouse.Model.Services.csproj">
+      <Project>{35b0ead8-3212-4ef1-a111-079fe4eede32}</Project>
+      <Name>MyWoodenHouse.Model.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Pure.Models\MyWoodenHouse.Pure.Models.csproj">
+      <Project>{bc662dc8-c9c1-4ad9-aa35-29579f0b823d}</Project>
+      <Name>MyWoodenHouse.Pure.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

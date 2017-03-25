@@ -1,11 +1,8 @@
-﻿using MyWoodenHouse.Data.Models.Constants.Models;
-using MyWoodenHouse.Data.Models.Contracts;
+﻿using MyWoodenHouse.Constants.Models;
+using MyWoodenHouse.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Services.Helpers
 {

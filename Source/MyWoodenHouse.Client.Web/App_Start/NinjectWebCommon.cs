@@ -5,6 +5,7 @@ using MyWoodenHouse.Client.Web.Factories;
 using MyWoodenHouse.Client.Web.Factories.Contracts;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Provider.Operations;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Default.Auth.Contracts;
@@ -82,13 +83,14 @@ namespace MyWoodenHouse.Client.Web.App_Start
             kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
 
             // Data services
-            kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
-
             kernel.Bind(typeof(IEfCrudOperatons<>)).To(typeof(EfCrudOperatons<>));
             kernel.Bind<IEfDbContextSaveChanges>().To<EfDbContextSaveChanges>();
+            
+            kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
+            kernel.Bind<ICategoryService>().To<CategoryService>();            
 
             // Other helpers
-            kernel.Bind<IMyMapper>().To<MyMapper>().InSingletonScope();
+            kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
         }        
     }
 }

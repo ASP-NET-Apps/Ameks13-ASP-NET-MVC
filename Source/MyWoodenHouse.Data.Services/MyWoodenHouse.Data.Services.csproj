@@ -49,13 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryService.cs" />
     <Compile Include="CategoryServiceCrudOperatons.cs" />
+    <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\ICategoryServiceCrudOperatons.cs" />
-    <Compile Include="Contracts\IEfCrudOperatons.cs" />
-    <Compile Include="Contracts\IEfDbContextSaveChanges.cs" />
-    <Compile Include="Contracts\IEfStoredProcedures.cs" />
-    <Compile Include="EfCrudOperatons.cs" />
-    <Compile Include="EfDbContextSaveChanges.cs" />
     <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="Helpers\EntityIdOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,13 +62,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
-      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Data.Models</Name>
+    <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
+      <Project>{65A0937F-62E5-4F3A-83DA-2FB48B1215DD}</Project>
+      <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj">
       <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
       <Name>MyWoodenHouse.Data.Provider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
+      <Name>MyWoodenHouse.Ef.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
+      <Project>{F1F6C39A-FE72-494E-9995-EC3DFAA605E2}</Project>
+      <Name>MyWoodenHouse.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Pure.Models\MyWoodenHouse.Pure.Models.csproj">
+      <Project>{BC662DC8-C9C1-4AD9-AA35-29579F0B823D}</Project>
+      <Name>MyWoodenHouse.Pure.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

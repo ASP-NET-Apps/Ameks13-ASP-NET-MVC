@@ -49,8 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IEfCrudOperatons.cs" />
+    <Compile Include="Contracts\IEfDbContextSaveChanges.cs" />
+    <Compile Include="Contracts\IEfStoredProcedures.cs" />
     <Compile Include="Contracts\IMyWoodenHouseDbContext.cs" />
     <Compile Include="MyWoodenHouseDbContext.cs" />
+    <Compile Include="Operations\EfCrudOperatons.cs" />
+    <Compile Include="Operations\EfDbContextSaveChanges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,9 +63,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
+    <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
+      <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
+      <Name>MyWoodenHouse.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
       <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Data.Models</Name>
+      <Name>MyWoodenHouse.Ef.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
+      <Project>{F1F6C39A-FE72-494E-9995-EC3DFAA605E2}</Project>
+      <Name>MyWoodenHouse.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -78,12 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyWoodenHouse.Client.Web\MyWoodenHouse.Client.Web.csproj">
-      <Project>{707B3C20-650E-4870-908B-69243F1F3AFE}</Project>
+      <Project>{707b3c20-650e-4870-908b-69243f1f3afe}</Project>
       <Name>MyWoodenHouse.Client.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
-      <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
-      <Name>MyWoodenHouse.Data.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj">
       <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
@@ -92,6 +88,10 @@
     <ProjectReference Include="..\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj">
       <Project>{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
+      <Name>MyWoodenHouse.Ef.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

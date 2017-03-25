@@ -41,13 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryModel.cs" />
-    <Compile Include="Contracts\ICategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyWoodenHouse.Data.Models\MyWoodenHouse.Data.Models.csproj">
-      <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
-      <Name>MyWoodenHouse.Data.Models</Name>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
+      <Name>MyWoodenHouse.Ef.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
+      <Project>{f1f6c39a-fe72-494e-9995-ec3dfaa605e2}</Project>
+      <Name>MyWoodenHouse.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

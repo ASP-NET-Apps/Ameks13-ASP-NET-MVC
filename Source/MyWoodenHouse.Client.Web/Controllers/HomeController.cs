@@ -1,6 +1,6 @@
-﻿using MyWoodenHouse.Data.Models;
-using MyWoodenHouse.Data.Provider;
+﻿using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Services;
+using MyWoodenHouse.Ef.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;

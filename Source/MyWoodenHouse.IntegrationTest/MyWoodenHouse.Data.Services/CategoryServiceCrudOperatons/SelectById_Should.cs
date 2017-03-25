@@ -1,15 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Data.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
-using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
 using MyWoodenHouse.Data.Services;
+using MyWoodenHouse.Ef.Models;
+using Ninject;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace MyWoodenHouse.IntegrationTest.MyWoodenHouse.Data.Services.CategoryServiceCrudOperatonsTests
 {

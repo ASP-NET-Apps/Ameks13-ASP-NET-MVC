@@ -1,4 +1,4 @@
-﻿using MyWoodenHouse.Data.Models;
+﻿using MyWoodenHouse.Ef.Models;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;

@@ -1,5 +1,5 @@
-﻿using MyWoodenHouse.Data.Models;
-using MyWoodenHouse.Data.Provider.Contracts;
+﻿using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Ef.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
