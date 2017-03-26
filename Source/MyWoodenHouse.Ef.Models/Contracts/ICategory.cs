@@ -10,12 +10,6 @@ namespace MyWoodenHouse.Ef.Models.Contracts
 {
     public interface ICategory : ICategoryModel, IHasIntId
     {
-        //int Id { get; set; }
-
-        //string Name { get; set; }
-
         ICollection<Building> Buildings { get; set; }
-
-        string ModelName { get; }
     }
 }

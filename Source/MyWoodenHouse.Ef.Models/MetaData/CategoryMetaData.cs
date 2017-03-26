@@ -2,7 +2,6 @@
 using MyWoodenHouse.Ef.Models.Contracts;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
@@ -21,10 +20,5 @@ namespace MyWoodenHouse.Ef.Models.MetaData
         public string Name { get; set; }
 
         public ICollection<Building> Buildings { get; set; }
-
-        // TODO Remove next line when DB models are separated from View models
-        [NotMapped]
-        [Display(Name = "Category")]
-        public string ModelName { get; }
     }
 }
