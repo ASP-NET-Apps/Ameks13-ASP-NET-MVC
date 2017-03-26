@@ -78,24 +78,6 @@ namespace MyWoodenHouse.Data.Services
             return categoriesToReturn;
         }
 
-        public ICategoryModel InsertCategory(CategoryModel categoryModel)
-        {
-            if (categoryModel == null)
-            {
-                string errorMessage = nameof(categoryModel);
-                throw new ArgumentNullException(errorMessage);
-            }
-
-            // TODO create MyDbModelsMapper.CategoryModel2Category
-            Category categoryToInsert = new Category();
-            categoryToInsert.Name = categoryModel.Name;
-
-            this.categoryBaseOperatonsProvider.Insert(categoryToInsert);
-            this.dbContextSaveChanges.SaveChanges();
-
-            return categoryModel;
-        }
-
         public CategoryModel GetCategoryById(int? id)
         {
             if (id == null)
@@ -122,6 +104,24 @@ namespace MyWoodenHouse.Data.Services
             categoryToReturn = new CategoryModel(category);
 
             return categoryToReturn;
+        }
+
+        public ICategoryModel InsertCategory(CategoryModel categoryModel)
+        {
+            if (categoryModel == null)
+            {
+                string errorMessage = nameof(categoryModel);
+                throw new ArgumentNullException(errorMessage);
+            }
+
+            // TODO create MyDbModelsMapper.CategoryModel2Category
+            Category categoryToInsert = new Category();
+            categoryToInsert.Name = categoryModel.Name;
+
+            this.categoryBaseOperatonsProvider.Insert(categoryToInsert);
+            this.dbContextSaveChanges.SaveChanges();
+
+            return categoryModel;
         }
 
         public ICategoryModel UpdateCategory(CategoryModel categoryModel)

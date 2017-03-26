@@ -85,6 +85,8 @@
     <Compile Include="CategoryServiceCrudOperatons\Update_Should.cs" />
     <Compile Include="CategoryService\Class_Should.cs" />
     <Compile Include="CategoryService\Constructors_Should.cs" />
+    <Compile Include="CategoryService\GetAllCategories_Should.cs" />
+    <Compile Include="CategoryService\GetCategoryById_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +113,10 @@
     <ProjectReference Include="..\MyWoodenHouse.Extensions\MyWoodenHouse.Extensions.csproj">
       <Project>{63ae3e17-17f7-41e7-9e66-906fe9f73e2e}</Project>
       <Name>MyWoodenHouse.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Pure.Models\MyWoodenHouse.Pure.Models.csproj">
+      <Project>{BC662DC8-C9C1-4AD9-AA35-29579F0B823D}</Project>
+      <Name>MyWoodenHouse.Pure.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
