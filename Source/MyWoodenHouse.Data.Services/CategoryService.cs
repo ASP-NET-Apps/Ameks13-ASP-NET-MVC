@@ -80,7 +80,7 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(errorMessage);
             }
 
-            // TODO create MyDbModelsMapper()
+            // TODO create MyDbModelsMapper.CategoryModel2Category
             Category categoryToInsert = new Category();
             categoryToInsert.Name = categoryModel.Name;
 
@@ -90,5 +90,68 @@ namespace MyWoodenHouse.Data.Services
             return categoryModel;
         }
 
+        public CategoryModel GetCategoryById(int? id)
+        {
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithNotNullableParameter, null);
+                throw new ArgumentNullException(errorMessage);
+            }
+            if (id <= 0)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithPositiveParameter, id);
+                throw new ArgumentException(errorMessage);
+            }
+
+            CategoryModel categoryToReturn = null;
+            Category category = this.categoryBaseOperatonsProvider.SelectById(id);
+
+            if (category == null)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
+                throw new ArgumentNullException(errorMessage);
+            }
+
+            // TODO create MyDbModelsMapper.Category2CategoryModel and replace
+            categoryToReturn = new CategoryModel(category);
+
+            return categoryToReturn;
+        }
+
+        public ICategoryModel UpdateCategory(CategoryModel categoryModel)
+        {
+            if (categoryModel == null)
+            {
+                string errorMessage = nameof(categoryModel);
+                throw new ArgumentNullException(errorMessage);
+            }
+
+            // TODO create MyDbModelsMapper.CategoryModel2Category
+            Category categoryToUpdate = new Category();
+            categoryToUpdate.Id = categoryModel.Id;
+            categoryToUpdate.Name = categoryModel.Name;
+
+            this.categoryBaseOperatonsProvider.Update(categoryToUpdate);
+            this.dbContextSaveChanges.SaveChanges();
+
+            return categoryModel;
+        }
+
+        public void DeleteCategoryById(int? id)
+        {
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, null);
+                throw new ArgumentNullException(errorMessage);
+            }
+            if (id <= 0)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, id);
+                throw new ArgumentException(errorMessage);
+            }
+
+            this.categoryBaseOperatonsProvider.Delete(id);
+            this.dbContextSaveChanges.SaveChanges();
+        }
     }
 }

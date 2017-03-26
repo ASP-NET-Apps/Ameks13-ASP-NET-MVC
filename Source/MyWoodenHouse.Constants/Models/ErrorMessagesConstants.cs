@@ -38,6 +38,8 @@ namespace MyWoodenHouse.Constants.Models
             {
                 public static string SelectByIdIsPossibleOnlyWithNotNullableParameter = "Select by Id is only possible with not nullable id parameter";
                 public static string SelectByIdIsPossibleOnlyWithPositiveParameter = "Select by Id is only possible positive Id parameter. Id = {0}";
+                public static string NoItemFoundByTheGivenId = "No {0} found by the given Id = {1}";
+
             }
         };
 

@@ -12,6 +12,12 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         IEnumerable<CategoryModel> GetAllCategoriesSortedByName();
 
+        CategoryModel GetCategoryById(int? id);
+
         ICategoryModel InsertCategory(CategoryModel categoryModel);
+
+        ICategoryModel UpdateCategory(CategoryModel categoryModel);
+
+        void DeleteCategoryById(int? id);
     }
 }
