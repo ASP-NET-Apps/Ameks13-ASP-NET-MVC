@@ -6,10 +6,6 @@ using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.UnitTest.CategoryServiceTests
 {

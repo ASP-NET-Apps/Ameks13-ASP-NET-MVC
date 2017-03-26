@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
     <Compile Include="CategoryServiceCrudOperatons.cs" />
+    <Compile Include="Contracts\ICategoryServiceCopy.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\ICategoryServiceCrudOperatons.cs" />
     <Compile Include="Enums\SortOrder.cs" />
