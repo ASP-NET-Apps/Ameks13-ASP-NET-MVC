@@ -17,15 +17,21 @@ namespace MyWoodenHouse.Data.Services
 
         public CategoryService(IEfCrudOperatons<Category> categoryBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
         {
+            if (categoryBaseOperatonsProvider == null && dbContextSaveChanges == null)
+            {
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Category> and EfDbContextSaveChanges", "CategoryService");
+                throw new ArgumentNullException(errorMessage);
+            }
+
             if (categoryBaseOperatonsProvider == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "categoryBaseOperatonsProvider", "Data CategoryService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Category>", "CategoryService");
                 throw new ArgumentNullException(errorMessage);
             }
 
             if (dbContextSaveChanges == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "dbContextSaveChanges", "Data CategoryService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfDbContextSaveChanges", "CategoryService");
                 throw new ArgumentNullException(errorMessage);
             }
 

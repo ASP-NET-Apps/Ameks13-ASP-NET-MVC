@@ -83,6 +83,7 @@
     <Compile Include="CategoryServiceCrudOperatons\SelectFiltered_Should.cs" />
     <Compile Include="CategoryServiceCrudOperatons\Select_Should.cs" />
     <Compile Include="CategoryServiceCrudOperatons\Update_Should.cs" />
+    <Compile Include="CategoryService\Constructors_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
