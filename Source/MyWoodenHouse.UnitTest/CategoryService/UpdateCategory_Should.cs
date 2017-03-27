@@ -7,11 +7,13 @@ using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MyWoodenHouse.UnitTest.CategoryServiceTests
 {
     [TestClass]
-    public class InsertCategory_Should
+    public class UpdateCategory_Should
     {
         private static Mock<IEfCrudOperatons<Category>> mockedCategoryBaseOperatonsProvider;
         private static Mock<IEfDbContextSaveChanges> mockedDbContextSaveChanges;
@@ -31,78 +33,51 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceTests
                 new Category { Id = 4, Name = "Bungalow" }
             };
 
-            mockedCategoryBaseOperatonsProvider.Setup(m => m.Insert(It.IsAny<Category>()))
-                .Callback<Category>(c => fakeData.Add(c));
         }
 
         [TestMethod]
-        public void AddOneItemToTheCategoriesCollection_WhenCalledWithValidArgument_CategoryModel()
+        public void UpdateTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_CategoryModel()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
-            int perAddCategoryCount = fakeData.Count();
-            
+            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
+            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
+            categoryToUpdate.Name = "This Name is changed";
+
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
 
             // Assert
-            Assert.AreEqual(perAddCategoryCount + 1, fakeData.Count());
+            Assert.AreSame(categoryToUpdate, updatedCategoryModel);
         }
 
         [TestMethod]
-        public void AddTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_CategoryModel()
+        public void VerifyMethodIsCalledOnce_Update()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
-            int perAddCategoryCount = fakeData.Count();
+            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
+            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
+            categoryToUpdate.Name = "This Name is changed";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
-            Category addedCategoryFromFakeData = fakeData.FirstOrDefault(c => c.Id == addedCategoryId);
+            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
 
             // Assert
-            Assert.AreEqual(categoryToAdd.Name, addedCategoryFromFakeData.Name);
-        }
-
-        [TestMethod]
-        public void ReturnsTheAddedCategoryId_WhenCalledWithValidArgument_CategoryModel()
-        {
-            // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
-
-            // Act
-            CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
-
-            // Assert
-            Assert.IsTrue(addedCategoryId >= 0);
-        }
-
-        [TestMethod]
-        public void VerifyMethodIsCalledOnce_Insert()
-        {
-            // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
-
-            // Act
-            CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
-
-            // Assert
-            mockedCategoryBaseOperatonsProvider.Verify(m => m.Insert(It.IsAny<Category>()), Times.Once);
+            mockedCategoryBaseOperatonsProvider.Verify(m => m.Update(It.IsAny<Category>()), Times.Once);
         }
 
         [TestMethod]
         public void VerifyMethodIsCalledOnce_SaveChanges()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
+            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
+            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
+            categoryToUpdate.Name = "This Name is changed";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
@@ -118,7 +93,7 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.InsertCategory(null));
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.UpdateCategory(null));
         }
 
         [TestCleanup]

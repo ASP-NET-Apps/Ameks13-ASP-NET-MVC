@@ -90,6 +90,7 @@
     <Compile Include="CategoryService\GetAllCategories_Should.cs" />
     <Compile Include="CategoryService\GetCategoryById_Should.cs" />
     <Compile Include="CategoryService\InsertCategory_Should.cs" />
+    <Compile Include="CategoryService\UpdateCategory_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
