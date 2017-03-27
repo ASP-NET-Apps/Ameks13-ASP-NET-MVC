@@ -106,7 +106,7 @@ namespace MyWoodenHouse.Data.Services
             return categoryToReturn;
         }
 
-        public ICategoryModel InsertCategory(CategoryModel categoryModel)
+        public int InsertCategory(CategoryModel categoryModel)
         {
             if (categoryModel == null)
             {
@@ -118,13 +118,13 @@ namespace MyWoodenHouse.Data.Services
             Category categoryToInsert = new Category();
             categoryToInsert.Name = categoryModel.Name;
 
-            this.categoryBaseOperatonsProvider.Insert(categoryToInsert);
+            int insertedCategoryId = this.categoryBaseOperatonsProvider.Insert(categoryToInsert);
             this.dbContextSaveChanges.SaveChanges();
 
-            return categoryModel;
+            return insertedCategoryId;
         }
 
-        public ICategoryModel UpdateCategory(CategoryModel categoryModel)
+        public CategoryModel UpdateCategory(CategoryModel categoryModel)
         {
             if (categoryModel == null)
             {

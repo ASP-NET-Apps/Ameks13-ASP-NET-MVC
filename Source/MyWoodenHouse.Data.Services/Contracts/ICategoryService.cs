@@ -14,9 +14,9 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         CategoryModel GetCategoryById(int? id);
 
-        ICategoryModel InsertCategory(CategoryModel categoryModel);
+        int InsertCategory(CategoryModel categoryModel);
 
-        ICategoryModel UpdateCategory(CategoryModel categoryModel);
+        CategoryModel UpdateCategory(CategoryModel categoryModel);
 
         void DeleteCategoryById(int? id);
     }
