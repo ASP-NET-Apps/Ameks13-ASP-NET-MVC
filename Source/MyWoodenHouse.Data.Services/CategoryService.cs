@@ -147,7 +147,7 @@ namespace MyWoodenHouse.Data.Services
         {
             if (id == null)
             {
-                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, null);
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, "null");
                 throw new ArgumentNullException(errorMessage);
             }
             if (id <= 0)

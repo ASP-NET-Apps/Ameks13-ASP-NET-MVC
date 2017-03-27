@@ -1,17 +1,19 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace MyWoodenHouse.UnitTest.CategoryServiceTests
 {
     [TestClass]
-    public class UpdateCategory_Should
+    public class DeleteCategoryById_Should
     {
         private static Mock<IEfCrudOperatons<Category>> mockedCategoryBaseOperatonsProvider;
         private static Mock<IEfDbContextSaveChanges> mockedDbContextSaveChanges;
@@ -34,64 +36,58 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
-        public void UpdateTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_CategoryModel()
+        public void VerifyMethodIsCalledOnce_Delete()
         {
             // Arrange
-            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
-            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
-            categoryToUpdate.Name = "This Name is changed";
+            int id = 1;
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
+            actualService.DeleteCategoryById(id);
 
             // Assert
-            Assert.AreSame(categoryToUpdate, updatedCategoryModel);
-        }
-
-        [TestMethod]
-        public void VerifyMethodIsCalledOnce_Update()
-        {
-            // Arrange
-            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
-            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
-            categoryToUpdate.Name = "This Name is changed";
-
-            // Act
-            CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
-
-            // Assert
-            mockedCategoryBaseOperatonsProvider.Verify(m => m.Update(It.IsAny<Category>()), Times.Once);
+            mockedCategoryBaseOperatonsProvider.Verify(m => m.Delete(It.IsAny<int?>()), Times.Once);
         }
 
         [TestMethod]
         public void VerifyMethodIsCalledOnce_SaveChanges()
         {
             // Arrange
-            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
-            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
-            categoryToUpdate.Name = "This Name is changed";
+            int id = 1;
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
+            actualService.DeleteCategoryById(id);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
         }
 
         [TestMethod]
-        public void ThrowArgumentNullException_WhenArgumentIsNull_CategoryModel()
+        public void ThrowArgumentNullException_WhenArgumentIsNull_Id()
         {
             // Arrange
-            // Done in the TestInit method
+            string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, "null");
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.UpdateCategory(null));
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.DeleteCategoryById(null), errorMessage);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullException_WhenArgumentIsNotValid_Id()
+        {
+            // Arrange
+            int id = -1;
+            string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithPositiveParameter, id);
+
+            // Act
+            CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
+
+            // Assert
+            Assert.ThrowsException<ArgumentException>(() => actualService.DeleteCategoryById(id), errorMessage);
         }
 
         [TestCleanup]
