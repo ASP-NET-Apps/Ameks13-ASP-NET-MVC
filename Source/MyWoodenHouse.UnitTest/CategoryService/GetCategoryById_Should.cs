@@ -1,22 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using System;
+using MyWoodenHouse.Pure.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.UnitTest.CategoryServiceTests
 {
+    [TestClass]
     public class GetCategoryById_Should
     {
         private static Mock<IEfCrudOperatons<Category>> mockedCategoryBaseOperatonsProvider;
         private static Mock<IEfDbContextSaveChanges> mockedDbContextSaveChanges;
         private static IQueryable<Category> fakeData;
 
-        [TestInitialize]
+                [TestInitialize]
         public void TestInit()
         {
             // Arrange
@@ -30,16 +30,26 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceTests
                 new Category { Id = 4, Name = "Bungalow" }
             }.AsQueryable();
 
-            //mockedDbSet.As<IQueryable<Category>>().Setup(m => m.Provider).Returns(fakeData.Provider);
-            //mockedDbSet.As<IQueryable<Category>>().Setup(m => m.Expression).Returns(fakeData.Expression);
-            //mockedDbSet.As<IQueryable<Category>>().Setup(m => m.ElementType).Returns(fakeData.ElementType);
-            //mockedDbSet.As<IQueryable<Category>>().Setup(m => m.GetEnumerator()).Returns(fakeData.GetEnumerator());
+            mockedCategoryBaseOperatonsProvider.Setup(m => m.SelectById(It.IsAny<int?>()))
+                .Returns<object>(ids => fakeData.FirstOrDefault(c => c.Id == (int?)ids));
+        }
 
-            //mockedDbSet.Setup(m => m.Find(It.IsAny<int>()))
-            //    .Returns<object[]>(ids => fakeData.FirstOrDefault(d => d.Id == (int)ids[0]));
+        [TestMethod]
+        public void ReturnCategoryWithMatchingId_WhenCalledWithValidAndExistingIdParameter()
+        {
+            // Arrange
+            int searchedId = 3;
 
+            // Act
+            CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
+            CategoryModel actualCategoryModel = actualService.GetCategoryById(searchedId);
 
-            mockedCategoryBaseOperatonsProvider.Setup(c => c.All).Returns(fakeData);
+            Category mockedCategory = fakeData.FirstOrDefault(c => c.Id == searchedId);
+            CategoryModel mockedCategoryModel = new CategoryModel(mockedCategory);
+
+            // Assert
+            Assert.AreEqual(mockedCategoryModel.Id, actualCategoryModel.Id);
+            Assert.AreEqual(mockedCategoryModel.Name, actualCategoryModel.Name);
         }
 
         [TestCleanup]
