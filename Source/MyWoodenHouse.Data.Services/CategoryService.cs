@@ -82,7 +82,7 @@ namespace MyWoodenHouse.Data.Services
         {
             if (id == null)
             {
-                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithNotNullableParameter, null);
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithNotNullableParameter, "null");
                 throw new ArgumentNullException(errorMessage);
             }
             if (id <= 0)
