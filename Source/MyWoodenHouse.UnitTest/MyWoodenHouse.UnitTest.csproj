@@ -86,6 +86,7 @@
     <Compile Include="CategoryService\Class_Should.cs" />
     <Compile Include="CategoryService\Constructors_Should.cs" />
     <Compile Include="CategoryService\GetAllCategoriesSortedById_Should.cs" />
+    <Compile Include="CategoryService\GetAllCategoriesSortedByName_Should.cs" />
     <Compile Include="CategoryService\GetAllCategories_Should.cs" />
     <Compile Include="CategoryService\GetCategoryById_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

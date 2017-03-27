@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace MyWoodenHouse.UnitTest.CategoryServiceTests
 {
     [TestClass]
-    public class GetAllCategoriesSortedById_Should
+    public class GetAllCategoriesSortedByName_Should
     {
         private static Mock<IEfCrudOperatons<Category>> mockedCategoryBaseOperatonsProvider;
         private static Mock<IEfDbContextSaveChanges> mockedDbContextSaveChanges;
@@ -27,30 +27,30 @@ namespace MyWoodenHouse.UnitTest.CategoryServiceTests
             mockedDbContextSaveChanges = new Mock<IEfDbContextSaveChanges>();
 
             fakeData = new List<Category> {
-                new Category { Id = 4, Name = "Bungalow" },
-                new Category { Id = 2, Name = "Garage" },
-                new Category { Id = 1, Name = "House" },
-                new Category { Id = 3, Name = "Cabin" }
-            }.AsQueryable();
+                    new Category { Id = 4, Name = "D" },
+                    new Category { Id = 2, Name = "B" },
+                    new Category { Id = 1, Name = "A" },
+                    new Category { Id = 3, Name = "C" }
+                }.AsQueryable();
 
             mockedCategoryBaseOperatonsProvider.Setup(c => c.All).Returns(fakeData);
         }
 
         [TestMethod]
-        public void ReturnAllCategoriesOrderedById_WhenExecuted()
+        public void ReturnAllCategoriesOrderedByName_WhenExecuted()
         {
             // Arrange
             // Done in the TestInit method
 
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            List<CategoryModel> actualCategories = actualInstance.GetAllCategoriesSortedById().ToList();
-            int[] orderedIds = new int[] { 1, 2, 3, 4 };
+            List<CategoryModel> actualCategories = actualInstance.GetAllCategoriesSortedByName().ToList();
+            string[] orderedNames = new string[] { "A", "B", "C", "D" };
 
             // Assert
-            for (int i = 0; i < orderedIds.Length; i++)
+            for (int i = 0; i < orderedNames.Length; i++)
             {
-                Assert.AreEqual(orderedIds[i], actualCategories[i].Id);
+                Assert.AreEqual(orderedNames[i], actualCategories[i].Name);
             }
         }
 
