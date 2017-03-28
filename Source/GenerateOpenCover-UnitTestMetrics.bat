@@ -7,9 +7,9 @@ REM Create a 'GeneratedReports' folder if it does not exist
 if not exist ".\Source\GeneratedReports" mkdir "..\Source\GeneratedReports"
 
 @echo off 
-set "resultFile=\"..\Source\All.UnitTest-Results.trx\""
-set "testContainer_1=\"..\Source\MyWoodenHouse.Data.Provider.UnitTests\bin\Release\MyWoodenHouse.Data.Provider.UnitTests.dll\""
-set "testContainer_2=\"..\Source\MyWoodenHouse.Data.Services.UnitTest\bin\Release\MyWoodenHouse.Data.Services.UnitTest.dll\""
+set "resultFile=\".\Source\All.UnitTest-Results.trx\""
+set "testContainer_1=\".\Source\MyWoodenHouse.Data.Provider.UnitTests\bin\Release\MyWoodenHouse.Data.Provider.UnitTests.dll\""
+set "testContainer_2=\".\Source\MyWoodenHouse.Data.Services.UnitTest\bin\Release\MyWoodenHouse.Data.Services.UnitTest.dll\""
 
 rem /testcontainer:%testContainer_2%
 rem /testcontainer:%testContainer_1%
@@ -22,4 +22,4 @@ rem /resultsfile:%resultFile%
 -filter:"+[*]* -[MyWoodenHouse.*Tests*]*" ^
 -mergebyhash ^
 -skipautoprops ^
--output:"..\Source\MyWoodenHouse.OpenCover-Report.xml"
+-output:".\Source\MyWoodenHouse.OpenCover-Report.xml"
