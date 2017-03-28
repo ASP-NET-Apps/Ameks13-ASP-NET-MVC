@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.UnitTest.CategoryServiceTests
+namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 {
     [TestClass]
     public class GetAllCategoriesSortedById_Should

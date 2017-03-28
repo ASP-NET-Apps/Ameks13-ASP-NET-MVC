@@ -5,7 +5,7 @@ using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
 
-namespace MyWoodenHouse.UnitTest.CategoryServiceTests
+namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 {
     [TestClass]
     public class Class_Should

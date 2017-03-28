@@ -7,7 +7,7 @@ using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Extensions;
 using System;
 
-namespace MyWoodenHouse.UnitTest.CategoryServiceTests
+namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 {
     [TestClass]
     public class Constructors_Should

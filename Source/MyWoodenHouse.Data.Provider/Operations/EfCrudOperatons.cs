@@ -13,7 +13,6 @@ namespace MyWoodenHouse.Data.Provider.Operations
 {
     public class EfCrudOperatons<T> : IEfCrudOperatons<T> where T : class, IHasIntId
     {
-
         private readonly IMyWoodenHouseDbContext context;
         private readonly DbSet<T> dbSet;
 
@@ -82,11 +81,6 @@ namespace MyWoodenHouse.Data.Provider.Operations
             return categoriesToReturn;
         }
 
-        //public IEnumerable<T> Select(Expression<Func<T, bool>> filterExpression)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public IEnumerable<T> Select(Expression<Func<T, bool>> filterExpression)
         {
             IEnumerable<T> itemsToReturn = null;
@@ -110,11 +104,9 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            //DbEntityEntry entry = this.Context.Entry(category);
             bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
             if (!isStateDetached)
             {
-                //entry.State = EntityState.Added;
                 this.Context.SetEntityState(entity, EntityState.Added);
             }
             else
@@ -166,6 +158,11 @@ namespace MyWoodenHouse.Data.Provider.Operations
 
         public void Delete(int? id)
         {
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithNotNullableParameter);
+                throw new ArgumentNullException(errorMessage);
+            }
             if (id <= 0)
             {
                 string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, id);
@@ -176,8 +173,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
 
             if (entity == null)
             {
-                string errorMessage = string.Format(Consts.GeneralData.ErrorMessage.NoEntryFoundWithTheProvidedId, id);
-                throw new ArgumentException(errorMessage);
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.NoItemDeletedByTheGivenId, id);
+                throw new ArgumentNullException(errorMessage);
             }
 
             this.Delete(entity);

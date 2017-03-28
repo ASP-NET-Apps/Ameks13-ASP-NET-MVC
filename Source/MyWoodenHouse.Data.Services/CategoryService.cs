@@ -1,5 +1,4 @@
 ﻿using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.PureModels;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;

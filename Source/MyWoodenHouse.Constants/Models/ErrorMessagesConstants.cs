@@ -47,7 +47,10 @@ namespace MyWoodenHouse.Constants.Models
         {
             public struct ErrorMessage
             {
+                public static string DeleteByIdIsPossibleOnlyWithNotNullableParameter = "Delete by Id is only possible with not nullable id parameter";
                 public static string DeleteByIdIsPossibleOnlyWithPositiveParameter = "Delete by Id is only possible positive Id parameter. Id = {0}";
+                public static string NoItemDeletedByTheGivenId = "Can not delete {0}. No {0} found by the given Id = {1}";
+
             }
         };
     }

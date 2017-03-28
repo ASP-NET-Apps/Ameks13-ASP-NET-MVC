@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyWoodenHouse.UnitTest.CategoryServiceTests
+namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 {
     [TestClass]
     public class GetAllCategories_Should
