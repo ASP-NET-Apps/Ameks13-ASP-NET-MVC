@@ -37,50 +37,50 @@ namespace MyWoodenHouse.IntegrationTest.MyWoodenHouse.Data.Services.CategoryServ
             dbContext.SaveChanges();
         }
 
-        [TestMethod]
-        public void ReturnCorrectObjectType_WhenCalledWithValidAndExistingId()
-        {
-            // Arrange
-            // In the ClassInitialize method
+        //[TestMethod]
+        //public void ReturnCorrectObjectType_WhenCalledWithValidAndExistingId()
+        //{
+        //    // Arrange
+        //    // In the ClassInitialize method
 
-            // Act
-            var actualService = new CategoryServiceCrudOperatons(dbContext);
-            var actualCategory = actualService.SelectById(1);
+        //    // Act
+        //    var actualService = new CategoryServiceCrudOperatons(dbContext);
+        //    var actualCategory = actualService.SelectById(1);
 
-            // Assert
-            Assert.IsInstanceOfType(actualCategory, typeof(Category));
-        }
+        //    // Assert
+        //    Assert.IsInstanceOfType(actualCategory, typeof(Category));
+        //}
 
-        [TestMethod]
-        public void ReturnObjectWithTheSelectedId_WhenCalledWithValidAndExistingId()
-        {
-            // Arrange
-            // In the ClassInitialize method
-            var selectedId = 2;
+        //[TestMethod]
+        //public void ReturnObjectWithTheSelectedId_WhenCalledWithValidAndExistingId()
+        //{
+        //    // Arrange
+        //    // In the ClassInitialize method
+        //    var selectedId = 2;
 
-            // Act
-            var actualService = new CategoryServiceCrudOperatons(dbContext);            
-            var actualCategory = actualService.SelectById(selectedId);
+        //    // Act
+        //    var actualService = new CategoryServiceCrudOperatons(dbContext);            
+        //    var actualCategory = actualService.SelectById(selectedId);
 
-            // Assert
-            Assert.AreEqual(selectedId, actualCategory.Id);
-        }
+        //    // Assert
+        //    Assert.AreEqual(selectedId, actualCategory.Id);
+        //}
 
-        [TestMethod]
-        public void ReturnObjectWithAllTheProperties_WhenCalledWithValidAndExistingId()
-        {
-            // Arrange
-            var selectedId = 2;
+        //[TestMethod]
+        //public void ReturnObjectWithAllTheProperties_WhenCalledWithValidAndExistingId()
+        //{
+        //    // Arrange
+        //    var selectedId = 2;
 
-            // Act
-            var actualService = new CategoryServiceCrudOperatons(dbContext);
-            var actualCategory = actualService.SelectById(selectedId);
+        //    // Act
+        //    var actualService = new CategoryServiceCrudOperatons(dbContext);
+        //    var actualCategory = actualService.SelectById(selectedId);
 
-            // Assert
-            Assert.AreEqual(testData[selectedId - 1].Id, actualCategory.Id);
-            Assert.AreEqual(testData[selectedId - 1].Name, actualCategory.Name);
+        //    // Assert
+        //    Assert.AreEqual(testData[selectedId - 1].Id, actualCategory.Id);
+        //    Assert.AreEqual(testData[selectedId - 1].Name, actualCategory.Name);
 
-        }
+        //}
 
         [ClassCleanup]
         public static void ClasssCleanup()

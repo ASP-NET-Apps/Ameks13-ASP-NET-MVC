@@ -74,15 +74,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CategoryServiceCrudOperatons\Constructors_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\Delete_ByCategory_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\Delete_ById_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\Insert_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\Properties_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\SelectById_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\SelectFiltered_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\Select_Should.cs" />
-    <Compile Include="CategoryServiceCrudOperatons\Update_Should.cs" />
     <Compile Include="CategoryService\Class_Should.cs" />
     <Compile Include="CategoryService\Constructors_Should.cs" />
     <Compile Include="CategoryService\DeleteCategoryById_Should.cs" />

@@ -18,10 +18,10 @@ namespace MyWoodenHouse.Client.Web.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            var context = new MyWoodenHouseDbContext();
-            var categoryService = new CategoryServiceCrudOperatons(context);
+            //var context = new MyWoodenHouseDbContext();
+            //var categoryService = new Ca(context);
 
-            IList<Category> categories = categoryService.Select().ToList();
+            //IList<Category> categories = categoryService.Select().ToList();
 
             return View();
         }

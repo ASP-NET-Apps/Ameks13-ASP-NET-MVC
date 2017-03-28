@@ -86,7 +86,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             kernel.Bind(typeof(IEfCrudOperatons<>)).To(typeof(EfCrudOperatons<>));
             kernel.Bind<IEfDbContextSaveChanges>().To<EfDbContextSaveChanges>();
             
-            kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
+            //kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
             kernel.Bind<ICategoryService>().To<CategoryService>();            
 
             // Other helpers
