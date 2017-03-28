@@ -43,11 +43,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Services.UnitTest", "MyWoodenHouse.Data.Services.UnitTest\MyWoodenHouse.Data.Services.UnitTest.csproj", "{E14EA03D-31CA-46D0-89C1-58A776F6DC31}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{2076BC33-2E35-4B0F-AEF5-028B6344F689}"
-	ProjectSection(SolutionItems) = preProject
-		Libs\Microsoft.TeamFoundation.PowerTools.Tasks.QualityTools.dll = Libs\Microsoft.TeamFoundation.PowerTools.Tasks.QualityTools.dll
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{55EC9B85-E51B-44F5-9111-2E76A79088CD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Testing Metrics", "Unit Testing Metrics", "{20B16B68-CE63-4096-A56C-5DADDD5802BF}"
