@@ -7,7 +7,7 @@ REM Create a 'GeneratedReports' folder if it does not exist
 if not exist ".\Source\GeneratedReports" mkdir ".\Source\GeneratedReports"
 
 @echo off 
-set "resultFile=\".\Source\GeneratedReports\All.UnitTest-Results.trx\""
+set "resultFile=\".\Source\All.UnitTest-Results.trx\""
 set "testContainer_1=\".\Source\MyWoodenHouse.Data.Provider.UnitTests\bin\Release\MyWoodenHouse.Data.Provider.UnitTests.dll\""
 set "testContainer_2=\".\Source\MyWoodenHouse.Data.Services.UnitTest\bin\Release\MyWoodenHouse.Data.Services.UnitTest.dll\""
 
