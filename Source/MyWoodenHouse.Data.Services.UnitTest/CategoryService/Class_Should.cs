@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.TeamFoundation.PowerTools.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
@@ -22,6 +23,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
+        [Category("Integration")]
         public void ImplementInterface()
         {
             // Arrange
