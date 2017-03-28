@@ -22,4 +22,4 @@ rem /resultsfile:%resultFile%
 -filter:"+[*]* -[MyWoodenHouse.*Tests*]*" ^
 -mergebyhash ^
 -skipautoprops ^
--output:".\Source\GeneratedReports\MyWoodenHouse.OpenCover-Report.xml"
+-output:".\Source\MyWoodenHouse.OpenCover-Report.xml"
