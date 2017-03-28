@@ -299,13 +299,13 @@
       <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
       <Name>MyWoodenHouse.Data.Provider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Auth\MyWoodenHouse.Default.Auth.csproj">
-      <Project>{3c0b1aa3-a1f3-48df-bad3-4680b5f511d6}</Project>
-      <Name>MyWoodenHouse.Default.Auth</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Data.Services\MyWoodenHouse.Data.Services.csproj">
       <Project>{639cc1e7-b4b4-4b7f-9a54-4bfec88f7b36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Default.Auth\MyWoodenHouse.Default.Auth.csproj">
+      <Project>{3c0b1aa3-a1f3-48df-bad3-4680b5f511d6}</Project>
+      <Name>MyWoodenHouse.Default.Auth</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
       <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
