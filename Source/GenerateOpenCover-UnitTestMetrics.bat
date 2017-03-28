@@ -4,7 +4,7 @@ rem Configure the UnitTests dll files
 rem ============================
 
 REM Create a 'GeneratedReports' folder if it does not exist
-if not exist "..\Source\GeneratedReports" mkdir "..\Source\GeneratedReports"
+if not exist ".\Source\GeneratedReports" mkdir "..\Source\GeneratedReports"
 
 @echo off 
 set "resultFile=\"..\Source\All.UnitTest-Results.trx\""
