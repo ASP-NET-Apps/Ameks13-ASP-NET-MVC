@@ -49,7 +49,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Testing Metrics", "Uni
 	ProjectSection(SolutionItems) = preProject
 		GenerateOpenCover-UnitTestMetrics.bat = GenerateOpenCover-UnitTestMetrics.bat
 		GenerateReportGenerator-Output.bat = GenerateReportGenerator-Output.bat
-		GenerateUnitTestMetrics.bat = GenerateUnitTestMetrics.bat
 	EndProjectSection
 EndProject
 Global

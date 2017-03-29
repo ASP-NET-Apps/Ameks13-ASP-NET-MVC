@@ -12,7 +12,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
         {
             if (context == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "MyWoodenHouseDbContext", "Data CategoryService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "MyWoodenHouseDbContext", "EfDbContextSaveChanges");
                 throw new ArgumentNullException(errorMessage);
             }
 
