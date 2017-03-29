@@ -2,12 +2,7 @@
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Ef.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Provider.UnitTests.MyWoodenHouseDbContextTests
 {
