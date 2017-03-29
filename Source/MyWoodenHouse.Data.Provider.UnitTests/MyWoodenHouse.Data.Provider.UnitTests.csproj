@@ -85,6 +85,7 @@
     <Compile Include="EfCrudOperations\Update_Should.cs" />
     <Compile Include="EfDbContextSaveChanges\Class_Should.cs" />
     <Compile Include="EfDbContextSaveChanges\Constructors_Should.cs" />
+    <Compile Include="EfDbContextSaveChanges\SaveChanges_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
