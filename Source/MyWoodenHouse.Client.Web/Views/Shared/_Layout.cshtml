@@ -18,15 +18,75 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("My Wooden Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("My Wooden Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <a href="/" class="navbar-brand" title="My Wooden Home">
+                    <img style="max-width:100px; margin-top: -40px;" src="../../../Assets/Images/logo.png">
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A new Home <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("For steps to a new Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Why choose Ameks13", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Price list", "Index", "Home")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("About the company", "About", "Home")</li>
+                            <li>@Html.ActionLink("Services", "About", "Home")</li>
+                            <li>@Html.ActionLink("Financing", "About", "Home")</li>
+                            <li>@Html.ActionLink("Our partners", "About", "Home")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("See all", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Bungalows", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Houses", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Cabins", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Garages", "Index", "Home")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("See all", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Bungalows", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Houses", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Cabins", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Garages", "Index", "Home")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Energy-efficiency <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Save on bills", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Insulation", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Ventilation", "Index", "Home")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technology info <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("What is modular technology", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Materials used", "Index", "Home")</li>
+                            <li>@Html.ActionLink("The advantages", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Cabins", "Index", "Home")</li>
+                            <li>@Html.ActionLink("The building process", "Index", "Home")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { id=1 }, new { @class="hvr-grow" })</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -36,6 +96,30 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
+
+
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("My Wooden Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">                        
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+
+
     </div>
     
     @*
@@ -43,7 +127,7 @@
     source:
     http://stackoverflow.com/questions/12151609/jquery-validate-method-not-found-error-on-mvc4
     *@
-    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
