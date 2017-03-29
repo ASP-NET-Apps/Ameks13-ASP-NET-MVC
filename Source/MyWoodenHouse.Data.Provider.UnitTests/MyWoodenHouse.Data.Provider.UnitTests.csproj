@@ -78,7 +78,7 @@
     <Compile Include="EfCrudOperations\Delete_ByCategory_Should.cs" />
     <Compile Include="EfCrudOperations\Delete_ById_Should.cs" />
     <Compile Include="EfCrudOperations\Insert_Should.cs" />
-    <Compile Include="EfCrudOperations\Properties_Should.cs" />
+    <Compile Include="EfCrudOperations\Class_Should.cs" />
     <Compile Include="EfCrudOperations\SelectById_Should.cs" />
     <Compile Include="EfCrudOperations\Select_WithFilterExpression_Should.cs" />
     <Compile Include="EfCrudOperations\Select_Should.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="EfDbContextSaveChanges\Class_Should.cs" />
     <Compile Include="EfDbContextSaveChanges\Constructors_Should.cs" />
     <Compile Include="EfDbContextSaveChanges\SaveChanges_Should.cs" />
+    <Compile Include="MyWoodenHouseDbContext\Class_Should.cs" />
     <Compile Include="MyWoodenHouseDbContext\Constructors_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
