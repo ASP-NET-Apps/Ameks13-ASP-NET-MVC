@@ -83,6 +83,7 @@
     <Compile Include="EfCrudOperations\Select_WithFilterExpression_Should.cs" />
     <Compile Include="EfCrudOperations\Select_Should.cs" />
     <Compile Include="EfCrudOperations\Update_Should.cs" />
+    <Compile Include="EfDbContextSaveChanges\Class_Should.cs" />
     <Compile Include="EfDbContextSaveChanges\Constructors_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
