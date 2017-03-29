@@ -43,25 +43,31 @@ Do not forget to update the ToDo list immer wieder :)!
 	http://mywoodenhouse.azurewebsites.net/
 - [ ] Continuous integrationa and delivery with Jenkins;
 
+### Jenkins Tasks
+1. [x] Create Automatic job for the unint tests - AutomaticUnitTesting.
+1. [x] Configure code coverage reports.
+1. [ ] Create Manual job for the integration tests - ManualIntegrationTesting.
+1. [ ] Create Manual job for SIT IIS deploy - ManualSitDeploy.
+1. [ ] Create Manual job for Live Azure deploy - ManualLiveAzureDeploy.
 
 ### General Tasks
-1. [ ] Separate the Identity in project .Identity;
-1. [ ] Crate separate View Models and Mapper, and AutoMapper;
+1. [ ] Separate the Identity in project .Identity, and make it work again :);
+1. [x] Crate separate Ef Models, Pure Models and View Models and MyMapper;
 	- https://lostechies.com/jimmybogard/2009/06/30/how-we-do-mvc-view-models/
+1. [ ] Change the favicon;
+1. [ ] Create SiteMap file. 
+
+
+1. [ ] Install and make bundle for jQuery UI;
+	- http://stackoverflow.com/questions/20081328/how-to-add-jqueryui-library-in-mvc-5-project
+
 1. [x] Validation, Forms, Models, Client Side and Server Side - research;
 1. [x] Modal forms with Bootstrap - research;
 	- https://www.codeproject.com/Tips/826002/Bootstrap-Modal-Dialog-Loading-Content-from-MVC-Pa
 1. [x] Jenkins integration - research;
 1. [ ] Resource files integration - research;
 	- http://www.devcurry.com/2013/02/aspnet-mvc-using-resource-files-to.html
-1. [ ] Install and make bundle for jQuery UI;
-	- http://stackoverflow.com/questions/20081328/how-to-add-jqueryui-library-in-mvc-5-project
 1. [x] Upload in the Cloud - research;
-1. [ ] Change the favicon;
-1. [ ] Create SiteMap file. 
-
-1. [ ] Unit test за Моделите няма смисъл да се тества, дали моделът връща обект от правилният тип. Има смисъл да се провери, дали даден клас имплементира определен интерфейс
-1. [ ] Интегратион тестовете могат да бъдат пълно копие на Unit тестовете, само че без да се ползват Mock-нати обекти
 
 ----------
 
