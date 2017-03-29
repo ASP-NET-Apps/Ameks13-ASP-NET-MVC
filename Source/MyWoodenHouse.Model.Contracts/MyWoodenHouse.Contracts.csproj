@@ -40,13 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EfModels\IBuilding.cs" />
-    <Compile Include="EfModels\ICategory.cs" />
     <Compile Include="IHasId.cs" />
-    <Compile Include="EfModels\IMaterial.cs" />
-    <Compile Include="EfModels\IPicture.cs" />
-    <Compile Include="EfModels\IPrice.cs" />
-    <Compile Include="EfModels\IPriceCategory.cs" />
     <Compile Include="PureModels\IBuildingModel.cs" />
     <Compile Include="PureModels\ICategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
