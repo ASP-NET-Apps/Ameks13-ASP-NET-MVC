@@ -2,7 +2,7 @@
 
 ![Cover photo](./Ideas/Images/modern-wooden-house-small.jpg) 
 
-##Why choosing a house from a natural wood.
+## Why choosing a house from a natural wood.
 
 - Easy and fast to build
 - Energy saving
@@ -13,10 +13,9 @@
 
 ----------
 
+## Screenshots
 
-##Screenshots
-
-###The home page
+### The home page
 
 ![Cover photo](./Documentation/Images/home.PNG) 
 
