@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyWoodenHouse.Contracts.PureModels;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyWoodenHouse.Contracts;
+using MyWoodenHouse.Contracts.PureModels;
 using MyWoodenHouse.Extensions;
 
 namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
