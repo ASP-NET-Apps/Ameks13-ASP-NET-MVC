@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
 

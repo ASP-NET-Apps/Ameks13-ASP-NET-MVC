@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Automatic unit tests start on commit</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.1.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/ASP-NET-Apps/Ameks13-ASP-NET-MVC/</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec>* * * * * </spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>&quot;C:\Program Files (x86)\NuGet\Visual Studio 2015\nuget.exe&quot; restore &quot;C:\Program Files (x86)\Jenkins\workspace\MyWoodenHouse-AutomaticUnitTesting\Source\MyWoodenHouse.Web.sln&quot;</command>
+    </hudson.tasks.BatchFile>
+    <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.27">
+      <msBuildName>msbuild</msBuildName>
+      <msBuildFile>C:\Program Files (x86)\Jenkins\workspace\MyWoodenHouse-AutomaticUnitTesting\Source\MyWoodenHouse.Web.sln</msBuildFile>
+      <cmdLineArgs>/p:Configuration=Release</cmdLineArgs>
+      <buildVariablesAsProperties>false</buildVariablesAsProperties>
+      <continueOnBuildFailure>false</continueOnBuildFailure>
+      <unstableIfWarnings>false</unstableIfWarnings>
+    </hudson.plugins.msbuild.MsBuildBuilder>
+    <hudson.tasks.BatchFile>
+      <command>cd &quot;.\Source&quot;&#xd;
+&quot;GenerateOpenCover-UnitTestMetrics.bat&quot;</command>
+    </hudson.tasks.BatchFile>
+    <hudson.tasks.BatchFile>
+      <command>cd &quot;.\Source&quot;&#xd;
+&quot;GenerateReportGenerator-Output.bat&quot;</command>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers>
+    <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.12">
+      <reportTargets>
+        <htmlpublisher.HtmlPublisherTarget>
+          <reportName>HTML Report</reportName>
+          <reportDir>Source\GeneratedReports\ReportGenerator-Output\</reportDir>
+          <reportFiles>index.html</reportFiles>
+          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
+          <keepAll>false</keepAll>
+          <allowMissing>false</allowMissing>
+        </htmlpublisher.HtmlPublisherTarget>
+      </reportTargets>
+    </htmlpublisher.HtmlPublisher>
+    <hudson.plugins.mstest.MSTestPublisher plugin="mstest@0.19">
+      <testResultsFile>**/*.trx</testResultsFile>
+      <buildTime>0</buildTime>
+      <failOnError>true</failOnError>
+      <keepLongStdio>true</keepLongStdio>
+    </hudson.plugins.mstest.MSTestPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.32">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>
