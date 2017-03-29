@@ -88,6 +88,8 @@
     <Compile Include="EfDbContextSaveChanges\SaveChanges_Should.cs" />
     <Compile Include="MyWoodenHouseDbContext\Class_Should.cs" />
     <Compile Include="MyWoodenHouseDbContext\Constructors_Should.cs" />
+    <Compile Include="MyWoodenHouseDbContext\GetEntityState_Should.cs" />
+    <Compile Include="MyWoodenHouseDbContext\SetEntityState_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
