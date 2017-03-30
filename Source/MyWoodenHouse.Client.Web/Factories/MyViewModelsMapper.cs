@@ -2,6 +2,7 @@
 using MyWoodenHouse.Client.Web.Factories.Contracts;
 using MyWoodenHouse.Client.Web.ViewModels;
 using MyWoodenHouse.Pure.Models;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 
 namespace MyWoodenHouse.Client.Web.Factories
 {

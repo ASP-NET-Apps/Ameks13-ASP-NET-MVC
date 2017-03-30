@@ -1,4 +1,5 @@
-﻿using MyWoodenHouse.Client.Web.ViewModels;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
+using MyWoodenHouse.Client.Web.ViewModels;
 using MyWoodenHouse.Pure.Models;
 
 namespace MyWoodenHouse.Client.Web.Factories.Contracts
