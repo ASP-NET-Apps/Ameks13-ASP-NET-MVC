@@ -16,7 +16,7 @@ Do not forget to update the ToDo list immer wieder :)!
 - [x] Create Service Data class and implement the basic CRUD (Create, Read, Update, Delete) operations;
 - [x] Bind all in the used container-Ninject.
 - [x] Raw view for Preview, Edit, Insert, Delete;
-- [ ] Views:
+- [x] Views:
 	- [x] Index View:
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
@@ -32,7 +32,7 @@ Do not forget to update the ToDo list immer wieder :)!
 		- [x] Extraxt delete consifm in modal form;
 		- [x] Put some basic UI styles;
 		- [x] Test every single function from the service Preview, Edit, Insert, Delete;
-	- [ ] Test every single function from the service Preview, Edit, Insert, Delete;
+	- [x] Test every single function from the service Preview, Edit, Insert, Delete;
 - [x] Add View Model with validation attributes;	
 - [ ] Routing and base Redirects/Rewrites;
 - [ ] Add to the Sitemap file and navigation;
@@ -54,7 +54,7 @@ Do not forget to update the ToDo list immer wieder :)!
 1. [ ] Separate the Identity in project .Identity, and make it work again :);
 1. [x] Crate separate Ef Models, Pure Models and View Models and MyMapper;
 	- https://lostechies.com/jimmybogard/2009/06/30/how-we-do-mvc-view-models/
-1. [ ] Change the favicon;
+1. [x] Change the favicon;
 1. [ ] Create SiteMap file. 
 
 
