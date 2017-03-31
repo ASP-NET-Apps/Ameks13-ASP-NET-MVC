@@ -26,6 +26,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/navigation.css",
                       "~/Content/home-page.css",
                       "~/Content/site.css"));
         }

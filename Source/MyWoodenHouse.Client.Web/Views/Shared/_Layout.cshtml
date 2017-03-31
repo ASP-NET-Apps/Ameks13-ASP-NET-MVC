@@ -9,162 +9,236 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="margin-top: 30px; max-height: 10px;">
-        <div class="container home-page">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @*@Html.ActionLink("My Wooden Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-                <a href="/" class="navbar-brand" title="My Wooden Home">
-                    <img style="max-width:100px; margin-top: -40px;" src="../../../Assets/Images/logo.png">
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown" >
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A new Home <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("For steps to a new Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Why choose Ameks13", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Price list", "Index", "Home")</li>
-                        </ul>
-                    </li>
+    <div class="container-fluid">
+        <div class="row">
+            @*<div class="col-md-12 navigation">*@
+                <div class="navbar navbar-default navbar-fixed-top navigation"  style="height: 10px;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @*@Html.ActionLink("My Wooden Home", "Index", "Home", new { area = "" })*@
+                        <a href="/" class="navbar-brand my-navbar-brand" title="My Wooden Home">
+                            <img src="../../../Assets/Images/logo.png">
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A new Home <span class="caret"></span></a>
+                                <ul class="dropdown-menu my-dropdown-menu">
+                                    <li>@Html.ActionLink("For steps to a new Home", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Why choose Ameks13", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Price list", "Index", "Home", new { area = "" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("About the company", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Services", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Financing", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Our partners", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        </ul>
-                    </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+                                <ul class="dropdown-menu my-dropdown-menu">
+                                    <li>@Html.ActionLink("About the company", "About", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Services", "About", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Financing", "About", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Our partners", "About", "Home", new { area = "" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        </ul>
-                    </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
+                                <ul class="dropdown-menu my-dropdown-menu">
+                                    <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        </ul>
-                    </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
+                                <ul class="dropdown-menu my-dropdown-menu">
+                                    <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Energy-efficiency <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Save on bills", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Insulation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Ventilation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        </ul>
-                    </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Energy-efficiency <span class="caret"></span></a>
+                                <ul class="dropdown-menu my-dropdown-menu">
+                                    <li>@Html.ActionLink("Save on bills", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Insulation", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Ventilation", "Index", "Home", new { area = "" })</li>
+                                </ul>
+                            </li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technology info <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("What is modular technology", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Materials used", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("The advantages", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                            <li>@Html.ActionLink("The building process", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technology info <span class="caret"></span></a>
+                                <ul class="dropdown-menu my-dropdown-menu">
+                                    <li>@Html.ActionLink("What is modular technology", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Materials used", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("The advantages", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("The building process", "Index", "Home", new { area = "" })</li>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-        
-        <div class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("My Wooden Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">                        
-                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Admin", "Index", "AdminCategories", new { area = "Administration" }, new { @class = "navbar-brand" })</li>
+            @*</div>*@
+        @*<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand" title="My Wooden Home">
+                <img style="max-width:100px; margin-top: -40px;" src="../../../Assets/Images/logo.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown" >
+                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A new Home <span class="caret"></span></a>
+                    <ul class="dropdown-menu my-dropdown-menu">
+                        <li>@Html.ActionLink("For steps to a new Home", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Why choose Ameks13", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Price list", "Index", "Home", new { area = "" })</li>
                     </ul>
-                    @Html.Partial("_LoginPartial")
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+                    <ul class="dropdown-menu my-dropdown-menu">
+                        <li>@Html.ActionLink("About the company", "About", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Services", "About", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Financing", "About", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Our partners", "About", "Home", new { area = "" })</li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
+                    <ul class="dropdown-menu my-dropdown-menu">
+                        <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
+                    <ul class="dropdown-menu my-dropdown-menu">
+                        <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Energy-efficiency <span class="caret"></span></a>
+                    <ul class="dropdown-menu my-dropdown-menu">
+                        <li>@Html.ActionLink("Save on bills", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Insulation", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Ventilation", "Index", "Home", new { area = "" })</li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technology info <span class="caret"></span></a>
+                    <ul class="dropdown-menu my-dropdown-menu">
+                        <li>@Html.ActionLink("What is modular technology", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Materials used", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("The advantages", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
+                        <li>@Html.ActionLink("The building process", "Index", "Home", new { area = "" })</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>*@
+    </div>
+    </div>
+
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />      
+    </div>
+
+    <div class="footer-content clearfix">
+        <footer>
+            <div class="navbar navbar-inverse">
+                <div class="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand hvr-grow" })</li>
+                            <li>@Html.ActionLink("Admin", "Index", "AdminCategories", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
                 </div>
+            </div>
+        </footer>
+    </div>
+
+        @*
+            jquery validate method not found error on mvc4
+            source:
+            http://stackoverflow.com/questions/12151609/jquery-validate-method-not-found-error-on-mvc4
+        *@
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+
+        <div id="modal-container" class="modal fade " tabindex="-1" role="dialog">
+            <div class="modal-content">
             </div>
         </div>
 
+        <script type="text/javascript">
+            $(function () {
+                // Initialize numeric spinner input boxes
+                //$(".numeric-spinner").spinedit();
 
-    </div>
-    
-    @*
-    jquery validate method not found error on mvc4
-    source:
-    http://stackoverflow.com/questions/12151609/jquery-validate-method-not-found-error-on-mvc4
-    *@
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                // Initalize modal dialog
+                // attach modal-container bootstrap attributes to links with .modal-link class.
+                // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+                $('body').on('click', '.modal-link', function (e) {
+                    e.preventDefault();
+                    $(this).attr('data-target', '#modal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
 
+                // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+                $('body').on('click', '.modal-close-btn', function () {
+                    $('#modal-container').modal('hide');
+                });
 
-    <div id="modal-container" class="modal fade " tabindex="-1" role="dialog">
-        <div class="modal-content">
-        </div>
-    </div>
+                //clear modal cache, so that new content can be loaded
+                $('#modal-container').on('hidden.bs.modal', function () {
+                    $(this).removeData('bs.modal');
+                });
 
-    <script type="text/javascript">
-        $(function () {
-            // Initialize numeric spinner input boxes
-            //$(".numeric-spinner").spinedit();
-
-            // Initalize modal dialog
-            // attach modal-container bootstrap attributes to links with .modal-link class.
-            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
-            $('body').on('click', '.modal-link', function (e) {
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-container');
-                $(this).attr('data-toggle', 'modal');
+                $('#CancelModal').on('click', function () {
+                    return false;
+                });
             });
-
-            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
-            $('body').on('click', '.modal-close-btn', function () {
-                $('#modal-container').modal('hide');
-            });
-
-            //clear modal cache, so that new content can be loaded
-            $('#modal-container').on('hidden.bs.modal', function () {
-                $(this).removeData('bs.modal');
-            });
-
-            $('#CancelModal').on('click', function () {
-                return false;
-            });
-        });
-    </script>
+        </script>
 
 </body>
 </html>
