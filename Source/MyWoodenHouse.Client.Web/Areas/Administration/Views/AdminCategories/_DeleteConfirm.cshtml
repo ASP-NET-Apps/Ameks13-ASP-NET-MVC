@@ -1,4 +1,4 @@
-﻿@model  MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.CategoryMainViewModel
+﻿@model  MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories.AdminCategoryMainViewModel
 
 <div class="modal-dialog">
     <div class="modal-content">
@@ -14,7 +14,7 @@
             @Html.LabelFor(c => c.Name) : @Html.DisplayFor(c => c.Name)
         </div>
 
-    @using (Html.BeginForm("Delete", "Categories", FormMethod.Post))
+    @using (Html.BeginForm("Delete", "AdminCategories", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(x => x.Id)

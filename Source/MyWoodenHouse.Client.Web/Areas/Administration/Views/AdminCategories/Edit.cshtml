@@ -1,4 +1,4 @@
-﻿@model MyWoodenHouse.Client.Web.ViewModels.CategoryMainViewModel
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories.AdminCategoryMainViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +13,7 @@
 </head>
 <body>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
 
     <script type="text/javascript">
 
@@ -64,7 +64,7 @@
     <div class="container">
         <div class="raw" style="margin-top: 20px;">
             <div class="col-md-2">
-                <a href="@Url.Action("Index", "Categories", null)" class="btn btn-primary">
+                <a href="@Url.Action("Index", "AdminCategories", null)" class="btn btn-primary">
                     <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
                     Categories
                 </a>
@@ -107,7 +107,7 @@
                                 <td style="background-color:lightsteelblue">
                                     <button type="reset"
                                             id="resetButton"
-                                            onclick="location.href='@Url.Action("Index","Categories")'"
+                                            onclick="location.href='@Url.Action("Index","AdminCategories")'"
                                             class="btn btn-default">
                                         <span class="glyphicon glyphicon-remove"></span>
                                         Cancel
@@ -115,7 +115,7 @@
                                     <button type="submit"
                                             id="saveButton"
                                             value="Edit"
-                                            onclick="location.href='@Url.Action("Edit","Categories")'"                                            
+                                            onclick="location.href='@Url.Action("Edit","AdminCategories")'"                                            
                                             class="btn btn-default disabled">
                                         <span class="glyphicon glyphicon-floppy-save"></span>
                                         Save

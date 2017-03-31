@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using MyWoodenHouse.Client.Web.App_Start;
+using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration
 {
@@ -15,9 +16,11 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Administration_default",
-                "Administration/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                name: "Administration_default",
+                url: "Administration/{controller}/{action}/{id}",
+                defaults: new { action = "Index", id = UrlParameter.Optional },
+                constraints: new { controller = @"(AdminCategories)" },
+                namespaces: new[] { "MyWoodenHouse.Client.Web.Areas.Administration.Controllers" }
             );
         }
     }

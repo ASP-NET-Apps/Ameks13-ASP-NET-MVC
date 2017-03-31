@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.CategoryMainViewModel>
+﻿@model IEnumerable<MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories.AdminCategoryMainViewModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +13,7 @@
 </head>
 <body>
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
 
     <div class="container">
         <div class="raw" style="margin-top: 20px;">
@@ -49,15 +49,15 @@
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                <a href="@Url.Action("Details", "Categories", new { id=item.Id })" class="btn btn-primary">
+                                <a href="@Url.Action("Details", "AdminCategories", new { id = item.Id })" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                                     Details
                                 </a>
-                                <a href="@Url.Action("Edit", "Categories", new { id=item.Id })" class="btn btn-warning">
+                                <a href="@Url.Action("Edit", "AdminCategories", new { id = item.Id })" class="btn btn-warning">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     Edit
                                 </a>
-                                <a href="@Url.Action("ViewDeleteConfirm", "Categories", new { id=item.Id })" class="btn btn-danger modal-link">
+                                <a href="@Url.Action("ViewDeleteConfirm", "AdminCategories", new { id = item.Id })" class="btn btn-danger modal-link">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     Delete
                                 </a>
@@ -69,7 +69,7 @@
                         <tr>
                             <td  style="background-color:lightsteelblue"></td>
                             <td  style="background-color:lightsteelblue">
-                                <a href="@Url.Action("Create", "Categories")" class="btn btn-primary pull-right">
+                                <a href="@Url.Action("Create", "AdminCategories")" class="btn btn-primary pull-right">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Create New
                                 </a>

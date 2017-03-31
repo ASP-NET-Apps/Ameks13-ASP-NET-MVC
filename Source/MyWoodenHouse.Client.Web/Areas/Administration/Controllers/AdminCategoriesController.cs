@@ -1,7 +1,6 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
-using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Client.Web.Factories.Contracts;
-using MyWoodenHouse.Client.Web.ViewModels;
+﻿using MyWoodenHouse.Client.Web.App_Start;
+using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Pure.Models;
@@ -14,14 +13,14 @@ using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
-    public class CategoriesController : Controller
+    public class AdminCategoriesController : Controller
     {
         private readonly ICategoryService categoryService;
-        private readonly IMyViewModelsMapper myViewModelsMapper;
+        private readonly IMyAdminViewModelsMapper myAdminViewModelsMapper;
 
-        public CategoriesController()
+        public AdminCategoriesController()
         {
-            this.myViewModelsMapper = NinjectWebCommon.Kernel.Get<IMyViewModelsMapper>();
+            this.myAdminViewModelsMapper = NinjectWebCommon.Kernel.Get<IMyAdminViewModelsMapper>();
             this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
         }
 
@@ -30,7 +29,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             IEnumerable<CategoryModel> categoriesModel = this.categoryService.GetAllCategoriesSortedById();
-            IEnumerable<CategoryMainViewModel> categoriesViewModel = categoriesModel.Select(c => myViewModelsMapper.CategoryModel2CategoryViewModel(c));
+            IEnumerable<AdminCategoryMainViewModel> categoriesViewModel = categoriesModel.Select(c => myAdminViewModelsMapper.CategoryModel2AdminCategoryViewModel(c));
             
             return View(categoriesViewModel);
         }
@@ -47,7 +46,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name")] CategoryMainViewModel categoryMainViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name")] AdminCategoryMainViewModel adminCategoryMainViewModel)
         {
             // TODO optimise if possible
             if (ModelState["Id"] != null)
@@ -60,13 +59,13 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                CategoryModel categoryModel = this.myViewModelsMapper.CategoryViewModel2CategoryModel(categoryMainViewModel);
+                CategoryModel categoryModel = this.myAdminViewModelsMapper.AdminCategoryViewModel2CategoryModel(adminCategoryMainViewModel);
                 this.categoryService.InsertCategory(categoryModel);
 
                 return RedirectToAction("Index");
             }
 
-            return View(categoryMainViewModel);
+            return View(adminCategoryMainViewModel);
         }
 
         // GET: Categories/Edit/5
@@ -84,9 +83,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            CategoryMainViewModel categoryMainViewModel = this.myViewModelsMapper.CategoryModel2CategoryViewModel(categoryModel);
+            AdminCategoryMainViewModel adminCategoryMainViewModel = this.myAdminViewModelsMapper.CategoryModel2AdminCategoryViewModel(categoryModel);
 
-            return View(categoryMainViewModel);
+            return View(adminCategoryMainViewModel);
         }
 
         // POST: Categories/Edit/5
@@ -94,16 +93,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] CategoryMainViewModel categoryMainViewModel)
+        public ActionResult Edit([Bind(Include = "Id,Name")] AdminCategoryMainViewModel adminCategoryMainViewModel)
         {
             if (ModelState.IsValid)
             {
-                CategoryModel categoryModel = this.myViewModelsMapper.CategoryViewModel2CategoryModel(categoryMainViewModel);
+                CategoryModel categoryModel = this.myAdminViewModelsMapper.AdminCategoryViewModel2CategoryModel(adminCategoryMainViewModel);
                 this.categoryService.UpdateCategory(categoryModel);
 
                 return RedirectToAction("Index");
             }
-            return View(categoryMainViewModel);
+            return View(adminCategoryMainViewModel);
         }
 
         // GET: Categories/Delete/5
@@ -128,9 +127,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            CategoryMainViewModel categoryMainViewModel = myViewModelsMapper.CategoryModel2CategoryViewModel(categoryModel);
+            AdminCategoryMainViewModel adminCategoryMainViewModel = myAdminViewModelsMapper.CategoryModel2AdminCategoryViewModel(categoryModel);
 
-            return PartialView("_DeleteConfirm", categoryMainViewModel);
+            return PartialView("_DeleteConfirm", adminCategoryMainViewModel);
         }
 
         // POST: Categories/Delete/5

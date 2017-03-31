@@ -3,16 +3,16 @@ using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Pure.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories
 {
-    public class CategoryMainViewModel : ICategoryMainViewModel
+    public class AdminCategoryMainViewModel : IAdminCategoryMainViewModel
     {
-        public CategoryMainViewModel()
+        public AdminCategoryMainViewModel()
         {
             this.Id = 0;
         }
 
-        public CategoryMainViewModel(CategoryModel categoryModel)
+        public AdminCategoryMainViewModel(CategoryModel categoryModel)
         {
             this.Id = categoryModel.Id;
             this.Name = categoryModel.Name;

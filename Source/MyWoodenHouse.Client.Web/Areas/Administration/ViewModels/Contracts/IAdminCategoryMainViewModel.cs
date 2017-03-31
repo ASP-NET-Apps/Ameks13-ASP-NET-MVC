@@ -1,6 +1,6 @@
 ﻿namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 {
-    public interface ICategoryMainViewModel
+    public interface IAdminCategoryMainViewModel
     {
         int Id { get; set; }
 
