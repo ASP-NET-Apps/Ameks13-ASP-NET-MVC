@@ -47,7 +47,7 @@ Do not forget to update the ToDo list immer wieder :)!
 1. [x] Create Automatic job for the unint tests - AutomaticUnitTesting.
 1. [x] Configure code coverage reports.
 1. [ ] Create Manual job for the integration tests - ManualIntegrationTesting.
-1. [ ] Create Manual job for SIT IIS deploy - ManualSitDeploy.
+1. [x] Create Manual job for SIT IIS deploy - ManualSitDeploy.
 1. [ ] Create Manual job for Live Azure deploy - ManualLiveAzureDeploy.
 
 ### General Tasks
