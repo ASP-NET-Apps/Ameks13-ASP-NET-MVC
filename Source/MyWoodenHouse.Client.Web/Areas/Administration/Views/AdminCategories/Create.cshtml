@@ -12,51 +12,7 @@
     <title>Create</title>
 </head>
 <body>
-    @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/jqueryval")*@
-
-    <script type="text/javascript">
-
-        function enableSaveButton(){
-            var saveButton = $('#saveButton');
-
-            saveButton.removeClass('disabled');
-            saveButton.removeClass('btn-default');            
-            saveButton.addClass('enabled');
-            saveButton.addClass('btn-primary');
-        }
-
-        function disableSaveButton(){
-            var saveButton = $('#saveButton');
-            saveButton.removeClass('enabled')
-            saveButton.removeClass('btn-primary')
-            saveButton.addClass('disabled');
-            saveButton.addClass('btn-default');
-        }
-
-        function validateForm() {
-            var createForm = $('#createForm');
-            var validator = createForm.validate();
-            validator.form();
-
-            if (createForm.valid()) {
-                console.log(createForm.valid());                
-                enableSaveButton();
-            } else {
-                console.log(createForm.valid());
-                disableSaveButton();
-            }
-        }
-
-        $(document).ready(function () {
-            $('#Name').on("input", function () {
-                validateForm();
-            });
-        });
-
-    </script>
-
-
+  
     <div class="container">
         <div class="raw" style="margin-top: 20px;">
             <div class="col-md-2">
@@ -124,5 +80,49 @@
             </div>
         </div>
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <script type="text/javascript">
+
+        function enableSaveButton(){
+            var saveButton = $('#saveButton');
+
+            saveButton.removeClass('disabled');
+            saveButton.removeClass('btn-default');
+            saveButton.addClass('enabled');
+            saveButton.addClass('btn-primary');
+        }
+
+        function disableSaveButton(){
+            var saveButton = $('#saveButton');
+            saveButton.removeClass('enabled')
+            saveButton.removeClass('btn-primary')
+            saveButton.addClass('disabled');
+            saveButton.addClass('btn-default');
+        }
+
+        function validateForm() {
+            var createForm = $('#createForm');
+            var validator = createForm.validate();
+            validator.form();
+
+            if (createForm.valid()) {
+                console.log(createForm.valid());
+                enableSaveButton();
+            } else {
+                console.log(createForm.valid());
+                disableSaveButton();
+            }
+        }
+
+        $(document).ready(function () {
+            $('#Name').on("input", function () {
+                validateForm();
+            });
+        });
+
+    </script>
 </body>
 </html>

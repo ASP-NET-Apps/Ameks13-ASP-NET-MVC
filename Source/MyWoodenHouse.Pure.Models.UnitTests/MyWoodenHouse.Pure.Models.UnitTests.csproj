@@ -70,6 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
+      <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
+      <Name>MyWoodenHouse.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Extensions\MyWoodenHouse.Extensions.csproj">
       <Project>{63AE3E17-17F7-41E7-9E66-906FE9F73E2E}</Project>
       <Name>MyWoodenHouse.Extensions</Name>

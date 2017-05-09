@@ -140,7 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
-      <Project>{65A0937F-62E5-4F3A-83DA-2FB48B1215DD}</Project>
+      <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
       <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">

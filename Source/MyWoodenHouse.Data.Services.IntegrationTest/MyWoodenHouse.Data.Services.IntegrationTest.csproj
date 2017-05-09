@@ -81,6 +81,10 @@
       <Project>{707b3c20-650e-4870-908b-69243f1f3afe}</Project>
       <Name>MyWoodenHouse.Client.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
+      <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
+      <Name>MyWoodenHouse.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Data.Provider\MyWoodenHouse.Data.Provider.csproj">
       <Project>{6da1eb95-ff6f-466e-bb19-3db65164e75a}</Project>
       <Name>MyWoodenHouse.Data.Provider</Name>
