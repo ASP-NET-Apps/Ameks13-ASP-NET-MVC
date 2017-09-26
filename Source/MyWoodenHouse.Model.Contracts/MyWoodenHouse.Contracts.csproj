@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IHasId.cs" />
+    <Compile Include="IHasIntId.cs" />
     <Compile Include="PureModels\IBuildingModel.cs" />
     <Compile Include="PureModels\ICategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,6 +48,7 @@
     <Compile Include="PureModels\IPictureModel.cs" />
     <Compile Include="PureModels\IPriceCategoryModel.cs" />
     <Compile Include="PureModels\IPriceModel.cs" />
+    <Compile Include="PureModels\IProductModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

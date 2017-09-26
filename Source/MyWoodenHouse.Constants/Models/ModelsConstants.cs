@@ -56,7 +56,7 @@ namespace MyWoodenHouse.Constants.Models
             public struct Description
             {
                 public const int MaxLength = 500;
-                public const string ErrorMessageMaxLength = "Material name length should be less than " + "500" + " symbols.";
+                public const string ErrorMessageMaxLength = "Material description length should be less than " + "500" + " symbols.";
             }
 
         };
@@ -84,6 +84,31 @@ namespace MyWoodenHouse.Constants.Models
                 public const string ErrorMessageMaxLength = "Picture PictureUrl length should be less than " + "150" + " symbols.";
                 public const string ErrorMessageMinLength = "Picture PictureUrl length should be more than " + "2" + " symbols.";
             }
+        };
+
+        public struct Product
+        {
+            public struct Id
+            {
+                public const int MaxValue = int.MaxValue;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Product Id value should be positive integer numnber.";
+            }
+
+            public struct Name
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "Product name length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "Product name length should be more than " + "2" + " symbols.";
+            }
+
+            public struct Description
+            {
+                public const int MaxLength = 500;
+                public const string ErrorMessageMaxLength = "Product description length should be less than " + "500" + " symbols.";
+            }
+
         };
 
         public struct PriceCategory

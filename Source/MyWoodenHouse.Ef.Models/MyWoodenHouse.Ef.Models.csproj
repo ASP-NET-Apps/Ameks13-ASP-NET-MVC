@@ -65,6 +65,7 @@
     <Compile Include="Contracts\IPicture.cs" />
     <Compile Include="Contracts\IPrice.cs" />
     <Compile Include="Contracts\IPriceCategory.cs" />
+    <Compile Include="Contracts\IProduct.cs" />
     <Compile Include="Material.cs">
       <DependentUpon>MyWoodenHouseModels.tt</DependentUpon>
     </Compile>
@@ -74,9 +75,11 @@
     <Compile Include="MetaData\PictureMetaData.cs" />
     <Compile Include="MetaData\PriceCategoryMetaData.cs" />
     <Compile Include="MetaData\PriceMetaData.cs" />
+    <Compile Include="MetaData\ProductMetaData.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\PriceCategory.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="MyWoodenHouseModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
