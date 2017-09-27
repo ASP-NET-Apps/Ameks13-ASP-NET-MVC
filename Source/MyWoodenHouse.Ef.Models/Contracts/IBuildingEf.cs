@@ -9,7 +9,7 @@ using MyWoodenHouse.Contracts.PureModels;
 
 namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface IBuilding : IBuildingModel, IHasIntId
+    public interface IBuildingEf : IBuildingModel, IHasIntId
     {
         int CategoryId { get; set; }
 

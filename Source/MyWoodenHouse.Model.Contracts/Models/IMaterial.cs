@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace MyWoodenHouse.Contracts.PureModels
+namespace MyWoodenHouse.Contracts.Models
 {
-    public interface IMaterialModel
+    public interface IMaterial : IHasIntId
     {
         string Name { get; set; }
 

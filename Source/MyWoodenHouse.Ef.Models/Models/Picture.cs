@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Ef.Models
 {
     [MetadataType(typeof(PictureMetaData))]
-    public partial class Picture : IPicture
+    public partial class Picture : IPictureEf
     {
     }
 }

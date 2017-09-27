@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.Contracts.PureModels
+namespace MyWoodenHouse.Contracts.Models
 {
-    public interface IPriceCategoryModel
+    public interface ICategory : IHasIntId
     {
         string Name { get; set; }
     }

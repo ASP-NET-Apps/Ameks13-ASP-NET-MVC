@@ -185,10 +185,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
+    <Compile Include="Areas\Administration\Factories\MaterialModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\Contracts\IMyAdminViewModelsMapper.cs" />
+    <Compile Include="Areas\Administration\Factories\CategoryModelMapper.cs" />
+    <Compile Include="Areas\Administration\Factories\Contracts\ICategoryModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\MyAdminViewModelsMapper.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Categories\CategoryCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Categories\AdminCategoryMainViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Contracts\ICategoryCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IAdminCategoryMainViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Material\MaterialCompleteViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

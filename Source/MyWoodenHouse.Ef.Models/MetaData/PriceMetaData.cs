@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class PriceMetaData : IPrice
+    public class PriceMetaData : IPriceEf
     {
         [Key]
         public int Id { get; set; }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class PictureMetaData : IPicture
+    public class PictureMetaData : IPictureEf
     {
         [Key]
         public int Id { get; set; }

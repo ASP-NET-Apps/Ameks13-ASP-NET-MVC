@@ -1,13 +1,26 @@
 ﻿using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Ef.Models.Contracts;
+using MyWoodenHouse.Contracts.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace MyWoodenHouse.Ef.Models.MetaData
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Material
 {
-    public class MaterialMetaData : IMaterialEf
+    public class MaterialCompleteViewModel
     {
-        [Key]
+        public MaterialCompleteViewModel()
+        {
+        }
+
+        public MaterialCompleteViewModel(IMaterial material)
+        {
+            this.Id = material.Id;
+            this.Name = material.Name;
+            this.Description = material.Description;
+        }
+
         [Display(Name = "Id")]
         [Range(Consts.Material.Id.MinValue, Consts.Material.Id.MaxValue, ErrorMessage = Consts.Material.Id.ErrorMessage)]
         public int Id { get; set; }
@@ -22,6 +35,6 @@ namespace MyWoodenHouse.Ef.Models.MetaData
         [MaxLength(Consts.Material.Name.MaxLength, ErrorMessage = Consts.Material.Name.ErrorMessageMaxLength)]
         public string Description { get; set; }
 
-        public ICollection<Building> Buildings { get; set; }
+
     }
 }

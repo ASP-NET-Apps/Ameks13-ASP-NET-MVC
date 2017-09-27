@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class PriceCategoryMetaData : IPriceCategory
+    public class PriceCategoryMetaData : IPriceCategoryEf
     {
         [Key]
         [Range(Consts.PriceCategory.Id.MinValue, Consts.PriceCategory.Id.MaxValue, ErrorMessage = Consts.PriceCategory.Id.ErrorMessage)]

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Ef.Models
 {
     [MetadataType(typeof(PriceMetaData))]
-    public partial class Price : IPrice
+    public partial class Price : IPriceEf
     {
     }
 }

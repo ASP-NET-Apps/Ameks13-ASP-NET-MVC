@@ -41,14 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IHasIntId.cs" />
-    <Compile Include="PureModels\IBuildingModel.cs" />
-    <Compile Include="PureModels\ICategoryModel.cs" />
+    <Compile Include="Models\IBuilding.cs" />
+    <Compile Include="Models\ICategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PureModels\IMaterialModel.cs" />
-    <Compile Include="PureModels\IPictureModel.cs" />
-    <Compile Include="PureModels\IPriceCategoryModel.cs" />
-    <Compile Include="PureModels\IPriceModel.cs" />
-    <Compile Include="PureModels\IProductModel.cs" />
+    <Compile Include="Models\IMaterial.cs" />
+    <Compile Include="Models\IPicture.cs" />
+    <Compile Include="Models\IPriceCategory.cs" />
+    <Compile Include="Models\IPrice.cs" />
+    <Compile Include="Models\IProduct.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class CategoryMetaData : ICategory
+    public class CategoryMetaData : ICategoryEf
     {
         [Key]
         [Display(Name = "Id")]

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MyWoodenHouse.Ef.Models
 {
     [MetadataType(typeof(ProductMetaData))]
-    public partial class Product : IProduct
+    public partial class Product : IProductEf
     {
     }
 }

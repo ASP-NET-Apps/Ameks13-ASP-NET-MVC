@@ -1,5 +1,5 @@
 ﻿using MyWoodenHouse.Contracts;
-using MyWoodenHouse.Contracts.PureModels;
+using MyWoodenHouse.Contracts.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface ICategory : ICategoryModel, IHasIntId
+    public interface ICategoryEf : ICategory, IHasIntId
     {
         ICollection<Building> Buildings { get; set; }
     }

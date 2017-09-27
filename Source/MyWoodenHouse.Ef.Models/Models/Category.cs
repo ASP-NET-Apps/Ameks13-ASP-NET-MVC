@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Ef.Models
 {
     [MetadataType(typeof(CategoryMetaData))]
-    public partial class Category : ICategory
+    public partial class Category : ICategoryEf
     {
     }
 }

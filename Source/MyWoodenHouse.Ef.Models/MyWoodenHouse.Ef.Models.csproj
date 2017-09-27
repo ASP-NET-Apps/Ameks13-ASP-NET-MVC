@@ -59,13 +59,13 @@
     </Compile>
     <Compile Include="Constants\Models\ErrorMessagesConstants.cs" />
     <Compile Include="Constants\Models\ModelsConstants.cs" />
-    <Compile Include="Contracts\IBuilding.cs" />
-    <Compile Include="Contracts\ICategory.cs" />
-    <Compile Include="Contracts\IMaterial.cs" />
-    <Compile Include="Contracts\IPicture.cs" />
-    <Compile Include="Contracts\IPrice.cs" />
-    <Compile Include="Contracts\IPriceCategory.cs" />
-    <Compile Include="Contracts\IProduct.cs" />
+    <Compile Include="Contracts\IBuildingEf.cs" />
+    <Compile Include="Contracts\ICategoryEf.cs" />
+    <Compile Include="Contracts\IMaterialEf.cs" />
+    <Compile Include="Contracts\IPictureEf.cs" />
+    <Compile Include="Contracts\IPriceEf.cs" />
+    <Compile Include="Contracts\IPriceCategoryEf.cs" />
+    <Compile Include="Contracts\IProductEf.cs" />
     <Compile Include="Material.cs">
       <DependentUpon>MyWoodenHouseModels.tt</DependentUpon>
     </Compile>

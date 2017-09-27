@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class BuildingMetaData : IBuilding
+    public class BuildingMetaData : IBuildingEf
     {
         [Key]
         [Range(Consts.Material.Id.MinValue, Consts.Material.Id.MaxValue, ErrorMessage = Consts.Material.Id.ErrorMessage)]

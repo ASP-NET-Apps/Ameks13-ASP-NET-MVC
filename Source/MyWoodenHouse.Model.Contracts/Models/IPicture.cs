@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyWoodenHouse.Contracts.PureModels
+namespace MyWoodenHouse.Contracts.Models
 {
-    public interface IPictureModel
+    public interface IPicture
     {
         Nullable<int> Width { get; set; }
 

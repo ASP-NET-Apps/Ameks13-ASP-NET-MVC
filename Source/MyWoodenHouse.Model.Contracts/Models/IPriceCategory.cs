@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.Contracts.PureModels
+namespace MyWoodenHouse.Contracts.Models
 {
-    public interface IProductModel
+    public interface IPriceCategory : IHasIntId
     {
         string Name { get; set; }
-
-        string Description { get; set; }
     }
 }

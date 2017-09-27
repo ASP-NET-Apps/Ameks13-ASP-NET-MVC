@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Ef.Models
 {
     [MetadataType(typeof(BuildingMetaData))]
-    public partial class Building : IBuilding
+    public partial class Building : IBuildingEf
     {
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class ProductMetaData : IProduct
+    public class ProductMetaData : IProductEf
     {
         [Key]
         [Display(Name = "Id")]

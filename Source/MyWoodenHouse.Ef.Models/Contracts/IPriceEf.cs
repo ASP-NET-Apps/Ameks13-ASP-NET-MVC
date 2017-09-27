@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface IPrice : IPriceModel, IHasIntId
+    public interface IPriceEf : IPriceModel, IHasIntId
     {
         float PerSquareMeter { get; set; }
 

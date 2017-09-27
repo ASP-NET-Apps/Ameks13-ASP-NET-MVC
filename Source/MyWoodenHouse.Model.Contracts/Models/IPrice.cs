@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.Contracts.PureModels
+namespace MyWoodenHouse.Contracts.Models
 {
-    public interface IPriceModel
+    public interface IPrice
     {
         Nullable<float> Value { get; set; }
 
