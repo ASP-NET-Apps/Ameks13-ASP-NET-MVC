@@ -50,9 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="Contracts\IBaseGenericService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="Helpers\EntityIdOperations.cs" />
+    <Compile Include="MaterialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
