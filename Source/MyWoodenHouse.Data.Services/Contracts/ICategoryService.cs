@@ -1,4 +1,4 @@
-﻿using MyWoodenHouse.Contracts.PureModels;
+﻿using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Pure.Models;
 using System.Collections.Generic;
 

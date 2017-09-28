@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MyWoodenHouse.Contracts;
-using MyWoodenHouse.Contracts.PureModels;
+using MyWoodenHouse.Contracts.Models;
 
 namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface IBuildingEf : IBuildingModel, IHasIntId
+    public interface IBuildingEf : IBuilding, IHasIntId
     {
         int CategoryId { get; set; }
 

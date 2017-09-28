@@ -1,4 +1,4 @@
-﻿using MyWoodenHouse.Contracts.PureModels;
+﻿using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Pure.Models;
 using System.Collections.Generic;
 
@@ -14,9 +14,9 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         CategoryModel GetCategoryById(int? id);
 
-        ICategoryModel InsertCategory(CategoryModel categoryModel);
+        ICategory InsertCategory(CategoryModel categoryModel);
 
-        ICategoryModel UpdateCategory(CategoryModel categoryModel);
+        ICategory UpdateCategory(CategoryModel categoryModel);
 
         void DeleteCategoryById(int? id);
     }

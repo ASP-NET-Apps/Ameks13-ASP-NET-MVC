@@ -1,10 +1,10 @@
 ﻿using MyWoodenHouse.Contracts;
-using MyWoodenHouse.Contracts.PureModels;
+using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Pure.Models
 {
-    public class CategoryModel : ICategoryModel, IHasIntId
+    public class CategoryModel : ICategory, IHasIntId
     {
         public CategoryModel()
         {

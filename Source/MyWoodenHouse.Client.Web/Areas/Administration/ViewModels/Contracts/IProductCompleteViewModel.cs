@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyWoodenHouse.Client.Web.ViewModels.Contracts
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 {
-    public interface ICategoryMainViewModel
+    public interface IProductCompleteViewModel
     {
         int Id { get; set; }
 
