@@ -1,13 +1,13 @@
 ﻿using System;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class MaterialModelMapper : IGenericModelMapper<Material, MaterialCompleteViewModel>
+    public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteViewModel>
     {
-        public MaterialCompleteViewModel Model2ViewModel(Material model)
+        public PictureCompleteViewModel Model2ViewModel(Picture model)
         {
             if (model == null)
             {
@@ -15,12 +15,12 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
                 throw new ArgumentNullException();
             }
 
-            var viewModelToReturn = new MaterialCompleteViewModel(model);
+            var viewModelToReturn = new PictureCompleteViewModel(model);
 
             return viewModelToReturn;
         }
 
-        public Material ViewModel2Model(MaterialCompleteViewModel viewModel)
+        public Picture ViewModel2Model(PictureCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {
@@ -28,10 +28,12 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
                 throw new ArgumentNullException();
             }
 
-            var modelToReturn = new Material();
+            var modelToReturn = new Picture();
             modelToReturn.Id = viewModel.Id;
-            modelToReturn.Name = viewModel.Name;
-            modelToReturn.Description = viewModel.Description;
+            modelToReturn.Width = viewModel.Width;
+            modelToReturn.Height = viewModel.Height;
+            modelToReturn.PictureContent = viewModel.PictureContent;
+            modelToReturn.PictureUrl = viewModel.PictureUrl;
 
             return modelToReturn;
         }

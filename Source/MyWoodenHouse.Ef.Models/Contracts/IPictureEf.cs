@@ -1,14 +1,12 @@
 ﻿using MyWoodenHouse.Contracts;
-using MyWoodenHouse.Contracts.PureModels;
+using MyWoodenHouse.Contracts.Models;
 using System;
 using System.Collections.Generic;
 
 namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface IPictureEf : IPictureModel, IHasIntId
+    public interface IPictureEf : IPicture, IHasIntId
     {
-        byte[] PictureContent { get; set; }
-
         ICollection<Building> Buildings { get; set; }
     }
 }

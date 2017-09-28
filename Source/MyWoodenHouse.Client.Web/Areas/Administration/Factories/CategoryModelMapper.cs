@@ -5,34 +5,34 @@ using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class CategoryModelMapper : ICategoryModelMapper
+    public class CategoryModelMapper : IGenericModelMapper<CategoryModel, CategoryCompleteViewModel>
     {
-        public CategoryCompleteViewModel CategoryModel2CategoryCompleteViewModel(CategoryModel categoryModel)
+        public CategoryCompleteViewModel Model2ViewModel(CategoryModel model)
         {
-            if (categoryModel == null)
+            if (model == null)
             {
                 // TODO prepare message
                 throw new ArgumentNullException();
             }
 
-            var newCategoryCompleteVM = new CategoryCompleteViewModel(categoryModel);
+            var modelToReturn = new CategoryCompleteViewModel(model);
 
-            return newCategoryCompleteVM;
+            return modelToReturn;
         }
 
-        public CategoryModel CategoryCompleteViewModel2CategoryModel(CategoryCompleteViewModel categoryCompleteViewModel)
+        public CategoryModel ViewModel2Model(CategoryCompleteViewModel viewModel)
         {
-            if (categoryCompleteViewModel == null)
+            if (viewModel == null)
             {
                 // TODO prepare message
                 throw new ArgumentNullException();
             }
 
-            var newCategoryModel = new CategoryModel();
-            newCategoryModel.Id = categoryCompleteViewModel.Id;
-            newCategoryModel.Name = categoryCompleteViewModel.Name;
+            var modelToReturn = new CategoryModel();
+            modelToReturn.Id = viewModel.Id;
+            modelToReturn.Name = viewModel.Name;
 
-            return newCategoryModel;
+            return modelToReturn;
         }
     }
 }

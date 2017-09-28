@@ -1,18 +1,31 @@
-﻿using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Ef.Models.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Constants.Models;
+using MyWoodenHouse.Contracts.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace MyWoodenHouse.Ef.Models.MetaData
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Prices
 {
-    public class PriceMetaData : IPriceEf
+    public class PriceCompleteViewModel : IPriceCompleteViewModel
     {
-        [Key]
+        public PriceCompleteViewModel()
+        {
+        }
+
+        public PriceCompleteViewModel(IPrice price)
+        {
+            this.Id = price.Id;
+            this.Value = price.Value;
+            this.Currency = price.Currency;
+            this.PerSquareMeter = price.PerSquareMeter;
+            this.PriceCategoryId = price.PriceCategoryId;
+        }
+
+        [Required]
+        [Display(Name = "Id")]
         [Range(Consts.Price.Id.MinValue, Consts.Price.Id.MaxValue, ErrorMessage = Consts.Price.Id.ErrorMessage)]
         public int Id { get; set; }
 
@@ -30,16 +43,11 @@ namespace MyWoodenHouse.Ef.Models.MetaData
         public float PerSquareMeter { get; set; }
 
         [Required]
-        [Display(Name = "PriceCategoryId")]
-        [Range(Consts.Price.PriceCategoryId.MinValue, Consts.Price.PriceCategoryId.MaxValue, ErrorMessage = Consts.Price.PriceCategoryId.ErrorMessage)]
+        [Display(Name = "Id")]
+        [Range(Consts.Price.Id.MinValue, Consts.Price.Id.MaxValue, ErrorMessage = Consts.Price.Id.ErrorMessage)]
         public int PriceCategoryId { get; set; }
 
-        [ForeignKey("PriceCategoryId")]
-        public PriceCategory PriceCategory { get; set; }
-
-        [ForeignKey("Id")]
-        public ICollection<Product> Products { get; set; }
-
-        
+        [Display(Name = "Price")]
+        public string ModelName { get; set; }
     }
 }

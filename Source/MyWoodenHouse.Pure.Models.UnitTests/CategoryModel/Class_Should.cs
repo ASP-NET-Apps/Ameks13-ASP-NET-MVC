@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyWoodenHouse.Contracts;
-using MyWoodenHouse.Contracts.PureModels;
+using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Extensions;
 
 namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
@@ -9,11 +9,11 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
     public class Class_Should
     {
         [TestMethod]
-        public void ImplementInterface_ICategoryModel()
+        public void ImplementInterface_ICategory()
         {
             // Arrange & Act
             CategoryModel actualInstance = new CategoryModel();
-            ICategoryModel actualInstanceInterface = actualInstance as ICategoryModel;
+            ICategory actualInstanceInterface = actualInstance as ICategory;
 
             // Assert
             Assert.IsNotNull(actualInstanceInterface);

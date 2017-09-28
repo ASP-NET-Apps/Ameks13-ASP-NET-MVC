@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Material
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials
 {
     public class MaterialCompleteViewModel
     {
@@ -21,6 +21,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Material
             this.Description = material.Description;
         }
 
+        [Required]
         [Display(Name = "Id")]
         [Range(Consts.Material.Id.MinValue, Consts.Material.Id.MaxValue, ErrorMessage = Consts.Material.Id.ErrorMessage)]
         public int Id { get; set; }

@@ -14,7 +14,7 @@ namespace MyWoodenHouse.Constants.Models
             {
                 public const int MaxValue = int.MaxValue;
                 public const int MinValue = 1;
-                public const string ErrorMessage = "Building Id value should be positive integer numnber.";
+                public const string ErrorMessage = "Building Id value should be positive integer number.";
             }
         };
 
@@ -24,7 +24,7 @@ namespace MyWoodenHouse.Constants.Models
             {
                 public const int MaxValue = int.MaxValue;
                 public const int MinValue = 1;
-                public const string ErrorMessage = "Category Id value should be positive integer numnber.";
+                public const string ErrorMessage = "Category Id value should be positive integer number.";
             }
 
             public struct Name
@@ -42,7 +42,7 @@ namespace MyWoodenHouse.Constants.Models
             {
                 public const int MaxValue = int.MaxValue;
                 public const int MinValue = 1;
-                public const string ErrorMessage = "Material Id value should be positive integer numnber.";
+                public const string ErrorMessage = "Material Id value should be positive integer number.";
             }
 
             public struct Name
@@ -63,18 +63,25 @@ namespace MyWoodenHouse.Constants.Models
 
         public struct Picture
         {
+            public struct Id
+            {
+                public const int MaxValue = int.MaxValue;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Picture Id value should be positive integer number.";
+            }
+
             public struct Width
             {
                 public const int MaxValue = 5000;
                 public const int MinValue = 0;
-                public const string ErrorMessage = "Picture Width value should be positive integer numnber and not more than 5000 px.";
+                public const string ErrorMessage = "Picture Width value should be positive integer number and not more than 5000 px.";
             }
 
             public struct Height
             {
                 public const int MaxValue = 5000;
                 public const int MinValue = 0;
-                public const string ErrorMessage = "Picture Height value should be positive integer numnber and not more than 5000 px.";
+                public const string ErrorMessage = "Picture Height value should be positive integer number and not more than 5000 px.";
             }
 
             public struct PictureUrl
@@ -92,7 +99,7 @@ namespace MyWoodenHouse.Constants.Models
             {
                 public const int MaxValue = int.MaxValue;
                 public const int MinValue = 1;
-                public const string ErrorMessage = "Product Id value should be positive integer numnber.";
+                public const string ErrorMessage = "Product Id value should be positive integer number.";
             }
 
             public struct Name
@@ -111,13 +118,53 @@ namespace MyWoodenHouse.Constants.Models
 
         };
 
+        public struct Price
+        {
+            public struct Id
+            {
+                public const int MaxValue = int.MaxValue;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Price Id value should be positive integer number.";
+            }
+
+            public struct Value
+            {
+                public const float MaxValue = float.MaxValue;
+                public const float MinValue = 1;
+                public const string ErrorMessage = "Price Value value should be positive.";
+            }
+
+            public struct Currency
+            {
+                public const int MaxLength = 10;
+                public const int MinLength = 1;
+                public const string ErrorMessageMaxLength = "Price Currency length should be less than " + "10" + " symbols.";
+                public const string ErrorMessageMinLength = "Price Currency length should be more than " + "1" + " symbols.";
+            }
+
+            public struct PerSquareMeter
+            {
+                public const float MaxValue = float.MaxValue;
+                public const float MinValue = 1;
+                public const string ErrorMessage = "Price PerSquareMeter value should be positive.";
+            }
+
+            public struct PriceCategoryId
+            {
+                public const int MaxValue = int.MaxValue;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Price PriceCategoryId value should be positive integer number.";
+            }
+
+        };
+
         public struct PriceCategory
         {
             public struct Id
             {
                 public const int MaxValue = int.MaxValue;
                 public const int MinValue = 1;
-                public const string ErrorMessage = "PriceCategory Id value should be positive integer numnber.";
+                public const string ErrorMessage = "PriceCategory Id value should be positive integer number.";
             }
 
             public struct Name

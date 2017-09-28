@@ -30,11 +30,11 @@ namespace MyWoodenHouse.Ef.Models
         public int ProductId { get; set; }
         public int CategoryId { get; set; }
     
+        public virtual Category Category { get; set; }
         public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Material> Materials { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Picture> Pictures { get; set; }
-        public virtual Category Category { get; set; }
     }
 }

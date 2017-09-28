@@ -24,8 +24,9 @@ namespace MyWoodenHouse.Ef.Models
         public Nullable<float> Value { get; set; }
         public string Currency { get; set; }
         public float PerSquareMeter { get; set; }
-        public int PriceCategory { get; set; }
+        public int PriceCategoryId { get; set; }
     
+        public virtual PriceCategory PriceCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
     }

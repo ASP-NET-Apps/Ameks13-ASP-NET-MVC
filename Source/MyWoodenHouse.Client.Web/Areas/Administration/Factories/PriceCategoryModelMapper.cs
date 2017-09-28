@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PriceCategories;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
-using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using System;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class MaterialModelMapper : IGenericModelMapper<Material, MaterialCompleteViewModel>
+    public class PriceCategoryModelMapper : IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>
     {
-        public MaterialCompleteViewModel Model2ViewModel(Material model)
+        public PriceCategoryCompleteViewModel Model2ViewModel(PriceCategory model)
         {
             if (model == null)
             {
@@ -15,12 +15,12 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
                 throw new ArgumentNullException();
             }
 
-            var viewModelToReturn = new MaterialCompleteViewModel(model);
+            var viewModelToReturn = new PriceCategoryCompleteViewModel(model);
 
             return viewModelToReturn;
         }
 
-        public Material ViewModel2Model(MaterialCompleteViewModel viewModel)
+        public PriceCategory ViewModel2Model(PriceCategoryCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {
@@ -28,10 +28,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
                 throw new ArgumentNullException();
             }
 
-            var modelToReturn = new Material();
+            var modelToReturn = new PriceCategory();
             modelToReturn.Id = viewModel.Id;
             modelToReturn.Name = viewModel.Name;
-            modelToReturn.Description = viewModel.Description;
 
             return modelToReturn;
         }

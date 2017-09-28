@@ -1,5 +1,5 @@
 ﻿using MyWoodenHouse.Contracts;
-using MyWoodenHouse.Contracts.PureModels;
+using MyWoodenHouse.Contracts.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface IPriceEf : IPriceModel, IHasIntId
+    public interface IPriceEf : IPrice, IHasIntId
     {
-        float PerSquareMeter { get; set; }
-
-        int PriceCategory { get; set; }
+        PriceCategory PriceCategory { get; set; }
 
         ICollection<Product> Products { get; set; }
     }
