@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
-    <Compile Include="Contracts\ICategoryServiceCopy.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="Helpers\EntityIdOperations.cs" />
