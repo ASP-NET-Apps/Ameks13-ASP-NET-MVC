@@ -94,6 +94,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             
             //kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
             kernel.Bind<ICategoryService>().To<CategoryService>();            
+            kernel.Bind<IBaseGenericService<IMaterial>>().To<MaterialService>();
 
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
