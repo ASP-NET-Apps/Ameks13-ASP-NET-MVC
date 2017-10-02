@@ -3,8 +3,11 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Client.Web.Factories;
 using MyWoodenHouse.Client.Web.Factories.Contracts;
+using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Operations;
@@ -12,6 +15,7 @@ using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Default.Auth.Contracts;
 using MyWoodenHouse.Default.Auth.Managers;
+using MyWoodenHouse.Ef.Models;
 using Ninject;
 using Ninject.Web.Common;
 using System;
@@ -94,6 +98,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
             kernel.Bind<IMyAdminViewModelsMapper>().To<MyAdminViewModelsMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<IMaterial, IMaterialComleteViewModel>().To<MaterialModelMapper>().InSingletonScope();
         }        
     }
 }
