@@ -1,0 +1,139 @@
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials.MaterialCompleteViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+  
+    <div class="container">
+        <div class="raw" style="margin-top: 20px;">
+            <div class="col-md-2">
+                <a href="@Url.Action("Index", "AdminMaterials", null)" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                    Materials
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h2 class="red-fg">Add material</h2>
+            </div>
+        </div>
+        <div class="raw">
+            <div class="col-md-8">
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <table class="table form-horizontal" style="margin-top:20px;">
+                    <colgroup>
+                        <col class="col-md-3">
+                        <col class="col-md-9">
+                    </colgroup>
+                    <tbody class="form-group">
+                        <tr>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.ModelName)
+                            </th>
+                            <th style="background-color:lightsteelblue;"></th>
+                        </tr>
+                        <tr >
+                            <td>
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="background-color:lightsteelblue"></td>
+                            <td style="background-color:lightsteelblue">                                
+                                <button type="reset"
+                                        id="resetButton"
+                                        onclick="location.href='@Url.Action("Index","AdminMaterials")'"
+                                        class="btn btn-default">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    Cancel
+                                </button>
+                                <button type="submit"
+                                        id="saveButton"
+                                        value="Create"
+                                        onclick="location.href='@Url.Action("Create","AdminMaterials")'"
+                                        class="btn btn-default disabled">
+                                    <span class="glyphicon glyphicon-floppy-save"></span>                                    
+                                    Save
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        }
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <script type="text/javascript">
+
+        function enableSaveButton(){
+            var saveButton = $('#saveButton');
+
+            saveButton.removeClass('disabled');
+            saveButton.removeClass('btn-default');
+            saveButton.addClass('enabled');
+            saveButton.addClass('btn-primary');
+        }
+
+        function disableSaveButton(){
+            var saveButton = $('#saveButton');
+            saveButton.removeClass('enabled')
+            saveButton.removeClass('btn-primary')
+            saveButton.addClass('disabled');
+            saveButton.addClass('btn-default');
+        }
+
+        function validateForm() {
+            var createForm = $('#createForm');
+            var validator = createForm.validate();
+            validator.form();
+
+            if (createForm.valid()) {
+                console.log(createForm.valid());
+                enableSaveButton();
+            } else {
+                console.log(createForm.valid());
+                disableSaveButton();
+            }
+        }
+
+        $(document).ready(function () {
+            $('#Name').on("input", function () {
+                validateForm();
+            });
+        });
+
+    </script>
+</body>
+</html>

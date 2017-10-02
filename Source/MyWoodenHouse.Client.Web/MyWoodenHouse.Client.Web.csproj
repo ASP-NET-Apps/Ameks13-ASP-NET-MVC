@@ -256,6 +256,10 @@
     <Content Include="Areas\Administration\Views\AdminCategories\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\AdminCategories\Index.cshtml" />
     <Content Include="Areas\Administration\Views\AdminCategories\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminMaterials\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminMaterials\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminMaterials\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminMaterials\Index.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />
@@ -313,7 +317,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\AdminMaterials\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="ViewModels\Material\" />
   </ItemGroup>
