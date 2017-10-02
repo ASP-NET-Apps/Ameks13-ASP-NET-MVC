@@ -2,12 +2,15 @@
 using MyWoodenHouse.Pure.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
+using MyWoodenHouse.Contracts.Models;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class CategoryModelMapper : IGenericModelMapper<CategoryModel, CategoryCompleteViewModel>
+    public class CategoryModelMapper : IGenericModelMapper<ICategory, ICategoryCompleteViewModel>
     {
-        public CategoryCompleteViewModel Model2ViewModel(CategoryModel model)
+
+        public ICategoryCompleteViewModel Model2ViewModel(ICategory model)
         {
             if (model == null)
             {
@@ -20,7 +23,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return modelToReturn;
         }
 
-        public CategoryModel ViewModel2Model(CategoryCompleteViewModel viewModel)
+        public ICategory ViewModel2Model(ICategoryCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {

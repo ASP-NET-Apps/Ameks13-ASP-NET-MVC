@@ -2,12 +2,14 @@
 using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Contracts.Models;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class MaterialModelMapper : IGenericModelMapper<Material, MaterialCompleteViewModel>
+    public class MaterialModelMapper : IGenericModelMapper<IMaterial, IMaterialComleteViewModel>
     {
-        public MaterialCompleteViewModel Model2ViewModel(Material model)
+        public IMaterialComleteViewModel Model2ViewModel(IMaterial model)
         {
             if (model == null)
             {
@@ -20,7 +22,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public Material ViewModel2Model(MaterialCompleteViewModel viewModel)
+        public IMaterial ViewModel2Model(IMaterialComleteViewModel viewModel)
         {
             if (viewModel == null)
             {

@@ -98,7 +98,13 @@ namespace MyWoodenHouse.Client.Web.App_Start
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
             kernel.Bind<IMyAdminViewModelsMapper>().To<MyAdminViewModelsMapper>().InSingletonScope();
-            kernel.Bind<IGenericModelMapper<IMaterial, IMaterialComleteViewModel>().To<MaterialModelMapper>().InSingletonScope();
-        }        
+            kernel.Bind<IGenericModelMapper<ICategory, ICategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<IMaterial, IMaterialComleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<IPicture, IPictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<IPrice, IPriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<IPriceCategory, IPriceCategoryCompleteViewModel>>().To<PriceCategoryModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<IProduct, IProductCompleteViewModel>>().To<ProductModelMapper>().InSingletonScope();
+
+        }
     }
 }

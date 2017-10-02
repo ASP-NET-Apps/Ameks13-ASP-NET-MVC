@@ -1,4 +1,5 @@
-﻿using MyWoodenHouse.Constants.Models;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Contracts.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials
 {
-    public class MaterialCompleteViewModel
+    public class MaterialCompleteViewModel : IMaterialComleteViewModel
     {
         public MaterialCompleteViewModel()
         {
@@ -36,6 +37,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials
         [MaxLength(Consts.Material.Name.MaxLength, ErrorMessage = Consts.Material.Name.ErrorMessageMaxLength)]
         public string Description { get; set; }
 
-
+        [Display(Name = "Material")]
+        public string ModelName { get; set; }
     }
 }

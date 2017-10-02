@@ -12,6 +12,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 
         string Name { get; set; }
 
+        string Description { get; set; }
+
         string ModelName { get; set; }
     }
 }

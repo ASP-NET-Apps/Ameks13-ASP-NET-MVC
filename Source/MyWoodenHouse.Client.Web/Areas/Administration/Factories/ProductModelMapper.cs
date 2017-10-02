@@ -2,12 +2,14 @@
 using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Contracts.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class ProductModelMapper : IGenericModelMapper<Product, ProductCompleteViewModel>
+    public class ProductModelMapper : IGenericModelMapper<IProduct, IProductCompleteViewModel>
     {
-        public ProductCompleteViewModel Model2ViewModel(Product model)
+        public IProductCompleteViewModel Model2ViewModel(IProduct model)
         {
             if (model == null)
             {
@@ -20,7 +22,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public Product ViewModel2Model(ProductCompleteViewModel viewModel)
+        public IProduct ViewModel2Model(IProductCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {

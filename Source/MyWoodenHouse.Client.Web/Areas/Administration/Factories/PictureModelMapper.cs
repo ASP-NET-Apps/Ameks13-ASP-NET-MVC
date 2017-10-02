@@ -2,12 +2,15 @@
 using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Contracts.Models;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteViewModel>
+    public class PictureModelMapper : IGenericModelMapper<IPicture, IPictureCompleteViewModel>
     {
-        public PictureCompleteViewModel Model2ViewModel(Picture model)
+
+        public IPictureCompleteViewModel Model2ViewModel(IPicture model)
         {
             if (model == null)
             {
@@ -20,7 +23,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public Picture ViewModel2Model(PictureCompleteViewModel viewModel)
+        public IPicture ViewModel2Model(IPictureCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {

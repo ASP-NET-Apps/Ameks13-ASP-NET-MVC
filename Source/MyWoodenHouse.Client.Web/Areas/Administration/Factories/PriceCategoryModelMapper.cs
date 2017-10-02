@@ -1,13 +1,15 @@
 ﻿using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PriceCategories;
+using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Ef.Models;
 using System;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class PriceCategoryModelMapper : IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>
+    public class PriceCategoryModelMapper : IGenericModelMapper<IPriceCategory, IPriceCategoryCompleteViewModel>
     {
-        public PriceCategoryCompleteViewModel Model2ViewModel(PriceCategory model)
+        public IPriceCategoryCompleteViewModel Model2ViewModel(IPriceCategory model)
         {
             if (model == null)
             {
@@ -20,7 +22,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public PriceCategory ViewModel2Model(PriceCategoryCompleteViewModel viewModel)
+        public IPriceCategory ViewModel2Model(IPriceCategoryCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {
