@@ -2,6 +2,7 @@
 using MyWoodenHouse.Ef.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System;
 
 namespace MyWoodenHouse.Data.Provider
 {
@@ -11,12 +12,12 @@ namespace MyWoodenHouse.Data.Provider
         // All connection strings are extracted in separate ConnectionStrings.config file and 
         // linked to your main application's configuration file (App.config or Web.config).
         // By default, this connection string targets the 
-        // 'MyWoodenHouse' database on your MSSQL server and uses specific credetials for granting access. 
+        // 'MyWoodenHouse' database on your MSSQL server and uses specific credentials for granting access. 
         // 
         // If you wish to connect to different database you have to use a different connection string 
         // from your (App.config or Web.config) file. 
         //
-        // Uncomment folowing lines if you want explicitly to use (LocalDb)
+        // Uncomment following lines if you want explicitly to use (LocalDb)
         //public MyWoodenHouseDbContext()
         //    : base("DefaultConnection", throwIfV1Schema: false)
         //{
@@ -28,7 +29,17 @@ namespace MyWoodenHouse.Data.Provider
         }
 
         public virtual IDbSet<Category> Categories { get; set; }
-        
+
+        public virtual IDbSet<Material> Materials { get; set; }
+
+        public IDbSet<Picture> Pictures { get; set; }
+
+        public IDbSet<PriceCategory> PriceCategories { get; set; }
+
+        public IDbSet<Price> Prices { get; set; }
+
+        public IDbSet<Product> Products { get; set; }
+
         public EntityState GetEntityState(object entity)
         {
             EntityState stateToReturn = Entry(entity).State;

@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminMaterialsController.cs" />
     <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceCategoryModelMapper.cs" />
@@ -312,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administration\Views\AdminMaterials\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="ViewModels\Material\" />
   </ItemGroup>

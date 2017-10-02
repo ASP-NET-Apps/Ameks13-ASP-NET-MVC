@@ -9,6 +9,16 @@ namespace MyWoodenHouse.Data.Provider.Contracts
     {
         IDbSet<Category> Categories { get; set; }
 
+        IDbSet<Material> Materials { get; set; }
+
+        IDbSet<Picture> Pictures { get; set; }
+
+        IDbSet<Price> Prices { get; set; }
+
+        IDbSet<PriceCategory> PriceCategories { get; set; }
+
+        IDbSet<Product> Products { get; set; }
+
         EntityState GetEntityState(object entity);
 
         void SetEntityState(object entity, EntityState state);

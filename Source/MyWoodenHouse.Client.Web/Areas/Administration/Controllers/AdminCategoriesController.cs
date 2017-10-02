@@ -20,6 +20,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         public AdminCategoriesController()
         {
+            // Todo insert validation
             this.myAdminViewModelsMapper = NinjectWebCommon.Kernel.Get<IMyAdminViewModelsMapper>();
             this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
         }
@@ -48,7 +49,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id, Name")] AdminCategoryMainViewModel adminCategoryMainViewModel)
         {
-            // TODO optimise if possible
+            // TODO optimize if possible
             if (ModelState["Id"] != null)
             {
                 if (ModelState["Id"].Errors.Count > 0)
