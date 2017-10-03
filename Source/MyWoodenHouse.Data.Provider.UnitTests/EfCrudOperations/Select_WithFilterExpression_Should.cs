@@ -46,7 +46,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualFilteredCategories = actualService.Select(c => c.Name == "House");
+            var actualFilteredCategories = actualService.SelectAll(c => c.Name == "House");
 
             // Assert
             Assert.AreEqual(1, actualFilteredCategories.Count());
@@ -60,7 +60,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualFilteredCategories = actualService.Select(c => c.Name == "House");
+            var actualFilteredCategories = actualService.SelectAll(c => c.Name == "House");
 
             // Assert
             Assert.AreEqual(fakeData.ToList()[0].Name, actualFilteredCategories.ToList()[0].Name);
@@ -74,7 +74,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualFilteredCategories = actualService.Select(c => (c.Name == "House" || c.Name == "Garage"));
+            var actualFilteredCategories = actualService.SelectAll(c => (c.Name == "House" || c.Name == "Garage"));
 
             // Assert
             Assert.AreEqual(2, actualFilteredCategories.Count());
@@ -88,7 +88,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualFilteredCategories = actualService.Select(c => (c.Name == "House" || c.Name == "Garage"));
+            var actualFilteredCategories = actualService.SelectAll(c => (c.Name == "House" || c.Name == "Garage"));
 
             // Assert
             Assert.AreEqual(fakeData.ToList()[0].Name, actualFilteredCategories.ToList()[0].Name);

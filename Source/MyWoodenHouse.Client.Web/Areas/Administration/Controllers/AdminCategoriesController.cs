@@ -20,7 +20,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         public AdminCategoriesController()
         {
-            // Todo insert validation
             this.myAdminViewModelsMapper = NinjectWebCommon.Kernel.Get<IMyAdminViewModelsMapper>();
             this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
         }

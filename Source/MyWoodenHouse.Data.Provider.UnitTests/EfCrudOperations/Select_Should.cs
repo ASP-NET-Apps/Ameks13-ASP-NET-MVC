@@ -38,7 +38,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
 
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Select();
+            var actualCategories = actualService.SelectAll();
 
             // Assert
             Assert.IsInstanceOfType(actualCategories, typeof(IEnumerable<Category>));
@@ -82,7 +82,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
 
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Select();
+            var actualCategories = actualService.SelectAll();
 
             // Assert
             Assert.AreEqual(0, actualCategories.Count());
@@ -108,7 +108,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
 
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-            var actualCategories = actualService.Select();
+            var actualCategories = actualService.SelectAll();
 
             // Assert
             Assert.AreEqual(4, actualCategories.Count());

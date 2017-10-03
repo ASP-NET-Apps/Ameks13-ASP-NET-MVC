@@ -40,9 +40,10 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
 
+       
         public IEnumerable<Material> GetAll()
         {
-            var materialsToReturn = this.materialBaseOperatonsProvider.All.ToList();
+            var materialsToReturn = this.materialBaseOperatonsProvider.SelectAll();
 
             if (materialsToReturn == null)
             {
@@ -135,5 +136,6 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges.SaveChanges();
         }
 
+        
     }
 }

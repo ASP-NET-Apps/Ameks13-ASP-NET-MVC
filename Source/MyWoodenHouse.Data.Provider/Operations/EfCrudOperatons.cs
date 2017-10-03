@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using MyWoodenHouse.Data.Provider.Enums;
 
 namespace MyWoodenHouse.Data.Provider.Operations
 {
@@ -50,6 +51,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
         }
 
+
         public IQueryable<T> All
         {
             get
@@ -58,20 +60,20 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
         }
 
-        public IEnumerable<T> Select()
+        public IEnumerable<T> SelectAll()
         {
             IEnumerable<T> categoriesToReturn = this.DbSet.Select(c => c);
 
             return categoriesToReturn;
         }
 
-        public IEnumerable<T> Select(Expression<Func<T, bool>> filterExpression)
+        public IEnumerable<T> SelectAll(Expression<Func<T, bool>> filterExpression)
         {
             IEnumerable<T> itemsToReturn = null;
 
             if (filterExpression == null)
             {
-                itemsToReturn = this.Select();
+                itemsToReturn = this.SelectAll();
             }
             else
             {
@@ -79,6 +81,16 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
 
             return itemsToReturn;
+        }
+
+        public IEnumerable<T> SelectAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, SortOrder? sortOrder)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<T2> SelectAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, SortOrder? sortOrder, Expression<Func<T, T2>> selectExpression)
+        {
+            throw new NotImplementedException();
         }
 
         public T SelectById(int? id)
@@ -180,6 +192,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             this.Delete(entity);
         }
 
+
         private int GetMaxId()
         {
             int maxId = -1;
@@ -210,6 +223,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
 
             return maxId;
         }
+
+        
 
         
     }
