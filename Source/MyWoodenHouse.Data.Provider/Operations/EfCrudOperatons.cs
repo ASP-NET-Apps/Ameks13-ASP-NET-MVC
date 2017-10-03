@@ -54,24 +54,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
         {
             get
             {
-                return this.dbSet;
+                return this.DbSet;
             }
-        }
-
-        public T SelectById(int? id)
-        {
-            if (id == null)
-            {
-                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithNotNullableParameter);
-                throw new ArgumentNullException(errorMessage);
-            }
-            if (id <= 0)
-            {
-                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithPositiveParameter, id);
-                throw new ArgumentException(errorMessage);
-            }
-
-            return this.DbSet.Find(id);
         }
 
         public IEnumerable<T> Select()
@@ -95,6 +79,22 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
 
             return itemsToReturn;
+        }
+
+        public T SelectById(int? id)
+        {
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithNotNullableParameter);
+                throw new ArgumentNullException(errorMessage);
+            }
+            if (id <= 0)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithPositiveParameter, id);
+                throw new ArgumentException(errorMessage);
+            }
+
+            return this.DbSet.Find(id);
         }
 
         public int Insert(T entity)

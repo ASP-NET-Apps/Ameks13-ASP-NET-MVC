@@ -94,13 +94,13 @@ namespace MyWoodenHouse.Client.Web.App_Start
             
             //kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
             kernel.Bind<ICategoryService>().To<CategoryService>();            
-            kernel.Bind<IBaseGenericService<IMaterial>>().To<MaterialService>();
+            kernel.Bind<IBaseGenericService<Material>>().To<MaterialService>();
 
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
             kernel.Bind<IMyAdminViewModelsMapper>().To<MyAdminViewModelsMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<ICategory, ICategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
-            kernel.Bind<IGenericModelMapper<IMaterial, IMaterialComleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<Material, MaterialCompleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<IPicture, IPictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<IPrice, IPriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<IPriceCategory, IPriceCategoryCompleteViewModel>>().To<PriceCategoryModelMapper>().InSingletonScope();

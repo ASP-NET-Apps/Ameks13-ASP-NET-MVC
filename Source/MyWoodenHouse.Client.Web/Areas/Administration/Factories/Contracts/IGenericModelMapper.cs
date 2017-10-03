@@ -1,6 +1,4 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Pure.Models;
-
+﻿
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts
 {
     public interface IGenericModelMapper<T1, T2> 

@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class MaterialService : IBaseGenericService<IMaterial>
+    public class MaterialService : IBaseGenericService<Material>
     {
-        private readonly IEfCrudOperatons<IMaterial> materialBaseOperatonsProvider;
+        private readonly IEfCrudOperatons<Material> materialBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        public MaterialService(IEfCrudOperatons<IMaterial> materialBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
+        public MaterialService(IEfCrudOperatons<Material> materialBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
         {
             if (materialBaseOperatonsProvider == null && dbContextSaveChanges == null)
             {
@@ -40,9 +40,9 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public IEnumerable<IMaterial> GetAll()
+        public IEnumerable<Material> GetAll()
         {
-            IEnumerable<IMaterial> materialsToReturn = this.materialBaseOperatonsProvider.All.ToList();
+            var materialsToReturn = this.materialBaseOperatonsProvider.All.ToList();
 
             if (materialsToReturn == null)
             {
@@ -53,7 +53,7 @@ namespace MyWoodenHouse.Data.Services
             return materialsToReturn;
         }
 
-        public IMaterial GetById(int? id)
+        public Material GetById(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentException(errorMessage);
             }
 
-            IMaterial materialToReturn = this.materialBaseOperatonsProvider.SelectById(id);
+            Material materialToReturn = this.materialBaseOperatonsProvider.SelectById(id);
             if (materialToReturn == null)
             {
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Material", id);
@@ -76,7 +76,7 @@ namespace MyWoodenHouse.Data.Services
             return materialToReturn;
         }
 
-        public int Insert(IMaterial entity)
+        public int Insert(Material entity)
         {
             if (entity == null)
             {
@@ -90,7 +90,7 @@ namespace MyWoodenHouse.Data.Services
             return insertedEntityId;
         }
 
-        public IMaterial Update(IMaterial entity)
+        public Material Update(Material entity)
         {
             if (entity == null)
             {
@@ -101,12 +101,12 @@ namespace MyWoodenHouse.Data.Services
             this.materialBaseOperatonsProvider.Update(entity);
             this.dbContextSaveChanges.SaveChanges();
 
-            IMaterial entityUpdated = this.materialBaseOperatonsProvider.SelectById(entity.Id);
+            Material entityUpdated = this.materialBaseOperatonsProvider.SelectById(entity.Id);
 
             return entityUpdated;
         }
 
-        public void Delete(IMaterial entity)
+        public void Delete(Material entity)
         {
             if (entity == null)
             {
@@ -134,6 +134,6 @@ namespace MyWoodenHouse.Data.Services
             this.materialBaseOperatonsProvider.Delete(id);
             this.dbContextSaveChanges.SaveChanges();
         }
-       
+
     }
 }

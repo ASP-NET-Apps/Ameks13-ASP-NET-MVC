@@ -1,11 +1,12 @@
 ﻿using MyWoodenHouse.Constants.Models;
+using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Ef.Models.Contracts;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Ef.Models.MetaData
 {
-    public class MaterialMetaData : IMaterialEf
+    public class MaterialMetaData : IMaterialEf, IMaterial
     {
         [Key]
         [Display(Name = "Id")]
@@ -19,7 +20,7 @@ namespace MyWoodenHouse.Ef.Models.MetaData
         public string Name { get; set; }
 
         [Display(Name = "Description")]
-        [MaxLength(Consts.Material.Name.MaxLength, ErrorMessage = Consts.Material.Name.ErrorMessageMaxLength)]
+        [MaxLength(Consts.Material.Description.MaxLength, ErrorMessage = Consts.Material.Name.ErrorMessageMaxLength)]
         public string Description { get; set; }
 
         public ICollection<Building> Buildings { get; set; }

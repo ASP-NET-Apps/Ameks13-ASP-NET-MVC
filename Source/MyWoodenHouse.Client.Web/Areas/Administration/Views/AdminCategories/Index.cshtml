@@ -32,8 +32,8 @@
                 
                 <table class="table table-striped" style="margin-top:20px;">
                     <colgroup>
-                        <col class="col-md-5">
-                        <col class="col-md-7">
+                        <col class="col-md-8">
+                        <col class="col-md-4">
                     </colgroup>
                     <tbody>
                         <tr>
@@ -48,11 +48,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
-                            <td>
-                                <a href="@Url.Action("Details", "AdminCategories", new { id = item.Id })" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                                    Details
-                                </a>
+                            <td>                                
                                 <a href="@Url.Action("Edit", "AdminCategories", new { id = item.Id })" class="btn btn-warning">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     Edit

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 {
-    public interface IMaterialComleteViewModel
+    public interface IMaterialCompleteViewModel
     {
         int Id { get; set; }
 

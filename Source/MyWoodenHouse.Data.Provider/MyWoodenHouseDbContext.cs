@@ -3,6 +3,7 @@ using MyWoodenHouse.Ef.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System;
+using MyWoodenHouse.Contracts.Models;
 
 namespace MyWoodenHouse.Data.Provider
 {
@@ -64,6 +65,12 @@ namespace MyWoodenHouse.Data.Provider
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Category>().ToTable("Categories");
+
+            modelBuilder.Entity<Material>()
+                .HasKey(c => c.Id)
+                .Property(p => p.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Material>().ToTable("Materials");
 
             base.OnModelCreating(modelBuilder);
         }

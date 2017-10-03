@@ -9,7 +9,7 @@ using System.Web;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials
 {
-    public class MaterialCompleteViewModel : IMaterialComleteViewModel
+    public class MaterialCompleteViewModel : IMaterialCompleteViewModel
     {
         public MaterialCompleteViewModel()
         {
@@ -34,7 +34,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials
         public string Name { get; set; }
 
         [Display(Name = "Description")]
-        [MaxLength(Consts.Material.Name.MaxLength, ErrorMessage = Consts.Material.Name.ErrorMessageMaxLength)]
+        [MaxLength(Consts.Material.Description.MaxLength, ErrorMessage = Consts.Material.Name.ErrorMessageMaxLength)]
         public string Description { get; set; }
 
         [Display(Name = "Material")]
