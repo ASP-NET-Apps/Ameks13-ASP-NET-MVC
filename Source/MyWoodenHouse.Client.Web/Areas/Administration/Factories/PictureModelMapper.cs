@@ -7,10 +7,10 @@ using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class PictureModelMapper : IGenericModelMapper<IPicture, IPictureCompleteViewModel>
+    public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteViewModel>
     {
 
-        public IPictureCompleteViewModel Model2ViewModel(IPicture model)
+        public PictureCompleteViewModel Model2ViewModel(Picture model)
         {
             if (model == null)
             {
@@ -23,7 +23,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public IPicture ViewModel2Model(IPictureCompleteViewModel viewModel)
+        public Picture ViewModel2Model(PictureCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {

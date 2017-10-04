@@ -7,9 +7,9 @@ using System;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class PriceCategoryModelMapper : IGenericModelMapper<IPriceCategory, IPriceCategoryCompleteViewModel>
+    public class PriceCategoryModelMapper : IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>
     {
-        public IPriceCategoryCompleteViewModel Model2ViewModel(IPriceCategory model)
+        public PriceCategoryCompleteViewModel Model2ViewModel(PriceCategory model)
         {
             if (model == null)
             {
@@ -22,7 +22,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public IPriceCategory ViewModel2Model(IPriceCategoryCompleteViewModel viewModel)
+        public PriceCategory ViewModel2Model(PriceCategoryCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {

@@ -7,9 +7,9 @@ using MyWoodenHouse.Contracts.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class PriceModelMapper : IGenericModelMapper<IPrice, IPriceCompleteViewModel>
+    public class PriceModelMapper : IGenericModelMapper<Price, PriceCompleteViewModel>
     {
-        public IPriceCompleteViewModel Model2ViewModel(IPrice model)
+        public PriceCompleteViewModel Model2ViewModel(Price model)
         {
             if (model == null)
             {
@@ -22,7 +22,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return viewModelToReturn;
         }
 
-        public IPrice ViewModel2Model(IPriceCompleteViewModel viewModel)
+        public Price ViewModel2Model(PriceCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {

@@ -32,8 +32,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // GET: Administration/AdminMaterials
         public ActionResult Index()
         {
-            IEnumerable<Material> materilas = this.materialService.GetAll();
-            IEnumerable<MaterialCompleteViewModel> materialsComleteViewModel = materilas.Select(x => this.materialModelMapper.Model2ViewModel(x));
+            IEnumerable<Material> materials = this.materialService.GetAll();
+            IEnumerable<MaterialCompleteViewModel> materialsComleteViewModel = materials.Select(x => this.materialModelMapper.Model2ViewModel(x));
 
             return View(materialsComleteViewModel);
         }

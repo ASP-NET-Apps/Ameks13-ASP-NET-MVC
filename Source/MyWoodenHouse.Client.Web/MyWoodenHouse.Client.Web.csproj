@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminProductsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminMaterialsController.cs" />
     <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceModelMapper.cs" />
@@ -260,6 +261,10 @@
     <Content Include="Areas\Administration\Views\AdminMaterials\Create.cshtml" />
     <Content Include="Areas\Administration\Views\AdminMaterials\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\AdminMaterials\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminProducts\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminProducts\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminProducts\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\AdminProducts\Index.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />
@@ -352,10 +357,6 @@
     <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
       <Project>{f1f6c39a-fe72-494e-9995-ec3dfaa605e2}</Project>
       <Name>MyWoodenHouse.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Models.Services\MyWoodenHouse.Model.Services.csproj">
-      <Project>{35b0ead8-3212-4ef1-a111-079fe4eede32}</Project>
-      <Name>MyWoodenHouse.Model.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Pure.Models\MyWoodenHouse.Pure.Models.csproj">
       <Project>{bc662dc8-c9c1-4ad9-aa35-29579f0b823d}</Project>
