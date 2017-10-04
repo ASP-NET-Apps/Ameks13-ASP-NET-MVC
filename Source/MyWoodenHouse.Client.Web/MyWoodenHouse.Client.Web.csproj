@@ -187,6 +187,7 @@
     <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminProductsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminMaterialsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceCategoryModelMapper.cs" />
@@ -265,6 +266,7 @@
     <Content Include="Areas\Administration\Views\AdminProducts\Create.cshtml" />
     <Content Include="Areas\Administration\Views\AdminProducts\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\AdminProducts\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />

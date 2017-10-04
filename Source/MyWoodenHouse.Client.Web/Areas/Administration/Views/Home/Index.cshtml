@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-content text-center blue-grey-text text-darken-2">
+            <h1>Administration home page</h1>
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <p class="flow-text">
+                        Manage your data
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="card-action">
+                <a class="btn btn-success btn-large" href="#">Get Started</a>
+            </div>
+
+
+            <div class="navbar navbar-inverse">
+                <div class="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Categories", "Index", "AdminCategories", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
+                            <li>@Html.ActionLink("Materials", "Index", "AdminMaterials", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
+                            <li>@Html.ActionLink("Products", "Index", "Adminproducts", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

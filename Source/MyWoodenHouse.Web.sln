@@ -40,6 +40,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Data.Services.UnitTest", "MyWoodenHouse.Data.Services.UnitTest\MyWoodenHouse.Data.Services.UnitTest.csproj", "{E14EA03D-31CA-46D0-89C1-58A776F6DC31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{55EC9B85-E51B-44F5-9111-2E76A79088CD}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Testing Metrics", "Unit Testing Metrics", "{20B16B68-CE63-4096-A56C-5DADDD5802BF}"
 	ProjectSection(SolutionItems) = preProject

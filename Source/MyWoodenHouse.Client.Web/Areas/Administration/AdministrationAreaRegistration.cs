@@ -1,8 +1,10 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration
 {
+    [ExcludeFromCodeCoverage]
     public class AdministrationAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
