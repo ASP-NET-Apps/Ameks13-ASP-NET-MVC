@@ -22,29 +22,34 @@
                 </div>
             </div>
 
-
-            <div class="card-action">
-                <a class="btn btn-success btn-large" href="#">Get Started</a>
-            </div>
-
-
-            <div class="navbar navbar-inverse">
-                <div class="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Categories", "Index", "AdminCategories", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
-                            <li>@Html.ActionLink("Materials", "Index", "AdminMaterials", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
-                            <li>@Html.ActionLink("Products", "Index", "Adminproducts", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
-                        </ul>
-                    </div>
+                
+                   
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <ul class="nav nav-divider">
+                        <li>
+                            <a href="@Url.Action("Index", "AdminCategories", new { area = "Administration" })" class="btn btn-default">
+                                <span class="glyphicon glyphicon glyphicon-file" aria-hidden="true"></span>
+                                Categories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "AdminMaterials", new { area = "Administration" })" class="btn btn-default">
+                                <span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+                                Materials
+                            </a>
+                            @*@Html.ActionLink("Materials", "Index", "AdminMaterials", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })*@
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "AdminProducts", new { area = "Administration" })" class="btn btn-default">
+                                <span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                Products
+                            </a>
+                            @*@Html.ActionLink("Products", "Index", "Adminproducts", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })*@
+                        </li>
+                    </ul>
                 </div>
+                
             </div>
         </div>
     </div>

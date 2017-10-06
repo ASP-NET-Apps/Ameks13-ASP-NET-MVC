@@ -129,8 +129,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             return PartialView("_DeleteConfirm", productComleteViewModel);
         }
-
-
+        
         // POST: Administration/AdminProducts/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
