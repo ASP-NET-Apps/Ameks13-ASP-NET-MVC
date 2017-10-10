@@ -11,49 +11,50 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class MaterialService : IBaseGenericService<Material>
+    public class PictureService : IBaseGenericService<Picture>
     {
-        private readonly IEfCrudOperatons<Material> materialBaseOperatonsProvider;
+        private readonly IEfCrudOperatons<Picture> pictureBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        public MaterialService(IEfCrudOperatons<Material> materialBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
+        public PictureService(IEfCrudOperatons<Picture> pictureBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
         {
-            if (materialBaseOperatonsProvider == null && dbContextSaveChanges == null)
+            if (pictureBaseOperatonsProvider == null && dbContextSaveChanges == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Material> and EfDbContextSaveChanges", "MaterialService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Picture> and EfDbContextSaveChanges", "PictureService");
                 throw new ArgumentNullException(errorMessage);
             }
 
-            if (materialBaseOperatonsProvider == null)
+            if (pictureBaseOperatonsProvider == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Material>", "MaterialService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Picture>", "PictureService");
                 throw new ArgumentNullException(errorMessage);
             }
 
             if (dbContextSaveChanges == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfDbContextSaveChanges", "MaterialService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfDbContextSaveChanges", "PictureService");
                 throw new ArgumentNullException(errorMessage);
             }
 
-            this.materialBaseOperatonsProvider = materialBaseOperatonsProvider;
+            this.pictureBaseOperatonsProvider = pictureBaseOperatonsProvider;
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
-               
-        public IEnumerable<Material> GetAll()
-        {
-            var materialsToReturn = this.materialBaseOperatonsProvider.SelectAll();
 
-            if (materialsToReturn == null)
+       
+        public IEnumerable<Picture> GetAll()
+        {
+            var picturesToReturn = this.pictureBaseOperatonsProvider.SelectAll();
+
+            if (picturesToReturn == null)
             {
-                string errorMessage = nameof(materialsToReturn);
+                string errorMessage = nameof(picturesToReturn);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            return materialsToReturn;
+            return picturesToReturn;
         }
 
-        public Material GetById(int? id)
+        public Picture GetById(int? id)
         {
             if (id == null)
             {
@@ -66,17 +67,17 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentException(errorMessage);
             }
 
-            Material materialToReturn = this.materialBaseOperatonsProvider.SelectById(id);
-            if (materialToReturn == null)
+            Picture pictureToReturn = this.pictureBaseOperatonsProvider.SelectById(id);
+            if (pictureToReturn == null)
             {
-                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Material", id);
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Picture", id);
                 throw new ArgumentNullException(errorMessage);
             }
             
-            return materialToReturn;
+            return pictureToReturn;
         }
 
-        public int Insert(Material entity)
+        public int Insert(Picture entity)
         {
             if (entity == null)
             {
@@ -84,13 +85,13 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(errorMessage);
             }
 
-            int insertedEntityId = this.materialBaseOperatonsProvider.Insert(entity);
+            int insertedEntityId = this.pictureBaseOperatonsProvider.Insert(entity);
             this.dbContextSaveChanges.SaveChanges();
 
             return insertedEntityId;
         }
 
-        public Material Update(Material entity)
+        public Picture Update(Picture entity)
         {
             if (entity == null)
             {
@@ -98,15 +99,15 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(errorMessage);
             }
             
-            this.materialBaseOperatonsProvider.Update(entity);
+            this.pictureBaseOperatonsProvider.Update(entity);
             this.dbContextSaveChanges.SaveChanges();
 
-            Material entityUpdated = this.materialBaseOperatonsProvider.SelectById(entity.Id);
+            Picture entityUpdated = this.pictureBaseOperatonsProvider.SelectById(entity.Id);
 
             return entityUpdated;
         }
 
-        public void Delete(Material entity)
+        public void Delete(Picture entity)
         {
             if (entity == null)
             {
@@ -114,7 +115,7 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(errorMessage);
             }
 
-            this.materialBaseOperatonsProvider.Delete(entity);
+            this.pictureBaseOperatonsProvider.Delete(entity);
             this.dbContextSaveChanges.SaveChanges();
         }
 
@@ -131,7 +132,7 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentException(errorMessage);
             }
 
-            this.materialBaseOperatonsProvider.Delete(id);
+            this.pictureBaseOperatonsProvider.Delete(id);
             this.dbContextSaveChanges.SaveChanges();
         }
 

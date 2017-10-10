@@ -54,10 +54,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Width" Type="int" />
           <Property Name="Height" Type="int" />
-          <Property Name="PictureContent" Type="varbinary(max)" />
-          <Property Name="PictureUrl" Type="varchar" MaxLength="150" />
+          <Property Name="FileContent" Type="varbinary(max)" />
+          <Property Name="Url" Type="varchar" MaxLength="250" />
+          <Property Name="GetFrom" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PriceCategories">
           <Key>
@@ -313,9 +315,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Width" Type="Int32" />
           <Property Name="Height" Type="Int32" />
-          <Property Name="PictureContent" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="PictureUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Buildings" Relationship="MyWoodenHouseModel.BuildingsPictures" FromRole="Picture" ToRole="Building" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileContent" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="GetFrom" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -448,8 +452,10 @@
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="MyWoodenHouseModel.Picture">
               <MappingFragment StoreEntitySet="Pictures">
-                <ScalarProperty Name="PictureUrl" ColumnName="PictureUrl" />
-                <ScalarProperty Name="PictureContent" ColumnName="PictureContent" />
+                <ScalarProperty Name="GetFrom" ColumnName="GetFrom" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Width" ColumnName="Width" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

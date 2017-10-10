@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials.MaterialCompleteViewModel>
+﻿@model IEnumerable<MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures.PictureCompleteViewModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,7 +24,7 @@
                 </a>
             </div>
             <div class="col-md-6 table-bordered-no">
-                <h2 class="red-fg">Manage materials</h2>
+                <h2 class="red-fg">Manage pictures</h2>
             </div>
         </div>
         <div class="raw">
@@ -39,10 +39,10 @@
                     <tbody>
                         <tr>
                             <th style="background-color:lightsteelblue; color: white;">
-                                @Html.DisplayNameFor(model => model.Name)
+                                @Html.DisplayNameFor(model => model.ModelName)
                             </th>
                             <th style="background-color:lightsteelblue; color: white;">
-                                @Html.DisplayNameFor(model => model.Description)
+                                @Html.DisplayNameFor(model => model.Name)
                             </th>
                             <th style="background-color:lightsteelblue;">
                             </th>
@@ -51,17 +51,17 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Name)
+                                <img src="@item.Url" alt="@item.Name" height="100px" />
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Description)
+                                @Html.DisplayFor(modelName => item.Name)
                             </td>
                             <td>
-                                <a href="@Url.Action("Edit", "AdminMaterials", new { id = item.Id })" class="btn btn-warning">
+                                <a href="@Url.Action("Edit", "Pictures", new { id = item.Id, area = "Administration" })" class="btn btn-warning">
                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     Edit
                                 </a>
-                                <a href="@Url.Action("ViewDeleteConfirm", "AdminMaterials", new { id = item.Id })" class="btn btn-danger modal-link">
+                                <a href="@Url.Action("ViewDeleteConfirm", "Pictures", new { id = item.Id, area = "Administration" })" class="btn btn-danger modal-link">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     Delete
                                 </a>
@@ -72,7 +72,7 @@
                             <td  style="background-color:lightsteelblue"></td>
                             <td  style="background-color:lightsteelblue"></td>
                             <td  style="background-color:lightsteelblue">
-                                <a href="@Url.Action("Create", "AdminMaterials")" class="btn btn-primary pull-right">
+                                <a href="@Url.Action("Create", "Pictures", new { area = "Administration" })" class="btn btn-primary pull-right">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                     Create New
                                 </a>
@@ -84,7 +84,6 @@
             </div>
         </div>
     </div>
-
-
+    
 </body>
 </html>

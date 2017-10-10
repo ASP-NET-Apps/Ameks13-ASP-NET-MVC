@@ -185,8 +185,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdminProductsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminMaterialsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminProductsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceModelMapper.cs" />
@@ -267,6 +268,10 @@
     <Content Include="Areas\Administration\Views\AdminProducts\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\AdminProducts\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Pictures\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Pictures\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\Pictures\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Pictures\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />

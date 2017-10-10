@@ -70,6 +70,14 @@ namespace MyWoodenHouse.Constants.Models
                 public const string ErrorMessage = "Picture Id value should be positive integer number.";
             }
 
+            public struct Name
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "Picture name length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "Picture name length should be more than " + "2" + " symbols.";
+            }
+
             public struct Width
             {
                 public const int MaxValue = 5000;
@@ -84,12 +92,19 @@ namespace MyWoodenHouse.Constants.Models
                 public const string ErrorMessage = "Picture Height value should be positive integer number and not more than 5000 px.";
             }
 
-            public struct PictureUrl
+            public struct Url
             {
-                public const int MaxLength = 150;
+                public const int MaxLength = 250;
                 public const int MinLength = 2;
-                public const string ErrorMessageMaxLength = "Picture PictureUrl length should be less than " + "150" + " symbols.";
-                public const string ErrorMessageMinLength = "Picture PictureUrl length should be more than " + "2" + " symbols.";
+                public const string ErrorMessageMaxLength = "Picture Url length should be less than " + "250" + " symbols.";
+                public const string ErrorMessageMinLength = "Picture Url length should be more than " + "2" + " symbols.";
+            }
+
+            public struct GetFrom
+            {
+                public const int MaxValue = 10;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Picture GetFrom value should be positive integer number .";
             }
         };
 

@@ -100,6 +100,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             kernel.Bind<ICategoryService>().To<CategoryService>();            
             kernel.Bind<IBaseGenericService<Material>>().To<MaterialService>();
             kernel.Bind<IBaseGenericService<Product>>().To<ProductService>();
+            kernel.Bind<IBaseGenericService<Picture>>().To<PictureService>();
 
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();

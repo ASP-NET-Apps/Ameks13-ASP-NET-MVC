@@ -23,8 +23,10 @@ namespace MyWoodenHouse.Ef.Models
         public int Id { get; set; }
         public Nullable<int> Width { get; set; }
         public Nullable<int> Height { get; set; }
-        public byte[] PictureContent { get; set; }
-        public string PictureUrl { get; set; }
+        public string Name { get; set; }
+        public byte[] FileContent { get; set; }
+        public string Url { get; set; }
+        public int GetFrom { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Building> Buildings { get; set; }

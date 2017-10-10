@@ -1,0 +1,155 @@
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures.PictureCompleteViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="raw" style="margin-top: 20px;">
+            <div class="col-md-2">
+                <a href="@Url.Action("Index", "AdminPictures", null)" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                    Pictures
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h2 class="red-fg">Edit picture</h2>
+            </div>
+        </div>
+        <div class="raw">
+            <div class="col-md-8">
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <table class="table form-horizontal" style="margin-top:20px;">
+                        <colgroup>
+                            <col class="col-md-5">
+                            <col class="col-md-7">
+                        </colgroup>
+                        <tbody class="form-group">
+                            <tr>
+                                <th style="background-color:lightsteelblue; color: white;">
+                                    @Html.DisplayNameFor(model => model.ModelName)
+                                </th>
+                                <th style="background-color:lightsteelblue;">
+                                </th>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <img src="@Model.Url" id="previewImg" height="200px"/>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="background-color:lightsteelblue">&nbsp;</td>
+                                <td style="background-color:lightsteelblue">
+                                    <button type="reset"
+                                            id="resetButton"
+                                            onclick="location.href='@Url.Action("Index","AdminPictures")'"
+                                            class="btn btn-default">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                            id="saveButton"
+                                            value="Edit"
+                                            onclick="location.href='@Url.Action("Edit","AdminPictures")'"                                            
+                                            class="btn btn-default disabled">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                        Save
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script type="text/javascript">
+
+        $('#Url').change(function (evt) {
+            //alert(evt.target.value);
+            $('#previewImg').attr('src', evt.target.value).attr('height', '100px');
+        });
+
+        function enableSaveButton(){
+            var saveButton = $('#saveButton');
+
+            saveButton.removeClass('disabled');
+            saveButton.removeClass('btn-default');
+            saveButton.addClass('enabled');
+            saveButton.addClass('btn-primary');
+        }
+
+        function disableSaveButton(){
+            var saveButton = $('#saveButton');
+            saveButton.removeClass('enabled')
+            saveButton.removeClass('btn-primary')
+            saveButton.addClass('disabled');
+            saveButton.addClass('btn-default');
+        }
+
+        function validateForm() {
+            var editForm = $('#editForm');
+            var validator = editForm.validate();
+            validator.form();
+
+            if (editForm.valid()) {
+                console.log(editForm.valid());
+                enableSaveButton();
+            } else {
+                console.log(editForm.valid());
+                disableSaveButton();
+            }
+        }
+
+        // Enable save button on load, assume you are going to edit a valid item
+        $(document).ready(function () {
+            $('#Name').on("input", function () {
+                validateForm();
+            });
+            $('#Url').on("input", function () {
+                validateForm();
+            });
+        });
+    </script>
+</body>
+
+</html>

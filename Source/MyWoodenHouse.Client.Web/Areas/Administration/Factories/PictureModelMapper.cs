@@ -33,10 +33,12 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 
             var modelToReturn = new Picture();
             modelToReturn.Id = viewModel.Id;
+            modelToReturn.Name = viewModel.Name;
             modelToReturn.Width = viewModel.Width;
             modelToReturn.Height = viewModel.Height;
-            modelToReturn.PictureContent = viewModel.PictureContent;
-            modelToReturn.PictureUrl = viewModel.PictureUrl;
+            modelToReturn.FileContent = viewModel.FileContent;
+            modelToReturn.Url = viewModel.Url;
+            modelToReturn.GetFrom = viewModel.GetFrom;
 
             return modelToReturn;
         }
