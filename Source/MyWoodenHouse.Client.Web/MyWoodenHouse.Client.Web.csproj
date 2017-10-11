@@ -187,6 +187,7 @@
     <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminMaterialsController.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminProductsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\BuildingsController.cs" />
     <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
@@ -198,8 +199,10 @@
     <Compile Include="Areas\Administration\Factories\Contracts\IMyAdminViewModelsMapper.cs" />
     <Compile Include="Areas\Administration\Factories\CategoryModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\MyAdminViewModelsMapper.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Categories\CategoryCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Categories\AdminCategoryMainViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Contracts\IBuildingCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IPriceCategoryCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\ICategoryCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IAdminCategoryMainViewModel.cs" />

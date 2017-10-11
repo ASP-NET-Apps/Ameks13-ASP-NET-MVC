@@ -55,6 +55,7 @@
     <Compile Include="Enums\GetPictureContentFrom.cs" />
     <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="Helpers\EntityIdOperations.cs" />
+    <Compile Include="BuildingService.cs" />
     <Compile Include="PictureService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="MaterialService.cs" />
