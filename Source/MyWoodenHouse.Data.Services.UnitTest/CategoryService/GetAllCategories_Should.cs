@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +37,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            IEnumerable<CategoryModel> actualCategories = actualInstance.GetAllCategories();
+            IEnumerable<Category> actualCategories = actualInstance.GetAllCategories();
 
             // Assert
             Assert.AreEqual(4, actualCategories.Count());
@@ -68,7 +66,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            IEnumerable<CategoryModel> actualCategories = actualInstance.GetAllCategories();
+            IEnumerable<Category> actualCategories = actualInstance.GetAllCategories();
 
             // Assert
             Assert.AreSame(null, actualCategories);
@@ -88,7 +86,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            IEnumerable<CategoryModel> actualCategories = actualInstance.GetAllCategories();
+            IEnumerable<Category> actualCategories = actualInstance.GetAllCategories();
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(c => c.All, Times.Once);

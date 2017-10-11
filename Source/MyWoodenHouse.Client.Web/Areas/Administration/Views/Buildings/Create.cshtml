@@ -1,4 +1,4 @@
-﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products.ProductCompleteViewModel
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCompleteViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,13 +16,13 @@
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-2">
-                <a href="@Url.Action("Index", "AdminProducts", null)" class="btn btn-default">
+                <a href="@Url.Action("Index", "Buildings", null)" class="btn btn-default">
                     <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-                    Products
+                    Buildings
                 </a>
             </div>
             <div class="col-md-6">
-                <h2 class="red-fg">Add Product</h2>
+                <h2 class="red-fg">Add building</h2>
             </div>
         </div>
         <div class="row">
@@ -45,7 +45,11 @@
                             </th>
                             <th style="background-color:lightsteelblue;"></th>
                         </tr>
-                        <tr >
+
+                        @*********************@
+                        @* Name
+                        *@
+                        <tr>
                             <td>
                                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
@@ -54,7 +58,9 @@
                                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
-
+                        @*********************@
+                        @* Description
+                        *@
                         <tr>
                             <td>
                                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label pull-right" })
@@ -65,12 +71,73 @@
                             </td>
                         </tr>
 
+                        @*********************@
+                        @* UsableArea
+                        *@
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.UsableArea, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.UsableArea, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.UsableArea, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+                        @*********************@
+                        @* BuiltUpArea
+                        *@
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.BuiltUpArea, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.BuiltUpArea, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuiltUpArea, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+                        @*********************@
+                        @* RoomsCount
+                        *@
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.RoomsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.RoomsCount, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.RoomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+                        @*********************@
+                        @* FloorsCount
+                        *@
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.FloorsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.FloorsCount, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.FloorsCount, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+                        @*********************@
+                        @* BathroomsCount
+                        *@
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.BathroomsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.BathroomsCount, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BathroomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                            </td>
+                        </tr>
+
                         <tr>
                             <td style="background-color:lightsteelblue"></td>
-                            <td style="background-color:lightsteelblue">                                
+                            <td style="background-color:lightsteelblue">
                                 <button type="reset"
                                         id="resetButton"
-                                        onclick="location.href='@Url.Action("Index","AdminProducts")'"
+                                        onclick="location.href='@Url.Action("Index","Buildings")'"
                                         class="btn btn-default">
                                     <span class="glyphicon glyphicon-remove"></span>
                                     Cancel
@@ -78,9 +145,9 @@
                                 <button type="submit"
                                         id="saveButton"
                                         value="Create"
-                                        onclick="location.href='@Url.Action("Create","AdminProducts")'"
+                                        onclick="location.href='@Url.Action("Create","Buildings")'"
                                         class="btn btn-default disabled">
-                                    <span class="glyphicon glyphicon-floppy-save"></span>                                    
+                                    <span class="glyphicon glyphicon-floppy-save"></span>
                                     Save
                                 </button>
                             </td>

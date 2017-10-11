@@ -1,9 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyWoodenHouse.Contracts;
 using MyWoodenHouse.Contracts.Models;
+using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Extensions;
 
-namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
+namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryTests
 {
     [TestClass]
     public class Class_Should
@@ -12,7 +13,7 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
         public void ImplementInterface_ICategory()
         {
             // Arrange & Act
-            CategoryModel actualInstance = new CategoryModel();
+            Category actualInstance = new Category();
             ICategory actualInstanceInterface = actualInstance as ICategory;
 
             // Assert
@@ -23,7 +24,7 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
         public void ImplementInterface_IHasIntId()
         {
             // Arrange & Act
-            CategoryModel actualInstance = new CategoryModel();
+            Category actualInstance = new Category();
             IHasIntId actualInstanceInterface = actualInstance as IHasIntId;
 
             // Assert
@@ -34,7 +35,7 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
         public void HasProperty_Id()
         {
             // Arrange & Act
-            CategoryModel actualInstance = new CategoryModel();
+            Category actualInstance = new Category();
 
             // Assert
             Assert.IsTrue(actualInstance.HasProperty("Id"));
@@ -44,7 +45,7 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
         public void HasPropertyOfCorrectType_Id()
         {
             // Arrange & Act
-            CategoryModel actualInstance = new CategoryModel();
+            Category actualInstance = new Category();
 
             // Assert
             Assert.IsInstanceOfType(actualInstance.Id, typeof(int));
@@ -54,7 +55,7 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
         public void HasProperty_Name()
         {
             // Arrange & Act
-            CategoryModel actualInstance = new CategoryModel();
+            Category actualInstance = new Category();
 
             // Assert
             Assert.IsTrue(actualInstance.HasProperty("Name"));
@@ -64,7 +65,7 @@ namespace MyWoodenHouse.Pure.Models.UnitTests.CategoryModelTests
         public void HasPropertyOfCorrectType_Name()
         {
             // Arrange & Act
-            CategoryModel actualInstance = new CategoryModel();
+            Category actualInstance = new Category();
 
             // Assert
             Assert.IsInstanceOfType(actualInstance.Name, typeof(string));

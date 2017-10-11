@@ -3,7 +3,6 @@ using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,32 +33,32 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
-        public void UpdateTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_CategoryModel()
+        public void UpdateTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_Category()
         {
             // Arrange
-            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
-            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
+            Category categoryToUpdate = fakeData.FirstOrDefault(item => item.Id == 4);
+            //Category categoryToUpdate = new Category(categoryUnapdated);
             categoryToUpdate.Name = "This Name is changed";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
+            Category updatedCategory = actualService.UpdateCategory(categoryToUpdate);
 
             // Assert
-            Assert.AreSame(categoryToUpdate, updatedCategoryModel);
+            Assert.AreSame(categoryToUpdate, updatedCategory);
         }
 
         [TestMethod]
         public void VerifyMethodIsCalledOnce_Update()
         {
             // Arrange
-            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
-            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
+            Category categoryToUpdate = fakeData.FirstOrDefault(item => item.Id == 4);
+            //Category categoryToUpdate = new Category(categoryUnapdated);
             categoryToUpdate.Name = "This Name is changed";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
+            Category updatedCategory = actualService.UpdateCategory(categoryToUpdate);
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(m => m.Update(It.IsAny<Category>()), Times.Once);
@@ -69,20 +68,20 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         public void VerifyMethodIsCalledOnce_SaveChanges()
         {
             // Arrange
-            Category categoryUnapdated = fakeData.FirstOrDefault(item => item.Id == 4);
-            CategoryModel categoryToUpdate = new CategoryModel(categoryUnapdated);
+            Category categoryToUpdate = fakeData.FirstOrDefault(item => item.Id == 4);
+            //Category categoryToUpdate = new Category(categoryUnapdated);
             categoryToUpdate.Name = "This Name is changed";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel updatedCategoryModel = actualService.UpdateCategory(categoryToUpdate);
+            Category updatedCategory = actualService.UpdateCategory(categoryToUpdate);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
         }
 
         [TestMethod]
-        public void ThrowArgumentNullException_WhenArgumentIsNull_CategoryModel()
+        public void ThrowArgumentNullException_WhenArgumentIsNull_Category()
         {
             // Arrange
             // Done in the TestInit method

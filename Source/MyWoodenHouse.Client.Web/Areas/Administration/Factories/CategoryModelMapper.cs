@@ -1,13 +1,13 @@
 ﻿using System;
-using MyWoodenHouse.Pure.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class CategoryModelMapper : IGenericModelMapper<ICategory, ICategoryCompleteViewModel>
+    public class CategoryMapper : IGenericModelMapper<ICategory, ICategoryCompleteViewModel>
     {
 
         public ICategoryCompleteViewModel Model2ViewModel(ICategory model)
@@ -31,7 +31,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
                 throw new ArgumentNullException();
             }
 
-            var modelToReturn = new CategoryModel();
+            var modelToReturn = new Category();
             modelToReturn.Id = viewModel.Id;
             modelToReturn.Name = viewModel.Name;
 

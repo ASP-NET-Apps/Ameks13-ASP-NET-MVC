@@ -42,6 +42,8 @@ namespace MyWoodenHouse.Data.Provider
 
         public IDbSet<Product> Products { get; set; }
 
+        public IDbSet<Building> Buildings { get; set; }
+
         public EntityState GetEntityState(object entity)
         {
             EntityState stateToReturn = Entry(entity).State;
@@ -70,7 +72,7 @@ namespace MyWoodenHouse.Data.Provider
                 .HasKey(c => c.Id)
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            modelBuilder.Entity<Building>().ToTable("Building");
+            modelBuilder.Entity<Building>().ToTable("Buildings");
 
             //Categories
             modelBuilder.Entity<Category>()

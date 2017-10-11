@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,7 +39,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            List<CategoryModel> actualCategories = actualInstance.GetAllCategoriesSortedByName().ToList();
+            List<Category> actualCategories = actualInstance.GetAllCategoriesSortedByName().ToList();
             string[] orderedNames = new string[] { "A", "B", "C", "D" };
 
             // Assert

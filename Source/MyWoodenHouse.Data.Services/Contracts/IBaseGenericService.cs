@@ -1,6 +1,4 @@
-﻿using MyWoodenHouse.Contracts.Models;
-using MyWoodenHouse.Pure.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MyWoodenHouse.Data.Services.Contracts
 {

@@ -13,10 +13,10 @@ namespace MyWoodenHouse.Ef.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MyWoodenHouseEntities : DbContext
+    public partial class MyWoodenHouseModels : DbContext
     {
-        public MyWoodenHouseEntities()
-            : base("name=MyWoodenHouseEntities")
+        public MyWoodenHouseModels()
+            : base("name=MyWoodenHouseModels")
         {
         }
     
@@ -25,13 +25,18 @@ namespace MyWoodenHouse.Ef.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Building> Buildings { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<PriceCategory> PriceCategories { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
-        public virtual DbSet<Building> Buildings { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

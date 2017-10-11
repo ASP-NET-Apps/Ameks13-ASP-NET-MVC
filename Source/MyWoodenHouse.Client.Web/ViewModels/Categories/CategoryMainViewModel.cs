@@ -1,8 +1,8 @@
 ﻿using MyWoodenHouse.Client.Web.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Pure.Models;
 using System.ComponentModel.DataAnnotations;
 using System;
+using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.ViewModels.Categories
 {
@@ -13,7 +13,7 @@ namespace MyWoodenHouse.Client.Web.ViewModels.Categories
             this.Id = 0;
         }
 
-        public CategoryMainViewModel(CategoryModel categoryModel)
+        public CategoryMainViewModel(Category categoryModel)
         {
             this.Id = categoryModel.Id;
             this.Name = categoryModel.Name;

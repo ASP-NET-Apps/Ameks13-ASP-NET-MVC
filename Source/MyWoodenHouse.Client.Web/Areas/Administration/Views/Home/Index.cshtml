@@ -45,10 +45,17 @@
                             </a>
                             @*@Html.ActionLink("Products", "Index", "Adminproducts", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })*@
                         </li>
-                        <li>
+                        <li style="margin-right:30px">
                             <a href="@Url.Action("Index", "Pictures", new { area = "Administration" })" class="btn btn-default">
                                 <span class="glyphicon glyphicon glyphicon-picture" aria-hidden="true"></span>
                                 Pictures
+                            </a>
+                            @*@Html.ActionLink("Pictures", "Index", "Pictures", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })*@
+                        </li>
+                        <li style="margin-right:30px">
+                            <a href="@Url.Action("Index", "Buildings", new { area = "Administration" })" class="btn btn-default">
+                                <span class="glyphicon glyphicon glyphicon-home" aria-hidden="true"></span>
+                                Buildings
                             </a>
                             @*@Html.ActionLink("Pictures", "Index", "Pictures", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })*@
                         </li>

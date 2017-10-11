@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Contracts.Models
 {
-    public interface IBuilding
+    public interface IBuilding : IHasIntId
     {
+        string Name { get; set; }
+
+        string Description { get; set; }
+
         Nullable<float> UsableArea { get; set; }
 
         Nullable<float> BuiltUpArea { get; set; }

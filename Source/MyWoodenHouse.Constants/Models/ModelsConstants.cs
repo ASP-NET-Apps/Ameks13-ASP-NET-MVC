@@ -16,6 +16,55 @@ namespace MyWoodenHouse.Constants.Models
                 public const int MinValue = 1;
                 public const string ErrorMessage = "Building Id value should be positive integer number.";
             }
+
+            public struct Name
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "Building name length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "Building name length should be more than " + "2" + " symbols.";
+            }
+
+            public struct Description
+            {
+                public const int MaxLength = 500;
+                public const string ErrorMessageMaxLength = "Building description length should be less than " + "500" + " symbols.";
+            }
+
+            public struct UsableArea
+            {
+                public const float MaxValue = 1000000f;
+                public const float MinValue = 0f;
+                public const string ErrorMessage = "Building UsableArea value should be positive real number between 0 and 1000000.";
+            }
+
+            public struct BuiltUpArea
+            {
+                public const float MaxValue = 1000000f;
+                public const float MinValue = 0f;
+                public const string ErrorMessage = "Building BuiltUpArea value should be positive real number between 0 and 1000000.";
+            }
+
+            public struct RoomsCount
+            {
+                public const int MaxValue = 1000;
+                public const int MinValue = 0;
+                public const string ErrorMessage = "Building RoomsCount value should be positive integer number between 0 and 1000.";
+            }
+
+            public struct FloorsCount
+            {
+                public const int MaxValue = 1000;
+                public const int MinValue = 0;
+                public const string ErrorMessage = "Building FloorsCount value should be positive integer number between 0 and 1000.";
+            }
+
+            public struct BathroomsCount
+            {
+                public const int MaxValue = 1000;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Building BathroomsCount value should be positive integer number between 0 and 1000.";
+            }
         };
 
         public struct Category

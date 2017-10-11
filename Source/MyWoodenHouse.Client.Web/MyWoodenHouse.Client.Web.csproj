@@ -190,6 +190,7 @@
     <Compile Include="Areas\Administration\Controllers\BuildingsController.cs" />
     <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Factories\BuildingModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceModelMapper.cs" />
     <Compile Include="Areas\Administration\Factories\PriceCategoryModelMapper.cs" />
@@ -275,6 +276,10 @@
     <Content Include="Areas\Administration\Views\Pictures\_DeleteConfirm.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Buildings\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\Buildings\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Buildings\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Buildings\Index.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />

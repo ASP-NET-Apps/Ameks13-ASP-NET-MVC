@@ -18,6 +18,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
     public class BuildingsController : Controller
     {
         private readonly IBaseGenericService<Building> buildingService;
+        private readonly IBaseGenericService<Product> productService;
+        private readonly ICategoryService categoryService; 
         private readonly IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper;
 
         //public AdminBuildingsController(IBaseGenericService<IBuilding> buildingService, IGenericModelMapper<IBuilding, IBuildingComleteViewModel> buildingModelMapper)
@@ -25,6 +27,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         {
             // Todo insert validation
             this.buildingService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Building>>();
+            this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
+            this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
             this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteViewModel>>();
         }
 
@@ -49,9 +53,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, UsableArea, BuiltUpArea")] BuildingCompleteViewModel buildingComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteViewModel buildingComleteViewModel)
         {
-            
+            buildingComleteViewModel.ProductId = 1;
+            var prodToAdd = this.productService.GetById(buildingComleteViewModel.ProductId);
+            buildingComleteViewModel.Product = prodToAdd;
+
+            buildingComleteViewModel.CategoryId = 1;
+            var categoryToAdd = this.categoryService.GetCategoryById(buildingComleteViewModel.CategoryId);
+            buildingComleteViewModel.Category = categoryToAdd;
+
             // TODO optimize if possible
             if (ModelState["Id"] != null)
             {
@@ -63,8 +74,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                
-
                 var building = this.buildingModelMapper.ViewModel2Model(buildingComleteViewModel);
                 this.buildingService.Insert(building);
 
@@ -96,7 +105,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // POST: Administration/AdminBuildings/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, UsableArea, BuiltUpArea")] BuildingCompleteViewModel buildingComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteViewModel buildingComleteViewModel)
         {
             if (ModelState.IsValid)
             {

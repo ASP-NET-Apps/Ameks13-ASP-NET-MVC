@@ -1,26 +1,26 @@
 ﻿using System;
-using MyWoodenHouse.Pure.Models;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
+using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
     public class MyAdminViewModelsMapper : IMyAdminViewModelsMapper
     {
-        public AdminCategoryMainViewModel CategoryModel2AdminCategoryViewModel(CategoryModel categoryModel)
+        public AdminCategoryMainViewModel Category2AdminCategoryViewModel(Category category)
         {
-            if (categoryModel == null)
+            if (category == null)
             {
                 // TODO prepare message
                 throw new ArgumentNullException();
             }
 
-            var newAdminCategoryViewModel = new AdminCategoryMainViewModel(categoryModel);
+            var newAdminCategoryViewModel = new AdminCategoryMainViewModel(category);
 
             return newAdminCategoryViewModel;
         }
 
-        public CategoryModel AdminCategoryViewModel2CategoryModel(AdminCategoryMainViewModel adminCategoryViewModel)
+        public Category AdminCategoryViewModel2Category(AdminCategoryMainViewModel adminCategoryViewModel)
         {
             if (adminCategoryViewModel == null)
             {
@@ -28,11 +28,11 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
                 throw new ArgumentNullException();
             }
 
-            var newCategoryModel = new CategoryModel();
-            newCategoryModel.Id = adminCategoryViewModel.Id;
-            newCategoryModel.Name = adminCategoryViewModel.Name;
+            var newCategory = new Category();
+            newCategory.Id = adminCategoryViewModel.Id;
+            newCategory.Name = adminCategoryViewModel.Name;
 
-            return newCategoryModel;
+            return newCategory;
         }
     }
 }

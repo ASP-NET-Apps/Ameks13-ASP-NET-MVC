@@ -3,6 +3,7 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
@@ -101,16 +102,18 @@ namespace MyWoodenHouse.Client.Web.App_Start
             kernel.Bind<IBaseGenericService<Material>>().To<MaterialService>();
             kernel.Bind<IBaseGenericService<Product>>().To<ProductService>();
             kernel.Bind<IBaseGenericService<Picture>>().To<PictureService>();
+            kernel.Bind<IBaseGenericService<Building>>().To<BuildingService>();
 
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
             kernel.Bind<IMyAdminViewModelsMapper>().To<MyAdminViewModelsMapper>().InSingletonScope();
-            kernel.Bind<IGenericModelMapper<ICategory, ICategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<ICategory, ICategoryCompleteViewModel>>().To<CategoryMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Material, MaterialCompleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Picture, PictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Price, PriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();
-            kernel.Bind<IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>>().To<PriceCategoryModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>>().To<PriceCategoryMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Product, ProductCompleteViewModel>>().To<ProductModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<Building, BuildingCompleteViewModel>>().To<BuildingModelMapper>().InSingletonScope();
 
         }
     }

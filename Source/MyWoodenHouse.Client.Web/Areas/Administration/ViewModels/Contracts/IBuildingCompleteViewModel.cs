@@ -11,6 +11,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
     {
         int Id { get; set; }
 
+        string Name { get; set; }
+
+        string Description { get; set; }
+
         Nullable<float> UsableArea { get; set; }
 
         Nullable<float> BuiltUpArea { get; set; }
@@ -20,8 +24,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
         Nullable<int> RoomsCount { get; set; }
 
         Nullable<int> BathroomsCount { get; set; }
-
-
+        
         int CategoryId { get; set; }
 
         Category Category { get; set; }

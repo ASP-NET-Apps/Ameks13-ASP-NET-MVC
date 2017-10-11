@@ -74,6 +74,10 @@
       <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
       <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+      <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
+      <Name>MyWoodenHouse.Ef.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Extensions\MyWoodenHouse.Extensions.csproj">
       <Project>{63AE3E17-17F7-41E7-9E66-906FE9F73E2E}</Project>
       <Name>MyWoodenHouse.Extensions</Name>

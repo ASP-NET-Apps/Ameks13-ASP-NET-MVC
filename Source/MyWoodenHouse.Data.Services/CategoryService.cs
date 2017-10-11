@@ -2,7 +2,6 @@
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +37,9 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
         
-        public IEnumerable<CategoryModel> GetAllCategories()
+        public IEnumerable<Category> GetAllCategories()
         {
-            IList<CategoryModel> categoriesToReturn = null;
+            IList<Category> categoriesToReturn = null;
             IEnumerable<Category> categories  = this.categoryBaseOperatonsProvider.All.ToList();
 
             if (categories == null)
@@ -51,33 +50,33 @@ namespace MyWoodenHouse.Data.Services
 
             if (categories.Count() > 0)
             {
-                categoriesToReturn = new List<CategoryModel>();
+                categoriesToReturn = new List<Category>();
 
                 foreach(var category in categories)
                 {
-                    var c = new CategoryModel(category);
-                    categoriesToReturn.Add(c);
+                    //var c = new Category(category);
+                    categoriesToReturn.Add(category);
                 }
             }
 
             return categoriesToReturn;
         }
 
-        public IEnumerable<CategoryModel> GetAllCategoriesSortedById()
+        public IEnumerable<Category> GetAllCategoriesSortedById()
         {
-            IEnumerable<CategoryModel> categoriesToReturn = this.GetAllCategories().OrderBy(c => c.Id);
+            IEnumerable<Category> categoriesToReturn = this.GetAllCategories().OrderBy(c => c.Id);
 
             return categoriesToReturn;
         }
 
-        public IEnumerable<CategoryModel> GetAllCategoriesSortedByName()
+        public IEnumerable<Category> GetAllCategoriesSortedByName()
         {
-            IEnumerable<CategoryModel> categoriesToReturn = this.GetAllCategories().OrderBy(c => c.Name);
+            IEnumerable<Category> categoriesToReturn = this.GetAllCategories().OrderBy(c => c.Name);
 
             return categoriesToReturn;
         }
 
-        public CategoryModel GetCategoryById(int? id)
+        public Category GetCategoryById(int? id)
         {
             if (id == null)
             {
@@ -90,32 +89,28 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentException(errorMessage);
             }
 
-            CategoryModel categoryToReturn = null;
-            Category category = this.categoryBaseOperatonsProvider.SelectById(id);
+            Category categoryToReturn = this.categoryBaseOperatonsProvider.SelectById(id);
 
-            if (category == null)
+            if (categoryToReturn == null)
             {
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            // TODO create MyDbModelsMapper.Category2CategoryModel and replace
-            categoryToReturn = new CategoryModel(category);
-
             return categoryToReturn;
         }
 
-        public int InsertCategory(CategoryModel categoryModel)
+        public int InsertCategory(Category category)
         {
-            if (categoryModel == null)
+            if (category == null)
             {
-                string errorMessage = nameof(categoryModel);
+                string errorMessage = nameof(category);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            // TODO create MyDbModelsMapper.CategoryModel2Category
+            // TODO create MyDbModelsMapper.Category2Category
             Category categoryToInsert = new Category();
-            categoryToInsert.Name = categoryModel.Name;
+            categoryToInsert.Name = category.Name;
 
             int insertedCategoryId = this.categoryBaseOperatonsProvider.Insert(categoryToInsert);
             this.dbContextSaveChanges.SaveChanges();
@@ -123,23 +118,18 @@ namespace MyWoodenHouse.Data.Services
             return insertedCategoryId;
         }
 
-        public CategoryModel UpdateCategory(CategoryModel categoryModel)
+        public Category UpdateCategory(Category category)
         {
-            if (categoryModel == null)
+            if (category == null)
             {
-                string errorMessage = nameof(categoryModel);
+                string errorMessage = nameof(category);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            // TODO create MyDbModelsMapper.CategoryModel2Category
-            Category categoryToUpdate = new Category();
-            categoryToUpdate.Id = categoryModel.Id;
-            categoryToUpdate.Name = categoryModel.Name;
-
-            this.categoryBaseOperatonsProvider.Update(categoryToUpdate);
+            this.categoryBaseOperatonsProvider.Update(category);
             this.dbContextSaveChanges.SaveChanges();
 
-            return categoryModel;
+            return category;
         }
 
         public void DeleteCategoryById(int? id)

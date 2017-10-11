@@ -3,7 +3,6 @@ using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +35,10 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
-        public void AddOneItemToTheCategoriesCollection_WhenCalledWithValidArgument_CategoryModel()
+        public void AddOneItemToTheCategoriesCollection_WhenCalledWithValidArgument_Category()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
+            Category categoryToAdd = new Category { Name = "The Fifth Category" };
             int perAddCategoryCount = fakeData.Count();
             
             // Act
@@ -51,10 +50,10 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
-        public void AddTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_CategoryModel()
+        public void AddTheItemSpecifiedInTheInputParameter_WhenCalledWithValidArgument_Category()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
+            Category categoryToAdd = new Category { Name = "The Fifth Category" };
             int perAddCategoryCount = fakeData.Count();
 
             // Act
@@ -67,10 +66,10 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
-        public void ReturnsTheAddedCategoryId_WhenCalledWithValidArgument_CategoryModel()
+        public void ReturnsTheAddedCategoryId_WhenCalledWithValidArgument_Category()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
+            Category categoryToAdd = new Category { Name = "The Fifth Category" };
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
@@ -84,7 +83,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         public void VerifyMethodIsCalledOnce_Insert()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
+            Category categoryToAdd = new Category { Name = "The Fifth Category" };
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
@@ -98,7 +97,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         public void VerifyMethodIsCalledOnce_SaveChanges()
         {
             // Arrange
-            CategoryModel categoryToAdd = new CategoryModel { Name = "The Fifth Category" };
+            Category categoryToAdd = new Category { Name = "The Fifth Category" };
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
@@ -109,7 +108,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         }
 
         [TestMethod]
-        public void ThrowArgumentNullException_WhenArgumentIsNull_CategoryModel()
+        public void ThrowArgumentNullException_WhenArgumentIsNull_Category()
         {
             // Arrange
             // Done in the TestInit method

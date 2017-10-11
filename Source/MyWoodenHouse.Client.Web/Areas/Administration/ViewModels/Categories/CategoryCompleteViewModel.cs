@@ -1,7 +1,6 @@
 ﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Contracts.Models;
-using MyWoodenHouse.Pure.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories

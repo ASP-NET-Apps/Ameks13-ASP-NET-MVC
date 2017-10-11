@@ -1,13 +1,13 @@
 ﻿using MyWoodenHouse.Client.Web.Factories.Contracts;
 using MyWoodenHouse.Client.Web.ViewModels.Categories;
-using MyWoodenHouse.Pure.Models;
+using MyWoodenHouse.Ef.Models;
 using System;
 
 namespace MyWoodenHouse.Client.Web.Factories
 {
     public class MyViewModelsMapper : IMyViewModelsMapper
     {
-        public CategoryMainViewModel CategoryModel2CategoryViewModel(CategoryModel categoryModel)
+        public CategoryMainViewModel Category2CategoryViewModel(Category categoryModel)
         {
             if (categoryModel == null)
             {
@@ -20,7 +20,7 @@ namespace MyWoodenHouse.Client.Web.Factories
             return newCategoryViewModel;
         }
 
-        public CategoryModel CategoryViewModel2CategoryModel(CategoryMainViewModel categoryViewModel)
+        public Category CategoryViewModel2Category(CategoryMainViewModel categoryViewModel)
         {
             if (categoryViewModel == null)
             {
@@ -28,11 +28,11 @@ namespace MyWoodenHouse.Client.Web.Factories
                 throw new ArgumentNullException();
             }
 
-            var newCategoryModel = new CategoryModel();
-            newCategoryModel.Id = categoryViewModel.Id;
-            newCategoryModel.Name = categoryViewModel.Name;
+            var newCategory = new Category();
+            newCategory.Id = categoryViewModel.Id;
+            newCategory.Name = categoryViewModel.Name;
 
-            return newCategoryModel;
+            return newCategory;
         }
     }
 }

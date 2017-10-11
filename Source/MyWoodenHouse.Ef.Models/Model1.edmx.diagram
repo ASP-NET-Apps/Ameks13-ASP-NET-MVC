@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2f81968e0e946f9afce74a1e71a54e6" Name="Diagram1">
+        <EntityTypeShape EntityType="MyWoodenHouseModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUser" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Building" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Category" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Material" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Picture" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.PriceCategory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Price" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Product" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.sysdiagram" Width="1.5" PointX="9.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_Building_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_Building_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_Prices_PriceCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.BuildingsMaterials" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.BuildingsPictures" ManuallyRouted="false" />
+        <AssociationConnector Association="MyWoodenHouseModel.ProductsPrices" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

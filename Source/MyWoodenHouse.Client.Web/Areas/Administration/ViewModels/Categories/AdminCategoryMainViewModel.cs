@@ -1,6 +1,6 @@
 ﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Pure.Models;
+using MyWoodenHouse.Ef.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories
@@ -12,10 +12,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories
             this.Id = 0;
         }
 
-        public AdminCategoryMainViewModel(CategoryModel categoryModel)
+        public AdminCategoryMainViewModel(Category category)
         {
-            this.Id = categoryModel.Id;
-            this.Name = categoryModel.Name;
+            this.Id = category.Id;
+            this.Name = category.Name;
         }
 
         [Display(Name = "Id")]

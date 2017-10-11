@@ -4,7 +4,6 @@ using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Pure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,14 +43,14 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel actualCategoryModel = actualService.GetCategoryById(searchedId);
+            Category actualCategory = actualService.GetCategoryById(searchedId);
 
             Category mockedCategory = fakeData.FirstOrDefault(c => c.Id == searchedId);
-            CategoryModel mockedCategoryModel = new CategoryModel(mockedCategory);
+            //Category mockedCategory = new Category(mockedCategory);
 
             // Assert
-            Assert.AreEqual(mockedCategoryModel.Id, actualCategoryModel.Id);
-            Assert.AreEqual(mockedCategoryModel.Name, actualCategoryModel.Name);
+            Assert.AreEqual(mockedCategory.Id, actualCategory.Id);
+            Assert.AreEqual(mockedCategory.Name, actualCategory.Name);
         }
 
         [TestMethod]
@@ -62,14 +61,14 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel actualCategoryModel = actualService.GetCategoryById(searchedId);
+            Category actualCategory = actualService.GetCategoryById(searchedId);
 
             Category mockedCategory = fakeData.FirstOrDefault(c => c.Id == searchedId);
-            CategoryModel mockedCategoryModel = new CategoryModel(mockedCategory);
+            //Category mockedCategory = new Category(mockedCategory);
 
             // Assert
-            Assert.AreEqual(mockedCategoryModel.Id, actualCategoryModel.Id);
-            Assert.AreEqual(mockedCategoryModel.Name, actualCategoryModel.Name);
+            Assert.AreEqual(mockedCategory.Id, actualCategory.Id);
+            Assert.AreEqual(mockedCategory.Name, actualCategory.Name);
         }
 
         [TestMethod]
@@ -80,7 +79,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            CategoryModel actualCategoryModel = actualService.GetCategoryById(searchedId);
+            Category actualCategory = actualService.GetCategoryById(searchedId);
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(m => m.SelectById(It.IsAny<int?>()), Times.Once);

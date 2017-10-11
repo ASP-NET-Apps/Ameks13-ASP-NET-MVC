@@ -1,4 +1,4 @@
-﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures.PictureCompleteViewModel
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCompleteViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,13 +16,13 @@
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-2">
-                <a href="@Url.Action("Index", "AdminPictures", null)" class="btn btn-primary">
+                <a href="@Url.Action("Index", "Buildings", null)" class="btn btn-default">
                     <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-                    Pictures
+                    Buildings
                 </a>
             </div>
             <div class="col-md-6">
-                <h2 class="red-fg">Edit picture</h2>
+                <h2 class="red-fg">Edit building</h2>
             </div>
         </div>
         <div class="row">
@@ -46,17 +46,6 @@
                                 <th style="background-color:lightsteelblue;">
                                 </th>
                             </tr>
-                            
-                            <tr>
-                                <td>
-                                    @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label pull-right" })
-                                </td>
-                                <td>
-                                    @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
-                                </td>
-                            </tr>
-
                             <tr>
                                 <td>
                                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
@@ -67,18 +56,20 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
                                 <td>
-                                    <img src="@Model.Url" id="previewImg" height="200px"/>
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                                 </td>
                             </tr>
-                            
                             <tr>
                                 <td style="background-color:lightsteelblue">&nbsp;</td>
                                 <td style="background-color:lightsteelblue">
                                     <button type="reset"
                                             id="resetButton"
-                                            onclick="location.href='@Url.Action("Index","AdminPictures")'"
+                                            onclick="location.href='@Url.Action("Index","Buildings")'"
                                             class="btn btn-default">
                                         <span class="glyphicon glyphicon-remove"></span>
                                         Cancel
@@ -86,7 +77,7 @@
                                     <button type="submit"
                                             id="saveButton"
                                             value="Edit"
-                                            onclick="location.href='@Url.Action("Edit","AdminPictures")'"                                            
+                                            onclick="location.href='@Url.Action("Edit","Buildings")'"                                            
                                             class="btn btn-default disabled">
                                         <span class="glyphicon glyphicon-floppy-save"></span>
                                         Save
@@ -103,11 +94,6 @@
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/jqueryval")*@
     <script type="text/javascript">
-
-        $('#Url').change(function (evt) {
-            //alert(evt.target.value);
-            $('#previewImg').attr('src', evt.target.value).attr('height', '100px');
-        });
 
         function enableSaveButton(){
             var saveButton = $('#saveButton');
@@ -141,11 +127,12 @@
         }
 
         // Enable save button on load, assume you are going to edit a valid item
+        $(document).ready(function(){
+            enableSaveButton();
+        });
+
         $(document).ready(function () {
             $('#Name').on("input", function () {
-                validateForm();
-            });
-            $('#Url').on("input", function () {
                 validateForm();
             });
         });

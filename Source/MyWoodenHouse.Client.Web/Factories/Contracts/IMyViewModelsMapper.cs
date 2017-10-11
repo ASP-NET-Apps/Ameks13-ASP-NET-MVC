@@ -1,12 +1,12 @@
 ﻿using MyWoodenHouse.Client.Web.ViewModels.Categories;
-using MyWoodenHouse.Pure.Models;
+using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Factories.Contracts
 {
     public interface IMyViewModelsMapper
     {
-        CategoryMainViewModel CategoryModel2CategoryViewModel(CategoryModel category);
+        CategoryMainViewModel Category2CategoryViewModel(Category category);
 
-        CategoryModel CategoryViewModel2CategoryModel(CategoryMainViewModel category);
+        Category CategoryViewModel2Category(CategoryMainViewModel category);
     }
 }

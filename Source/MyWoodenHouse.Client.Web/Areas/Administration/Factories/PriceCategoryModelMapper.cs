@@ -7,7 +7,7 @@ using System;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class PriceCategoryModelMapper : IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>
+    public class PriceCategoryMapper : IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>
     {
         public PriceCategoryCompleteViewModel Model2ViewModel(PriceCategory model)
         {

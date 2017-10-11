@@ -1,0 +1,176 @@
+﻿@model IEnumerable<MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCompleteViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-2 table-bordered-no">
+                <a href="@Url.Action("Index", "Home", new { area = "Administration" })" class="btn btn-default">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                    Admin
+                </a>
+            </div>
+            <div class="col-md-6 table-bordered-no">
+                <h2 class="red-fg">Manage buildings</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 table-bordered-no">
+                
+                <table class="table table-striped" style="margin-top:20px;">
+                    <colgroup>
+                        <col class="col-md-4">
+                        <col class="col-md-4">
+                        <col class="col-md-4">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.UsableArea)
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.BuiltUpArea)
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.FloorsCount)
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.RoomsCount)
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.BathroomsCount)
+                            </th>
+
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.Category.Name)
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                @Html.DisplayNameFor(model => model.Product.Name)
+                            </th>
+
+                            <th style="background-color:lightsteelblue; color: white;">
+                                Materials list
+                            </th>
+                            <th style="background-color:lightsteelblue; color: white;">
+                                Pictures list
+                            </th>
+
+                            <th style="background-color:lightsteelblue;">
+                            </th>
+                        </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UsableArea)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BuiltUpArea)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FloorsCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoomsCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BathroomsCount)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.Name)
+                            </td>
+
+                            <td>
+                                @if (item.Materials.Count > 0)
+                                {
+                                    <ul>
+                                        @foreach (var material in item.Materials)
+                                        {
+                                            <li><span>@material.Name</span></li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span>No materials</span> 
+                                }
+                            </td>
+                            <td>
+                                @if (item.Pictures.Count > 0)
+                                {
+                                    <ul>
+                                        @foreach (var picture in item.Pictures)
+                                        {
+                                            <li><img src="@picture.Url" height="100px" alt="@picture.Name" /></li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <span>No pictures</span>
+                                }
+                            </td>
+
+
+                            <td>
+                                <a href="@Url.Action("Edit", "Buildings", new { id = item.Id })" class="btn btn-warning">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    Edit
+                                </a>
+                                <a href="@Url.Action("ViewDeleteConfirm", "Buildings", new { id = item.Id })" class="btn btn-danger modal-link">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                        <tr>
+                            <td style="background-color:lightsteelblue" colspan="11"></td>
+                            <td  style="background-color:lightsteelblue">
+                                <a href="@Url.Action("Create", "Buildings")" class="btn btn-primary pull-right">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Create New
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

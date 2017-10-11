@@ -22,6 +22,8 @@ namespace MyWoodenHouse.Ef.Models
         }
     
         public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public Nullable<float> UsableArea { get; set; }
         public Nullable<float> BuiltUpArea { get; set; }
         public Nullable<int> FloorsCount { get; set; }

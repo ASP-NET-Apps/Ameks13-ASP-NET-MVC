@@ -21,9 +21,9 @@ namespace MyWoodenHouse.Ef.Models
         }
     
         public int Id { get; set; }
+        public string Name { get; set; }
         public Nullable<int> Width { get; set; }
         public Nullable<int> Height { get; set; }
-        public string Name { get; set; }
         public byte[] FileContent { get; set; }
         public string Url { get; set; }
         public int GetFrom { get; set; }

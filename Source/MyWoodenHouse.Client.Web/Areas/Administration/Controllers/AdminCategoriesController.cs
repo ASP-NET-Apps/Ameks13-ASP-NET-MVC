@@ -3,7 +3,7 @@ using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Pure.Models;
+using MyWoodenHouse.Ef.Models;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -28,8 +28,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            IEnumerable<CategoryModel> categoriesModel = this.categoryService.GetAllCategoriesSortedById();
-            IEnumerable<AdminCategoryMainViewModel> categoriesViewModel = categoriesModel.Select(c => myAdminViewModelsMapper.CategoryModel2AdminCategoryViewModel(c));
+            IEnumerable<Category> categories = this.categoryService.GetAllCategoriesSortedById();
+            IEnumerable<AdminCategoryMainViewModel> categoriesViewModel = categories.Select(c => myAdminViewModelsMapper.Category2AdminCategoryViewModel(c));
             
             return View(categoriesViewModel);
         }
@@ -59,7 +59,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                CategoryModel categoryModel = this.myAdminViewModelsMapper.AdminCategoryViewModel2CategoryModel(adminCategoryMainViewModel);
+                Category categoryModel = this.myAdminViewModelsMapper.AdminCategoryViewModel2Category(adminCategoryMainViewModel);
                 this.categoryService.InsertCategory(categoryModel);
 
                 return RedirectToAction("Index");
@@ -77,13 +77,13 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            CategoryModel categoryModel = this.categoryService.GetCategoryById(id);
+            Category categoryModel = this.categoryService.GetCategoryById(id);
             if (categoryModel == null)
             {
                 return HttpNotFound();
             }
 
-            AdminCategoryMainViewModel adminCategoryMainViewModel = this.myAdminViewModelsMapper.CategoryModel2AdminCategoryViewModel(categoryModel);
+            AdminCategoryMainViewModel adminCategoryMainViewModel = this.myAdminViewModelsMapper.Category2AdminCategoryViewModel(categoryModel);
 
             return View(adminCategoryMainViewModel);
         }
@@ -97,7 +97,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                CategoryModel categoryModel = this.myAdminViewModelsMapper.AdminCategoryViewModel2CategoryModel(adminCategoryMainViewModel);
+                Category categoryModel = this.myAdminViewModelsMapper.AdminCategoryViewModel2Category(adminCategoryMainViewModel);
                 this.categoryService.UpdateCategory(categoryModel);
 
                 return RedirectToAction("Index");
@@ -120,14 +120,14 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 throw new ArgumentException(errorMessage);
             }
 
-            CategoryModel categoryModel = this.categoryService.GetCategoryById(id);
+            Category categoryModel = this.categoryService.GetCategoryById(id);
 
             if (categoryModel == null)
             {
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            AdminCategoryMainViewModel adminCategoryMainViewModel = myAdminViewModelsMapper.CategoryModel2AdminCategoryViewModel(categoryModel);
+            AdminCategoryMainViewModel adminCategoryMainViewModel = myAdminViewModelsMapper.Category2AdminCategoryViewModel(categoryModel);
 
             return PartialView("_DeleteConfirm", adminCategoryMainViewModel);
         }
