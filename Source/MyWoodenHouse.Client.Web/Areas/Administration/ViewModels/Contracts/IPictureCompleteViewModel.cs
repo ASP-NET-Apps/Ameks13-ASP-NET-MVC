@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyWoodenHouse.Data.Services.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 
         string Url { get; set; }
 
-        int GetFrom { get; set; }
+        GetPictureContentFrom GetFrom { get; set; }
     }
 }

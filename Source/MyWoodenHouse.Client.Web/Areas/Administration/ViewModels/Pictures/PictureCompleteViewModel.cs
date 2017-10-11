@@ -1,6 +1,7 @@
 ﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Contracts.Models;
+using MyWoodenHouse.Data.Services.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,7 +24,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures
             this.Height = picture.Height;
             this.FileContent = picture.FileContent;
             this.Url = picture.Url;
-            this.GetFrom = picture.GetFrom;
+            this.GetFrom = (GetPictureContentFrom)picture.GetFrom;
         }
 
         [Display(Name = "Id")]
@@ -53,7 +54,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures
         public string Url { get; set; }
         
         [Range(Consts.Picture.GetFrom.MinValue-1, Consts.Picture.GetFrom.MaxValue, ErrorMessage = Consts.Picture.GetFrom.ErrorMessage)]
-        public int GetFrom { get; set; }
+        public GetPictureContentFrom GetFrom { get; set; }
 
         [Display(Name = "Picture")]
         public string ModelName { get; set; }

@@ -32,9 +32,8 @@ namespace MyWoodenHouse.Ef.Models.MetaData
 
         [Required]
         [Range(Consts.Picture.GetFrom.MinValue, Consts.Picture.GetFrom.MaxValue, ErrorMessage = Consts.Picture.GetFrom.ErrorMessage)]
-        int IPicture.GetFrom { get; set; }
+        public int GetFrom { get; set; }
 
-        public ICollection<Building> Buildings { get; set; }
-        
+        public ICollection<Building> Buildings { get; set; }      
     }
 }

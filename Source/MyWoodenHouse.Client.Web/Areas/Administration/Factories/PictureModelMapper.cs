@@ -38,7 +38,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             modelToReturn.Height = viewModel.Height;
             modelToReturn.FileContent = viewModel.FileContent;
             modelToReturn.Url = viewModel.Url;
-            modelToReturn.GetFrom = viewModel.GetFrom;
+            modelToReturn.GetFrom = (int)viewModel.GetFrom;
 
             return modelToReturn;
         }

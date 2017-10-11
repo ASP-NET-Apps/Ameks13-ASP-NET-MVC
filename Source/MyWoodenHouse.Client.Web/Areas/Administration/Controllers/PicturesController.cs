@@ -1,10 +1,9 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
+using MyWoodenHouse.Data.Services.Enums;
 using MyWoodenHouse.Ef.Models;
 using Ninject;
 using System;
@@ -58,7 +57,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             // TODO refactor later and use picture url or content
             pictureComleteViewModel.FileContent = null;
-            pictureComleteViewModel.GetFrom = 1;
+            pictureComleteViewModel.GetFrom = GetPictureContentFrom.Url;
 
             // TODO optimize if possible
             if (ModelState["Id"] != null)

@@ -52,6 +52,7 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="Contracts\IBaseGenericService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
+    <Compile Include="Enums\GetPictureContentFrom.cs" />
     <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="Helpers\EntityIdOperations.cs" />
     <Compile Include="PictureService.cs" />
