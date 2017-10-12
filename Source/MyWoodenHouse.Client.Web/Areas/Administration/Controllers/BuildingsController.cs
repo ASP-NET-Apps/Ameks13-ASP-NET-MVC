@@ -45,7 +45,17 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // GET: Administration/AdminBuildings/Create
         public ActionResult Create()
         {
-            return View();
+            var buildingCreateEditViewModel = new BuildingCreateEditViewModel(new BuildingCompleteViewModel());
+
+            var categories = this.categoryService.GetAllCategoriesSortedByName();
+            var categoriesSelectList = new SelectList(categories, "Id", "Name");
+            buildingCreateEditViewModel.CategoryList = categoriesSelectList;
+
+            var products = this.productService.GetAll().OrderBy(p => p.Name);
+            var productSelectList = new SelectList(products, "Id", "Name");
+            buildingCreateEditViewModel.ProductList = productSelectList;
+
+            return View(buildingCreateEditViewModel);
         }
 
         // POST: Administration/AdminBuildings/Create
