@@ -109,7 +109,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             return this.DbSet.Find(id);
         }
 
-        public int Insert(T entity)
+        public virtual int Insert(T entity)
         {
             if (entity == null)
             {
@@ -193,7 +193,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
         }
 
 
-        private int GetMaxId()
+        protected int GetMaxId()
         {
             int maxId = -1;
 

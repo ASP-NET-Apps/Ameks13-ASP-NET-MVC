@@ -1,5 +1,6 @@
 ﻿using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Provider.Operations;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
 using System;
@@ -9,10 +10,12 @@ namespace MyWoodenHouse.Data.Services
 {
     public class BuildingService : IBaseGenericService<Building>
     {
-        private readonly IEfCrudOperatons<Building> buildingBaseOperatonsProvider;
+        //private readonly IEfCrudOperatons<Building> buildingBaseOperatonsProvider;
+        private readonly BuildingCrudOperations buildingBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        public BuildingService(IEfCrudOperatons<Building> buildingBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
+        //public BuildingService(IEfCrudOperatons<Building> buildingBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
+        public BuildingService(BuildingCrudOperations buildingBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
         {
             if (buildingBaseOperatonsProvider == null && dbContextSaveChanges == null)
             {

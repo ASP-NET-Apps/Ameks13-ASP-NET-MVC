@@ -22,6 +22,8 @@ namespace MyWoodenHouse.Data.Provider.Contracts
 
         IDbSet<Building> Buildings { get; set; }
 
+        IDbSet<BuildingMaterial> BuildingMaterials { get; set; }
+
         EntityState GetEntityState(object entity);
 
         void SetEntityState(object entity, EntityState state);

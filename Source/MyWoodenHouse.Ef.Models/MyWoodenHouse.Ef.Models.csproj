@@ -72,6 +72,7 @@
     <Compile Include="Constants\Models\ErrorMessagesConstants.cs" />
     <Compile Include="Constants\Models\ModelsConstants.cs" />
     <Compile Include="Contracts\IBuildingEf.cs" />
+    <Compile Include="Contracts\IBuildingMaterialEf.cs" />
     <Compile Include="Contracts\ICategoryEf.cs" />
     <Compile Include="Contracts\IMaterialEf.cs" />
     <Compile Include="Contracts\IPictureEf.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Material.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MetaData\BuildingMaterialMetaData.cs" />
     <Compile Include="MetaData\BuildingMetaData.cs" />
     <Compile Include="MetaData\CategoryMetaData.cs" />
     <Compile Include="MetaData\MaterialMetaData.cs" />
@@ -106,6 +108,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\BuildingMaterial.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\PriceCategory.cs" />

@@ -55,8 +55,10 @@
     <Compile Include="Contracts\IMyWoodenHouseDbContext.cs" />
     <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="MyWoodenHouseDbContext.cs" />
+    <Compile Include="Operations\BuildingCrudOperations.cs" />
     <Compile Include="Operations\EfCrudOperatons.cs" />
     <Compile Include="Operations\EfDbContextSaveChanges.cs" />
+    <Compile Include="Contracts\IBuildingCrudOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

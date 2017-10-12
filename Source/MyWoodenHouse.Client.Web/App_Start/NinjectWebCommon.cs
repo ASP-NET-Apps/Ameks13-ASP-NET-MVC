@@ -16,6 +16,7 @@ using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Operations;
+using MyWoodenHouse.Data.Provider.Operations.Contracts;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Default.Auth.Contracts;
@@ -96,13 +97,16 @@ namespace MyWoodenHouse.Client.Web.App_Start
             // Data services
             kernel.Bind(typeof(IEfCrudOperatons<>)).To(typeof(EfCrudOperatons<>));
             kernel.Bind<IEfDbContextSaveChanges>().To<EfDbContextSaveChanges>();
-            
+
             //kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
+            //kernel.Bind<IBuildingCrudOperations>().To<BuildingService>();
+
             kernel.Bind<ICategoryService>().To<CategoryService>();            
             kernel.Bind<IBaseGenericService<Material>>().To<MaterialService>();
             kernel.Bind<IBaseGenericService<Product>>().To<ProductService>();
             kernel.Bind<IBaseGenericService<Picture>>().To<PictureService>();
             kernel.Bind<IBaseGenericService<Building>>().To<BuildingService>();
+
 
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();

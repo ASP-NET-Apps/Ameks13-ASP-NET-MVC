@@ -44,6 +44,23 @@ namespace MyWoodenHouse.Data.Provider
 
         public IDbSet<Building> Buildings { get; set; }
 
+        public IDbSet<BuildingMaterial> BuildingMaterials { get; set; }
+
+
+        //public DbSet<PriceOffer> PriceOffers { get; set; }
+
+        //public EfCoreContext(
+        //    DbContextOptions<EfCoreContext> options)      
+        //: base(options) { }
+
+        //protected override void
+        //    OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<BookAuthor>()
+        //        .HasKey(x => new { x.BookId, x.AuthorId });
+
+
+
         public EntityState GetEntityState(object entity)
         {
             EntityState stateToReturn = Entry(entity).State;
@@ -115,6 +132,22 @@ namespace MyWoodenHouse.Data.Provider
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Product>().ToTable("Products");
+
+            //BuildingsMaterials
+            modelBuilder.Entity<BuildingMaterial>()
+                .HasKey(x => new { x.BuildingId, x.MaterialId });
+            // modelBuilder.Entity<BuildingMaterial>().ToTable("BuildingsMaterials");
+
+            modelBuilder.Entity<Building>()
+                .HasMany(t => t.Materials)
+                .WithMany(t => t.Buildings)
+                .Map(m =>
+                {                    
+                    m.MapLeftKey("MaterialId");
+                    m.MapRightKey("BuildingId");
+                    m.ToTable("BuildingsMaterials");
+                });
+
 
             base.OnModelCreating(modelBuilder);
         }
