@@ -141,7 +141,7 @@
                             </td>
                             <td>
                                 @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Category, "", new { @class = "text-danger" })
-                                @Html.DropDownListFor(model=> model.BuildingCompleteViewModel.Category, Model.CategoryList, new { @class = "form-control" })
+                                @Html.DropDownListFor(model=> model.BuildingCompleteViewModel.CategoryId, Model.CategoryList, "--Select Category--", new { @class = "form-control" })
                             </td>
                         </tr>
                         @*********************@
@@ -153,7 +153,20 @@
                             </td>
                             <td>
                                 @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Product, "", new { @class = "text-danger" })
-                                @Html.DropDownListFor(model => model.BuildingCompleteViewModel.Product, Model.ProductList, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.BuildingCompleteViewModel.ProductId, Model.ProductList, "--Select Product--", new { @class = "form-control" })
+                            </td>
+                        </tr>
+
+                        @*********************@
+                        @* MaterialList
+                        *@
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Materials, htmlAttributes: new { @class = "control-label pull-right" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Materials, "", new { @class = "text-danger" })
+                                @Html.ListBoxFor(model => model.SelectedMaterialIdList, Model.MaterialList, new { @class = "form-control" })
                             </td>
                         </tr>
 
@@ -221,26 +234,33 @@
         }
 
         $(document).ready(function () {
-            $('#Name').on("input", function () {
+            $('#BuildingCompleteViewModel_Name').on("input", function () {
                 validateForm();
             });
-            $('#Description').on("input", function () {
+            $('#BuildingCompleteViewModel_Description').on("input", function () {
                 validateForm();
             });
 
-            $('#UsableArea').on("input", function () {
+            $('#BuildingCompleteViewModel_UsableArea').on("input", function () {
                 validateForm();
             });
-            $('#BuiltUpArea').on("input", function () {
+            $('#BuildingCompleteViewModel_BuiltUpArea').on("input", function () {
                 validateForm();
             });
-            $('#RoomsCount').on("input", function () {
+            $('#BuildingCompleteViewModel_RoomsCount').on("input", function () {
                 validateForm();
             });
-            $('#FloorsCount').on("input", function () {
+            $('#BuildingCompleteViewModel_FloorsCount').on("input", function () {
                 validateForm();
             });
-            $('#BathroomsCount').on("input", function () {
+            $('#BuildingCompleteViewModel_BathroomsCount').on("input", function () {
+                validateForm();
+            });
+
+            $('#BuildingCompleteViewModel_CategoryId').on("change", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_ProductId').on("change", function () {
                 validateForm();
             });
         });

@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
+using MyWoodenHouse.Ef.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 {
     public interface IBuildingCreateEditViewModel
     {
-        IBuildingCompleteViewModel BuildingCompleteViewModel { get; set; }
+        BuildingCompleteViewModel BuildingCompleteViewModel { get; set; }
 
         SelectList CategoryList { get; set; }
 
         SelectList ProductList { get; set; }
+
+        IEnumerable<int> SelectedMaterialIdList { get; set; }
+
+        SelectList MaterialList { get; set; }
 
         string ModelName { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Data.Services.Enums;
@@ -17,18 +18,26 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class BuildingsController : Controller
     {
+        private const string Categories = "Categories";
+        private const string Products = "Products";
+        private const string Materials = "Materials";
+
+        private readonly ICategoryService categoryService;
         private readonly IBaseGenericService<Building> buildingService;
         private readonly IBaseGenericService<Product> productService;
-        private readonly ICategoryService categoryService; 
+        private readonly IBaseGenericService<Material> materialService;
+        private readonly IBaseGenericService<Picture> pictureService;
         private readonly IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper;
 
         //public AdminBuildingsController(IBaseGenericService<IBuilding> buildingService, IGenericModelMapper<IBuilding, IBuildingComleteViewModel> buildingModelMapper)
         public BuildingsController()
         {
             // Todo insert validation
+            this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
             this.buildingService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Building>>();
             this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
-            this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
+            this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
+            this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
             this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteViewModel>>();
         }
 
@@ -45,16 +54,24 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // GET: Administration/AdminBuildings/Create
         public ActionResult Create()
         {
+            // Todo extract to factory
             var buildingCreateEditViewModel = new BuildingCreateEditViewModel(new BuildingCompleteViewModel());
 
             var categories = this.categoryService.GetAllCategoriesSortedByName();
-            var categoriesSelectList = new SelectList(categories, "Id", "Name");
+            SelectList categoriesSelectList = new SelectList(categories, "Id", "Name");
             buildingCreateEditViewModel.CategoryList = categoriesSelectList;
-
+            TempData[Categories] = categories.ToList();
+            
             var products = this.productService.GetAll().OrderBy(p => p.Name);
-            var productSelectList = new SelectList(products, "Id", "Name");
+            SelectList productSelectList = new SelectList(products, "Id", "Name");
             buildingCreateEditViewModel.ProductList = productSelectList;
+            TempData[Products] = products.ToList();
 
+            var materials = this.materialService.GetAll().OrderBy(m => m.Name);
+            SelectList materialSelectList = new SelectList(materials, "Id", "Name");
+            buildingCreateEditViewModel.MaterialList = materialSelectList;
+            TempData[Materials] = materials.ToList();
+            
             return View(buildingCreateEditViewModel);
         }
 
@@ -63,34 +80,45 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteViewModel buildingComleteViewModel)
+        //public ActionResult Create([Bind(Include = "BuildingCompleteViewModel.Id, BuildingCompleteViewModel.Name, BuildingCompleteViewModel.Description, BuildingCompleteViewModel.UsableArea, BuildingCompleteViewModel.BuiltUpArea, BuildingCompleteViewModel.RoomsCount, BuildingCompleteViewModel.FloorsCount, BuildingCompleteViewModel.BathroomsCount, BuildingCompleteViewModel.CategoryId, BuildingCompleteViewModel.Category, BuildingCompleteViewModel.ProductId, BuildingCompleteViewModel.Product, BuildingCompleteViewModel.Materials, BuildingCompleteViewModel.Pictures")] BuildingCreateEditViewModel buildingCreateEditViewModel)
+        public ActionResult Create(BuildingCreateEditViewModel buildingCreateEditViewModel)
         {
-            buildingComleteViewModel.ProductId = 1;
-            var prodToAdd = this.productService.GetById(buildingComleteViewModel.ProductId);
-            buildingComleteViewModel.Product = prodToAdd;
+            BuildingCompleteViewModel buildingCompleteViewModel = new BuildingCompleteViewModel();
+            buildingCompleteViewModel = buildingCreateEditViewModel.BuildingCompleteViewModel;
 
-            buildingComleteViewModel.CategoryId = 1;
-            var categoryToAdd = this.categoryService.GetCategoryById(buildingComleteViewModel.CategoryId);
-            buildingComleteViewModel.Category = categoryToAdd;
+            //var allCategories = (List<Category>)TempData[Categories];
+            //buildingCompleteViewModel.Category = allCategories.SingleOrDefault(c => c.Id == buildingCompleteViewModel.CategoryId);
+
+            //var allProducts = (List<Product>)TempData[Products];
+            //buildingCompleteViewModel.Product = allProducts.SingleOrDefault(p => p.Id == buildingCompleteViewModel.ProductId);
+
+            var allMaterials = (List<Material>)TempData[Materials];
+            buildingCompleteViewModel.Materials = allMaterials.Where(m => buildingCreateEditViewModel.SelectedMaterialIdList.Contains(m.Id)).ToList();
 
             // TODO optimize if possible
-            if (ModelState["Id"] != null)
+            var modelStateId = ModelState["BuildingCompleteViewModel.Id"];
+            if (modelStateId != null)
             {
-                if (ModelState["Id"].Errors.Count > 0)
+                if (modelStateId.Errors.Count > 0)
                 {
-                    ModelState["Id"].Errors.Clear();
+                    modelStateId.Errors.Clear();
                 }
             }
 
             if (ModelState.IsValid)
             {
-                var building = this.buildingModelMapper.ViewModel2Model(buildingComleteViewModel);
+                var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteViewModel);
+                // TODO think out how to make it better. 
+                // Categories and Products should be present before inserting new building
+                // Next lines could be transfered in the service layer
+                building.Category = null;
+                building.Product = null;
                 this.buildingService.Insert(building);
 
                 return RedirectToAction("Index");
             }
 
-            return View(buildingComleteViewModel);
+            return View(buildingCreateEditViewModel);
         }
 
         // GET: Administration/AdminBuildings/Edit/5
