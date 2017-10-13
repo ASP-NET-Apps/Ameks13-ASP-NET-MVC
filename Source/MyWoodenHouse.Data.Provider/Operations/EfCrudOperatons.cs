@@ -130,7 +130,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             return entity.Id;
         }
 
-        public int Update(T entity)
+        public virtual int Update(T entity)
         {
             if (entity == null)
             {

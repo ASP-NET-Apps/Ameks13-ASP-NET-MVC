@@ -34,7 +34,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
             bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
             if (!isStateDetached)
             {
-                base.Context.Buildings.Attach(building);
+                //base.Context.Buildings.Attach(building);
+                this.Context.SetEntityState(building, EntityState.Added);
             }
             else
             {
@@ -53,8 +54,32 @@ namespace MyWoodenHouse.Data.Provider.Operations
             return building.Id;
         }
 
-        
+        public override int Update(Building building)
+        {
+            if (building == null)
+            {
+                throw new ArgumentNullException(nameof(building));
+            }
 
-        
+            //bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
+            //if (!isStateDetached)
+            //{
+            //    this.DbSet.Attach(entity);
+            //}
+
+            bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
+            if (isStateDetached)
+            {
+                base.Context.Buildings.Attach(building);
+            }
+            
+            //this.Context.SetEntityState(building, EntityState.Modified);
+            base.Context.Entry(building).State = EntityState.Modified;
+            base.Context.Buildings.Add(building);
+
+
+            return building.Id;
+        }
+
     }
 }

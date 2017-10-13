@@ -13,9 +13,13 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 
         SelectList ProductList { get; set; }
 
+        SelectList MaterialList { get; set; }
+
         IEnumerable<int> SelectedMaterialIdList { get; set; }
 
-        SelectList MaterialList { get; set; }
+        SelectList PictureList { get; set; }
+
+        IEnumerable<int> SelectedPictureIdList { get; set; }
 
         string ModelName { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCompleteViewModel
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCreateEditViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -28,44 +28,169 @@
         <div class="row">
             <div class="col-md-8">
 
-                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "mainForm" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     <table class="table form-horizontal" style="margin-top:20px;">
                         <colgroup>
-                            <col class="col-md-5">
-                            <col class="col-md-7">
+                            <col class="col-md-3">
+                            <col class="col-md-9">
                         </colgroup>
                         <tbody class="form-group">
                             <tr>
                                 <th style="background-color:lightsteelblue; color: white;">
                                     @Html.DisplayNameFor(model => model.ModelName)
                                 </th>
-                                <th style="background-color:lightsteelblue;">
-                                </th>
+                                <th style="background-color:lightsteelblue;"></th>
                             </tr>
+
+                            @*********************@
+                            @* Name
+                            *@
                             <tr>
                                 <td>
-                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
+                                    
+
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.Name, htmlAttributes: new { @class = "control-label pull-right" })
                                 </td>
                                 <td>
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Name, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*********************@
+                                    @* Id
+                                    *@
+                                    @Html.HiddenFor(model => model.BuildingCompleteViewModel.Id)
                                 </td>
                             </tr>
+                            @*********************@
+                            @* Description
+                            *@
                             <tr>
                                 <td>
-                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label pull-right" })
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.Description, htmlAttributes: new { @class = "control-label pull-right" })
                                 </td>
                                 <td>
-                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Description, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.Description, new { htmlAttributes = new { @class = "form-control" } })
                                 </td>
                             </tr>
+
+                            @*********************@
+                            @* UsableArea
+                            *@
                             <tr>
-                                <td style="background-color:lightsteelblue">&nbsp;</td>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.UsableArea, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.UsableArea, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.UsableArea, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            @*********************@
+                            @* BuiltUpArea
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.BuiltUpArea, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.BuiltUpArea, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.BuiltUpArea, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            @*********************@
+                            @* RoomsCount
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.RoomsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.RoomsCount, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.RoomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            @*********************@
+                            @* FloorsCount
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.FloorsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.FloorsCount, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.FloorsCount, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            @*********************@
+                            @* BathroomsCount
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.BathroomsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.BathroomsCount, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.BuildingCompleteViewModel.BathroomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+
+                            @*********************@
+                            @* CategoryList
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.Category, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Category, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.BuildingCompleteViewModel.CategoryId, Model.CategoryList, "--Select Category--", new { @class = "form-control" })
+                                </td>
+                            </tr>
+                            @*********************@
+                            @* ProductList
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.Product, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Product, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.BuildingCompleteViewModel.ProductId, Model.ProductList, "--Select Product--", new { @class = "form-control" })
+                                </td>
+                            </tr>
+
+                            @*********************@
+                            @* MaterialList
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.Materials, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Materials, "", new { @class = "text-danger" })
+                                    @Html.ListBoxFor(model => model.SelectedMaterialIdList, Model.MaterialList, new { @class = "form-control" })
+                                </td>
+                            </tr>
+
+                            @*********************@
+                            @* PictureList
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.BuildingCompleteViewModel.Pictures, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Pictures, "", new { @class = "text-danger" })
+                                    @Html.ListBoxFor(model => model.SelectedPictureIdList, Model.PictureList, new { @class = "form-control" })
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="background-color:lightsteelblue"></td>
                                 <td style="background-color:lightsteelblue">
                                     <button type="reset"
                                             id="resetButton"
@@ -76,8 +201,8 @@
                                     </button>
                                     <button type="submit"
                                             id="saveButton"
-                                            value="Edit"
-                                            onclick="location.href='@Url.Action("Edit","Buildings")'"                                            
+                                            value="Create"
+                                            onclick="location.href='@Url.Action("Edit","Buildings")'"
                                             class="btn btn-default disabled">
                                         <span class="glyphicon glyphicon-floppy-save"></span>
                                         Save
@@ -93,11 +218,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/jqueryval")*@
+
     <script type="text/javascript">
 
         function enableSaveButton(){
             var saveButton = $('#saveButton');
-
             saveButton.removeClass('disabled');
             saveButton.removeClass('btn-default');
             saveButton.addClass('enabled');
@@ -113,30 +238,51 @@
         }
 
         function validateForm() {
-            var editForm = $('#editForm');
-            var validator = editForm.validate();
+            var mainForm = $('#mainForm');
+            var validator = mainForm.validate();
             validator.form();
 
-            if (editForm.valid()) {
-                console.log(editForm.valid());
+            if (mainForm.valid()) {
+                console.log(mainForm.valid());
                 enableSaveButton();
             } else {
-                console.log(editForm.valid());
+                console.log(mainForm.valid());
                 disableSaveButton();
             }
         }
 
-        // Enable save button on load, assume you are going to edit a valid item
-        $(document).ready(function(){
-            enableSaveButton();
-        });
-
         $(document).ready(function () {
-            $('#Name').on("input", function () {
+            $('#BuildingCompleteViewModel_Name').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_Description').on("input", function () {
+                validateForm();
+            });
+
+            $('#BuildingCompleteViewModel_UsableArea').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_BuiltUpArea').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_RoomsCount').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_FloorsCount').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_BathroomsCount').on("input", function () {
+                validateForm();
+            });
+
+            $('#BuildingCompleteViewModel_CategoryId').on("change", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteViewModel_ProductId').on("change", function () {
                 validateForm();
             });
         });
+
     </script>
 </body>
-
 </html>

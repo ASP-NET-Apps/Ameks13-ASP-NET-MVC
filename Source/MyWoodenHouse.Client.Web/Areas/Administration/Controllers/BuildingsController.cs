@@ -19,6 +19,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         private const string Categories = "Categories";
         private const string Products = "Products";
         private const string Materials = "Materials";
+        private const string Pictures = "Pictures";
 
         private readonly ICategoryService categoryService;
         private readonly IBaseGenericService<Building> buildingService;
@@ -58,21 +59,31 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             // Todo extract to factory
             var buildingCreateEditViewModel = new BuildingCreateEditViewModel(new BuildingCompleteViewModel());
 
-            var categories = this.categoryService.GetAllCategoriesSortedByName();
-            SelectList categoriesSelectList = new SelectList(categories, "Id", "Name");
-            buildingCreateEditViewModel.CategoryList = categoriesSelectList;
-            TempData[Categories] = categories.ToList();
-            
-            var products = this.productService.GetAll().OrderBy(p => p.Name);
-            SelectList productSelectList = new SelectList(products, "Id", "Name");
-            buildingCreateEditViewModel.ProductList = productSelectList;
-            TempData[Products] = products.ToList();
+            //var categories = this.categoryService.GetAllCategoriesSortedByName();
+            //SelectList categoriesSelectList = new SelectList(categories, "Id", "Name");
+            //buildingCreateEditViewModel.CategoryList = categoriesSelectList;
+            //TempData[Categories] = categories.ToList();
 
-            var materials = this.materialService.GetAll().OrderBy(m => m.Name);
-            SelectList materialSelectList = new SelectList(materials, "Id", "Name");
-            buildingCreateEditViewModel.MaterialList = materialSelectList;
-            TempData[Materials] = materials.ToList();
-            
+            //var products = this.productService.GetAll().OrderBy(p => p.Name);
+            //SelectList productSelectList = new SelectList(products, "Id", "Name");
+            //buildingCreateEditViewModel.ProductList = productSelectList;
+            //TempData[Products] = products.ToList();
+
+            //var materials = this.materialService.GetAll().OrderBy(m => m.Name);
+            //SelectList materialSelectList = new SelectList(materials, "Id", "Name");
+            //buildingCreateEditViewModel.MaterialList = materialSelectList;
+            //TempData[Materials] = materials.ToList();
+
+            //var pictures = this.pictureService.GetAll().OrderBy(m => m.Id);
+            //SelectList pictureSelectList = new SelectList(pictures, "Id", "Url");
+            //buildingCreateEditViewModel.PictureList = pictureSelectList;
+            //TempData[Materials] = pictures.ToList();
+
+            buildingCreateEditViewModel.CategoryList = this.CategorySelectListPreparer();
+            buildingCreateEditViewModel.ProductList = this.ProductSelectListPreparer();
+            buildingCreateEditViewModel.MaterialList = this.MaterialSelectListPreparer();
+            buildingCreateEditViewModel.PictureList = this.PictureSelectListPreparer();
+
             return View(buildingCreateEditViewModel);
         }
 
@@ -115,17 +126,30 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 // TODO think out how to make it better. 
                 // Categories and Products should be present before inserting new building
                 // Next lines could be transfered in the service layer
-                var materials = new HashSet<Material>();
-                foreach (var id in buildingCreateEditViewModel.SelectedMaterialIdList)
-                {
-                    var item = this.materialService.GetById(id);
-                    materials.Add(item);
-                }
+                //var materials = new HashSet<Material>();
+                //foreach (var id in buildingCreateEditViewModel.SelectedMaterialIdList)
+                //{
+                //    var item = this.materialService.GetById(id);
+                //    materials.Add(item);
+                //}
 
-                building.Materials = materials;
+                //// TODO think out how to make it better. 
+                
+                //// Next lines could be transfered in the service layer
+                //var pictures = new HashSet<Picture>();
+                //foreach (var id in buildingCreateEditViewModel.SelectedPictureIdList)
+                //{
+                //    var item = this.pictureService.GetById(id);
+                //    pictures.Add(item);
+                //}
+
+                // TODO Refactoring with better practice 
+                // Categories and Products should be present before inserting new building?!
                 // Transfer to the TempData or some model, or get from db?!
-                building.Category = null;
-                building.Product = null;
+                building.Category = this.FromViewResolver<Category>();
+                building.Product = this.FromViewResolver<Product>();
+                building.Materials = this.SelectedMaterialListResolver(buildingCreateEditViewModel.SelectedMaterialIdList);
+                building.Pictures = this.SelectedPictureListResolver(buildingCreateEditViewModel.SelectedPictureIdList);
 
                 this.buildingService.Insert(building);
 
@@ -150,23 +174,44 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             }
 
             var buildingComleteViewModel = this.buildingModelMapper.Model2ViewModel(building);
+            var buildingCreateEditViewModel = new BuildingCreateEditViewModel(buildingComleteViewModel);
 
-            return View(buildingComleteViewModel);
+            buildingCreateEditViewModel.CategoryList = this.CategorySelectListPreparer();
+            buildingCreateEditViewModel.ProductList = this.ProductSelectListPreparer();
+            buildingCreateEditViewModel.MaterialList = this.MaterialSelectListPreparer();
+            buildingCreateEditViewModel.PictureList = this.PictureSelectListPreparer();
+
+            return View(buildingCreateEditViewModel);
         }
 
         // POST: Administration/AdminBuildings/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteViewModel buildingComleteViewModel)
+        //public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteViewModel buildingComleteViewModel)
+        public ActionResult Edit(BuildingCreateEditViewModel buildingCreateEditViewModel)
         {
+            BuildingCompleteViewModel buildingCompleteViewModel = new BuildingCompleteViewModel();
+            buildingCompleteViewModel = buildingCreateEditViewModel.BuildingCompleteViewModel;
+
             if (ModelState.IsValid)
             {
-                var building = this.buildingModelMapper.ViewModel2Model(buildingComleteViewModel);
+                //var building = this.buildingModelMapper.ViewModel2Model(buildingComleteViewModel);
+                //this.buildingService.Update(building);
+
+                //return RedirectToAction("Index");
+
+                var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteViewModel);
+                building.Category = this.FromViewResolver<Category>();
+                building.Product = this.FromViewResolver<Product>();
+                building.Materials = this.SelectedMaterialListResolver(buildingCreateEditViewModel.SelectedMaterialIdList);
+                building.Pictures = this.SelectedPictureListResolver(buildingCreateEditViewModel.SelectedPictureIdList);
+
                 this.buildingService.Update(building);
 
                 return RedirectToAction("Index");
             }
-            return View(buildingComleteViewModel);
+
+            return View(buildingCreateEditViewModel);
         }
 
         // GET: Administration/AdminBuildings/Delete/5
@@ -217,5 +262,121 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // TODO refactoring but ?! no better idea, because those are three different actions
+        private SelectList CategorySelectListPreparer()
+        {
+            var categories = this.categoryService.GetAllCategoriesSortedByName();
+            if (categories == null)
+            {
+                // TODO Throw or return
+                //return HttpNotFound();
+            }
+            SelectList selectListToReturn = new SelectList(categories, "Id", "Name");
+            TempData[Categories] = categories.ToList();
+
+            return selectListToReturn;
+        }
+        
+        // TODO refactoring but ?! no better idea, because those are three different actions
+        private SelectList ProductSelectListPreparer()
+        {
+            var products = this.productService.GetAll().OrderBy(p => p.Name);
+            if (products == null)
+            {
+                // TODO Throw or return
+                //return HttpNotFound();
+            }
+            SelectList selectListToReturn = new SelectList(products, "Id", "Name");
+            TempData[Products] = products.ToList();
+
+            return selectListToReturn;
+        }
+
+        // TODO refactoring but ?! no better idea, because those are three different actions
+        private SelectList MaterialSelectListPreparer()
+        {
+            var materials = this.materialService.GetAll().OrderBy(m => m.Name);
+            if (materials == null)
+            {
+                // TODO Throw or return
+                //return HttpNotFound();
+            }
+            SelectList selectListToReturn = new SelectList(materials, "Id", "Name");
+            TempData[Materials] = materials.ToList();
+
+            return selectListToReturn;
+        }
+
+        // TODO refactoring but ?! no better idea, because those are three different actions
+        private SelectList PictureSelectListPreparer()
+        {
+            var pictures = this.pictureService.GetAll().OrderBy(m => m.Id);
+            if (pictures == null)
+            {
+                // TODO Throw or return
+                //return HttpNotFound();
+            }
+            SelectList selectListToReturn = new SelectList(pictures, "Id", "Url");
+            TempData[Materials] = pictures.ToList();
+
+            return selectListToReturn;
+        }
+        
+        // TODO think out how to make it better. 
+        // Categories and Products should be present before inserting new building
+        private T FromViewResolver<T>() where T : class
+        {
+            T modelToReturn = null;
+
+            return modelToReturn;
+        }
+
+        // TODO think out how to make it better. 
+        private ICollection<Material> SelectedMaterialListResolver(IEnumerable<int> selectedMaterialIdList)
+        {
+            var modelListToReturn = new HashSet<Material>(); ;
+
+            if (selectedMaterialIdList != null)
+            {
+                foreach (var id in selectedMaterialIdList)
+                {
+                    var item = this.materialService.GetById(id);
+                    if (item == null)
+                    {
+                        // TODO Throw or return
+                        //return HttpNotFound();
+                    }
+
+                    modelListToReturn.Add(item);
+                }
+            }
+
+            return modelListToReturn;
+        }
+
+        // TODO think out how to make it better. 
+        private ICollection<Picture> SelectedPictureListResolver(IEnumerable<int> selectedPictureIdList)
+        {
+            var modelListToReturn = new HashSet<Picture>(); ;
+
+            if(selectedPictureIdList != null)
+            {
+                foreach (var id in selectedPictureIdList)
+                {
+                    var item = this.pictureService.GetById(id);
+                    if (item == null)
+                    {
+                        // TODO Throw or return
+                        //return HttpNotFound();
+                    }
+
+                    modelListToReturn.Add(item);
+                }
+            }
+            
+            return modelListToReturn;
+        }
+
     }
 }

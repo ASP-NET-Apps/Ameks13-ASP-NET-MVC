@@ -23,7 +23,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
 
         [Required]
         [Display(Name = "Id")]
-        [Range(Consts.Material.Id.MinValue, Consts.Material.Id.MaxValue, ErrorMessage = Consts.Material.Id.ErrorMessage)]
+        [Range(Consts.Building.Id.MinValue, Consts.Building.Id.MaxValue, ErrorMessage = Consts.Building.Id.ErrorMessage)]
         public int Id { get; set; }
 
         [Required]
@@ -58,11 +58,13 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
 
         [Required]
         public int ProductId { get; set; }
-
+                
         public ProductCompleteViewModel Product { get; set; }
 
+        [Display(Name = "Materials")]
         public ICollection<MaterialCompleteViewModel> Materials { get; set; }
 
+        [Display(Name = "Pictures")]
         public ICollection<PictureCompleteViewModel> Pictures { get; set; }
 
         [Display(Name = "Building")]

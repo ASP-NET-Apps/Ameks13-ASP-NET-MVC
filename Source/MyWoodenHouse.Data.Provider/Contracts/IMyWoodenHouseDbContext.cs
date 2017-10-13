@@ -22,7 +22,7 @@ namespace MyWoodenHouse.Data.Provider.Contracts
 
         IDbSet<Building> Buildings { get; set; }
 
-        IDbSet<BuildingMaterial> BuildingMaterials { get; set; }
+        IDbSet<MaterialBuilding> MaterialBuildings { get; set; }
 
         EntityState GetEntityState(object entity);
 

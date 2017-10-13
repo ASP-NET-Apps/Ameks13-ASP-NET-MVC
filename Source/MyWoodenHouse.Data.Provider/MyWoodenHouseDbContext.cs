@@ -44,21 +44,9 @@ namespace MyWoodenHouse.Data.Provider
 
         public IDbSet<Building> Buildings { get; set; }
 
-        public IDbSet<BuildingMaterial> BuildingMaterials { get; set; }
+        public IDbSet<MaterialBuilding> MaterialBuildings { get; set; }
 
-
-        //public DbSet<PriceOffer> PriceOffers { get; set; }
-
-        //public EfCoreContext(
-        //    DbContextOptions<EfCoreContext> options)      
-        //: base(options) { }
-
-        //protected override void
-        //    OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<BookAuthor>()
-        //        .HasKey(x => new { x.BookId, x.AuthorId });
-
+        public IDbSet<PictureBuilding> PictureBuildings { get; set; }
 
 
         public EntityState GetEntityState(object entity)
@@ -133,21 +121,27 @@ namespace MyWoodenHouse.Data.Provider
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Product>().ToTable("Products");
 
-            // ***************** Many to many configs *******************
+            // ***************** Many to many configurations *******************
 
-            //BuildingsMaterials
-            modelBuilder.Entity<BuildingMaterial>()
-                .HasKey(x => new { x.BuildingId, x.MaterialId });
+            //BuildingsMaterials table
+            modelBuilder.Entity<MaterialBuilding>()
+                .HasKey(table => new { table.BuildingId, table.MaterialId })
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None); 
 
             modelBuilder.Entity<Building>()
                 .HasMany(buildingsT => buildingsT.Materials)
                 .WithMany(materialT => materialT.Buildings)
+
                 .Map(m =>
                 {                    
                     m.MapLeftKey("BuildingId");
                     m.MapRightKey("MaterialId");
                     m.ToTable("BuildingsMaterials");
                 });
+
+            //PictureBuildings table
+            modelBuilder.Entity<PictureBuilding>()
+               .HasKey(table => new { table.BuildingId, table.PictureId });
 
             modelBuilder.Entity<Building>()
                 .HasMany(buildingsT => buildingsT.Pictures)
@@ -158,7 +152,6 @@ namespace MyWoodenHouse.Data.Provider
                     m.MapRightKey("PictureId");
                     m.ToTable("BuildingsPictures");
                 });
-
 
             base.OnModelCreating(modelBuilder);
         }

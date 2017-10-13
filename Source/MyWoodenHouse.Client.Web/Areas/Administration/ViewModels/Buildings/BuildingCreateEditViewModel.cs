@@ -40,6 +40,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
         public SelectList MaterialList { get; set; }
 
         public IEnumerable<int> SelectedMaterialIdList { get; set; }
+
+        public SelectList PictureList { get; set; }
+
+        public IEnumerable<int> SelectedPictureIdList { get; set; }
         
         [Display(Name = "Building")]
         public string ModelName { get; set; }

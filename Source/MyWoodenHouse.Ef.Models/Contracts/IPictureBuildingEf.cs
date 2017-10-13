@@ -1,9 +1,9 @@
 ﻿namespace MyWoodenHouse.Ef.Models.Contracts
 {
-    public interface IMaterialBuildingEf
+    public interface IPictureBuildingEf
     {
         int BuildingId { get; set; }
 
-        int MaterialId { get; set; }
+        int PictureId { get; set; }
     }
 }
