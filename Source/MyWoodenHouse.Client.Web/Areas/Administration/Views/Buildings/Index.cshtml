@@ -112,30 +112,37 @@
                             </td>
 
                             <td>
-                                @if (item.Materials.Count > 0)
+                                @if (item.Materials != null)
                                 {
-                                    <ul>
-                                        @foreach (var material in item.Materials)
-                                        {
-                                            <li><span>@material.Name</span></li>
-                                        }
-                                    </ul>
+                                    if (item.Materials.Count > 0)
+                                    {
+                                        <ul>
+                                            @foreach (var material in item.Materials)
+                                            {
+                                                <li><span>@material.Name</span></li>
+                                            }
+                                        </ul>
+                                    }
                                 }
                                 else
                                 {
-                                    <span>No materials</span> 
+                                    <span>No materials</span>
                                 }
                             </td>
                             <td>
-                                @if (item.Pictures.Count > 0)
+                                @if (item.Pictures != null)
                                 {
-                                    <ul>
-                                        @foreach (var picture in item.Pictures)
-                                        {
-                                            <li><img src="@picture.Url" height="100" alt="@picture.Name" /></li>
-                                        }
-                                    </ul>
+                                    if (item.Pictures.Count > 0)
+                                    {
+                                        <ul>
+                                            @foreach (var picture in item.Pictures)
+                                            {
+                                                <li><img src="@picture.Url" height="100" alt="@picture.Name" /></li>
+                                            }
+                                        </ul>
+                                    }
                                 }
+
                                 else
                                 {
                                     <span>No pictures</span>

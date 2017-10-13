@@ -13,45 +13,44 @@ namespace MyWoodenHouse.Data.Provider.Operations
         {            
         }
 
-        public override int Insert(Building entity)
+        public override int Insert(Building building)
         {
-            if (entity == null)
+            if (building == null)
             {
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException(nameof(building));
             }
-
-            // /*6- Attach courses because it came from client 
-            //as detached state in disconnected scenario*/
-            //if (dbCtx.Entry(c).State == System.Data.EntityState.Detached)
-            //    dbCtx.Courses.Attach(c);
-
-            // //7- Add course in existing student's course collection
-            // existingStudent.Courses.Add(c);
 
             //bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
             //if (!isStateDetached)
             //{
-            //    //this.Context.SetEntityState(entity, EntityState.Added);
-            //    this.Context.SetEntityState(entity, EntityState.Unchanged);
+            //    this.Context.SetEntityState(entity, EntityState.Added);
             //}
             //else
             //{
-            //    entity.Id = base.GetMaxId() + 1;
+            //    entity.Id = this.GetMaxId() + 1;
             //    this.DbSet.Add(entity);
             //}
 
-            bool isStateDetached = base.Context.Entry(entity).State == EntityState.Detached;
+            bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
             if (!isStateDetached)
             {
-                base.Context.Buildings.Attach(entity);
+                base.Context.Buildings.Attach(building);
             }
             else
             {
-                entity.Id = base.GetMaxId() + 1;
-                this.DbSet.Add(entity);
+                //building.Id = base.GetMaxId() + 1;
+                //var materials = building.Materials;
+                //foreach (var material in materials)
+                //{
+                //    bool isStateDetachedMaterial = base.Context.Entry(material).State == EntityState.Detached;
+                //    base.Context.Materials.Remove(material);
+                //}
+                building.Id = base.GetMaxId() + 1;
+                base.Context.Buildings.Add(building);
+                               
             }
 
-            return entity.Id;
+            return building.Id;
         }
 
         

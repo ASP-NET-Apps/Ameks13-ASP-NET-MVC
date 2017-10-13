@@ -1,17 +1,15 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Data.Services.Enums;
 using MyWoodenHouse.Ef.Models;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
@@ -27,6 +25,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         private readonly IBaseGenericService<Product> productService;
         private readonly IBaseGenericService<Material> materialService;
         private readonly IBaseGenericService<Picture> pictureService;
+        private readonly IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper;
         private readonly IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper;
 
         //public AdminBuildingsController(IBaseGenericService<IBuilding> buildingService, IGenericModelMapper<IBuilding, IBuildingComleteViewModel> buildingModelMapper)
@@ -38,6 +37,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
             this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
             this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
+
+            this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteViewModel>>();
             this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteViewModel>>();
         }
 
@@ -45,7 +46,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             IEnumerable<Building> buildings = this.buildingService.GetAll();
-            IEnumerable<BuildingCompleteViewModel> buildingsComleteViewModel = buildings.Select(x => this.buildingModelMapper.Model2ViewModel(x));
+            IEnumerable<BuildingCompleteViewModel> buildingsComleteViewModel = buildings.Select(x => this.buildingModelMapper.Model2ViewModel(x)).ToList();
 
             return View(buildingsComleteViewModel);
         }
@@ -92,9 +93,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             //var allProducts = (List<Product>)TempData[Products];
             //buildingCompleteViewModel.Product = allProducts.SingleOrDefault(p => p.Id == buildingCompleteViewModel.ProductId);
 
-            var allMaterials = (List<Material>)TempData[Materials];
-            buildingCompleteViewModel.Materials = allMaterials.Where(m => buildingCreateEditViewModel.SelectedMaterialIdList.Contains(m.Id)).ToList();
+            //var allMaterials = (List<Material>)TempData[Materials];
+            //buildingCompleteViewModel.Materials = allMaterials.Where(m => buildingCreateEditViewModel.SelectedMaterialIdList.Contains(m.Id)).ToList();
 
+            
             // TODO optimize if possible
             var modelStateId = ModelState["BuildingCompleteViewModel.Id"];
             if (modelStateId != null)
@@ -107,12 +109,24 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
+
                 var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteViewModel);
+
                 // TODO think out how to make it better. 
                 // Categories and Products should be present before inserting new building
                 // Next lines could be transfered in the service layer
+                var materials = new HashSet<Material>();
+                foreach (var id in buildingCreateEditViewModel.SelectedMaterialIdList)
+                {
+                    var item = this.materialService.GetById(id);
+                    materials.Add(item);
+                }
+
+                building.Materials = materials;
+                // Transfer to the TempData or some model, or get from db?!
                 building.Category = null;
                 building.Product = null;
+
                 this.buildingService.Insert(building);
 
                 return RedirectToAction("Index");

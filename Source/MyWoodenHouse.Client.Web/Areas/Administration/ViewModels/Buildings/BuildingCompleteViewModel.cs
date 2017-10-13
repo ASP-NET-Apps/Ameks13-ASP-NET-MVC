@@ -1,13 +1,17 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MyWoodenHouse.Ef.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.Models;
+using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Ef.Models.Contracts;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using MyWoodenHouse.Client.Web.App_Start;
+using Ninject;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
 {
@@ -15,37 +19,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
     {
         public BuildingCompleteViewModel()
         {
-        }
-
-        public BuildingCompleteViewModel(IBuildingEf building)
-        {
-            this.Id = building.Id;
-            this.Name = building.Name;
-            this.Description = building.Description;
-
-            this.UsableArea = building.UsableArea;
-            this.BuiltUpArea = building.BuiltUpArea;
-            this.RoomsCount = building.RoomsCount;
-            this.FloorsCount = building.FloorsCount;
-            this.BathroomsCount = building.BathroomsCount;
-
-            this.CategoryId = building.CategoryId;
-            this.Category = building.Category;
-            this.ProductId = building.ProductId;
-            this.Product = building.Product;
-
-            this.Materials = new HashSet<Material>();
-            this.Pictures = new HashSet<Picture>();
-
-            //if(building.Materials.Count > 0)
-            //{
-            //    this.Materials = building.Materials;
-            //}
-            //if(building.Pictures.Count > 0)
-            //{
-            //    this.Pictures = building.Pictures;
-            //}
-
         }
 
         [Required]
@@ -81,16 +54,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
         [Required]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public CategoryCompleteViewModel Category { get; set; }
 
         [Required]
         public int ProductId { get; set; }
 
-        public Product Product { get; set; }
+        public ProductCompleteViewModel Product { get; set; }
 
-        public ICollection<Material> Materials { get; set; }
+        public ICollection<MaterialCompleteViewModel> Materials { get; set; }
 
-        public ICollection<Picture> Pictures { get; set; }
+        public ICollection<PictureCompleteViewModel> Pictures { get; set; }
 
         [Display(Name = "Building")]
         public string ModelName { get; set; }

@@ -1,4 +1,8 @@
-﻿using MyWoodenHouse.Ef.Models;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
+using MyWoodenHouse.Ef.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,14 +31,14 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
         
         int CategoryId { get; set; }
 
-        Category Category { get; set; }
+        CategoryCompleteViewModel Category { get; set; }
 
         int ProductId { get; set; }
 
-        Product Product { get; set; }
+        ProductCompleteViewModel Product { get; set; }
 
-        ICollection<Material> Materials { get; set; }
+        ICollection<MaterialCompleteViewModel> Materials { get; set; }
 
-        ICollection<Picture> Pictures { get; set; }
+        ICollection<PictureCompleteViewModel> Pictures { get; set; }
     }
 }

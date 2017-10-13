@@ -133,19 +133,30 @@ namespace MyWoodenHouse.Data.Provider
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Product>().ToTable("Products");
 
+            // ***************** Many to many configs *******************
+
             //BuildingsMaterials
             modelBuilder.Entity<BuildingMaterial>()
                 .HasKey(x => new { x.BuildingId, x.MaterialId });
-            // modelBuilder.Entity<BuildingMaterial>().ToTable("BuildingsMaterials");
 
             modelBuilder.Entity<Building>()
-                .HasMany(t => t.Materials)
-                .WithMany(t => t.Buildings)
+                .HasMany(buildingsT => buildingsT.Materials)
+                .WithMany(materialT => materialT.Buildings)
                 .Map(m =>
                 {                    
-                    m.MapLeftKey("MaterialId");
-                    m.MapRightKey("BuildingId");
+                    m.MapLeftKey("BuildingId");
+                    m.MapRightKey("MaterialId");
                     m.ToTable("BuildingsMaterials");
+                });
+
+            modelBuilder.Entity<Building>()
+                .HasMany(buildingsT => buildingsT.Pictures)
+                .WithMany(picturesT => picturesT.Buildings)
+                .Map(m =>
+                {
+                    m.MapLeftKey("BuildingId");
+                    m.MapRightKey("PictureId");
+                    m.ToTable("BuildingsPictures");
                 });
 
 

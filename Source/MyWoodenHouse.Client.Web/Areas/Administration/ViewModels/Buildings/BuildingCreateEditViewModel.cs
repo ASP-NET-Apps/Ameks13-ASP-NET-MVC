@@ -13,7 +13,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
 
         public BuildingCreateEditViewModel()
         {
-            this.buildingCompleteViewModel = new BuildingCompleteViewModel();
         }
 
         public BuildingCreateEditViewModel(BuildingCompleteViewModel buildingCompleteViewModel)

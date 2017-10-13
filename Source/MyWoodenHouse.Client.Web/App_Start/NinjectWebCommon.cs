@@ -4,6 +4,7 @@ using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories;
 using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
@@ -97,6 +98,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             // Data services
             kernel.Bind(typeof(IEfCrudOperatons<>)).To(typeof(EfCrudOperatons<>));
             kernel.Bind<IEfDbContextSaveChanges>().To<EfDbContextSaveChanges>();
+            kernel.Bind<IBuildingCrudOperations>().To<BuildingCrudOperations>();
 
             //kernel.Bind<ICategoryServiceCrudOperatons>().To<CategoryServiceCrudOperatons>();
             //kernel.Bind<IBuildingCrudOperations>().To<BuildingService>();
@@ -111,7 +113,8 @@ namespace MyWoodenHouse.Client.Web.App_Start
             // Other helpers
             kernel.Bind<IMyViewModelsMapper>().To<MyViewModelsMapper>().InSingletonScope();
             kernel.Bind<IMyAdminViewModelsMapper>().To<MyAdminViewModelsMapper>().InSingletonScope();
-            kernel.Bind<IGenericModelMapper<ICategory, ICategoryCompleteViewModel>>().To<CategoryMapper>().InSingletonScope();
+
+            kernel.Bind<IGenericModelMapper<Category, CategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Material, MaterialCompleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Picture, PictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Price, PriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();

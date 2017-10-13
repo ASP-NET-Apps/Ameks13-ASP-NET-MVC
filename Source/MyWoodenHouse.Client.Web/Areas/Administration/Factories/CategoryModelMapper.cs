@@ -7,10 +7,10 @@ using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
 {
-    public class CategoryMapper : IGenericModelMapper<ICategory, ICategoryCompleteViewModel>
+    public class CategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteViewModel>
     {
 
-        public ICategoryCompleteViewModel Model2ViewModel(ICategory model)
+        public CategoryCompleteViewModel Model2ViewModel(Category model)
         {
             if (model == null)
             {
@@ -23,7 +23,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             return modelToReturn;
         }
 
-        public ICategory ViewModel2Model(ICategoryCompleteViewModel viewModel)
+        public Category ViewModel2Model(CategoryCompleteViewModel viewModel)
         {
             if (viewModel == null)
             {
