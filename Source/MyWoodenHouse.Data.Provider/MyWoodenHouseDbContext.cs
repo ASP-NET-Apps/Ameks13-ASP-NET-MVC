@@ -28,6 +28,7 @@ namespace MyWoodenHouse.Data.Provider
             : base("name=MyWoodenHouseDbContextConnectionString")
         {
             this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.AutoDetectChangesEnabled = false;
         }
 
         public virtual IDbSet<Category> Categories { get; set; }
@@ -123,26 +124,21 @@ namespace MyWoodenHouse.Data.Provider
 
             // ***************** Many to many configurations *******************
 
-            //BuildingsMaterials table
-            modelBuilder.Entity<MaterialBuilding>()
-                .HasKey(table => new { table.BuildingId, table.MaterialId })
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None); 
-
+            //MaterialBuilding table
             modelBuilder.Entity<Building>()
                 .HasMany(buildingsT => buildingsT.Materials)
                 .WithMany(materialT => materialT.Buildings)
-
                 .Map(m =>
-                {                    
+                {
                     m.MapLeftKey("BuildingId");
                     m.MapRightKey("MaterialId");
-                    m.ToTable("BuildingsMaterials");
+                    m.ToTable("MaterialBuildings");
                 });
 
-            //PictureBuildings table
-            modelBuilder.Entity<PictureBuilding>()
-               .HasKey(table => new { table.BuildingId, table.PictureId });
+            modelBuilder.Entity<MaterialBuilding>()
+                .HasKey(table => new { table.BuildingId, table.MaterialId });
 
+            //PictureBuilding table          
             modelBuilder.Entity<Building>()
                 .HasMany(buildingsT => buildingsT.Pictures)
                 .WithMany(picturesT => picturesT.Buildings)
@@ -150,8 +146,11 @@ namespace MyWoodenHouse.Data.Provider
                 {
                     m.MapLeftKey("BuildingId");
                     m.MapRightKey("PictureId");
-                    m.ToTable("BuildingsPictures");
+                    m.ToTable("PictureBuildings");
                 });
+
+            modelBuilder.Entity<PictureBuilding>()
+              .HasKey(table => new { table.BuildingId, table.PictureId });
 
             base.OnModelCreating(modelBuilder);
         }

@@ -9,7 +9,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
     public class BuildingCrudOperations : EfCrudOperatons<Building>, IBuildingCrudOperations, IEfCrudOperatons<Building>
     {
 
-        public BuildingCrudOperations(IMyWoodenHouseDbContext context) :  base(context)
+        public BuildingCrudOperations(IMyWoodenHouseDbContext context) 
+            :  base(context)
         {            
         }
 
@@ -67,14 +68,23 @@ namespace MyWoodenHouse.Data.Provider.Operations
             //    this.DbSet.Attach(entity);
             //}
 
-            bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
-            if (isStateDetached)
-            {
-                base.Context.Buildings.Attach(building);
-            }
-            
+            //bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
+            //if (isStateDetached)
+            //{
+            //    base.Context.Buildings.Attach(building);
+            //}
+
             //this.Context.SetEntityState(building, EntityState.Modified);
-            base.Context.Entry(building).State = EntityState.Modified;
+            //base.Context.Entry(building).State = EntityState.Modified;
+
+            var buildingFromDbContext = base.Context.Buildings.Find(building.Id);
+            var bState = base.Context.Entry(buildingFromDbContext).State;
+            this.Context.SetEntityState(buildingFromDbContext, EntityState.Modified);
+            bState = base.Context.Entry(buildingFromDbContext).State;
+
+            base.Context.Buildings.Remove(buildingFromDbContext);
+            var bAtt = base.Context.Buildings.Attach(building);
+
             base.Context.Buildings.Add(building);
 
 
