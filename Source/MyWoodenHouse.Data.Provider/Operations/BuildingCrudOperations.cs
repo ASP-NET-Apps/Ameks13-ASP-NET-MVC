@@ -3,6 +3,8 @@ using MyWoodenHouse.Data.Provider.Operations.Contracts;
 using MyWoodenHouse.Ef.Models;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 
 namespace MyWoodenHouse.Data.Provider.Operations
 {
@@ -21,36 +23,10 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(building));
             }
 
-            //bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
-            //if (!isStateDetached)
-            //{
-            //    this.Context.SetEntityState(entity, EntityState.Added);
-            //}
-            //else
-            //{
-            //    entity.Id = this.GetMaxId() + 1;
-            //    this.DbSet.Add(entity);
-            //}
-
-            bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
-            if (!isStateDetached)
-            {
-                //base.Context.Buildings.Attach(building);
-                this.Context.SetEntityState(building, EntityState.Added);
-            }
-            else
-            {
-                //building.Id = base.GetMaxId() + 1;
-                //var materials = building.Materials;
-                //foreach (var material in materials)
-                //{
-                //    bool isStateDetachedMaterial = base.Context.Entry(material).State == EntityState.Detached;
-                //    base.Context.Materials.Remove(material);
-                //}
-                building.Id = base.GetMaxId() + 1;
-                base.Context.Buildings.Add(building);
-                               
-            }
+            //var dbEntity = base.CopyStateFrom(building);
+            building.Id = this.GetMaxId() + 1;
+            DbEntityEntry entry = base.AttachIfDetached(building);
+            entry.State = EntityState.Added;
 
             return building.Id;
         }
@@ -62,31 +38,11 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(building));
             }
 
-            //bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
-            //if (!isStateDetached)
-            //{
-            //    this.DbSet.Attach(entity);
-            //}
+            base.DbSet.AddOrUpdate(building);
+            //var dbEntity = base.CopyStateFrom(building);
 
-            //bool isStateDetached = base.Context.Entry(building).State == EntityState.Detached;
-            //if (isStateDetached)
-            //{
-            //    base.Context.Buildings.Attach(building);
-            //}
-
-            //this.Context.SetEntityState(building, EntityState.Modified);
-            //base.Context.Entry(building).State = EntityState.Modified;
-
-            var buildingFromDbContext = base.Context.Buildings.Find(building.Id);
-            var bState = base.Context.Entry(buildingFromDbContext).State;
-            this.Context.SetEntityState(buildingFromDbContext, EntityState.Modified);
-            bState = base.Context.Entry(buildingFromDbContext).State;
-
-            base.Context.Buildings.Remove(buildingFromDbContext);
-            var bAtt = base.Context.Buildings.Attach(building);
-
-            base.Context.Buildings.Add(building);
-
+            //var entry = base.AttachIfDetached(building);
+            //entry.State = EntityState.Modified;
 
             return building.Id;
         }

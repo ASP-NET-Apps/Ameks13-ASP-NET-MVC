@@ -195,17 +195,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                //var building = this.buildingModelMapper.ViewModel2Model(buildingComleteViewModel);
-                //this.buildingService.Update(building);
-
-                //return RedirectToAction("Index");
-
                 var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteViewModel);
-                building.Category = this.FromViewResolver<Category>();
-                building.Product = this.FromViewResolver<Product>();
-                building.Materials = this.SelectedMaterialListResolver(buildingCreateEditViewModel.SelectedMaterialIdList);
-                building.Pictures = this.SelectedPictureListResolver(buildingCreateEditViewModel.SelectedPictureIdList);
-
                 this.buildingService.Update(building);
 
                 return RedirectToAction("Index");

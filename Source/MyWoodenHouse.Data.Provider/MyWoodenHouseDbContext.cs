@@ -127,7 +127,7 @@ namespace MyWoodenHouse.Data.Provider
             //MaterialBuilding table
             modelBuilder.Entity<Building>()
                 .HasMany(buildingsT => buildingsT.Materials)
-                .WithMany(materialT => materialT.Buildings)
+                .WithMany()
                 .Map(m =>
                 {
                     m.MapLeftKey("BuildingId");
@@ -135,8 +135,30 @@ namespace MyWoodenHouse.Data.Provider
                     m.ToTable("MaterialBuildings");
                 });
 
+            modelBuilder.Entity<Material>()
+                .HasMany(mT => mT.Buildings)
+                .WithMany()
+                .Map(m =>
+                {
+                    m.MapLeftKey("MaterialId");
+                    m.MapRightKey("BuildingId");
+                });
+
             modelBuilder.Entity<MaterialBuilding>()
-                .HasKey(table => new { table.BuildingId, table.MaterialId });
+                .HasKey(i => new { i.BuildingId, i.MaterialId });
+
+            // TODO use this commented lines later to resolve many-to-many update delete issue
+            //    modelBuilder.Entity<MaterialBuilding>()
+            //        .HasRequired(mbT => mbT.Building)
+            //        .WithMany()
+            //        .HasForeignKey(i => i.BuildingId)
+            //        .WillCascadeOnDelete(false); //the one
+
+            //    modelBuilder.Entity<MaterialBuilding>()
+            //        .HasRequired(mbT => mbT.Material)
+            //        .WithMany()
+            //        .HasForeignKey(i => i.MaterialId)
+            //        .WillCascadeOnDelete(false); //the one
 
             //PictureBuilding table          
             modelBuilder.Entity<Building>()

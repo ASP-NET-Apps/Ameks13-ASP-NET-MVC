@@ -113,7 +113,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Factories
             {
                 if (viewModel.Materials.Count > 0)
                 {
-                    modelToReturn.Materials = viewModel.Materials.Select(m => this.materialModelMapper.ViewModel2Model(m)).ToList();
+                    foreach(var material in viewModel.Materials)
+                    {
+                        modelToReturn.Materials = viewModel.Materials.Select(m => this.materialModelMapper.ViewModel2Model(m)).ToList();
+                    }
                 }
             }
 

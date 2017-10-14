@@ -5,13 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e2f81968e0e946f9afce74a1e71a54e6" Name="Diagram1">
-        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUser" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="MyWoodenHouseModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="10.5" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUser" Width="1.5" PointX="3" PointY="8.25" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Building" Width="1.5" PointX="7.5" PointY="2.75" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Category" Width="1.5" PointX="5.25" PointY="0.75" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Material" Width="1.5" PointX="9.75" PointY="2" />
@@ -19,13 +16,16 @@
         <EntityTypeShape EntityType="MyWoodenHouseModel.PriceCategory" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Price" Width="1.5" PointX="3" PointY="3.375" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Product" Width="1.5" PointX="5.25" PointY="3.5" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MyWoodenHouseModel.FK_Building_Categories" />
         <AssociationConnector Association="MyWoodenHouseModel.FK_Building_Products" />
         <AssociationConnector Association="MyWoodenHouseModel.FK_Prices_PriceCategories" />
+        <AssociationConnector Association="MyWoodenHouseModel.AspNetUserRoles" />
         <AssociationConnector Association="MyWoodenHouseModel.MaterialBuildings" />
         <AssociationConnector Association="MyWoodenHouseModel.PictureBuildings" />
         <AssociationConnector Association="MyWoodenHouseModel.ProductsPrices" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
