@@ -2,6 +2,7 @@
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
+using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
@@ -37,6 +38,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Pictures
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Index()
         {
             var pictures = this.pictureService.GetAll();
@@ -44,8 +46,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             return View(picturesComleteViewModel);
         }
-        
+
         // GET: Administration/Pictures/Create
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Create()
         {
             return View();
@@ -87,6 +90,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Pictures/Edit/5
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -121,6 +125,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Pictures/Delete/5
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         [HttpGet]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
