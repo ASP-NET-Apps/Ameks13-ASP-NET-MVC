@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bytes2you.Validation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a7d501dd757e0442, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bytes2you.Validation.2.0.0.0\lib\portable-win+net40+sl40+wp+Xbox40\Bytes2you.Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -51,6 +55,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject.Web, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -184,26 +192,23 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdminCategoriesController.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdminMaterialsController.cs" />
-    <Compile Include="Areas\Administration\Controllers\AdminProductsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\MaterialsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Administration\Controllers\BuildingsController.cs" />
     <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Administration\Factories\BuildingModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\ProductModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\PriceModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\PriceCategoryModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\Contracts\IGenericModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\MaterialModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\PictureModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\Contracts\IMyAdminViewModelsMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\CategoryModelMapper.cs" />
-    <Compile Include="Areas\Administration\Factories\MyAdminViewModelsMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\BuildingModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\ProductModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\PriceModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\PriceCategoryModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\Contracts\IGenericModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\MaterialModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\PictureModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\CategoryModelMapper.cs" />
     <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCreateEditViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Categories\CategoryCompleteViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Categories\AdminCategoryMainViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IBuildingCreateEditViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IBuildingCompleteViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IPriceCategoryCompleteViewModel.cs" />
@@ -261,18 +266,18 @@
     <Content Include="Configuration\TODO.EDIT-RewriteRules.config" />
     <Content Include="Configuration\TODO.EDIT-SiteMap.config" />
     <Content Include="Areas\Administration\Views\web.config" />
-    <Content Include="Areas\Administration\Views\AdminCategories\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminCategories\Edit.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminCategories\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminCategories\_DeleteConfirm.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminMaterials\_DeleteConfirm.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminMaterials\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminMaterials\Edit.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminMaterials\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminProducts\_DeleteConfirm.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminProducts\Create.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminProducts\Edit.cshtml" />
-    <Content Include="Areas\Administration\Views\AdminProducts\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Categories\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Products\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Products\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\_DeleteConfirm.cshtml" />
@@ -374,10 +379,6 @@
     <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
       <Project>{f1f6c39a-fe72-494e-9995-ec3dfaa605e2}</Project>
       <Name>MyWoodenHouse.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Pure.Models\MyWoodenHouse.Pure.Models.csproj">
-      <Project>{bc662dc8-c9c1-4ad9-aa35-29579f0b823d}</Project>
-      <Name>MyWoodenHouse.Pure.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

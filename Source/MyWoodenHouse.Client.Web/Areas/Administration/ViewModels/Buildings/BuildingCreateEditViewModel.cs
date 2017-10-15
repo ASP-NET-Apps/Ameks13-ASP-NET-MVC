@@ -9,19 +9,19 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
 {
     public class BuildingCreateEditViewModel : IBuildingCreateEditViewModel
     {
-        private BuildingCompleteViewModel buildingCompleteViewModel;
+        private IBuildingCompleteViewModel buildingCompleteViewModel;
 
         public BuildingCreateEditViewModel()
         {
         }
 
-        public BuildingCreateEditViewModel(BuildingCompleteViewModel buildingCompleteViewModel)
+        public BuildingCreateEditViewModel(IBuildingCompleteViewModel buildingCompleteViewModel)
         {
             // Todo add validation
             this.BuildingCompleteViewModel = buildingCompleteViewModel;
         }
          
-        public BuildingCompleteViewModel BuildingCompleteViewModel
+        public IBuildingCompleteViewModel BuildingCompleteViewModel
         {
             get
             {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class MaterialService : IBaseGenericService<Material>
+    public class MaterialService : IBaseGenericService<Material>//, IDataService
     {
         private readonly IEfCrudOperatons<Material> materialBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;

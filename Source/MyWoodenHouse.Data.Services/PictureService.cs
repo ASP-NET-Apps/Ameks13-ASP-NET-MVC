@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class PictureService : IBaseGenericService<Picture>
+    public class PictureService : IBaseGenericService<Picture>, IDataService
     {
         private readonly IEfCrudOperatons<Picture> pictureBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;

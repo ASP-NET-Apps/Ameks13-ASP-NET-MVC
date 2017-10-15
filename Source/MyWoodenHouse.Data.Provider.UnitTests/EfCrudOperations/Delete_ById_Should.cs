@@ -16,14 +16,14 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
     [TestClass]
     public class Delete_ById_Should
     {
-        private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
+        private static Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
         private static IList<Category> fakeData;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             mockedDbSet = new Mock<DbSet<Category>>();
 
             fakeData = new List<Category> {

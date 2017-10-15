@@ -5,10 +5,14 @@ using System.Data.Entity;
 using System;
 using MyWoodenHouse.Contracts.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MyWoodenHouse.Default.Auth.Models;
 
 namespace MyWoodenHouse.Data.Provider
 {
-    public class MyWoodenHouseDbContext : DbContext, IMyWoodenHouseDbContext
+    //public class MyWoodenHouseDbContext : DbContext, IMyWoodkenHouseDbContext
+    //public class MyWoodenHouseDbContext : IdentityDbContext<User>, IMyWoodenHouseDbContext
+    public class MyWoodenHouseDbContext : IdentityDbContext<User>
     {
         // Your context has been configured to use a 'MyWoodenHouseDbContextConnectionString'. 
         // All connection strings are extracted in separate ConnectionStrings.config file and 
@@ -24,7 +28,7 @@ namespace MyWoodenHouse.Data.Provider
         //    : base("DefaultConnection", throwIfV1Schema: false)
         //{
         //}
-        public MyWoodenHouseDbContext() 
+        public MyWoodenHouseDbContext()
             : base("name=MyWoodenHouseDbContextConnectionString")
         {
             this.Configuration.LazyLoadingEnabled = true;

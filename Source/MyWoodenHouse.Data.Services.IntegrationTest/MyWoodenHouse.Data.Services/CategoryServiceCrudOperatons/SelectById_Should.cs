@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyWoodenHouse.Client.Web.App_Start;
+using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Ef.Models;
@@ -12,7 +13,7 @@ namespace MyWoodenHouse.IntegrationTest.MyWoodenHouse.Data.Services.CategoryServ
     [TestClass]
     public class SelectById_Should
     {
-        private static IMyWoodenHouseDbContext dbContext;
+        private static MyWoodenHouseDbContext dbContext;
         private static DbSet<Category> dbSet;
         private static IList<Category> testData;
 
@@ -21,7 +22,7 @@ namespace MyWoodenHouse.IntegrationTest.MyWoodenHouse.Data.Services.CategoryServ
         {
             //this.MyWoodenHouseDbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
             IKernel kernel = NinjectWebCommon.CreateKernel();
-            dbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
+            dbContext = NinjectWebCommon.Kernel.Get<MyWoodenHouseDbContext>();
 
             testData = new List<Category> {
                 new Category { Id = 1, Name = "House" },

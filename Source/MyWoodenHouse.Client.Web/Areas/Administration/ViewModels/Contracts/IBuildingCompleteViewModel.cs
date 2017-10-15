@@ -31,11 +31,11 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
         
         int CategoryId { get; set; }
 
-        CategoryCompleteViewModel Category { get; set; }
+        ICategoryCompleteViewModel Category { get; set; }
 
         int ProductId { get; set; }
 
-        ProductCompleteViewModel Product { get; set; }
+        IProductCompleteViewModel Product { get; set; }
 
         ICollection<MaterialCompleteViewModel> Materials { get; set; }
 

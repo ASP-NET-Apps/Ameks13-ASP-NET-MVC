@@ -13,7 +13,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTests.MyWoodenHouseDbContextTests
         public void ExistsAndCanBeCalled()
         {
             // Arrange & Act
-            Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             var actualEntityState = mockedMyWoodenHouseDbContext.Object.GetEntityState(new Category());
             
             // Assert
@@ -24,7 +24,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTests.MyWoodenHouseDbContextTests
         public void ReturnsCorrectInstance_EntityState()
         {
             // Arrange & Act
-            Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             var actualEntityState = mockedMyWoodenHouseDbContext.Object.GetEntityState(new Category());
 
             // Assert

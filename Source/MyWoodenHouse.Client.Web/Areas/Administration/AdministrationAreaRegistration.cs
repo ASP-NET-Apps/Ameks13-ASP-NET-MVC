@@ -22,7 +22,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration
                 name: "Administration_default",
                 url: "Administration/{controller}/{action}/{id}",
                 defaults: new { action = "Index", id = UrlParameter.Optional }
-                //constraints: new { controller = @"(AdminCategories)" },
+                //constraints: new { controller = @"(Categories)" },
                 //namespaces: new[] { "MyWoodenHouse.Client.Web.Areas.Administration.Controllers" }
             );
         }

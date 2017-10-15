@@ -12,13 +12,13 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
     [TestClass]
     public class Class_Should
     {
-        private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
+        private static Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
 
         [TestInitialize]
         public void TestInit()
         {
-            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             mockedDbSet = new Mock<DbSet<Category>>();
 
             mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(mockedDbSet.Object);
@@ -47,7 +47,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
 
             // Assert
-            Assert.IsInstanceOfType(actualInstance.Context, typeof(IMyWoodenHouseDbContext));
+            Assert.IsInstanceOfType(actualInstance.Context, typeof(MyWoodenHouseDbContext));
         }
         
         [TestMethod]

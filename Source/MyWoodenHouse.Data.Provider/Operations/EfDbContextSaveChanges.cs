@@ -6,9 +6,10 @@ namespace MyWoodenHouse.Data.Provider.Operations
 {
     public class EfDbContextSaveChanges : IEfDbContextSaveChanges
     {
-        private readonly IMyWoodenHouseDbContext context;
+        private readonly MyWoodenHouseDbContext context;
 
-        public EfDbContextSaveChanges(IMyWoodenHouseDbContext context)
+        //public EfDbContextSaveChanges(IMyWoodenHouseDbContext context)
+        public EfDbContextSaveChanges(MyWoodenHouseDbContext context)
         {
             if (context == null)
             {

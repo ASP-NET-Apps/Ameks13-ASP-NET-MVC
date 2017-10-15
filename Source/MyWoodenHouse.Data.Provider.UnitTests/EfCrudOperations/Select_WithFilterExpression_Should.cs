@@ -12,7 +12,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
     [TestClass]
     public class Select_WithFilterExpression_Should
     {
-        private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
+        private static Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
         private static IQueryable<Category> fakeData;
 
@@ -20,7 +20,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
         [TestInitialize]
         public void TestInitialize()
         {
-            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             mockedDbSet = new Mock<DbSet<Category>>();
 
             fakeData = new List<Category> {

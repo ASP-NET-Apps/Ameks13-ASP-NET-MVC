@@ -1,7 +1,9 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
 using MyWoodenHouse.Constants.Models;
+using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Data.Services.Enums;
 using MyWoodenHouse.Ef.Models;
@@ -17,22 +19,27 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class PicturesController : Controller
     {
-        private readonly IBaseGenericService<Picture> pictureService;
-        private readonly IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper;
+        private readonly IBaseGenericService<IPicture> pictureService;
+        private readonly IGenericModelMapper<IPicture, IPictureCompleteViewModel> pictureModelMapper;
 
-        //public AdminPicturesController(IBaseGenericService<IPicture> pictureService, IGenericModelMapper<IPicture, IPictureComleteViewModel> pictureModelMapper)
-        public PicturesController()
+        //public PicturesController()
+        //{
+        //    // Todo insert validation
+        //    this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
+        //    this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteViewModel>>();
+        //}
+
+        public PicturesController(IBaseGenericService<IPicture> pictureService, IGenericModelMapper<IPicture, IPictureCompleteViewModel> pictureModelMapper)
         {
-            // Todo insert validation
-            this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
-            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteViewModel>>();
+            this.pictureService = pictureService;
+            this.pictureModelMapper = pictureModelMapper;
         }
 
         // GET: Administration/AdminPictures
         public ActionResult Index()
         {
-            IEnumerable<Picture> pictures = this.pictureService.GetAll();
-            IEnumerable<PictureCompleteViewModel> picturesComleteViewModel = pictures.Select(x => this.pictureModelMapper.Model2ViewModel(x));
+            IEnumerable<IPicture> pictures = this.pictureService.GetAll();
+            IEnumerable<IPictureCompleteViewModel> picturesComleteViewModel = pictures.Select(x => this.pictureModelMapper.Model2ViewModel(x));
 
             return View(picturesComleteViewModel);
         }
@@ -70,8 +77,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                
-
                 var picture = this.pictureModelMapper.ViewModel2Model(pictureComleteViewModel);
                 this.pictureService.Insert(picture);
 

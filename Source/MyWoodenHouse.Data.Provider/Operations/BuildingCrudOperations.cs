@@ -11,7 +11,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
     public class BuildingCrudOperations : EfCrudOperatons<Building>, IBuildingCrudOperations, IEfCrudOperatons<Building>
     {
 
-        public BuildingCrudOperations(IMyWoodenHouseDbContext context) 
+        //public BuildingCrudOperations(IMyWoodenHouseDbContext context) 
+        public BuildingCrudOperations(MyWoodenHouseDbContext context) 
             :  base(context)
         {            
         }

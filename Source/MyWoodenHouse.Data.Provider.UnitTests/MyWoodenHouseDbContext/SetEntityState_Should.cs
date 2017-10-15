@@ -13,7 +13,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTests.MyWoodenHouseDbContextTests
         public void ExistsAndCanBeCalled()
         {
             // Arrange & Act
-            Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             mockedMyWoodenHouseDbContext.Object.SetEntityState(new Category(), EntityState.Modified);
 
             // Assert

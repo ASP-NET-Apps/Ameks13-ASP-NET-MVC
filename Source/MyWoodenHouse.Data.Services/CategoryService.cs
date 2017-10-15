@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService, IDataService
     {
         private readonly IEfCrudOperatons<Category> categoryBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;

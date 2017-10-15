@@ -1,4 +1,4 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.Factories.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
@@ -54,12 +54,12 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
         [Required]
         public int CategoryId { get; set; }
 
-        public CategoryCompleteViewModel Category { get; set; }
+        public ICategoryCompleteViewModel Category { get; set; }
 
         [Required]
         public int ProductId { get; set; }
                 
-        public ProductCompleteViewModel Product { get; set; }
+        public IProductCompleteViewModel Product { get; set; }
 
         [Display(Name = "Materials")]
         public ICollection<MaterialCompleteViewModel> Materials { get; set; }

@@ -13,14 +13,14 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
     [TestClass]
     public class Constructors_Should
     {
-        private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
+        private static Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
         private static Mock<DbSet<Category>> mockedDbSet;
 
         [TestInitialize]
         public void TestInit()
         {
             // Arrange
-            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
             mockedDbSet = new Mock<DbSet<Category>>();
         }
 

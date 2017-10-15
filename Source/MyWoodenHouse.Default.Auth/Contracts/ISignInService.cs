@@ -12,7 +12,7 @@ namespace MyWoodenHouse.Default.Auth.Contracts
 
         Task<bool> HasBeenVerifiedAsync();
 
-        Task SignInAsync(ApplicationUser user, bool isPersistent, bool rememberBrowser);
+        Task SignInAsync(User user, bool isPersistent, bool rememberBrowser);
 
         Task<SignInStatus> TwoFactorSignInAsync(string provider, string code, bool isPersistent, bool rememberBrowser);
 

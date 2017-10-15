@@ -13,13 +13,13 @@ namespace MyWoodenHouse.Data.Provider.UnitTests.EfDbContextSaveChangesTests
     [TestClass]
     public class SaveChanges_Should
     {
-        private static Mock<IMyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
+        private static Mock<MyWoodenHouseDbContext> mockedMyWoodenHouseDbContext;
 
         [TestInitialize]
         public void TestInit()
         {
             // Arrange
-            mockedMyWoodenHouseDbContext = new Mock<IMyWoodenHouseDbContext>();
+            mockedMyWoodenHouseDbContext = new Mock<MyWoodenHouseDbContext>();
         }
 
         [TestMethod]

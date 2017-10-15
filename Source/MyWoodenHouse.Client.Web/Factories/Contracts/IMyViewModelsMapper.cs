@@ -1,7 +1,7 @@
 ﻿using MyWoodenHouse.Client.Web.ViewModels.Categories;
 using MyWoodenHouse.Ef.Models;
 
-namespace MyWoodenHouse.Client.Web.Factories.Contracts
+namespace MyWoodenHouse.Client.Web.MyMappers.Contracts
 {
     public interface IMyViewModelsMapper
     {

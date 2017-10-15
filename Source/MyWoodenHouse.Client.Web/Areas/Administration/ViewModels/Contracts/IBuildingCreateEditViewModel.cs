@@ -7,7 +7,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 {
     public interface IBuildingCreateEditViewModel
     {
-        BuildingCompleteViewModel BuildingCompleteViewModel { get; set; }
+        IBuildingCompleteViewModel BuildingCompleteViewModel { get; set; }
 
         SelectList CategoryList { get; set; }
 

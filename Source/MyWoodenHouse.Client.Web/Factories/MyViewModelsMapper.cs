@@ -1,9 +1,9 @@
-﻿using MyWoodenHouse.Client.Web.Factories.Contracts;
+﻿using MyWoodenHouse.Client.Web.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.ViewModels.Categories;
 using MyWoodenHouse.Ef.Models;
 using System;
 
-namespace MyWoodenHouse.Client.Web.Factories
+namespace MyWoodenHouse.Client.Web.MyMappers
 {
     public class MyViewModelsMapper : IMyViewModelsMapper
     {

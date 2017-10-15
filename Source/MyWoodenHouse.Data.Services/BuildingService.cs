@@ -1,6 +1,7 @@
 ﻿using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Operations;
+using MyWoodenHouse.Data.Provider.Operations.Contracts;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
 using System;
@@ -8,14 +9,12 @@ using System.Collections.Generic;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class BuildingService : IBaseGenericService<Building>
+    public class BuildingService : IBaseGenericService<Building>, IDataService
     {
-        //private readonly IEfCrudOperatons<Building> buildingBaseOperatonsProvider;
-        private readonly BuildingCrudOperations buildingBaseOperatonsProvider;
+        private readonly IBuildingCrudOperations buildingBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        //public BuildingService(IEfCrudOperatons<Building> buildingBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
-        public BuildingService(BuildingCrudOperations buildingBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
+        public BuildingService(IBuildingCrudOperations buildingBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
         {
             if (buildingBaseOperatonsProvider == null && dbContextSaveChanges == null)
             {
@@ -101,8 +100,8 @@ namespace MyWoodenHouse.Data.Services
             }
             
             this.buildingBaseOperatonsProvider.Update(entity);
-            this.buildingBaseOperatonsProvider.SaveChanges();
-            //this.dbContextSaveChanges.SaveChanges();
+            //this.buildingBaseOperatonsProvider.SaveChanges();
+            this.dbContextSaveChanges.SaveChanges();
 
             Building entityUpdated = this.buildingBaseOperatonsProvider.SelectById(entity.Id);
 
@@ -118,8 +117,8 @@ namespace MyWoodenHouse.Data.Services
             }
 
             this.buildingBaseOperatonsProvider.Delete(entity);
-            this.buildingBaseOperatonsProvider.SaveChanges();
-            //this.dbContextSaveChanges.SaveChanges();
+            //this.buildingBaseOperatonsProvider.SaveChanges();
+            this.dbContextSaveChanges.SaveChanges();
         }
 
         public void Delete(int? id)
@@ -136,9 +135,9 @@ namespace MyWoodenHouse.Data.Services
             }
 
             this.buildingBaseOperatonsProvider.Delete(id);
-            this.buildingBaseOperatonsProvider.SaveChanges();
+            //this.buildingBaseOperatonsProvider.SaveChanges();
 
-            //this.dbContextSaveChanges.SaveChanges();
+            this.dbContextSaveChanges.SaveChanges();
         }
 
         

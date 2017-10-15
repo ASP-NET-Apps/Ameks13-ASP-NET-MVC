@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MyWoodenHouse.Client.Web.ViewModels;
@@ -20,6 +21,9 @@ namespace MyWoodenHouse.Client.Web.Controllers
 
         public AccountController(ISignInService signInService, IUserService userService)
         {
+            Guard.WhenArgument(signInService, nameof(signInService)).IsNull().Throw();
+            Guard.WhenArgument(userService, nameof(userService)).IsNull().Throw();
+
             this.signInService = signInService;
             this.userService = userService;
         }
@@ -55,7 +59,7 @@ namespace MyWoodenHouse.Client.Web.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    //return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -123,7 +127,7 @@ namespace MyWoodenHouse.Client.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await this.userService.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -339,7 +343,7 @@ namespace MyWoodenHouse.Client.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new Default.Auth.Models.ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new Default.Auth.Models.User { UserName = model.Email, Email = model.Email };
                 var result = await this.userService.CreateAsync(user);
                 if (result.Succeeded)
                 {

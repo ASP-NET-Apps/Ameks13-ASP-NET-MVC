@@ -15,10 +15,11 @@ namespace MyWoodenHouse.Data.Provider.Operations
 {
     public class EfCrudOperatons<T> : IEfCrudOperatons<T> where T : class, IHasIntId
     {
-        private readonly IMyWoodenHouseDbContext context;
+        private readonly MyWoodenHouseDbContext context;
         private readonly DbSet<T> dbSet;
 
-        public EfCrudOperatons(IMyWoodenHouseDbContext context)
+        //public EfCrudOperatons(IMyWoodenHouseDbContext context)
+        public EfCrudOperatons(MyWoodenHouseDbContext context)
         {
             if (context == null)
             {
@@ -36,7 +37,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
         }
 
-        public IMyWoodenHouseDbContext Context
+        public MyWoodenHouseDbContext Context
         {
             get
             {
