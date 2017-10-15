@@ -2,6 +2,7 @@
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
+using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
@@ -36,6 +37,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Products
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Index()
         {
             var products = this.productService.GetAll();
@@ -46,6 +48,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
 
         // GET: Administration/Products/Create
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Create()
         {
             return View();
@@ -79,6 +82,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Products/Edit/5
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -113,6 +117,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Products/Delete/5
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         [HttpGet]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
