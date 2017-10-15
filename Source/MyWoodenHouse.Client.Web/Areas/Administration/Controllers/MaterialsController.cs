@@ -1,6 +1,7 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
@@ -24,13 +25,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteViewModel>>();
         }
 
-        //public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<IMaterial, IMaterialCompleteViewModel> materialModelMapper)
-        //{
-        //    this.materialService = materialService;
-        //    this.materialModelMapper = materialModelMapper;
-        //}
+        // TODO not used, because can not auto bind services in Ninject
+        public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper)
+        {
+            this.materialService = materialService;
+            this.materialModelMapper = materialModelMapper;
+        }
 
         // GET: Administration/Materials
+        //[Authorize(Roles = "Admin")]
+        [AuthorizeRoles(Consts.Role.Administrator,Consts.Role.Admin)]
         public ActionResult Index()
         {
             var materials = this.materialService.GetAll();
@@ -42,6 +46,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
 
         // GET: Administration/Materials/Create
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Create()
         {
             return View();
@@ -76,6 +81,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Materials/Edit/5
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -113,6 +119,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         // GET: Administration/Materials/Delete/5
         [HttpGet]
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
             if (id == null)

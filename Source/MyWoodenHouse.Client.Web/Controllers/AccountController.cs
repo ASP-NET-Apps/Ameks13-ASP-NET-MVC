@@ -5,6 +5,7 @@ using Microsoft.Owin.Security;
 using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.ViewModels;
 using MyWoodenHouse.Default.Auth.Contracts;
+using MyWoodenHouse.Default.Auth.Managers;
 //using MyWoodenHouse.Default.Auth.Models;
 using MyWoodenHouse.Ef.Models.Models;
 using Ninject;
@@ -436,6 +437,9 @@ namespace MyWoodenHouse.Client.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
+
+            
+
             return RedirectToAction("Index", "Home");
         }
 

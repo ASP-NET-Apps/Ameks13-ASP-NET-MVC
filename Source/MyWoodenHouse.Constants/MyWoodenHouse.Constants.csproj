@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AreasConstants.cs" />
+    <Compile Include="Models\UsersConstants.cs" />
+    <Compile Include="Models\RolesConstants.cs" />
     <Compile Include="Models\ErrorMessagesConstants.cs" />
     <Compile Include="Models\ModelsConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

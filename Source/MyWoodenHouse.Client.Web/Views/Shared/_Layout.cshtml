@@ -90,80 +90,7 @@
                     </div>
                 </div>
             @*</div>*@
-        @*<div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/" class="navbar-brand" title="My Wooden Home">
-                <img style="max-width:100px; margin-top: -40px;" src="../../../Assets/Images/logo.png">
-            </a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown" >
-                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A new Home <span class="caret"></span></a>
-                    <ul class="dropdown-menu my-dropdown-menu">
-                        <li>@Html.ActionLink("For steps to a new Home", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Why choose Ameks13", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Price list", "Index", "Home", new { area = "" })</li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
-                    <ul class="dropdown-menu my-dropdown-menu">
-                        <li>@Html.ActionLink("About the company", "About", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Services", "About", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Financing", "About", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Our partners", "About", "Home", new { area = "" })</li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
-                    <ul class="dropdown-menu my-dropdown-menu">
-                        <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
-                    <ul class="dropdown-menu my-dropdown-menu">
-                        <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Energy-efficiency <span class="caret"></span></a>
-                    <ul class="dropdown-menu my-dropdown-menu">
-                        <li>@Html.ActionLink("Save on bills", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Insulation", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Ventilation", "Index", "Home", new { area = "" })</li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technology info <span class="caret"></span></a>
-                    <ul class="dropdown-menu my-dropdown-menu">
-                        <li>@Html.ActionLink("What is modular technology", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Materials used", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("The advantages", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
-                        <li>@Html.ActionLink("The building process", "Index", "Home", new { area = "" })</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>*@
+        
     </div>
     </div>
 
@@ -186,7 +113,10 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand hvr-grow" })</li>
-                            <li>@Html.ActionLink("Admin", "Index", "Home", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })</li>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Administrator"))
+                            {
+                                <li>@Html.ActionLink("Admin", "Index", "Home", new { area = "Administration"}, new { @class = "navbar-brand hvr-grow" })</li>
+                            }
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>

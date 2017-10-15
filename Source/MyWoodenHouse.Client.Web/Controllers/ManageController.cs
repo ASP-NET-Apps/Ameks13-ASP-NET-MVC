@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using MyWoodenHouse.Client.Web.App_Start;
+using MyWoodenHouse.Client.Web.ViewModels;
+using MyWoodenHouse.Default.Auth.Contracts;
+using Ninject;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using MyWoodenHouse.Default.Auth.Contracts;
-using MyWoodenHouse.Client.Web.ViewModels;
 
 namespace MyWoodenHouse.Client.Web.Controllers
 {
@@ -16,7 +17,14 @@ namespace MyWoodenHouse.Client.Web.Controllers
     {
         private readonly ISignInService signInService;
         private readonly IUserService userService;
+        
+        public ManageController()
+        {
+            this.signInService = NinjectWebCommon.Kernel.Get<ISignInService>();
+            this.userService = NinjectWebCommon.Kernel.Get<IUserService>();
+        }
 
+        // TODO not used, because can not auto bind services in Ninject
         public ManageController(ISignInService signInService, IUserService userService)
         {
             this.signInService = signInService;
@@ -36,7 +44,7 @@ namespace MyWoodenHouse.Client.Web.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();            
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
