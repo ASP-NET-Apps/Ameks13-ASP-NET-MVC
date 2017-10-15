@@ -199,6 +199,7 @@
     <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\MyMappers\BuildingModelMapper.cs" />
+    <Compile Include="Areas\Administration\MyMappers\Contracts\ICategoryModelMapper.cs" />
     <Compile Include="Areas\Administration\MyMappers\ProductModelMapper.cs" />
     <Compile Include="Areas\Administration\MyMappers\PriceModelMapper.cs" />
     <Compile Include="Areas\Administration\MyMappers\PriceCategoryModelMapper.cs" />

@@ -7,6 +7,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
     public class MaterialModelMapper : IGenericModelMapper<Material, MaterialCompleteViewModel>
     {
+        public MaterialModelMapper()
+        {
+        }
+
         public MaterialCompleteViewModel Model2ViewModel(Material model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();

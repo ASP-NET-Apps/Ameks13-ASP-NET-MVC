@@ -7,6 +7,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
     public class ProductModelMapper : IGenericModelMapper<Product, ProductCompleteViewModel>
     {
+        public ProductModelMapper()
+        {
+        }
+
         public ProductCompleteViewModel Model2ViewModel(Product model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();

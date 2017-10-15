@@ -16,16 +16,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
     public class CategoriesController : Controller
     {
         private readonly IBaseGenericService<Category> categoryService;
-        private readonly IGenericModelMapper<Category, CategoryCompleteViewModel> categoryModelMapper;
+        private readonly ICategoryModelMapper categoryModelMapper;
 
         public CategoriesController()
         {
             this.categoryService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Category>>();
-            this.categoryModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Category, CategoryCompleteViewModel>>();
+            this.categoryModelMapper = NinjectWebCommon.Kernel.Get<ICategoryModelMapper>();
         }
 
         // TODO not used, because can not auto bind services in Ninject
-        public CategoriesController(IBaseGenericService<Category> categoryService, IGenericModelMapper<Category, CategoryCompleteViewModel> categoryModelMapper)
+        public CategoriesController(IBaseGenericService<Category> categoryService, ICategoryModelMapper categoryModelMapper)
         {
             // Todo insert validation
             this.categoryService = categoryService;

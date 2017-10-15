@@ -7,6 +7,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
     public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteViewModel>
     {
+        public PictureModelMapper()
+        {
+        }
+
         public PictureCompleteViewModel Model2ViewModel(Picture model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();

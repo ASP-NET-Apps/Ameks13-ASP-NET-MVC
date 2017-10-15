@@ -1,4 +1,5 @@
-﻿using MyWoodenHouse.Data.Provider.Contracts;
+﻿using Bytes2you.Validation;
+using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Operations.Contracts;
 using MyWoodenHouse.Ef.Models;
 using System;
@@ -10,8 +11,6 @@ namespace MyWoodenHouse.Data.Provider.Operations
 {
     public class BuildingCrudOperations : EfCrudOperatons<Building>, IBuildingCrudOperations, IEfCrudOperatons<Building>
     {
-
-        //public BuildingCrudOperations(IMyWoodenHouseDbContext context) 
         public BuildingCrudOperations(MyWoodenHouseDbContext context) 
             :  base(context)
         {            
@@ -19,10 +18,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
 
         public override int Insert(Building building)
         {
-            if (building == null)
-            {
-                throw new ArgumentNullException(nameof(building));
-            }
+            Guard.WhenArgument(building, nameof(building)).IsNull().Throw();
 
             //var dbEntity = base.CopyStateFrom(building);
             building.Id = this.GetMaxId() + 1;
@@ -34,10 +30,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
 
         public override int Update(Building building)
         {
-            if (building == null)
-            {
-                throw new ArgumentNullException(nameof(building));
-            }
+            Guard.WhenArgument(building, nameof(building)).IsNull().Throw();
 
             base.DbSet.AddOrUpdate(building);
             //var dbEntity = base.CopyStateFrom(building);

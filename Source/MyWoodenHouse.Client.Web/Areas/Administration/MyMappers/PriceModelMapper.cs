@@ -7,6 +7,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
     public class PriceModelMapper : IGenericModelMapper<Price, PriceCompleteViewModel>
     {
+        public PriceModelMapper()
+        {
+        }
+
         public PriceCompleteViewModel Model2ViewModel(Price model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();

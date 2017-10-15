@@ -5,8 +5,13 @@ using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
-    public class CategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteViewModel>
+    //public class CategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteViewModel>
+    public class CategoryModelMapper : ICategoryModelMapper
     {
+        public CategoryModelMapper()
+        {
+        }
+
         public CategoryCompleteViewModel Model2ViewModel(Category model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
