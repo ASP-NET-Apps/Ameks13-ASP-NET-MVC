@@ -46,7 +46,7 @@ namespace MyWoodenHouse.Client.Web.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "You can contact AMEKS using:";
 
             return View();
         }
