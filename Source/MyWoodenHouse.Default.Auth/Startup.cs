@@ -2,9 +2,11 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using MyWoodenHouse.Default.Auth.Data;
+using MyWoodenHouse.Data.Provider;
+//using MyWoodenHouse.Default.Auth.Data;
 using MyWoodenHouse.Default.Auth.Managers;
 using MyWoodenHouse.Default.Auth.Models;
+using MyWoodenHouse.Ef.Models.Models;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,8 @@ namespace MyWoodenHouse.Default.Auth
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            //app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(MyWoodenHouseDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

@@ -3,6 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MyWoodenHouse.Default.Auth.Contracts;
 using MyWoodenHouse.Default.Auth.Models;
+using MyWoodenHouse.Ef.Models.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

@@ -1,18 +1,13 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.Models;
-using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
 using Ninject;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
@@ -24,20 +19,13 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         public MaterialsController()
         {
-            var a = 1;
             // Todo insert validation
             this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
             this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteViewModel>>();
         }
 
-        //public MaterialsController()
-        //{
-        //}
-
         //public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<IMaterial, IMaterialCompleteViewModel> materialModelMapper)
         //{
-        //    var a = 1;
-
         //    this.materialService = materialService;
         //    this.materialModelMapper = materialModelMapper;
         //}

@@ -6,7 +6,7 @@ using System;
 using MyWoodenHouse.Contracts.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Microsoft.AspNet.Identity.EntityFramework;
-using MyWoodenHouse.Default.Auth.Models;
+using MyWoodenHouse.Ef.Models.Models;
 
 namespace MyWoodenHouse.Data.Provider
 {
@@ -53,6 +53,11 @@ namespace MyWoodenHouse.Data.Provider
 
         public IDbSet<PictureBuilding> PictureBuildings { get; set; }
 
+
+        public static MyWoodenHouseDbContext Create()
+        {
+            return new MyWoodenHouseDbContext();
+        }
 
         public EntityState GetEntityState(object entity)
         {

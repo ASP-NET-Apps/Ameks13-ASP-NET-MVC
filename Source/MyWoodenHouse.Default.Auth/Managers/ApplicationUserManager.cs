@@ -2,10 +2,12 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Default.Auth.Contracts;
-using MyWoodenHouse.Default.Auth.Data;
+//using MyWoodenHouse.Default.Auth.Data;
 using MyWoodenHouse.Default.Auth.Models;
 using MyWoodenHouse.Default.Auth.Services;
+using MyWoodenHouse.Ef.Models.Models;
 using System;
 
 namespace MyWoodenHouse.Default.Auth.Managers
@@ -20,7 +22,8 @@ namespace MyWoodenHouse.Default.Auth.Managers
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<User>(context.Get<ApplicationDbContext>()));
+            //var manager = new ApplicationUserManager(new UserStore<User>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<User>(context.Get<MyWoodenHouseDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User>(manager)
             {

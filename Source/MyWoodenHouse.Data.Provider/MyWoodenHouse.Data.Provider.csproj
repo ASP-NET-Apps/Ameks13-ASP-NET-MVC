@@ -93,10 +93,6 @@
       <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
       <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Default.Auth\MyWoodenHouse.Default.Auth.csproj">
-      <Project>{3C0B1AA3-A1F3-48DF-BAD3-4680B5F511D6}</Project>
-      <Name>MyWoodenHouse.Default.Auth</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
       <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
       <Name>MyWoodenHouse.Ef.Models</Name>

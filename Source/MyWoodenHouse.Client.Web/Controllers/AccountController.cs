@@ -2,9 +2,12 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.ViewModels;
 using MyWoodenHouse.Default.Auth.Contracts;
-using MyWoodenHouse.Default.Auth.Models;
+//using MyWoodenHouse.Default.Auth.Models;
+using MyWoodenHouse.Ef.Models.Models;
+using Ninject;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,6 +21,14 @@ namespace MyWoodenHouse.Client.Web.Controllers
     {
         private readonly ISignInService signInService;
         private readonly IUserService userService;
+
+        public AccountController()
+        {
+            var a = 1;
+
+            this.signInService = NinjectWebCommon.Kernel.Get<ISignInService> ();
+            this.userService = NinjectWebCommon.Kernel.Get<IUserService>();
+        }
 
         public AccountController(ISignInService signInService, IUserService userService)
         {
@@ -343,7 +354,7 @@ namespace MyWoodenHouse.Client.Web.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new Default.Auth.Models.User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await this.userService.CreateAsync(user);
                 if (result.Succeeded)
                 {
