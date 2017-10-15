@@ -48,7 +48,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Testing Metrics", "Uni
 		GenerateReportGenerator-Output.bat = GenerateReportGenerator-Output.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Pure.Models.UnitTests", "MyWoodenHouse.Pure.Models.UnitTests\MyWoodenHouse.Pure.Models.UnitTests.csproj", "{863896FB-B762-43B6-A9C9-15199B637715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWoodenHouse.Ef.Models.UnitTests", "MyWoodenHouse.Pure.Models.UnitTests\MyWoodenHouse.Ef.Models.UnitTests.csproj", "{863896FB-B762-43B6-A9C9-15199B637715}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{8D416E54-5E8D-46E9-8AB7-85D3A078E5E3}"
 EndProject

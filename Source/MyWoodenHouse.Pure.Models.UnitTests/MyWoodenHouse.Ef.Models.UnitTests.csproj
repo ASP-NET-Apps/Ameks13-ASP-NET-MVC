@@ -69,8 +69,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CategoryModel\Constructors_Should.cs" />
-    <Compile Include="CategoryModel\Class_Should.cs" />
+    <Compile Include="Category\Constructors_Should.cs" />
+    <Compile Include="Category\Class_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

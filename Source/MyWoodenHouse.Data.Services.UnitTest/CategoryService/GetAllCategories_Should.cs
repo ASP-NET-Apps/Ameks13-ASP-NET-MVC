@@ -57,10 +57,26 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             Assert.ThrowsException<ArgumentNullException>(() => actualInstance.GetAll());
         }
 
+        //[TestMethod]
+        //public void ReturnNull_WhenThereAreNoCategoriesInTheCollection()
+        //{
+        //    // Arrange
+        //    IQueryable<Category> fakeData = new List<Category>().AsQueryable();
+        //    mockedCategoryBaseOperatonsProvider.Setup(c => c.All).Returns(fakeData);
+
+        //    // Act
+        //    CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
+        //    IEnumerable<Category> actualCategories = actualInstance.All;
+
+        //    // Assert
+        //    Assert.AreSame(null, actualCategories);
+        //}
+
         [TestMethod]
-        public void ReturnNull_WhenThereAreNocategoriesInTheCollection()
+        public void ReturnEmptyCollection_WhenThereAreNoCategoriesInTheCollection()
         {
             // Arrange
+            int expectedCategoriesCount = 0;
             IQueryable<Category> fakeData = new List<Category>().AsQueryable();
             mockedCategoryBaseOperatonsProvider.Setup(c => c.All).Returns(fakeData);
 
@@ -69,7 +85,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             IEnumerable<Category> actualCategories = actualInstance.GetAll();
 
             // Assert
-            Assert.AreSame(null, actualCategories);
+            Assert.AreEqual(expectedCategoriesCount, actualCategories.Count());
         }
 
         [TestMethod]
