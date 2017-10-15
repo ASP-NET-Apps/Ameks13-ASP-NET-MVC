@@ -1,22 +1,22 @@
-﻿using MyWoodenHouse.Ef.Models;
-using System.Collections.Generic;
+﻿//using MyWoodenHouse.Ef.Models;
+//using System.Collections.Generic;
 
-namespace MyWoodenHouse.Data.Services.Contracts
-{
-    public interface ICategoryService
-    {
-        IEnumerable<Category> GetAllCategories();
+//namespace MyWoodenHouse.Data.Services.Contracts
+//{
+//    public interface ICategoryService
+//    {
+//        IEnumerable<Category> GetAllCategories();
 
-        IEnumerable<Category> GetAllCategoriesSortedById();
+//        IEnumerable<Category> GetAllCategoriesSortedById();
 
-        IEnumerable<Category> GetAllCategoriesSortedByName();
+//        IEnumerable<Category> GetAllCategoriesSortedByName();
 
-        Category GetCategoryById(int? id);
+//        Category GetCategoryById(int? id);
 
-        int InsertCategory(Category categoryModel);
+//        int InsertCategory(Category categoryModel);
 
-        Category UpdateCategory(Category categoryModel);
+//        Category UpdateCategory(Category categoryModel);
 
-        void DeleteCategoryById(int? id);
-    }
-}
+//        void DeleteCategoryById(int? id);
+//    }
+//}

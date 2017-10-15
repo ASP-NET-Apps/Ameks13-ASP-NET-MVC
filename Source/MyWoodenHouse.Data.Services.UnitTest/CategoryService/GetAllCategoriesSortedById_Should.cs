@@ -34,23 +34,23 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             mockedCategoryBaseOperatonsProvider.Setup(c => c.All).Returns(fakeData);
         }
 
-        [TestMethod]
-        public void ReturnAllCategoriesOrderedById_WhenExecuted()
-        {
-            // Arrange
-            // Done in the TestInit method
+        //[TestMethod]
+        //public void ReturnAllCategoriesOrderedById_WhenExecuted()
+        //{
+        //    // Arrange
+        //    // Done in the TestInit method
 
-            // Act
-            CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            List<Category> actualCategories = actualInstance.GetAllCategoriesSortedById().ToList();
-            int[] orderedIds = new int[] { 1, 2, 3, 4 };
+        //    // Act
+        //    CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
+        //    List<Category> actualCategories = actualInstance.GetAllCategoriesSortedById().ToList();
+        //    int[] orderedIds = new int[] { 1, 2, 3, 4 };
 
-            // Assert
-            for (int i = 0; i < orderedIds.Length; i++)
-            {
-                Assert.AreEqual(orderedIds[i], actualCategories[i].Id);
-            }
-        }
+        //    // Assert
+        //    for (int i = 0; i < orderedIds.Length; i++)
+        //    {
+        //        Assert.AreEqual(orderedIds[i], actualCategories[i].Id);
+        //    }
+        //}
 
         [TestCleanup]
         public void TestCleanup()

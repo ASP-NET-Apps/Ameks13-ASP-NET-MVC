@@ -123,6 +123,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             //kernel.Bind<ICategoryService>().To<CategoryService>();            
             //kernel.Bind<IBaseGenericService<Material>>().To<MaterialService>();
 
+            kernel.Bind(typeof(IBaseGenericService<Category>)).To<CategoryService>();
             kernel.Bind(typeof(IBaseGenericService<Material>)).To<MaterialService>();
 
             //kernel.Bind<IBaseGenericService<Product>>().To<ProductService>();
@@ -130,7 +131,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             //kernel.Bind<IBaseGenericService<Building>>().To<BuildingService>();
 
             // My view model mappers
-            //kernel.Bind<IGenericModelMapper<Category, CategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<Category, CategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Material, MaterialCompleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
             //kernel.Bind<IGenericModelMapper<Picture, PictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
             //kernel.Bind<IGenericModelMapper<Price, PriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();

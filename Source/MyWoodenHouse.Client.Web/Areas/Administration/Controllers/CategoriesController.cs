@@ -17,32 +17,30 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ICategoryService categoryService;
-        private readonly IGenericModelMapper<ICategory, ICategoryCompleteViewModel> categoryModelMapper;
+        private readonly IBaseGenericService<Category> categoryService;
+        private readonly IGenericModelMapper<Category, CategoryCompleteViewModel> categoryModelMapper;
 
         public CategoriesController()
         {
-            this.categoryService = NinjectWebCommon.Kernel.Get<ICategoryService>();
-            this.categoryModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<ICategory, ICategoryCompleteViewModel>>();
-            
+            this.categoryService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Category>>();
+            this.categoryModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Category, CategoryCompleteViewModel>>();
         }
 
-        //public CategoriesController(ICategoryService categoryService, IGenericModelMapper<ICategory, ICategoryCompleteViewModel> categoryModelMapper)
-        //{
-        //    this.categoryService = categoryService;
-        //    this.categoryModelMapper = categoryModelMapper;
-        //}
+        // TODO not used, because can not auto bind services in Ninject
+        public CategoriesController(IBaseGenericService<Category> categoryService, IGenericModelMapper<Category, CategoryCompleteViewModel> categoryModelMapper)
+        {
+            this.categoryService = categoryService;
+            this.categoryModelMapper = categoryModelMapper;
+        }
 
         // GET: Categories
         [HttpGet]
         public ActionResult Index()
         {
-            //var categories = this.categoryService.GetAllCategoriesSortedById();
-            ////var categoryComleteViewModel = categories.Select(x => this.categoryModelMapper.Model2ViewModel(x));
-            //var categoryComleteViewModel = new CategoryCompleteViewModel();
+            var categories = this.categoryService.GetAll();
+            var categoryCompleteViewModel = categories.Select(x => this.categoryModelMapper.Model2ViewModel(x));
 
-            //return View(categoryComleteViewModel);
-            return View();
+            return View(categoryCompleteViewModel);
         }
 
         // GET: Categories/Create
@@ -57,48 +55,46 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name")] ICategoryCompleteViewModel categoryCompleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name")] CategoryCompleteViewModel categoryCompleteViewModel)
         {
             // TODO optimize if possible
-            //if (ModelState["Id"] != null)
-            //{
-            //    if (ModelState["Id"].Errors.Count > 0)
-            //    {
-            //        ModelState["Id"].Errors.Clear();
-            //    }
-            //}                        
+            if (ModelState["Id"] != null)
+            {
+                if (ModelState["Id"].Errors.Count > 0)
+                {
+                    ModelState["Id"].Errors.Clear();
+                }
+            }
 
-            //if (ModelState.IsValid)
-            //{
-            //    var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteViewModel);
-            //    this.categoryService.InsertCategory((Category)category);
+            if (ModelState.IsValid)
+            {
+                var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteViewModel);
+                this.categoryService.Insert((Category)category);
 
-            //    return RedirectToAction("Index");
-            //}
+                return RedirectToAction("Index");
+            }
 
-            //return View(categoryCompleteViewModel);
-            return View();
+            return View(categoryCompleteViewModel);
         }
 
         // GET: Categories/Edit/5
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-            //Category category = this.categoryService.GetCategoryById(id);
-            //if (category == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            var category = this.categoryService.GetById(id);
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
 
-            //var categoryCompleteViewModel = this.categoryModelMapper.Model2ViewModel(category);
+            var categoryCompleteViewModel = this.categoryModelMapper.Model2ViewModel(category);
 
-            //return View(categoryCompleteViewModel);
-            return View();
+            return View(categoryCompleteViewModel);
         }
 
         // POST: Categories/Edit/5
@@ -108,43 +104,41 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] CategoryCompleteViewModel categoryCompleteViewModel)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteViewModel);
-            //    this.categoryService.UpdateCategory((Category)category);
+            if (ModelState.IsValid)
+            {
+                var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteViewModel);
+                this.categoryService.Update((Category)category);
 
-            //    return RedirectToAction("Index");
-            //}
-            //return View(categoryCompleteViewModel);
-            return View();
+                return RedirectToAction("Index");
+            }
+            return View(categoryCompleteViewModel);
         }
 
         // GET: Categories/Delete/5
         [HttpGet]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
-            //if (id == null)
-            //{
-            //    string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
-            //    throw new ArgumentNullException(errorMessage);
-            //}
-            //if (id <= 0)
-            //{
-            //    string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
-            //    throw new ArgumentException(errorMessage);
-            //}
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
+                throw new ArgumentNullException(errorMessage);
+            }
+            if (id <= 0)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
+                throw new ArgumentException(errorMessage);
+            }
 
-            //Category categoryModel = this.categoryService.GetCategoryById(id);
+            var category = this.categoryService.GetById(id);
 
-            //if (categoryModel == null)
-            //{
-            //    string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
-            //    throw new ArgumentNullException(errorMessage);
-            //}
-            //var categoryCompleteViewModel = categoryModelMapper.Model2ViewModel(categoryModel);
+            if (category == null)
+            {
+                string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
+                throw new ArgumentNullException(errorMessage);
+            }
+            var categoryCompleteViewModel = categoryModelMapper.Model2ViewModel(category);
 
-            //return PartialView("_DeleteConfirm", categoryCompleteViewModel);
-            return PartialView();
+            return PartialView("_DeleteConfirm", categoryCompleteViewModel);
         }
 
         // POST: Categories/Delete/5
@@ -152,18 +146,18 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            //if (id == null)
-            //{
-            //    string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
-            //    throw new ArgumentNullException(errorMessage);
-            //}
-            //if (id <= 0)
-            //{
-            //    string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
-            //    throw new ArgumentException(errorMessage);
-            //}
+            if (id == null)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
+                throw new ArgumentNullException(errorMessage);
+            }
+            if (id <= 0)
+            {
+                string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
+                throw new ArgumentException(errorMessage);
+            }
 
-            //this.categoryService.DeleteCategoryById(id);
+            this.categoryService.Delete(id);
 
             return RedirectToAction("Index");
         }

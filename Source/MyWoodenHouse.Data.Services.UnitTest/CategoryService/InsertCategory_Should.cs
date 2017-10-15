@@ -43,7 +43,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            int addedCategoryId = actualService.Insert(categoryToAdd);
 
             // Assert
             Assert.AreEqual(perAddCategoryCount + 1, fakeData.Count());
@@ -58,7 +58,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            int addedCategoryId = actualService.Insert(categoryToAdd);
             Category addedCategoryFromFakeData = fakeData.FirstOrDefault(c => c.Id == addedCategoryId);
 
             // Assert
@@ -73,7 +73,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            int addedCategoryId = actualService.Insert(categoryToAdd);
 
             // Assert
             Assert.IsTrue(addedCategoryId >= 0);
@@ -87,7 +87,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            int addedCategoryId = actualService.Insert(categoryToAdd);
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(m => m.Insert(It.IsAny<Category>()), Times.Once);
@@ -101,7 +101,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            int addedCategoryId = actualService.InsertCategory(categoryToAdd);
+            int addedCategoryId = actualService.Insert(categoryToAdd);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
@@ -117,7 +117,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.InsertCategory(null));
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.Insert(null));
         }
 
         [TestCleanup]

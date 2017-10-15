@@ -37,7 +37,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            IEnumerable<Category> actualCategories = actualInstance.GetAllCategories();
+            IEnumerable<Category> actualCategories = actualInstance.GetAll();
 
             // Assert
             Assert.AreEqual(4, actualCategories.Count());
@@ -54,7 +54,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualInstance.GetAllCategories());
+            Assert.ThrowsException<ArgumentNullException>(() => actualInstance.GetAll());
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            IEnumerable<Category> actualCategories = actualInstance.GetAllCategories();
+            IEnumerable<Category> actualCategories = actualInstance.GetAll();
 
             // Assert
             Assert.AreSame(null, actualCategories);
@@ -86,7 +86,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualInstance = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            IEnumerable<Category> actualCategories = actualInstance.GetAllCategories();
+            IEnumerable<Category> actualCategories = actualInstance.GetAll();
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(c => c.All, Times.Once);

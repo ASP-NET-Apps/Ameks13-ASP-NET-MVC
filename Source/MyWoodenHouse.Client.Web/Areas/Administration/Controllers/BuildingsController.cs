@@ -22,10 +22,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         private const string Products = "Products";
         private const string Materials = "Materials";
         private const string Pictures = "Pictures";
-
         
         private readonly IBaseGenericService<IBuilding> buildingService;
-        private readonly ICategoryService categoryService;
+        private readonly IBaseGenericService<Category> categoryService;
         private readonly IBaseGenericService<IProduct> productService;
         private readonly IBaseGenericService<IMaterial> materialService;
         private readonly IBaseGenericService<IPicture> pictureService;
@@ -46,7 +45,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         //}
 
         public BuildingsController(IBaseGenericService<IBuilding> buildingService,
-            ICategoryService categoryService, IBaseGenericService<IProduct> productService, IBaseGenericService<IMaterial> materialService, IBaseGenericService<IPicture> pictureService,
+            IBaseGenericService<Category> categoryService, IBaseGenericService<IProduct> productService, IBaseGenericService<IMaterial> materialService, IBaseGenericService<IPicture> pictureService,
             IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper, IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper)
         {
             this.buildingService = buildingService;
@@ -273,7 +272,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // TODO refactoring but ?! no better idea, because those are three different actions
         private SelectList CategorySelectListPreparer()
         {
-            var categories = this.categoryService.GetAllCategoriesSortedByName();
+            // TODO Method not visible fix
+            //var categories = this.categoryService.GetAllCategoriesSortedByName();
+            var categories = this.categoryService.GetAll().OrderBy(c => c.Name);
             if (categories == null)
             {
                 // TODO Throw or return
@@ -284,7 +285,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             return selectListToReturn;
         }
-        
+
         // TODO refactoring but ?! no better idea, because those are three different actions
         private SelectList ProductSelectListPreparer()
         {

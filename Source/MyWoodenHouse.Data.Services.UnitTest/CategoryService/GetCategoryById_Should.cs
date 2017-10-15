@@ -43,7 +43,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            Category actualCategory = actualService.GetCategoryById(searchedId);
+            Category actualCategory = actualService.GetById(searchedId);
 
             Category mockedCategory = fakeData.FirstOrDefault(c => c.Id == searchedId);
             //Category mockedCategory = new Category(mockedCategory);
@@ -61,7 +61,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            Category actualCategory = actualService.GetCategoryById(searchedId);
+            Category actualCategory = actualService.GetById(searchedId);
 
             Category mockedCategory = fakeData.FirstOrDefault(c => c.Id == searchedId);
             //Category mockedCategory = new Category(mockedCategory);
@@ -79,7 +79,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            Category actualCategory = actualService.GetCategoryById(searchedId);
+            Category actualCategory = actualService.GetById(searchedId);
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(m => m.SelectById(It.IsAny<int?>()), Times.Once);
@@ -95,7 +95,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.GetCategoryById(null), errorMessage);
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.GetById(null), errorMessage);
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentException>(() => actualService.GetCategoryById(searchedId), errorMessage);
+            Assert.ThrowsException<ArgumentException>(() => actualService.GetById(searchedId), errorMessage);
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.GetCategoryById(searchedId), errorMessage);
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.GetById(searchedId), errorMessage);
         }
 
         [TestCleanup]

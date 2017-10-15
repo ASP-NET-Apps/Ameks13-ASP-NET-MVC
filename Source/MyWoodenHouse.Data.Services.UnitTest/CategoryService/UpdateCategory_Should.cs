@@ -42,7 +42,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            Category updatedCategory = actualService.UpdateCategory(categoryToUpdate);
+            Category updatedCategory = actualService.Update(categoryToUpdate);
 
             // Assert
             Assert.AreSame(categoryToUpdate, updatedCategory);
@@ -58,7 +58,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            Category updatedCategory = actualService.UpdateCategory(categoryToUpdate);
+            Category updatedCategory = actualService.Update(categoryToUpdate);
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(m => m.Update(It.IsAny<Category>()), Times.Once);
@@ -74,7 +74,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            Category updatedCategory = actualService.UpdateCategory(categoryToUpdate);
+            Category updatedCategory = actualService.Update(categoryToUpdate);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
@@ -90,7 +90,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.UpdateCategory(null));
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.Update(null));
         }
 
         [TestCleanup]

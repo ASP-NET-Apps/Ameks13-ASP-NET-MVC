@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class CategoryService : ICategoryService, IDataService
+    public class CategoryService : IBaseGenericService<Category>//, IDataService
     {
         private readonly IEfCrudOperatons<Category> categoryBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
@@ -37,46 +37,36 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
         
-        public IEnumerable<Category> GetAllCategories()
+        public IEnumerable<Category> GetAll()
         {
-            IList<Category> categoriesToReturn = null;
-            IEnumerable<Category> categories  = this.categoryBaseOperatonsProvider.All.ToList();
+            var categoriesToReturn = this.categoryBaseOperatonsProvider.All.ToList();
 
-            if (categories == null)
+            if (categoriesToReturn == null)
             {
-                string errorMessage = nameof(categories);
+                string errorMessage = nameof(categoriesToReturn);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            if (categories.Count() > 0)
-            {
-                categoriesToReturn = new List<Category>();
-
-                foreach(var category in categories)
-                {
-                    //var c = new Category(category);
-                    categoriesToReturn.Add(category);
-                }
-            }
-
             return categoriesToReturn;
         }
 
-        public IEnumerable<Category> GetAllCategoriesSortedById()
+        public IEnumerable<Category> GetAllSortedById()
         {
-            IEnumerable<Category> categoriesToReturn = this.GetAllCategories().OrderBy(c => c.Id);
+            // TODO refactoring to use All IQueriable from the service
+            IEnumerable<Category> categoriesToReturn = this.GetAll().OrderBy(c => c.Id);
 
             return categoriesToReturn;
         }
 
-        public IEnumerable<Category> GetAllCategoriesSortedByName()
+        public IEnumerable<Category> GetAllSortedByName()
         {
-            IEnumerable<Category> categoriesToReturn = this.GetAllCategories().OrderBy(c => c.Name);
+            // TODO refactoring to use All IQueriable from the service
+            IEnumerable<Category> categoriesToReturn = this.GetAll().OrderBy(c => c.Name);
 
             return categoriesToReturn;
         }
 
-        public Category GetCategoryById(int? id)
+        public Category GetById(int? id)
         {
             if (id == null)
             {
@@ -90,7 +80,6 @@ namespace MyWoodenHouse.Data.Services
             }
 
             Category categoryToReturn = this.categoryBaseOperatonsProvider.SelectById(id);
-
             if (categoryToReturn == null)
             {
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
@@ -100,39 +89,49 @@ namespace MyWoodenHouse.Data.Services
             return categoryToReturn;
         }
 
-        public int InsertCategory(Category category)
+        public int Insert(Category entity)
         {
-            if (category == null)
+            if (entity == null)
             {
-                string errorMessage = nameof(category);
+                string errorMessage = nameof(entity);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            // TODO create MyDbModelsMapper.Category2Category
-            Category categoryToInsert = new Category();
-            categoryToInsert.Name = category.Name;
-
-            int insertedCategoryId = this.categoryBaseOperatonsProvider.Insert(categoryToInsert);
+            int insertedEntityId = this.categoryBaseOperatonsProvider.Insert(entity);
             this.dbContextSaveChanges.SaveChanges();
 
-            return insertedCategoryId;
+            return insertedEntityId;
         }
 
-        public Category UpdateCategory(Category category)
+        public Category Update(Category entity)
         {
-            if (category == null)
+            if (entity == null)
             {
-                string errorMessage = nameof(category);
+                string errorMessage = nameof(entity);
                 throw new ArgumentNullException(errorMessage);
             }
 
-            this.categoryBaseOperatonsProvider.Update(category);
+            this.categoryBaseOperatonsProvider.Update(entity);
             this.dbContextSaveChanges.SaveChanges();
 
-            return category;
+            Category entityUpdated = this.categoryBaseOperatonsProvider.SelectById(entity.Id);
+
+            return entityUpdated;
         }
 
-        public void DeleteCategoryById(int? id)
+        public void Delete(Category entity)
+        {
+            if (entity == null)
+            {
+                string errorMessage = nameof(entity);
+                throw new ArgumentNullException(errorMessage);
+            }
+
+            this.categoryBaseOperatonsProvider.Delete(entity);
+            this.dbContextSaveChanges.SaveChanges();
+        }
+
+        public void Delete(int? id)
         {
             if (id == null)
             {

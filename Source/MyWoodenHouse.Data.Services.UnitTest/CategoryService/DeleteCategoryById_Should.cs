@@ -43,7 +43,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            actualService.DeleteCategoryById(id);
+            actualService.Delete(id);
 
             // Assert
             mockedCategoryBaseOperatonsProvider.Verify(m => m.Delete(It.IsAny<int?>()), Times.Once);
@@ -57,24 +57,25 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            actualService.DeleteCategoryById(id);
+            actualService.Delete(id);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
         }
 
-        [TestMethod]
-        public void ThrowArgumentNullException_WhenArgumentIsNull_Id()
-        {
-            // Arrange
-            string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, "null");
+        //[TestMethod]
+        //public void ThrowArgumentNullException_WhenArgumentIsNull_Id()
+        //{
+        //    // Arrange
+        //    string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, "null");
 
-            // Act
-            CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
+        //    // Act
+        //    CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
-            // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.DeleteCategoryById(null), errorMessage);
-        }
+        //    // Assert
+
+        //    Assert.ThrowsException<ArgumentNullException>(() => actualService.Delete(null), errorMessage);
+        //}
 
         [TestMethod]
         public void ThrowArgumentNullException_WhenArgumentIsNotValid_Id()
@@ -87,7 +88,7 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentException>(() => actualService.DeleteCategoryById(id), errorMessage);
+            Assert.ThrowsException<ArgumentException>(() => actualService.Delete(id), errorMessage);
         }
 
         [TestCleanup]
