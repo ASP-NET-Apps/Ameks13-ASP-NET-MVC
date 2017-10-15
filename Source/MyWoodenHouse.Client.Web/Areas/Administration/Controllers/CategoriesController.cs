@@ -1,14 +1,12 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Ef.Models;
 using Ninject;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -35,6 +33,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         // GET: Categories
         [HttpGet]
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Index()
         {
             var categories = this.categoryService.GetAll();
@@ -45,6 +44,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         // GET: Categories/Create
         [HttpGet]
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Create()
         {
             return View();
@@ -79,6 +79,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         // GET: Categories/Edit/5
         [HttpGet]
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -116,6 +117,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         // GET: Categories/Delete/5
         [HttpGet]
+        [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
             if (id == null)

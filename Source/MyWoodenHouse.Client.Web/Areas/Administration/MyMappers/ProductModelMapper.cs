@@ -1,7 +1,7 @@
-﻿using System;
-using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
+﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
+using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
@@ -9,12 +9,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
     {
         public ProductCompleteViewModel Model2ViewModel(Product model)
         {
-            if (model == null)
-            {
-                // TODO prepare message
-                throw new ArgumentNullException();
-            }
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
+            // TODO use no parameter constructor and map properties here
             var viewModelToReturn = new ProductCompleteViewModel(model);
 
             return viewModelToReturn;
@@ -22,11 +19,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 
         public Product ViewModel2Model(ProductCompleteViewModel viewModel)
         {
-            if (viewModel == null)
-            {
-                // TODO prepare message
-                throw new ArgumentNullException();
-            }
+            Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 
             var modelToReturn = new Product();
             modelToReturn.Id = viewModel.Id;

@@ -1,9 +1,7 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+﻿using Bytes2you.Validation;
+using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PriceCategories;
-using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Ef.Models;
-using System;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
@@ -11,12 +9,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
     {
         public PriceCategoryCompleteViewModel Model2ViewModel(PriceCategory model)
         {
-            if (model == null)
-            {
-                // TODO prepare message
-                throw new ArgumentNullException();
-            }
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
+            // TODO use no parameter constructor and map properties here
             var viewModelToReturn = new PriceCategoryCompleteViewModel(model);
 
             return viewModelToReturn;
@@ -24,11 +19,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 
         public PriceCategory ViewModel2Model(PriceCategoryCompleteViewModel viewModel)
         {
-            if (viewModel == null)
-            {
-                // TODO prepare message
-                throw new ArgumentNullException();
-            }
+            Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 
             var modelToReturn = new PriceCategory();
             modelToReturn.Id = viewModel.Id;

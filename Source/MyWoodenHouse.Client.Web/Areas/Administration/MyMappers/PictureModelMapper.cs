@@ -1,23 +1,17 @@
-﻿using System;
-using MyWoodenHouse.Ef.Models;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
+﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Contracts.Models;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
+using MyWoodenHouse.Ef.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
     public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteViewModel>
     {
-
         public PictureCompleteViewModel Model2ViewModel(Picture model)
         {
-            if (model == null)
-            {
-                // TODO prepare message
-                throw new ArgumentNullException();
-            }
+            Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
+            // TODO use no parameter constructor and map properties here
             var viewModelToReturn = new PictureCompleteViewModel(model);
 
             return viewModelToReturn;
@@ -25,11 +19,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 
         public Picture ViewModel2Model(PictureCompleteViewModel viewModel)
         {
-            if (viewModel == null)
-            {
-                // TODO prepare message
-                throw new ArgumentNullException();
-            }
+            Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 
             var modelToReturn = new Picture();
             modelToReturn.Id = viewModel.Id;
