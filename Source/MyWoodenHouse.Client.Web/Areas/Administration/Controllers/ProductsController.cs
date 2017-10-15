@@ -17,18 +17,20 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly IBaseGenericService<IProduct> productService;
-        private readonly IGenericModelMapper<IProduct, IProductCompleteViewModel> productModelMapper;
+        private readonly IBaseGenericService<Product> productService;
+        private readonly IGenericModelMapper<Product, ProductCompleteViewModel> productModelMapper;
 
-        //public ProductsController()
-        //{
-        //    // Todo insert validation
-        //    this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
-        //    this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteViewModel>>();
-        //}
-
-        public ProductsController(IBaseGenericService<IProduct> productService, IGenericModelMapper<IProduct, IProductCompleteViewModel> productModelMapper)
+        public ProductsController()
         {
+            // Todo insert validation
+            this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
+            this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteViewModel>>();
+        }
+
+        // TODO not used, because can not auto bind services in Ninject
+        public ProductsController(IBaseGenericService<Product> productService, IGenericModelMapper<Product, ProductCompleteViewModel> productModelMapper)
+        {
+            // Todo insert validation
             this.productService = productService;
             this.productModelMapper = productModelMapper;
         }
@@ -36,8 +38,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // GET: Administration/Products
         public ActionResult Index()
         {
-            IEnumerable<IProduct> products = this.productService.GetAll();
-            IEnumerable<IProductCompleteViewModel> productsComleteViewModel = products.Select(x => this.productModelMapper.Model2ViewModel(x));
+            var products = this.productService.GetAll();
+            var productsComleteViewModel = products.Select(x => this.productModelMapper.Model2ViewModel(x));
 
             return View(productsComleteViewModel);
         }
