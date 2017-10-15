@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
-using MyWoodenHouse.Default.Auth.Models;
 using MyWoodenHouse.Ef.Models.Models;
 using System;
 using System.Threading.Tasks;

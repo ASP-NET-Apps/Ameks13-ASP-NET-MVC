@@ -4,8 +4,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Default.Auth.Contracts;
-//using MyWoodenHouse.Default.Auth.Data;
-using MyWoodenHouse.Default.Auth.Models;
 using MyWoodenHouse.Default.Auth.Services;
 using MyWoodenHouse.Ef.Models.Models;
 using System;
