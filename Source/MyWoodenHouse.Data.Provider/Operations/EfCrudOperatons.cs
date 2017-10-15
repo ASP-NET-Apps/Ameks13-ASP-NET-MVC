@@ -52,8 +52,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 return this.dbSet;
             }
         }
-
-
+        
         public IQueryable<T> All
         {
             get
@@ -212,12 +211,15 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            DbEntityEntry entry = this.AttachIfDetached(entity);
+            //DbEntityEntry entry = this.AttachIfDetached(entity);
+            this.AttachEntityIfDetached(entity);
 
-            bool isStateDeleted = entry.State == EntityState.Deleted;
+            //bool isStateDeleted = entry.State == EntityState.Deleted;
+            bool isStateDeleted = this.Context.GetEntityState(entity) == EntityState.Deleted;
             if (!isStateDeleted)
             {
-                entry.State = EntityState.Deleted;
+                //entry.State = EntityState.Deleted;
+                this.Context.SetEntityState(entity, EntityState.Deleted);
             }
             else
             {
@@ -249,12 +251,12 @@ namespace MyWoodenHouse.Data.Provider.Operations
             this.Delete(entity);
         }
 
-        public int SaveChanges()
-        {
-            int saveChangesResult = this.Context.SaveChanges();
+        //public int SaveChanges()
+        //{
+        //    int saveChangesResult = this.Context.SaveChanges();
 
-            return saveChangesResult;
-        }
+        //    return saveChangesResult;
+        //}
 
         protected int GetMaxId()
         {
@@ -296,6 +298,15 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
 
             return entry;
+        }
+
+        protected void AttachEntityIfDetached(T entity)
+        {
+            var entry = this.Context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+            }
         }
 
         private T CopyStateFrom(T entity)

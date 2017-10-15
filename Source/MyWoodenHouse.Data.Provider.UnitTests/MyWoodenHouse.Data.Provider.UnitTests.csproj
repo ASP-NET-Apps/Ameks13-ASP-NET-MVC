@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Configuration\ConnectionStrings.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

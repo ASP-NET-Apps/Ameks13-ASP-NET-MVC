@@ -59,14 +59,14 @@ namespace MyWoodenHouse.Data.Provider
             return new MyWoodenHouseDbContext();
         }
 
-        public EntityState GetEntityState(object entity)
+        public virtual EntityState GetEntityState(object entity)
         {
             EntityState stateToReturn = Entry(entity).State;
 
             return stateToReturn;
         }
 
-        public void SetEntityState(object entity, EntityState state)
+        public virtual void SetEntityState(object entity, EntityState state)
         {
             Entry(entity).State = state;
         }
@@ -136,25 +136,33 @@ namespace MyWoodenHouse.Data.Provider
             //MaterialBuilding table
             modelBuilder.Entity<Building>()
                 .HasMany(buildingsT => buildingsT.Materials)
-                .WithMany()
+                .WithMany(materialsT => materialsT.Buildings)
                 .Map(m =>
                 {
                     m.MapLeftKey("BuildingId");
                     m.MapRightKey("MaterialId");
-                    m.ToTable("MaterialBuildings");
+                    //m.ToTable("MaterialBuildings");
                 });
 
-            modelBuilder.Entity<Material>()
-                .HasMany(mT => mT.Buildings)
-                .WithMany()
+            modelBuilder.Entity<Building>()
+                .HasMany(buildingsT => buildingsT.Pictures)
+                .WithMany(picturesT => picturesT.Buildings)
                 .Map(m =>
                 {
-                    m.MapLeftKey("MaterialId");
-                    m.MapRightKey("BuildingId");
+                    m.MapLeftKey("BuildingId");
+                    m.MapRightKey("PictureId");
                 });
 
+            
+
             modelBuilder.Entity<MaterialBuilding>()
-                .HasKey(i => new { i.BuildingId, i.MaterialId });
+                .HasKey(i => new { i.BuildingId, i.MaterialId })
+                .Map(m => m.ToTable("MaterialBuildings"));
+
+            modelBuilder.Entity<PictureBuilding>()
+              .HasKey(table => new { table.BuildingId, table.PictureId })
+              .Map(m => m.ToTable("PictureBuildings"));
+
 
             // TODO use this commented lines later to resolve many-to-many update delete issue
             //    modelBuilder.Entity<MaterialBuilding>()
@@ -169,19 +177,7 @@ namespace MyWoodenHouse.Data.Provider
             //        .HasForeignKey(i => i.MaterialId)
             //        .WillCascadeOnDelete(false); //the one
 
-            //PictureBuilding table          
-            modelBuilder.Entity<Building>()
-                .HasMany(buildingsT => buildingsT.Pictures)
-                .WithMany(picturesT => picturesT.Buildings)
-                .Map(m =>
-                {
-                    m.MapLeftKey("BuildingId");
-                    m.MapRightKey("PictureId");
-                    m.ToTable("PictureBuildings");
-                });
 
-            modelBuilder.Entity<PictureBuilding>()
-              .HasKey(table => new { table.BuildingId, table.PictureId });
 
             base.OnModelCreating(modelBuilder);
         }

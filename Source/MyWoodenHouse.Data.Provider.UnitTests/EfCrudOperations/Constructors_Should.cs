@@ -53,7 +53,7 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
         }
 
         [TestMethod]
-        public void InvokeDbContextSetMethodOnce_WhenArgumentDbContextIsValid()
+        public void InvokeDbContextSetMethodTwice_WhenArgumentDbContextIsValid()
         {
             // Arrange
             mockedMyWoodenHouseDbContext.Setup(mock => mock.Set<Category>()).Returns(mockedDbSet.Object);
@@ -62,7 +62,10 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
 
             // Assert
-            mockedMyWoodenHouseDbContext.Verify(mock => mock.Set<Category>(), Times.Once);
+            // Second call is used by the Identity because using the same dbContext
+            // app.CreatePerOwinContext(MyWoodenHouseDbContext.Create)
+            //mockedMyWoodenHouseDbContext.Verify(mock => mock.Set<Category>(), Times.Once);
+            mockedMyWoodenHouseDbContext.Verify(mock => mock.Set<Category>(), Times.Exactly(2));
         }
 
         [TestMethod]

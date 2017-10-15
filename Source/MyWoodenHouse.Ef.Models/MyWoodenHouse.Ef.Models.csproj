@@ -106,8 +106,6 @@
     <Compile Include="Material.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="MetaData\PictureBuildingMetaData.cs" />
-    <Compile Include="MetaData\BuildingMaterialMetaData.cs" />
     <Compile Include="MetaData\BuildingMetaData.cs" />
     <Compile Include="MetaData\CategoryMetaData.cs" />
     <Compile Include="MetaData\MaterialMetaData.cs" />
@@ -132,7 +130,7 @@
     </Compile>
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\PictureBuilding.cs" />
-    <Compile Include="Models\BuildingMaterial.cs" />
+    <Compile Include="Models\MaterialBuilding.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\PriceCategory.cs" />

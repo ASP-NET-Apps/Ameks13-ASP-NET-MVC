@@ -4,6 +4,7 @@ using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Operations;
 using MyWoodenHouse.Ef.Models;
 using MyWoodenHouse.Extensions;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -25,11 +26,24 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
         }
 
         [TestMethod]
-        public void HasProperty_Context()
+        public void ImplementInterface_IEfCrudOperatonsOfCategory()
         {
             // Arrange
             // Done in the TestInit method
 
+            // Act
+            var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
+
+            // Assert
+            Assert.IsNotNull(typeof(EfCrudOperatons<Category>).GetInterfaces().SingleOrDefault(i => i == typeof(IEfCrudOperatons<Category>)));
+        }
+
+        [TestMethod]
+        public void HasProperty_Context()
+        {
+            // Arrange
+            // Done in the TestInit method
+            
             // Act
             var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
 
@@ -37,19 +51,6 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             Assert.IsTrue(actualInstance.HasProperty("Context"));
         }
 
-        [TestMethod]
-        public void HasPropertyOfCorrectType_Categories()
-        {
-            // Arrange
-            // Done in the TestInit method
-
-            // Act
-            var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-
-            // Assert
-            Assert.IsInstanceOfType(actualInstance.Context, typeof(MyWoodenHouseDbContext));
-        }
-        
         [TestMethod]
         public void HasProperty_DbSet()
         {
@@ -64,19 +65,6 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
         }
 
         [TestMethod]
-        public void HasPropertyOfCorrectType_DbSet()
-        {
-            // Arrange
-            // Done in the TestInit method
-
-            // Act
-            var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
-
-            // Assert
-            Assert.IsInstanceOfType(actualInstance.DbSet, typeof(IDbSet<Category>));
-        }
-
-        [TestMethod]
         public void HasProperty_All()
         {
             // Arrange
@@ -87,6 +75,33 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
 
             // Assert
             Assert.IsTrue(actualInstance.HasProperty("All"));
+        }
+
+
+        [TestMethod]
+        public void HasPropertyOfCorrectType_Context()
+        {
+            // Arrange
+            // Done in the TestInit method
+
+            // Act
+            var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
+
+            // Assert
+            Assert.IsInstanceOfType(actualInstance.Context, typeof(MyWoodenHouseDbContext));
+        }
+
+        [TestMethod]
+        public void HasPropertyOfCorrectType_DbSet()
+        {
+            // Arrange
+            // Done in the TestInit method
+
+            // Act
+            var actualInstance = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
+
+            // Assert
+            Assert.IsInstanceOfType(actualInstance.DbSet, typeof(IDbSet<Category>));
         }
 
         [TestMethod]

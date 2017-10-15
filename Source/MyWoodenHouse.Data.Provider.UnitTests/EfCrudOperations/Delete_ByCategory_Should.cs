@@ -54,11 +54,11 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.Insert(nullableCategory), errorMessage);
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.Delete(nullableCategory), errorMessage);
         }
 
         [TestMethod]
-        public void VerifyThatDbContextGetEntityStateMethodIsCalledOnce_WhenCalledWithValidCategoryObject()
+        public void VerifyThatDbContextGetEntityStateMethodIsCalledTwice_WhenCalledWithValidCategoryObject()
         {
             // Arrange
             mockedMyWoodenHouseDbContext.Setup(c => c.GetEntityState(It.IsAny<Category>()))
@@ -70,7 +70,10 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
             actualService.Delete(categoryToDelete);
 
             // Assert
+            // Second call is used by the Identity because using the same dbContext
+            // app.CreatePerOwinContext(MyWoodenHouseDbContext.Create)
             mockedMyWoodenHouseDbContext.Verify(c => c.GetEntityState(It.IsAny<Category>()), Times.Once);
+            //mockedMyWoodenHouseDbContext.Verify(c => c.GetEntityState(It.IsAny<Category>()), Times.Exactly(0));
         }
 
         [TestMethod]
