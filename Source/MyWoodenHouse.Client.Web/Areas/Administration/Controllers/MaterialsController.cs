@@ -20,7 +20,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
         public MaterialsController()
         {
-            // Todo insert validation
             this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
             this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteViewModel>>();
         }
@@ -28,6 +27,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // TODO not used, because can not auto bind services in Ninject
         public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper)
         {
+            // Todo insert validation
             this.materialService = materialService;
             this.materialModelMapper = materialModelMapper;
         }

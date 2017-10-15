@@ -19,50 +19,50 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class PicturesController : Controller
     {
-        private readonly IBaseGenericService<IPicture> pictureService;
-        private readonly IGenericModelMapper<IPicture, IPictureCompleteViewModel> pictureModelMapper;
+        private readonly IBaseGenericService<Picture> pictureService;
+        private readonly IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper;
 
-        //public PicturesController()
-        //{
-        //    // Todo insert validation
-        //    this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
-        //    this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteViewModel>>();
-        //}
-
-        public PicturesController(IBaseGenericService<IPicture> pictureService, IGenericModelMapper<IPicture, IPictureCompleteViewModel> pictureModelMapper)
+        public PicturesController()
         {
+            this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
+            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteViewModel>>();
+        }
+
+        // TODO not used, because can not auto bind services in Ninject
+        public PicturesController(IBaseGenericService<Picture> pictureService, IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper)
+        {
+            // Todo insert validation
             this.pictureService = pictureService;
             this.pictureModelMapper = pictureModelMapper;
         }
 
-        // GET: Administration/AdminPictures
+        // GET: Administration/Pictures
         public ActionResult Index()
         {
-            IEnumerable<IPicture> pictures = this.pictureService.GetAll();
-            IEnumerable<IPictureCompleteViewModel> picturesComleteViewModel = pictures.Select(x => this.pictureModelMapper.Model2ViewModel(x));
+            var pictures = this.pictureService.GetAll();
+            var picturesComleteViewModel = pictures.Select(x => this.pictureModelMapper.Model2ViewModel(x));
 
             return View(picturesComleteViewModel);
         }
-
-
-        // GET: Administration/AdminPictures/Create
+        
+        // GET: Administration/Pictures/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Administration/AdminPictures/Create
+        // POST: Administration/Pictures/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteViewModel pictureComleteViewModel)
         {
-            // TODO refactor later and use the actual picture parameters
+            // TODO refactoring later and use the actual picture parameters
             pictureComleteViewModel.Width = 150;
             pictureComleteViewModel.Height = 100;
 
-            // TODO refactor later and use picture url or content
+            // TODO refactoring later and use picture url or content
             pictureComleteViewModel.FileContent = null;
             pictureComleteViewModel.GetFrom = GetPictureContentFrom.Url;
 
@@ -86,7 +86,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             return View(pictureComleteViewModel);
         }
 
-        // GET: Administration/AdminPictures/Edit/5
+        // GET: Administration/Pictures/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -105,7 +105,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             return View(pictureComleteViewModel);
         }
 
-        // POST: Administration/AdminPictures/Edit/5
+        // POST: Administration/Pictures/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id, Name, Url")] PictureCompleteViewModel pictureComleteViewModel)
@@ -120,7 +120,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             return View(pictureComleteViewModel);
         }
 
-        // GET: Administration/AdminPictures/Delete/5
+        // GET: Administration/Pictures/Delete/5
         [HttpGet]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
@@ -148,7 +148,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
 
-        // POST: Administration/AdminPictures/Delete/5
+        // POST: Administration/Pictures/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int? id)

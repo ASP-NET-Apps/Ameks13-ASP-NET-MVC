@@ -27,6 +27,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // TODO not used, because can not auto bind services in Ninject
         public CategoriesController(IBaseGenericService<Category> categoryService, IGenericModelMapper<Category, CategoryCompleteViewModel> categoryModelMapper)
         {
+            // Todo insert validation
             this.categoryService = categoryService;
             this.categoryModelMapper = categoryModelMapper;
         }

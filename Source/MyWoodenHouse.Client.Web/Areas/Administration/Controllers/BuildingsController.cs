@@ -48,6 +48,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             IBaseGenericService<Category> categoryService, IBaseGenericService<IProduct> productService, IBaseGenericService<IMaterial> materialService, IBaseGenericService<IPicture> pictureService,
             IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper, IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper)
         {
+            // Todo insert validation
             this.buildingService = buildingService;
 
             this.categoryService = categoryService;

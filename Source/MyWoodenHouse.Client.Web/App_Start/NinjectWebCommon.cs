@@ -99,6 +99,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
                  .BindDefaultInterface();
             });
 
+            // TODO, automatically binding is not working, manually binded below
             kernel.Bind(x =>
             {
                 x.FromAssemblyContaining(typeof(IDataService))
@@ -119,21 +120,16 @@ namespace MyWoodenHouse.Client.Web.App_Start
             kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
 
             // Data services   
-            // Commented, because binded automatically using the IDataService interface
-            //kernel.Bind<ICategoryService>().To<CategoryService>();            
-            //kernel.Bind<IBaseGenericService<Material>>().To<MaterialService>();
-
             kernel.Bind(typeof(IBaseGenericService<Category>)).To<CategoryService>();
             kernel.Bind(typeof(IBaseGenericService<Material>)).To<MaterialService>();
-
+            kernel.Bind(typeof(IBaseGenericService<Picture>)).To<PictureService>();
             //kernel.Bind<IBaseGenericService<Product>>().To<ProductService>();
-            //kernel.Bind<IBaseGenericService<Picture>>().To<PictureService>();
             //kernel.Bind<IBaseGenericService<Building>>().To<BuildingService>();
 
             // My view model mappers
             kernel.Bind<IGenericModelMapper<Category, CategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
             kernel.Bind<IGenericModelMapper<Material, MaterialCompleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<Picture, PictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
+            kernel.Bind<IGenericModelMapper<Picture, PictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
             //kernel.Bind<IGenericModelMapper<Price, PriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();
             //kernel.Bind<IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>>().To<PriceCategoryMapper>().InSingletonScope();
             //kernel.Bind<IGenericModelMapper<Product, ProductCompleteViewModel>>().To<ProductModelMapper>().InSingletonScope();
