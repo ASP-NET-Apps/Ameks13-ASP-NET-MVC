@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
 using MyWoodenHouse.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-s
+
 namespace MyWoodenHouse.Client.Web.Infrastructure
 {
     public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
+            CreateMap<Building, BuildingCompleteVm>().ReverseMap();
             CreateMap<Category, CategoryCompleteVm>().ReverseMap();
             CreateMap<Material, MaterialCompleteVm>().ReverseMap();
+            CreateMap<Picture, PictureCompleteVm>().ReverseMap();
+            CreateMap<Price, PriceCompleteVm>().ReverseMap();
+            CreateMap<Product, ProductCompleteVm>().ReverseMap();
         }
     }
 }

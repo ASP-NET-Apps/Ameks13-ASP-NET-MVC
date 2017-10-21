@@ -1,7 +1,7 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Models;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {

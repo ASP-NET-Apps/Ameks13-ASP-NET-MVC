@@ -125,6 +125,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
 
             entity.Id = this.GetMaxId() + 1;
+            entity.CreatedOn = DateTime.Now;
 
             bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
             if (!isStateDetached)
@@ -146,6 +147,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
+            entity.ModifiedOn = DateTime.Now;
+
             bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
             if (isStateDetached)
             {
@@ -166,6 +169,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
 
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.Now;
+            entity.ModifiedOn = entity.DeletedOn;
 
             bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
             if (isStateDetached)
@@ -176,7 +180,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             this.Context.SetEntityState(entity, EntityState.Modified);
         }
 
-        public void Delete(int? id)
+        public void Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -197,6 +201,8 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(errorMessage);
             }
 
+            entity.ModifiedBy = username;
+
             this.Delete(entity);
         }
 
@@ -207,7 +213,6 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            //bool isStateDeleted = this.Context.GetEntityState(entity) == EntityState.Deleted;
             bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
             if (!isStateDetached)
             {

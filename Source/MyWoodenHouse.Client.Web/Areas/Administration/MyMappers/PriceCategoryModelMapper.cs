@@ -1,6 +1,6 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PriceCategories;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers

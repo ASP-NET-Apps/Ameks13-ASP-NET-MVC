@@ -269,7 +269,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // POST: Administration/AdminBuildings/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -282,7 +282,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 throw new ArgumentException(errorMessage);
             }
 
-            this.buildingService.Delete(id);
+            this.buildingService.Delete(id, username);
 
             return RedirectToAction("Index");
         }

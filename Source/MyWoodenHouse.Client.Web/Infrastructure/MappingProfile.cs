@@ -1,6 +1,6 @@
 ﻿//using AutoMapper;
 //using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-//using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+//using MyWoodenHouse.Client.Web.Areas.Administration.Materials;
 //using MyWoodenHouse.Models;
 //using System;
 //using System.Collections.Generic;

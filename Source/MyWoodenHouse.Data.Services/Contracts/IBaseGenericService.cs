@@ -12,7 +12,7 @@ namespace MyWoodenHouse.Data.Services.Contracts
 
         T Update(T entity);
 
-        void Delete(int? id);
+        void Delete(int? id, string username);
 
         void Delete(T entity);
     }

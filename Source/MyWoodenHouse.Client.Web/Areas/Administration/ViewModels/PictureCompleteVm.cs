@@ -1,11 +1,12 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Abstract;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels
 {
-    public class PictureCompleteVm : IPictureCompleteVm
+    public class PictureCompleteVm : DataModelVm, IPictureCompleteVm
     {
         public PictureCompleteVm()
         {

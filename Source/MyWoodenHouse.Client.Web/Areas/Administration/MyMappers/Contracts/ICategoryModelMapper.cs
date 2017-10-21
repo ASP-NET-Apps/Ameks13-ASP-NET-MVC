@@ -1,4 +1,4 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Models;
 using System;
 using System.Collections.Generic;

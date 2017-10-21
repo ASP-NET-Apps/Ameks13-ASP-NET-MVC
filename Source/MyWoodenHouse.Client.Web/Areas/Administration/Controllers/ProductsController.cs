@@ -1,6 +1,8 @@
-﻿using MyWoodenHouse.Client.Web.App_Start;
+﻿using AutoMapper;
+using Bytes2you.Validation;
+using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
@@ -15,22 +17,23 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IBaseGenericService<Product> productService;
-        private readonly IGenericModelMapper<Product, ProductCompleteVm> productModelMapper;
 
-        public ProductsController()
-        {
-            // Todo insert validation
-            this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
-            this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteVm>>();
-        }
+        //public ProductsController()
+        //{
+        //    this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
+        //    this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteVm>>();
+        //}
 
         // TODO not used, because can not auto bind services in Ninject
-        public ProductsController(IBaseGenericService<Product> productService, IGenericModelMapper<Product, ProductCompleteVm> productModelMapper)
+        public ProductsController(IMapper mapper, IBaseGenericService<Product> productService)
         {
-            // Todo insert validation
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+            Guard.WhenArgument(productService, nameof(productService)).IsNull().Throw();
+
+            this.mapper = mapper;
             this.productService = productService;
-            this.productModelMapper = productModelMapper;
         }
 
         // GET: Administration/Products
@@ -38,9 +41,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             var products = this.productService.GetAll();
-            var productsComleteViewModel = products.Select(x => this.productModelMapper.Model2ViewModel(x));
+            var productsComleteVm = products.Select(x => this.mapper.Map<Product, ProductCompleteVm>(x));
 
-            return View(productsComleteViewModel);
+            return View(productsComleteVm);
         }
 
 
@@ -56,7 +59,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Description")] ProductCompleteVm productComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Description")] ProductCompleteVm productComleteVm)
         {
             // TODO optimize if possible
             if (ModelState["Id"] != null)
@@ -69,13 +72,15 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                var product = this.productModelMapper.ViewModel2Model(productComleteViewModel);
+                var product = this.mapper.Map<ProductCompleteVm, Product>(productComleteVm);
+                product.CreatedBy = User.Identity.Name;
+
                 this.productService.Insert(product);
 
                 return RedirectToAction("Index");
             }
 
-            return View(productComleteViewModel);
+            return View(productComleteVm);
         }
 
         // GET: Administration/Products/Edit/5
@@ -93,24 +98,26 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            var productComleteViewModel = this.productModelMapper.Model2ViewModel(product);
+            var productComleteVm = this.mapper.Map<Product, ProductCompleteVm>(product);
 
-            return View(productComleteViewModel);
+            return View(productComleteVm);
         }
 
         // POST: Administration/Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Description")] ProductCompleteVm productComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Description")] ProductCompleteVm productComleteVm)
         {
             if (ModelState.IsValid)
             {
-                var product = this.productModelMapper.ViewModel2Model(productComleteViewModel);
+                var product = this.mapper.Map<ProductCompleteVm, Product>(productComleteVm);
+                product.ModifiedBy = User.Identity.Name;
+
                 this.productService.Update(product);
 
                 return RedirectToAction("Index");
             }
-            return View(productComleteViewModel);
+            return View(productComleteVm);
         }
 
         // GET: Administration/Products/Delete/5
@@ -136,15 +143,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Product", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            var productComleteViewModel = this.productModelMapper.Model2ViewModel(product);
 
-            return PartialView("_DeleteConfirm", productComleteViewModel);
+            var productCompleteVm = this.mapper.Map<Product, ProductCompleteVm>(product);
+
+            return PartialView("_DeleteConfirm", productCompleteVm);
         }
         
         // POST: Administration/Products/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -157,7 +165,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 throw new ArgumentException(errorMessage);
             }
 
-            this.productService.Delete(id);
+            this.productService.Delete(id, username);
 
             return RedirectToAction("Index");
         }

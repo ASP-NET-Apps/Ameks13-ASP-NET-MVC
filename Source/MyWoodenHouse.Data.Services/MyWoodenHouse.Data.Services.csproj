@@ -72,9 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseGenericService.cs" />
     <Compile Include="CategoryService.cs" />
-    <Compile Include="Contracts\IBaseGenericService.cs" />
+    <Compile Include="Contracts\IPictureService.cs" />
+    <Compile Include="Contracts\IMaterialService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
+    <Compile Include="Contracts\IBaseGenericService.cs" />
     <Compile Include="Contracts\IDataService.cs" />
     <Compile Include="Enums\GetPictureContentFrom.cs" />
     <Compile Include="Enums\SortOrder.cs" />

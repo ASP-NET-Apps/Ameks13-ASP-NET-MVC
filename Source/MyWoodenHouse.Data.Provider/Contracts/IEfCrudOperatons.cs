@@ -33,7 +33,7 @@ namespace MyWoodenHouse.Data.Provider.Contracts
 
         void Delete(T entity);
 
-        void Delete(int? id);
+        void Delete(int? id, string username);
 
         void DeletePermanent(T entity);
     }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Models
 {
     [MetadataType(typeof(CategoryMetaData))]
-    public partial class Category : DataModel, ICategory 
+    public partial class Category : IHasIntId, IAuditable, IDeletable, ICategory 
     {
     }
 }

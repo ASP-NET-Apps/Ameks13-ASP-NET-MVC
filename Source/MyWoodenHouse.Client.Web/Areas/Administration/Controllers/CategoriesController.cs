@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
@@ -71,8 +71,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                //var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteVm);
                 var category = this.mapper.Map<CategoryCompleteVm, Category>(categoryCompleteVm);
+                category.CreatedBy = User.Identity.Name;
+
                 this.categoryService.Insert((Category)category);
 
                 return RedirectToAction("Index");
@@ -97,8 +98,11 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            //var categoryCompleteVm = this.categoryModelMapper.Model2ViewModel(category);
             var categoryCompleteVm = this.mapper.Map<Category, CategoryCompleteVm>(category);
+
+            // TODO send to cash
+            ViewData["Category"] = categoryCompleteVm;
+            TempData["Category"] = categoryCompleteVm;
 
             return View(categoryCompleteVm);
         }
@@ -112,9 +116,14 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteVm);
+                // TODO get from cash
+                var categoryViewData = ViewData["Category"];
+                var categoryTempData = TempData["Category"];
+
                 var category = this.mapper.Map<CategoryCompleteVm, Category>(categoryCompleteVm);
-                this.categoryService.Update((Category)category);
+                category.ModifiedBy = User.Identity.Name;
+
+                this.categoryService.Update(category);
 
                 return RedirectToAction("Index");
             }
@@ -145,7 +154,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            //var categoryCompleteVm = categoryModelMapper.Model2ViewModel(category);
+
             var categoryCompleteVm = this.mapper.Map<Category, CategoryCompleteVm>(category);
 
             return PartialView("_DeleteConfirm", categoryCompleteVm);
@@ -167,7 +176,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 throw new ArgumentException(errorMessage);
             }
 
-            this.categoryService.Delete(id);
+            this.categoryService.Delete(id, User.Identity.Name);
 
             return RedirectToAction("Index");
         }

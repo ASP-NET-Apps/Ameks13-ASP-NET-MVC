@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class CategoryService : IBaseGenericService<Category>//, IDataService
+    public class CategoryService : IBaseGenericService<Category>, ICategoryService//, IDataService
     {
         private readonly IEfCrudOperatons<Category> categoryBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
@@ -131,7 +131,7 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges.SaveChanges();
         }
 
-        public void Delete(int? id)
+        public void Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -144,7 +144,7 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentException(errorMessage);
             }
 
-            this.categoryBaseOperatonsProvider.Delete(id);
+            this.categoryBaseOperatonsProvider.Delete(id, username);
             this.dbContextSaveChanges.SaveChanges();
         }
     }

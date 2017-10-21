@@ -1,13 +1,5 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
-using MyWoodenHouse.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts
 {

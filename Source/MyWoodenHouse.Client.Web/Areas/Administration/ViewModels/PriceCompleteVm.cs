@@ -1,10 +1,11 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Abstract;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Prices
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels
 {
-    public class PriceCompleteVm : IPriceCompleteVm
+    public class PriceCompleteVm : DataModelVm, IPriceCompleteVm
     {
         public PriceCompleteVm()
         {

@@ -1,6 +1,8 @@
-﻿using MyWoodenHouse.Client.Web.App_Start;
+﻿using AutoMapper;
+using Bytes2you.Validation;
+using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
@@ -16,21 +18,22 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class PicturesController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IBaseGenericService<Picture> pictureService;
-        private readonly IGenericModelMapper<Picture, PictureCompleteVm> pictureModelMapper;
 
-        public PicturesController()
-        {
-            this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
-            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteVm>>();
-        }
+        //public PicturesController()
+        //{
+        //    this.mapper = NinjectWebCommon.Kernel.Get<IMapper>();
+        //    this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
+        //}
 
-        // TODO not used, because can not auto bind services in Ninject
-        public PicturesController(IBaseGenericService<Picture> pictureService, IGenericModelMapper<Picture, PictureCompleteVm> pictureModelMapper)
+        public PicturesController(IMapper mapper, IBaseGenericService<Picture> pictureService)
         {
-            // Todo insert validation
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+            Guard.WhenArgument(pictureService, nameof(pictureService)).IsNull().Throw();
+
+            this.mapper = mapper;
             this.pictureService = pictureService;
-            this.pictureModelMapper = pictureModelMapper;
         }
 
         // GET: Administration/Pictures
@@ -38,9 +41,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             var pictures = this.pictureService.GetAll();
-            var picturesComleteViewModel = pictures.Select(x => this.pictureModelMapper.Model2ViewModel(x));
+            var picturesCompleteVm = pictures.Select(x => this.mapper.Map<Picture, PictureCompleteVm>(x));
 
-            return View(picturesComleteViewModel);
+            return View(picturesCompleteVm);
         }
 
         // GET: Administration/Pictures/Create
@@ -55,15 +58,15 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
         {
             // TODO refactoring later and use the actual picture parameters
-            pictureComleteViewModel.Width = 150;
-            pictureComleteViewModel.Height = 100;
+            pictureComleteVm.Width = 150;
+            pictureComleteVm.Height = 100;
 
             // TODO refactoring later and use picture url or content
-            pictureComleteViewModel.FileContent = null;
-            pictureComleteViewModel.GetFrom = GetPictureContentFrom.Url;
+            pictureComleteVm.FileContent = null;
+            pictureComleteVm.GetFrom = GetPictureContentFrom.Url;
 
             // TODO optimize if possible
             if (ModelState["Id"] != null)
@@ -76,13 +79,15 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                var picture = this.pictureModelMapper.ViewModel2Model(pictureComleteViewModel);
+                var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureComleteVm);
+                picture.CreatedBy = User.Identity.Name;
+
                 this.pictureService.Insert(picture);
 
                 return RedirectToAction("Index");
             }
 
-            return View(pictureComleteViewModel);
+            return View(pictureComleteVm);
         }
 
         // GET: Administration/Pictures/Edit/5
@@ -100,24 +105,26 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            var pictureComleteViewModel = this.pictureModelMapper.Model2ViewModel(picture);
+            var pictureCompleteVm = this.mapper.Map<Picture, PictureCompleteVm>(picture);
 
-            return View(pictureComleteViewModel);
+            return View(pictureCompleteVm);
         }
 
         // POST: Administration/Pictures/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
         {
             if (ModelState.IsValid)
             {
-                var picture = this.pictureModelMapper.ViewModel2Model(pictureComleteViewModel);
+                var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureComleteVm);
+                picture.ModifiedBy = User.Identity.Name;
+
                 this.pictureService.Update(picture);
 
                 return RedirectToAction("Index");
             }
-            return View(pictureComleteViewModel);
+            return View(pictureComleteVm);
         }
 
         // GET: Administration/Pictures/Delete/5
@@ -143,16 +150,17 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Picture", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            var pictureComleteViewModel = this.pictureModelMapper.Model2ViewModel(picture);
 
-            return PartialView("_DeleteConfirm", pictureComleteViewModel);
+            var pictureCompleteVm = this.mapper.Map<Picture, PictureCompleteVm>(picture);
+
+            return PartialView("_DeleteConfirm", pictureCompleteVm);
         }
 
 
         // POST: Administration/Pictures/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -165,7 +173,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 throw new ArgumentException(errorMessage);
             }
 
-            this.pictureService.Delete(id);
+            this.pictureService.Delete(id, username);
 
             return RedirectToAction("Index");
         }

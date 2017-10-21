@@ -1,22 +1,12 @@
-﻿//using MyWoodenHouse.Models;
-//using System.Collections.Generic;
+﻿using MyWoodenHouse.Models;
+using System.Collections.Generic;
 
-//namespace MyWoodenHouse.Data.Services.Contracts
-//{
-//    public interface ICategoryService
-//    {
-//        IEnumerable<Category> GetAllCategories();
+namespace MyWoodenHouse.Data.Services.Contracts
+{
+    public interface ICategoryService
+    {
+        IEnumerable<Category> GetAllSortedById();
 
-//        IEnumerable<Category> GetAllCategoriesSortedById();
-
-//        IEnumerable<Category> GetAllCategoriesSortedByName();
-
-//        Category GetCategoryById(int? id);
-
-//        int InsertCategory(Category categoryModel);
-
-//        Category UpdateCategory(Category categoryModel);
-
-//        void DeleteCategoryById(int? id);
-//    }
-//}
+        IEnumerable<Category> GetAllSortedByName();
+    }
+}

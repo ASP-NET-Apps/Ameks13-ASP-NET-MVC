@@ -33,8 +33,6 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentNullException(errorMessage);
             }
 
-            //this.buildingBaseOperatonsProvider = NinjectWebCommon.Kernel.Get<IBaseGenericService<Building>>();
-
             this.buildingBaseOperatonsProvider = buildingBaseOperatonsProvider;
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
@@ -117,7 +115,7 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges.SaveChanges();
         }
 
-        public void Delete(int? id)
+        public void Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -130,7 +128,7 @@ namespace MyWoodenHouse.Data.Services
                 throw new ArgumentException(errorMessage);
             }
 
-            this.buildingBaseOperatonsProvider.Delete(id);
+            this.buildingBaseOperatonsProvider.Delete(id, username);
             this.dbContextSaveChanges.SaveChanges();
         }
     }

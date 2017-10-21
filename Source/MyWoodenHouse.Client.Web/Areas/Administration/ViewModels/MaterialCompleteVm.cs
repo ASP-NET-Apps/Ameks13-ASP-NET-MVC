@@ -1,10 +1,11 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Abstract;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels
 {
-    public class MaterialCompleteVm : IMaterialCompleteVm
+    public class MaterialCompleteVm : DataModelVm, IMaterialCompleteVm
     {
         public MaterialCompleteVm()
         {

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e2f81968e0e946f9afce74a1e71a54e6" Name="Diagram1" ZoomLevel="72">
+      <Diagram DiagramId="e2f81968e0e946f9afce74a1e71a54e6" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="9.375" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="10.5" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8" />
@@ -12,11 +12,11 @@
         <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MyWoodenHouseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="MyWoodenHouseModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.Building" Width="1.5" PointX="14.125" PointY="3.75" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Building" Width="1.5" PointX="14.125" PointY="3.875" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Category" Width="1.5" PointX="11.875" PointY="0.75" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.Material" Width="1.5" PointX="16.375" PointY="2.625" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.Picture" Width="1.5" PointX="16.375" PointY="5.875" />
-        <EntityTypeShape EntityType="MyWoodenHouseModel.PriceCategory" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Material" Width="1.5" PointX="16.375" PointY="6.875" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Picture" Width="1.5" PointX="16.375" PointY="2.375" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.PriceCategory" Width="1.5" PointX="7.375" PointY="5" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Price" Width="1.5" PointX="9.625" PointY="4.375" />
         <EntityTypeShape EntityType="MyWoodenHouseModel.Product" Width="1.5" PointX="11.875" PointY="4.5" />
         <AssociationConnector Association="MyWoodenHouseModel.FK_Building_Categories" />
@@ -25,7 +25,7 @@
         <AssociationConnector Association="MyWoodenHouseModel.BuildingMaterials" />
         <AssociationConnector Association="MyWoodenHouseModel.BuildingPictures" />
         <AssociationConnector Association="MyWoodenHouseModel.ProductsPrices" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

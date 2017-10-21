@@ -1,11 +1,12 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Abstract;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Models.Contracts;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories
+namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels
 {
-    public class CategoryCompleteVm : ICategoryCompleteVm
+    public class CategoryCompleteVm : DataModelVm, ICategoryCompleteVm
     {
         public CategoryCompleteVm()
         {

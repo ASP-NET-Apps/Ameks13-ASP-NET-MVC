@@ -1,11 +1,10 @@
-﻿using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
+﻿using AutoMapper;
+using Bytes2you.Validation;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Models;
-using Ninject;
 using System;
 using System.Linq;
 using System.Net;
@@ -15,21 +14,23 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class MaterialsController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IBaseGenericService<Material> materialService;
-        private readonly IGenericModelMapper<Material, MaterialCompleteVm> materialModelMapper;
 
-        public MaterialsController()
-        {
-            this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
-            this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteVm>>();
-        }
+        //public MaterialsController()
+        //{
+        //    this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
+        //    this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteVm>>();
+        //}
 
         // TODO not used, because can not auto bind services in Ninject
-        public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<Material, MaterialCompleteVm> materialModelMapper)
+        public MaterialsController(IMapper mapper, IBaseGenericService<Material> materialService)
         {
-            // Todo insert validation
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+            Guard.WhenArgument(materialService, nameof(materialService)).IsNull().Throw();
+
+            this.mapper = mapper;
             this.materialService = materialService;
-            this.materialModelMapper = materialModelMapper;
         }
 
         // GET: Administration/Materials
@@ -38,10 +39,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             var materials = this.materialService.GetAll();
-            var materialsComleteViewModel = materials.Select(x => this.materialModelMapper.Model2ViewModel(x));
+            var materialCompleteVm = materials.Select(x => this.mapper.Map<Material, MaterialCompleteVm>(x));
 
-            return View(materialsComleteViewModel);
-            //return View();
+            return View(materialCompleteVm);
         }
 
 
@@ -57,7 +57,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Description")] MaterialCompleteVm materialComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Description")] MaterialCompleteVm materialComleteVm)
         {
             // TODO optimize if possible
             if (ModelState["Id"] != null)
@@ -70,13 +70,15 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                var material = this.materialModelMapper.ViewModel2Model(materialComleteViewModel);
+                var material = this.mapper.Map<MaterialCompleteVm, Material>(materialComleteVm);
+                material.CreatedBy = User.Identity.Name;
+
                 this.materialService.Insert(material);
 
                 return RedirectToAction("Index");
             }
 
-            return View(materialComleteViewModel);
+            return View(materialComleteVm);
             //return View();
         }
 
@@ -95,26 +97,27 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            var materialComleteViewModel = this.materialModelMapper.Model2ViewModel(material);
+            var materialComleteVm = this.mapper.Map<Material, MaterialCompleteVm>(material);
 
-            return View(materialComleteViewModel);
-            //return View();
+            return View(materialComleteVm);
         }
 
         // POST: Administration/Materials/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Description")] MaterialCompleteVm materialComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Description")] MaterialCompleteVm materialComleteVm)
         {
             if (ModelState.IsValid)
             {
-                var material = this.materialModelMapper.ViewModel2Model(materialComleteViewModel);
+                var material = this.mapper.Map<MaterialCompleteVm, Material>(materialComleteVm);
+                material.ModifiedBy = User.Identity.Name;
+
                 this.materialService.Update(material);
 
                 return RedirectToAction("Index");
             }
-            return View(materialComleteViewModel);
-            //return View();
+
+            return View(materialComleteVm);
         }
 
         // GET: Administration/Materials/Delete/5
@@ -140,17 +143,17 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Material", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            var materialComleteViewModel = this.materialModelMapper.Model2ViewModel(material);
 
-            return PartialView("_DeleteConfirm", materialComleteViewModel);
-            //return PartialView();
+            var materialComleteVm = this.mapper.Map<Material, MaterialCompleteVm>(material);
+
+            return PartialView("_DeleteConfirm", materialComleteVm);
         }
 
 
         // POST: Administration/Materials/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string username)
         {
             if (id == null)
             {
@@ -163,7 +166,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 throw new ArgumentException(errorMessage);
             }
 
-            this.materialService.Delete(id);
+            this.materialService.Delete(id, User.Identity.Name);
 
             return RedirectToAction("Index");
         }

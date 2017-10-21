@@ -86,13 +86,14 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
         {
             // Arrange   
             int? id = null;
+            string username = "user";
             string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithNotNullableParameter);
 
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => actualService.Delete(id), errorMessage);
+            Assert.ThrowsException<ArgumentNullException>(() => actualService.Delete(id, username), errorMessage);
         }
 
         [TestMethod]
@@ -100,13 +101,14 @@ namespace MyWoodenHouse.Data.Provider.UnitTest.EfCrudOperationsTests
         {
             // Arrange
             int id = -1;
+            string username = "user";
             string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter, id);
 
             // Act
             var actualService = new EfCrudOperatons<Category>(mockedMyWoodenHouseDbContext.Object);
             
             // Assert
-            Assert.ThrowsException<ArgumentException>(() => actualService.Delete(id), errorMessage);
+            Assert.ThrowsException<ArgumentException>(() => actualService.Delete(id, username), errorMessage);
         }
 
         [TestCleanup]

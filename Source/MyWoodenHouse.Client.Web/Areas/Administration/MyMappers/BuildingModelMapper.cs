@@ -2,10 +2,7 @@
 using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Models;
 using Ninject;
 using System.Collections.Generic;

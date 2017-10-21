@@ -40,13 +40,14 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         {
             // Arrange
             int id = 1;
+            string username = "user";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            actualService.Delete(id);
+            actualService.Delete(id, username);
 
             // Assert
-            mockedCategoryBaseOperatonsProvider.Verify(m => m.Delete(It.IsAny<int?>()), Times.Once);
+            mockedCategoryBaseOperatonsProvider.Verify(m => m.Delete(It.IsAny<int?>(), It.IsAny<string>()), Times.Once);
         }
 
         [TestMethod]
@@ -54,10 +55,11 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         {
             // Arrange
             int id = 1;
+            string username = "user";
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
-            actualService.Delete(id);
+            actualService.Delete(id, username);
 
             // Assert
             mockedDbContextSaveChanges.Verify(m => m.SaveChanges(), Times.Once);
@@ -82,13 +84,14 @@ namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
         {
             // Arrange
             int id = -1;
+            string username = "user";
             string errorMessage = string.Format(Consts.SelectData.ErrorMessage.SelectByIdIsPossibleOnlyWithPositiveParameter, id);
 
             // Act
             CategoryService actualService = new CategoryService(mockedCategoryBaseOperatonsProvider.Object, mockedDbContextSaveChanges.Object);
 
             // Assert
-            Assert.ThrowsException<ArgumentException>(() => actualService.Delete(id), errorMessage);
+            Assert.ThrowsException<ArgumentException>(() => actualService.Delete(id, username), errorMessage);
         }
 
         [TestCleanup]
