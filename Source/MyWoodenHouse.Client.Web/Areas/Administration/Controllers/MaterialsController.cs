@@ -4,7 +4,7 @@ using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System;
 using System.Linq;
@@ -16,16 +16,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
     public class MaterialsController : Controller
     {
         private readonly IBaseGenericService<Material> materialService;
-        private readonly IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper;
+        private readonly IGenericModelMapper<Material, MaterialCompleteVm> materialModelMapper;
 
         public MaterialsController()
         {
             this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
-            this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteViewModel>>();
+            this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteVm>>();
         }
 
         // TODO not used, because can not auto bind services in Ninject
-        public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper)
+        public MaterialsController(IBaseGenericService<Material> materialService, IGenericModelMapper<Material, MaterialCompleteVm> materialModelMapper)
         {
             // Todo insert validation
             this.materialService = materialService;
@@ -57,7 +57,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Description")] MaterialCompleteViewModel materialComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Description")] MaterialCompleteVm materialComleteViewModel)
         {
             // TODO optimize if possible
             if (ModelState["Id"] != null)
@@ -104,7 +104,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // POST: Administration/Materials/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Description")] MaterialCompleteViewModel materialComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Description")] MaterialCompleteVm materialComleteViewModel)
         {
             if (ModelState.IsValid)
             {

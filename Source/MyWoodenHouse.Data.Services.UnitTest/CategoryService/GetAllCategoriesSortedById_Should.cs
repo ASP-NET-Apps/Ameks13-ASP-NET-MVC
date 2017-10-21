@@ -1,12 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Ef.Models;
-using System;
+using MyWoodenHouse.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 {

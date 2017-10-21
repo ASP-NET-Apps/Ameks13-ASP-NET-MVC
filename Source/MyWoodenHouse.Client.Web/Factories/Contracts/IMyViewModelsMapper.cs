@@ -1,5 +1,5 @@
 ﻿using MyWoodenHouse.Client.Web.ViewModels.Categories;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.MyMappers.Contracts
 {

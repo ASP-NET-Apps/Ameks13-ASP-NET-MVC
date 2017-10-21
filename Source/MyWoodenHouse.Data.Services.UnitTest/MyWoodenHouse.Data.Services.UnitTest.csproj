@@ -115,17 +115,13 @@
       <Project>{639cc1e7-b4b4-4b7f-9a54-4bfec88f7b36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
-      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Ef.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Extensions\MyWoodenHouse.Extensions.csproj">
       <Project>{63ae3e17-17f7-41e7-9e66-906fe9f73e2e}</Project>
       <Name>MyWoodenHouse.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
-      <Project>{F1F6C39A-FE72-494E-9995-EC3DFAA605E2}</Project>
-      <Name>MyWoodenHouse.Contracts</Name>
+    <ProjectReference Include="..\MyWoodenHouse.Models\MyWoodenHouse.Models.csproj">
+      <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
+      <Name>MyWoodenHouse.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

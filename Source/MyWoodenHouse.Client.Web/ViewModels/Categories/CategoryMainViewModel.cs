@@ -2,7 +2,7 @@
 using MyWoodenHouse.Constants.Models;
 using System.ComponentModel.DataAnnotations;
 using System;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.ViewModels.Categories
 {

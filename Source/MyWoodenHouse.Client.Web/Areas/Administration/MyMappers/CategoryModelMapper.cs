@@ -1,28 +1,29 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
-    //public class CategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteViewModel>
+    //public class CategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteVm>
     public class CategoryModelMapper : ICategoryModelMapper
     {
         public CategoryModelMapper()
         {
         }
 
-        public CategoryCompleteViewModel Model2ViewModel(Category model)
+        public CategoryCompleteVm Model2ViewModel(Category model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
             
-            // TODO use no parameter constructor and map properties here
-            var modelToReturn = new CategoryCompleteViewModel(model);
+            var modelToReturn = new CategoryCompleteVm();
+            modelToReturn.Id = model.Id;
+            modelToReturn.Name = model.Name;
 
             return modelToReturn;
         }
        
-        public Category ViewModel2Model(CategoryCompleteViewModel viewModel)
+        public Category ViewModel2Model(CategoryCompleteVm viewModel)
         {
             Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 

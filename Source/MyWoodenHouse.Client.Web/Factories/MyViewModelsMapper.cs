@@ -1,6 +1,6 @@
 ﻿using MyWoodenHouse.Client.Web.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.ViewModels.Categories;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System;
 
 namespace MyWoodenHouse.Client.Web.MyMappers

@@ -1,15 +1,12 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -19,17 +16,17 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
     public class ProductsController : Controller
     {
         private readonly IBaseGenericService<Product> productService;
-        private readonly IGenericModelMapper<Product, ProductCompleteViewModel> productModelMapper;
+        private readonly IGenericModelMapper<Product, ProductCompleteVm> productModelMapper;
 
         public ProductsController()
         {
             // Todo insert validation
             this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
-            this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteViewModel>>();
+            this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteVm>>();
         }
 
         // TODO not used, because can not auto bind services in Ninject
-        public ProductsController(IBaseGenericService<Product> productService, IGenericModelMapper<Product, ProductCompleteViewModel> productModelMapper)
+        public ProductsController(IBaseGenericService<Product> productService, IGenericModelMapper<Product, ProductCompleteVm> productModelMapper)
         {
             // Todo insert validation
             this.productService = productService;
@@ -59,7 +56,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Description")] ProductCompleteViewModel productComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Description")] ProductCompleteVm productComleteViewModel)
         {
             // TODO optimize if possible
             if (ModelState["Id"] != null)
@@ -104,7 +101,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // POST: Administration/Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Description")] ProductCompleteViewModel productComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Description")] ProductCompleteVm productComleteViewModel)
         {
             if (ModelState.IsValid)
             {

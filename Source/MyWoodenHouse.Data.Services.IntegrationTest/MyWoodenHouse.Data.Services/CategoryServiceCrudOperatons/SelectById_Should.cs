@@ -3,7 +3,7 @@ using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,7 +21,7 @@ namespace MyWoodenHouse.IntegrationTest.MyWoodenHouse.Data.Services.CategoryServ
         public static void ClassInit(TestContext context)
         {
             //this.MyWoodenHouseDbContext = NinjectWebCommon.Kernel.Get<IMyWoodenHouseDbContext>();
-            IKernel kernel = NinjectWebCommon.CreateKernel();
+            //IKernel kernel = NinjectWebCommon.Kernel;
             dbContext = NinjectWebCommon.Kernel.Get<MyWoodenHouseDbContext>();
 
             testData = new List<Category> {

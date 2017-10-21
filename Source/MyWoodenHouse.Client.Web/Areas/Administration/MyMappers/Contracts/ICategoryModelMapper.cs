@@ -1,5 +1,5 @@
 ﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts
 {
-    //public interface ICategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteViewModel>
+    //public interface ICategoryModelMapper : IGenericModelMapper<Category, CategoryCompleteVm>
     public interface ICategoryModelMapper
     {
-        CategoryCompleteViewModel Model2ViewModel(Category model);
+        CategoryCompleteVm Model2ViewModel(Category model);
 
-        Category ViewModel2Model(CategoryCompleteViewModel viewModel);
+        Category ViewModel2Model(CategoryCompleteVm viewModel);
     }
 }

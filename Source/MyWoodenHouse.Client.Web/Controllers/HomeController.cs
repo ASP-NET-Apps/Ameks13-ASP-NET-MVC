@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Data.Services;
 using MyWoodenHouse.Default.Auth.Managers;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

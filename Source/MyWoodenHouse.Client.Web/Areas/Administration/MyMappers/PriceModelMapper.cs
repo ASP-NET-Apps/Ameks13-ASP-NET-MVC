@@ -1,27 +1,31 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Prices;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
-    public class PriceModelMapper : IGenericModelMapper<Price, PriceCompleteViewModel>
+    public class PriceModelMapper : IGenericModelMapper<Price, PriceCompleteVm>
     {
         public PriceModelMapper()
         {
         }
 
-        public PriceCompleteViewModel Model2ViewModel(Price model)
+        public PriceCompleteVm Model2ViewModel(Price model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
-            // TODO use no parameter constructor and map properties here
-            var viewModelToReturn = new PriceCompleteViewModel(model);
+            var viewModelToReturn = new PriceCompleteVm();
+            viewModelToReturn.Id = model.Id;
+            viewModelToReturn.Value = model.Value;
+            viewModelToReturn.Currency = model.Currency;
+            viewModelToReturn.PerSquareMeter = model.PerSquareMeter;
+            viewModelToReturn.PriceCategoryId = model.PriceCategoryId;
 
             return viewModelToReturn;
         }
 
-        public Price ViewModel2Model(PriceCompleteViewModel viewModel)
+        public Price ViewModel2Model(PriceCompleteVm viewModel)
         {
             Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 

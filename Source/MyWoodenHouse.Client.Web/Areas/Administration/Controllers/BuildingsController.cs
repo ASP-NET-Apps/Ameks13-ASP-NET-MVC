@@ -5,7 +5,7 @@ using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         private readonly IBaseGenericService<Product> productService;
         private readonly IBaseGenericService<Material> materialService;
         private readonly IBaseGenericService<Picture> pictureService;
-        private readonly IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper;
+        private readonly IGenericModelMapper<Building, BuildingCompleteVm> buildingModelMapper;
 
         public BuildingsController()
         {
@@ -39,7 +39,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
 
             // TODO binding not working
-            this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteViewModel>>();
+            this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteVm>>();
             //this.buildingModelMapper = new BuildingModelMapper();
         }
 
@@ -49,7 +49,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             IBaseGenericService<Product> productService, 
             IBaseGenericService<Material> materialService, 
             IBaseGenericService<Picture> pictureService,
-            IGenericModelMapper<Building, BuildingCompleteViewModel> buildingModelMapper)
+            IGenericModelMapper<Building, BuildingCompleteVm> buildingModelMapper)
         {
             // Todo insert validation
             this.buildingService = buildingService;
@@ -66,7 +66,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             // TODO used for testing and debug
-            //var buildingsComleteViewModel = new List<BuildingCompleteViewModel>();
+            //var buildingsComleteViewModel = new List<BuildingCompleteVm>();
             //var buildings = this.buildingService.GetAll();
             //foreach(var building in buildings)
             //{
@@ -85,38 +85,38 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Create()
         {
             // Todo extract to factory
-            var buildingCreateEditViewModel = new BuildingCreateEditViewModel(new BuildingCompleteViewModel());
+            var buildingCreateEditVm = new BuildingCreateEditVm(new BuildingCompleteVm());
 
             // TODO Use TempData transferring later
             //var categories = this.categoryService.GetAllCategoriesSortedByName();
             //SelectList categoriesSelectList = new SelectList(categories, "Id", "Name");
-            //buildingCreateEditViewModel.CategoryList = categoriesSelectList;
+            //buildingCreateEditVm.CategoryList = categoriesSelectList;
             //TempData[Categories] = categories.ToList();
 
             // TODO Use TempData transferring later
             //var products = this.productService.GetAll().OrderBy(p => p.Name);
             //SelectList productSelectList = new SelectList(products, "Id", "Name");
-            //buildingCreateEditViewModel.ProductList = productSelectList;
+            //buildingCreateEditVm.ProductList = productSelectList;
             //TempData[Products] = products.ToList();
 
             // TODO Use TempData transferring later
             //var materials = this.materialService.GetAll().OrderBy(m => m.Name);
             //SelectList materialSelectList = new SelectList(materials, "Id", "Name");
-            //buildingCreateEditViewModel.MaterialList = materialSelectList;
+            //buildingCreateEditVm.MaterialList = materialSelectList;
             //TempData[Materials] = materials.ToList();
 
             // TODO Use TempData transferring later
             //var pictures = this.pictureService.GetAll().OrderBy(m => m.Id);
             //SelectList pictureSelectList = new SelectList(pictures, "Id", "Url");
-            //buildingCreateEditViewModel.PictureList = pictureSelectList;
+            //buildingCreateEditVm.PictureList = pictureSelectList;
             //TempData[Materials] = pictures.ToList();
 
-            buildingCreateEditViewModel.CategoryList = this.CategorySelectListPreparer();
-            buildingCreateEditViewModel.ProductList = this.ProductSelectListPreparer();
-            buildingCreateEditViewModel.MaterialList = this.MaterialSelectListPreparer();
-            buildingCreateEditViewModel.PictureList = this.PictureSelectListPreparer();
+            buildingCreateEditVm.CategoryList = this.CategorySelectListPreparer();
+            buildingCreateEditVm.ProductList = this.ProductSelectListPreparer();
+            buildingCreateEditVm.MaterialList = this.MaterialSelectListPreparer();
+            buildingCreateEditVm.PictureList = this.PictureSelectListPreparer();
 
-            return View(buildingCreateEditViewModel);
+            return View(buildingCreateEditVm);
         }
 
         // POST: Administration/AdminBuildings/Create
@@ -124,24 +124,24 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "BuildingCompleteViewModel.Id, BuildingCompleteViewModel.Name, BuildingCompleteViewModel.Description, BuildingCompleteViewModel.UsableArea, BuildingCompleteViewModel.BuiltUpArea, BuildingCompleteViewModel.RoomsCount, BuildingCompleteViewModel.FloorsCount, BuildingCompleteViewModel.BathroomsCount, BuildingCompleteViewModel.CategoryId, BuildingCompleteViewModel.Category, BuildingCompleteViewModel.ProductId, BuildingCompleteViewModel.Product, BuildingCompleteViewModel.Materials, BuildingCompleteViewModel.Pictures")] BuildingCreateEditViewModel buildingCreateEditViewModel)
-        public ActionResult Create(BuildingCreateEditViewModel buildingCreateEditViewModel)
+        //public ActionResult Create([Bind(Include = "BuildingCompleteVm.Id, BuildingCompleteVm.Name, BuildingCompleteVm.Description, BuildingCompleteVm.UsableArea, BuildingCompleteVm.BuiltUpArea, BuildingCompleteVm.RoomsCount, BuildingCompleteVm.FloorsCount, BuildingCompleteVm.BathroomsCount, BuildingCompleteVm.CategoryId, BuildingCompleteVm.Category, BuildingCompleteVm.ProductId, BuildingCompleteVm.Product, BuildingCompleteVm.Materials, BuildingCompleteVm.Pictures")] BuildingCreateEditVm buildingCreateEditVm)
+        public ActionResult Create(BuildingCreateEditVm buildingCreateEditVm)
         {
-            IBuildingCompleteViewModel buildingCompleteViewModel = new BuildingCompleteViewModel();
-            buildingCompleteViewModel = buildingCreateEditViewModel.BuildingCompleteViewModel;
+            IBuildingCompleteVm buildingCompleteVm = new BuildingCompleteVm();
+            buildingCompleteVm = buildingCreateEditVm.BuildingCompleteVm;
 
             //var allCategories = (List<Category>)TempData[Categories];
-            //buildingCompleteViewModel.Category = allCategories.SingleOrDefault(c => c.Id == buildingCompleteViewModel.CategoryId);
+            //buildingCompleteVm.Category = allCategories.SingleOrDefault(c => c.Id == buildingCompleteVm.CategoryId);
 
             //var allProducts = (List<Product>)TempData[Products];
-            //buildingCompleteViewModel.Product = allProducts.SingleOrDefault(p => p.Id == buildingCompleteViewModel.ProductId);
+            //buildingCompleteVm.Product = allProducts.SingleOrDefault(p => p.Id == buildingCompleteVm.ProductId);
 
             //var allMaterials = (List<Material>)TempData[Materials];
-            //buildingCompleteViewModel.Materials = allMaterials.Where(m => buildingCreateEditViewModel.SelectedMaterialIdList.Contains(m.Id)).ToList();
+            //buildingCompleteVm.Materials = allMaterials.Where(m => buildingCreateEditVm.SelectedMaterialIdList.Contains(m.Id)).ToList();
 
             
             // TODO optimize if possible
-            var modelStateId = ModelState["BuildingCompleteViewModel.Id"];
+            var modelStateId = ModelState["BuildingCompleteVm.Id"];
             if (modelStateId != null)
             {
                 if (modelStateId.Errors.Count > 0)
@@ -153,13 +153,13 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
 
-                var building = this.buildingModelMapper.ViewModel2Model((BuildingCompleteViewModel)buildingCompleteViewModel);
+                var building = this.buildingModelMapper.ViewModel2Model((BuildingCompleteVm)buildingCompleteVm);
 
                 // TODO think out how to make it better. Probably using TempData transferring objects
                 // Categories and Products should be present before inserting new building
                 // Next lines could be transfered in the service layer
                 //var materials = new HashSet<Material>();
-                //foreach (var id in buildingCreateEditViewModel.SelectedMaterialIdList)
+                //foreach (var id in buildingCreateEditVm.SelectedMaterialIdList)
                 //{
                 //    var item = this.materialService.GetById(id);
                 //    materials.Add(item);
@@ -169,7 +169,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 
                 //// Next lines could be transfered in the service layer
                 //var pictures = new HashSet<Picture>();
-                //foreach (var id in buildingCreateEditViewModel.SelectedPictureIdList)
+                //foreach (var id in buildingCreateEditVm.SelectedPictureIdList)
                 //{
                 //    var item = this.pictureService.GetById(id);
                 //    pictures.Add(item);
@@ -180,15 +180,15 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 // Transfer to the TempData or some model, or get from db?!
                 building.Category = this.FromViewResolver<Category>();
                 building.Product = this.FromViewResolver<Product>();
-                building.Materials = this.SelectedMaterialListResolver(buildingCreateEditViewModel.SelectedMaterialIdList);
-                building.Pictures = this.SelectedPictureListResolver(buildingCreateEditViewModel.SelectedPictureIdList);
+                building.Materials = this.SelectedMaterialListResolver(buildingCreateEditVm.SelectedMaterialIdList);
+                building.Pictures = this.SelectedPictureListResolver(buildingCreateEditVm.SelectedPictureIdList);
 
                 this.buildingService.Insert(building);
 
                 return RedirectToAction("Index");
             }
 
-            return View(buildingCreateEditViewModel);
+            return View(buildingCreateEditVm);
         }
 
         // GET: Administration/AdminBuildings/Edit/5
@@ -206,35 +206,35 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            var buildingCompleteViewModel = this.buildingModelMapper.Model2ViewModel((Building)building);
-            var buildingCreateEditViewModel = new BuildingCreateEditViewModel(buildingCompleteViewModel);
+            var buildingCompleteVm = this.buildingModelMapper.Model2ViewModel((Building)building);
+            var buildingCreateEditVm = new BuildingCreateEditVm(buildingCompleteVm);
 
-            buildingCreateEditViewModel.CategoryList = this.CategorySelectListPreparer();
-            buildingCreateEditViewModel.ProductList = this.ProductSelectListPreparer();
-            buildingCreateEditViewModel.MaterialList = this.MaterialSelectListPreparer();
-            buildingCreateEditViewModel.PictureList = this.PictureSelectListPreparer();
+            buildingCreateEditVm.CategoryList = this.CategorySelectListPreparer();
+            buildingCreateEditVm.ProductList = this.ProductSelectListPreparer();
+            buildingCreateEditVm.MaterialList = this.MaterialSelectListPreparer();
+            buildingCreateEditVm.PictureList = this.PictureSelectListPreparer();
 
-            return View(buildingCreateEditViewModel);
+            return View(buildingCreateEditVm);
         }
 
         // POST: Administration/AdminBuildings/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteViewModel buildingComleteViewModel)
-        public ActionResult Edit(BuildingCreateEditViewModel buildingCreateEditViewModel)
+        //public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteVm buildingComleteViewModel)
+        public ActionResult Edit(BuildingCreateEditVm buildingCreateEditVm)
         {
-            var buildingCompleteViewModel = new BuildingCompleteViewModel();
-            buildingCompleteViewModel = buildingCreateEditViewModel.BuildingCompleteViewModel;
+            var buildingCompleteVm = new BuildingCompleteVm();
+            buildingCompleteVm = buildingCreateEditVm.BuildingCompleteVm;
 
             if (ModelState.IsValid)
             {
-                var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteViewModel);
+                var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteVm);
                 this.buildingService.Update(building);
 
                 return RedirectToAction("Index");
             }
 
-            return View(buildingCreateEditViewModel);
+            return View(buildingCreateEditVm);
         }
 
         // GET: Administration/AdminBuildings/Delete/5

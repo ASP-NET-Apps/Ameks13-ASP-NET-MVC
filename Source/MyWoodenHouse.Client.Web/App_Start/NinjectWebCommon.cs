@@ -1,38 +1,28 @@
-using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Web;
+
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers;
-using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PriceCategories;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Prices;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
-using MyWoodenHouse.Client.Web.MyMappers;
-using MyWoodenHouse.Client.Web.MyMappers.Contracts;
-using MyWoodenHouse.Contracts.Models;
-using MyWoodenHouse.Data.Provider;
-using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Data.Provider.Operations;
-using MyWoodenHouse.Data.Provider.Operations.Contracts;
-using MyWoodenHouse.Data.Services;
-using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Default.Auth.Contracts;
-using MyWoodenHouse.Default.Auth.Managers;
-using MyWoodenHouse.Ef.Models;
+
 using Ninject;
 using Ninject.Web.Common;
 using Ninject.Extensions.Conventions;
-//using Ninject.Web.Mvc.FilterBindingSyntax;
-using System;
+using MyWoodenHouse.Data.Provider.Operations.Contracts;
+using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Provider.Operations;
+using MyWoodenHouse.Data.Provider;
 using System.Data.Entity;
-using System.Web;
+using MyWoodenHouse.Default.Auth.Managers;
+using MyWoodenHouse.Default.Auth.Contracts;
+using MyWoodenHouse.Models;
+using MyWoodenHouse.Data.Services;
+using MyWoodenHouse.Data.Services.Contracts;
+using Microsoft.AspNet.Identity.Owin;
+using AutoMapper;
+using MyWoodenHouse.Client.Web.Infrastructure;
+using System.Reflection;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MyWoodenHouse.Client.Web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MyWoodenHouse.Client.Web.App_Start.NinjectWebCommon), "Stop")]
 
 namespace MyWoodenHouse.Client.Web.App_Start
 {
@@ -62,7 +52,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
         /// Creates the kernel that will manage your application.
         /// </summary>
         /// <returns>The created kernel.</returns>
-        public static IKernel CreateKernel()
+        private static IKernel CreateKernel()
         {
             Kernel = new StandardKernel();
             try
@@ -92,17 +82,11 @@ namespace MyWoodenHouse.Client.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+
+
             kernel.Bind(x =>
             {
                 x.FromThisAssembly()
-                 .SelectAllClasses()
-                 .BindDefaultInterface();
-            });
-
-            // TODO, automatically binding is not working, manually binded below
-            kernel.Bind(x =>
-            {
-                x.FromAssemblyContaining(typeof(IDataService))
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
@@ -114,35 +98,33 @@ namespace MyWoodenHouse.Client.Web.App_Start
             // Data Repository
             kernel.Bind(typeof(IEfCrudOperatons<>)).To(typeof(EfCrudOperatons<>));
             kernel.Bind<IBuildingCrudOperations>().To<BuildingCrudOperations>();
-            
+
             // Auth services
             kernel.Bind<ISignInService>().ToMethod(_ => HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>());
             kernel.Bind<IUserService>().ToMethod(_ => HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>());
+
+            // Mappers
+            //kernel.Bind<IMapper>().To<Mapper>();
+            var myAssembly = Assembly.GetExecutingAssembly();
+            kernel.Bind<IMapper>()
+                .ToMethod(context =>
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        //cfg.AddProfile<MappingProfile>();
+                        cfg.AddProfiles(myAssembly);
+                        // tell automapper to use ninject when creating value converters and resolvers
+                        cfg.ConstructServicesUsing(t => kernel.Get(t));
+                    });
+                    return config.CreateMapper();
+                }).InSingletonScope();
 
             // Data services   
             kernel.Bind(typeof(IBaseGenericService<Category>)).To<CategoryService>();
             kernel.Bind(typeof(IBaseGenericService<Material>)).To<MaterialService>();
             kernel.Bind(typeof(IBaseGenericService<Picture>)).To<PictureService>();
             kernel.Bind(typeof(IBaseGenericService<Product>)).To<ProductService>();
-            kernel.Bind(typeof(IBaseGenericService<Building>)).To<BuildingService>();
-
-            // My view model mappers
-            //kernel.Bind<IGenericModelMapper<Category, CategoryCompleteViewModel>>().To<CategoryModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<Material, MaterialCompleteViewModel>>().To<MaterialModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<Picture, PictureCompleteViewModel>>().To<PictureModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<Product, ProductCompleteViewModel>>().To<ProductModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<Building, BuildingCompleteViewModel>>().To<BuildingModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<Price, PriceCompleteViewModel>>().To<PriceModelMapper>().InSingletonScope();
-            //kernel.Bind<IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>>().To<PriceCategoryMapper>().InSingletonScope();
-
-            // This now is auto binded
-            //kernel.Bind<ICategoryModelMapper>().To<CategoryModelMapper>().InSingletonScope();
-            kernel.Bind(typeof(IGenericModelMapper<Material, MaterialCompleteViewModel>)).To<MaterialModelMapper>().InSingletonScope();
-            kernel.Bind(typeof(IGenericModelMapper<Picture, PictureCompleteViewModel>)).To<PictureModelMapper>().InSingletonScope();
-            kernel.Bind(typeof(IGenericModelMapper<Product, ProductCompleteViewModel>)).To<ProductModelMapper>().InSingletonScope();
-            kernel.Bind(typeof(IGenericModelMapper<Building, BuildingCompleteViewModel>)).To<BuildingModelMapper>().InSingletonScope();
-            kernel.Bind(typeof(IGenericModelMapper<Price, PriceCompleteViewModel>)).To<PriceModelMapper>().InSingletonScope();
-            kernel.Bind(typeof(IGenericModelMapper<PriceCategory, PriceCategoryCompleteViewModel>)).To<PriceCategoryMapper>().InSingletonScope();
+            kernel.Bind<IBaseGenericService<Building>>().To<BuildingService>();
 
         }
     }

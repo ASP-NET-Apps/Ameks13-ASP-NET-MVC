@@ -140,9 +140,9 @@
       <Project>{6DA1EB95-FF6F-466E-BB19-3DB65164E75A}</Project>
       <Name>MyWoodenHouse.Data.Provider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+    <ProjectReference Include="..\MyWoodenHouse.Models\MyWoodenHouse.Models.csproj">
       <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
-      <Name>MyWoodenHouse.Ef.Models</Name>
+      <Name>MyWoodenHouse.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

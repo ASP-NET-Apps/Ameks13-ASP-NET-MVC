@@ -1,5 +1,5 @@
 ﻿using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts;
+using MyWoodenHouse.Models.Contracts;
 using System;
 using System.Data.Entity;
 using System.Linq;

@@ -1,26 +1,25 @@
 ﻿using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Enums;
+using MyWoodenHouse.Models.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace MyWoodenHouse.Data.Provider.Operations
 {
-    public class EfCrudOperatons<T> : IEfCrudOperatons<T> where T : class, IHasIntId
+    public class EfCrudOperatons<T> : IEfCrudOperatons<T> where T : class, IHasIntId, IDeletable, IAuditable
     {
         private readonly MyWoodenHouseDbContext context;
         private readonly DbSet<T> dbSet;
 
-        //public EfCrudOperatons(IMyWoodenHouseDbContext context)
         public EfCrudOperatons(MyWoodenHouseDbContext context)
         {
+            // TODO use Guard package
             if (context == null)
             {
                 string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "MyWoodenHouseDbContext", "Data CategoryService");
@@ -57,13 +56,21 @@ namespace MyWoodenHouse.Data.Provider.Operations
         {
             get
             {
+                return this.DbSet.Where(x => !x.IsDeleted);
+            }
+        }
+
+        public IQueryable<T> AllAndDeleted
+        {
+            get
+            {
                 return this.DbSet;
             }
         }
 
         public IEnumerable<T> SelectAll()
         {
-            IEnumerable<T> itemsToReturn = this.DbSet.Select(c => c);
+            IEnumerable<T> itemsToReturn = this.All.Select(y => y);
 
             return itemsToReturn;
         }
@@ -78,7 +85,7 @@ namespace MyWoodenHouse.Data.Provider.Operations
             }
             else
             {
-                itemsToReturn = this.DbSet.Where(filterExpression).Select(c => c);
+                itemsToReturn = this.All.Where(filterExpression).Select(c => c);
             }
 
             return itemsToReturn;
@@ -110,33 +117,6 @@ namespace MyWoodenHouse.Data.Provider.Operations
             return this.DbSet.Find(id);
         }
 
-        //public virtual int Insert(T entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(entity));
-        //    }
-
-        //    //var dbEntity = this.CopyStateFrom(entity);
-        //    //var entry = this.AttachIfDetached(dbEntity);
-        //    //entry.State = EntityState.Added;
-
-        //    bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
-        //    if (!isStateDetached)
-        //    {
-        //        this.Context.SetEntityState(entity, EntityState.Added);
-        //    }
-        //    else
-        //    {
-        //        entity.Id = this.GetMaxId() + 1;
-        //        this.DbSet.Add(entity);
-        //    }
-
-
-
-        //    return entity.Id;
-        //}
-
         public virtual int Insert(T entity)
         {
             if (entity == null)
@@ -144,32 +124,20 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            //var dbEntity = this.CopyStateFrom(entity);
             entity.Id = this.GetMaxId() + 1;
-            DbEntityEntry entry = this.AttachIfDetached(entity);
-            entry.State = EntityState.Added;
-            
+
+            bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
+            if (!isStateDetached)
+            {
+                this.Context.SetEntityState(entity, EntityState.Added);
+            }
+            else
+            {
+                this.DbSet.Add(entity);
+            }
+
             return entity.Id;
         }
-
-        //public virtual int Update(T entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(entity));
-        //    }
-
-        //    bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
-
-        //    if (!isStateDetached)
-        //    {
-        //        this.DbSet.Attach(entity);
-        //    }
-
-        //    this.Context.SetEntityState(entity, EntityState.Modified);
-
-        //    return entity.Id;
-        //}
 
         public virtual int Update(T entity)
         {
@@ -178,31 +146,16 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            //this.DbSet.AddOrUpdate(entity);
-            var entry = this.AttachIfDetached(entity);
-            entry.State = EntityState.Modified;
+            bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
+            if (isStateDetached)
+            {
+                this.DbSet.Attach(entity);
+            }
+
+            this.Context.SetEntityState(entity, EntityState.Modified);
 
             return entity.Id;
         }
-
-        //public void Delete(T category)
-        //{
-        //    if (category == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(category));
-        //    }
-
-        //    bool isStateDeleted = this.Context.GetEntityState(category) == EntityState.Deleted;
-        //    if (!isStateDeleted)
-        //    {
-        //        this.Context.SetEntityState(category, EntityState.Deleted);
-        //    }
-        //    else
-        //    {
-        //        this.DbSet.Attach(category);
-        //        this.DbSet.Remove(category);
-        //    }
-        //}
 
         public void Delete(T entity)
         {
@@ -211,20 +164,16 @@ namespace MyWoodenHouse.Data.Provider.Operations
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            //DbEntityEntry entry = this.AttachIfDetached(entity);
-            this.AttachEntityIfDetached(entity);
+            entity.IsDeleted = true;
+            entity.DeletedOn = DateTime.Now;
 
-            //bool isStateDeleted = entry.State == EntityState.Deleted;
-            bool isStateDeleted = this.Context.GetEntityState(entity) == EntityState.Deleted;
-            if (!isStateDeleted)
+            bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
+            if (isStateDetached)
             {
-                //entry.State = EntityState.Deleted;
-                this.Context.SetEntityState(entity, EntityState.Deleted);
+                this.DbSet.Attach(entity);
             }
-            else
-            {
-                this.DbSet.Remove(entity);
-            }
+
+            this.Context.SetEntityState(entity, EntityState.Modified);
         }
 
         public void Delete(int? id)
@@ -251,12 +200,24 @@ namespace MyWoodenHouse.Data.Provider.Operations
             this.Delete(entity);
         }
 
-        //public int SaveChanges()
-        //{
-        //    int saveChangesResult = this.Context.SaveChanges();
+        public void DeletePermanent(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
-        //    return saveChangesResult;
-        //}
+            //bool isStateDeleted = this.Context.GetEntityState(entity) == EntityState.Deleted;
+            bool isStateDetached = this.Context.GetEntityState(entity) == EntityState.Detached;
+            if (!isStateDetached)
+            {
+                this.Context.SetEntityState(entity, EntityState.Deleted);
+            }
+            else
+            {
+                this.DbSet.Remove(entity);
+            }
+        }
 
         protected int GetMaxId()
         {

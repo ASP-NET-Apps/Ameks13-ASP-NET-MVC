@@ -1,10 +1,11 @@
-﻿using MyWoodenHouse.Client.Web.App_Start;
-using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
+﻿using AutoMapper;
+using Bytes2you.Validation;
+using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System;
 using System.Linq;
@@ -15,21 +16,22 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
     public class CategoriesController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IBaseGenericService<Category> categoryService;
-        private readonly ICategoryModelMapper categoryModelMapper;
 
-        public CategoriesController()
-        {
-            this.categoryService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Category>>();
-            this.categoryModelMapper = NinjectWebCommon.Kernel.Get<ICategoryModelMapper>();
-        }
+        //public CategoriesController()
+        //{
+        //    this.mapper = NinjectWebCommon.Kernel.Get<IMapper>();
+        //    this.categoryService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Category>>();
+        //}
 
-        // TODO not used, because can not auto bind services in Ninject
-        public CategoriesController(IBaseGenericService<Category> categoryService, ICategoryModelMapper categoryModelMapper)
+        public CategoriesController(IMapper mapper, IBaseGenericService<Category> categoryService)
         {
-            // Todo insert validation
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+            Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
+
+            this.mapper = mapper;
             this.categoryService = categoryService;
-            this.categoryModelMapper = categoryModelMapper;
         }
 
         // GET: Categories
@@ -38,9 +40,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         public ActionResult Index()
         {
             var categories = this.categoryService.GetAll();
-            var categoryCompleteViewModel = categories.Select(x => this.categoryModelMapper.Model2ViewModel(x));
+            var categoryCompleteVm = categories.Select(x => this.mapper.Map<Category, CategoryCompleteVm>(x));
 
-            return View(categoryCompleteViewModel);
+            return View(categoryCompleteVm);
         }
 
         // GET: Categories/Create
@@ -56,7 +58,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name")] CategoryCompleteViewModel categoryCompleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name")] CategoryCompleteVm categoryCompleteVm)
         {
             // TODO optimize if possible
             if (ModelState["Id"] != null)
@@ -69,13 +71,14 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (ModelState.IsValid)
             {
-                var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteViewModel);
+                //var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteVm);
+                var category = this.mapper.Map<CategoryCompleteVm, Category>(categoryCompleteVm);
                 this.categoryService.Insert((Category)category);
 
                 return RedirectToAction("Index");
             }
 
-            return View(categoryCompleteViewModel);
+            return View(categoryCompleteVm);
         }
 
         // GET: Categories/Edit/5
@@ -94,9 +97,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            var categoryCompleteViewModel = this.categoryModelMapper.Model2ViewModel(category);
+            //var categoryCompleteVm = this.categoryModelMapper.Model2ViewModel(category);
+            var categoryCompleteVm = this.mapper.Map<Category, CategoryCompleteVm>(category);
 
-            return View(categoryCompleteViewModel);
+            return View(categoryCompleteVm);
         }
 
         // POST: Categories/Edit/5
@@ -104,16 +108,17 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] CategoryCompleteViewModel categoryCompleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id,Name")] CategoryCompleteVm categoryCompleteVm)
         {
             if (ModelState.IsValid)
             {
-                var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteViewModel);
+                //var category = this.categoryModelMapper.ViewModel2Model(categoryCompleteVm);
+                var category = this.mapper.Map<CategoryCompleteVm, Category>(categoryCompleteVm);
                 this.categoryService.Update((Category)category);
 
                 return RedirectToAction("Index");
             }
-            return View(categoryCompleteViewModel);
+            return View(categoryCompleteVm);
         }
 
         // GET: Categories/Delete/5
@@ -121,6 +126,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public PartialViewResult ViewDeleteConfirm(int? id)
         {
+            // TODO use Guard
             if (id == null)
             {
                 string errorMessage = string.Format(Consts.DeleteData.ErrorMessage.DeleteByIdIsPossibleOnlyWithPositiveParameter);
@@ -139,9 +145,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Category", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            var categoryCompleteViewModel = categoryModelMapper.Model2ViewModel(category);
+            //var categoryCompleteVm = categoryModelMapper.Model2ViewModel(category);
+            var categoryCompleteVm = this.mapper.Map<Category, CategoryCompleteVm>(category);
 
-            return PartialView("_DeleteConfirm", categoryCompleteViewModel);
+            return PartialView("_DeleteConfirm", categoryCompleteVm);
         }
 
         // POST: Categories/Delete/5

@@ -1,19 +1,15 @@
 ﻿using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
-using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
 using MyWoodenHouse.Client.Web.CustomAttributes;
 using MyWoodenHouse.Constants.Models;
-using MyWoodenHouse.Contracts.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Data.Services.Enums;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
@@ -21,16 +17,16 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
     public class PicturesController : Controller
     {
         private readonly IBaseGenericService<Picture> pictureService;
-        private readonly IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper;
+        private readonly IGenericModelMapper<Picture, PictureCompleteVm> pictureModelMapper;
 
         public PicturesController()
         {
             this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
-            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteViewModel>>();
+            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteVm>>();
         }
 
         // TODO not used, because can not auto bind services in Ninject
-        public PicturesController(IBaseGenericService<Picture> pictureService, IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper)
+        public PicturesController(IBaseGenericService<Picture> pictureService, IGenericModelMapper<Picture, PictureCompleteVm> pictureModelMapper)
         {
             // Todo insert validation
             this.pictureService = pictureService;
@@ -59,7 +55,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteViewModel pictureComleteViewModel)
+        public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteViewModel)
         {
             // TODO refactoring later and use the actual picture parameters
             pictureComleteViewModel.Width = 150;
@@ -112,7 +108,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // POST: Administration/Pictures/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Url")] PictureCompleteViewModel pictureComleteViewModel)
+        public ActionResult Edit([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteViewModel)
         {
             if (ModelState.IsValid)
             {

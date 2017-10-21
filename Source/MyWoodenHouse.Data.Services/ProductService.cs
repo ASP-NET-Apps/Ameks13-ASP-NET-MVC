@@ -1,7 +1,7 @@
 ﻿using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Services.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System;
 using System.Collections.Generic;
 

@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Data.Services;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,7 +7,7 @@ using MyWoodenHouse.Client.Web.ViewModels;
 using MyWoodenHouse.Default.Auth.Contracts;
 using MyWoodenHouse.Default.Auth.Managers;
 //using MyWoodenHouse.Default.Auth.Models;
-using MyWoodenHouse.Ef.Models.Models;
+using MyWoodenHouse.Models.Models;
 using Ninject;
 using System.Linq;
 using System.Threading.Tasks;

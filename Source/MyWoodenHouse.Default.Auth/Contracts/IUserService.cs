@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using MyWoodenHouse.Ef.Models.Models;
+using MyWoodenHouse.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

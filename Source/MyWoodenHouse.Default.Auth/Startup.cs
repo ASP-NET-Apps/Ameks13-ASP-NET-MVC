@@ -4,7 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Default.Auth.Managers;
-using MyWoodenHouse.Ef.Models.Models;
+using MyWoodenHouse.Models.Models;
 using Owin;
 using System;
 

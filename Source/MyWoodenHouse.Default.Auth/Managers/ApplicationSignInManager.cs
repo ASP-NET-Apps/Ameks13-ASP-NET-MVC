@@ -2,7 +2,7 @@
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using MyWoodenHouse.Default.Auth.Contracts;
-using MyWoodenHouse.Ef.Models.Models;
+using MyWoodenHouse.Models.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

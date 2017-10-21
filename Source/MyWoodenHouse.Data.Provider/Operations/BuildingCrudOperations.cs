@@ -1,7 +1,7 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Data.Provider.Contracts;
 using MyWoodenHouse.Data.Provider.Operations.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;

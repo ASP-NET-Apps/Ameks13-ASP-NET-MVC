@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyWoodenHouse.Extensions
 {
@@ -19,7 +16,6 @@ namespace MyWoodenHouse.Extensions
 
             return hasPublicConstructor;
         }
-
 
         public static bool HasProperty(this Type @type, string propertyName)
         {

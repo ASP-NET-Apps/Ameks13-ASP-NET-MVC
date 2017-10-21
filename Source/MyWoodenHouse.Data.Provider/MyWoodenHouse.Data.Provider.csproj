@@ -93,13 +93,9 @@
       <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
       <Name>MyWoodenHouse.Constants</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
+    <ProjectReference Include="..\MyWoodenHouse.Models\MyWoodenHouse.Models.csproj">
       <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Ef.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Model.Contracts\MyWoodenHouse.Contracts.csproj">
-      <Project>{F1F6C39A-FE72-494E-9995-EC3DFAA605E2}</Project>
-      <Name>MyWoodenHouse.Contracts</Name>
+      <Name>MyWoodenHouse.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

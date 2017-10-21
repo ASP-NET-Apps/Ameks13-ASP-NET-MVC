@@ -6,27 +6,27 @@ using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Categories;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Products;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using Ninject;
 using System.Collections.Generic;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
-    public class BuildingModelMapper : IGenericModelMapper<Building, BuildingCompleteViewModel>
+    public class BuildingModelMapper : IGenericModelMapper<Building, BuildingCompleteVm>
     {
         private readonly ICategoryModelMapper categoryModelMapper;
-        private readonly IGenericModelMapper<Product, ProductCompleteViewModel> productModelMapper;
-        private readonly IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper;
-        private readonly IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper;
+        private readonly IGenericModelMapper<Product, ProductCompleteVm> productModelMapper;
+        private readonly IGenericModelMapper<Material, MaterialCompleteVm> materialModelMapper;
+        private readonly IGenericModelMapper<Picture, PictureCompleteVm> pictureModelMapper;
 
         public BuildingModelMapper()
         {
             // TODO fix Ninject binding
-            //this.categoryModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Category, CategoryCompleteViewModel>>();
+            //this.categoryModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Category, CategoryCompleteVm>>();
             this.categoryModelMapper = NinjectWebCommon.Kernel.Get<ICategoryModelMapper>();
-            this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteViewModel>>();
-            this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteViewModel>>();
-            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteViewModel>>();
+            this.productModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Product, ProductCompleteVm>>();
+            this.materialModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Material, MaterialCompleteVm>>();
+            this.pictureModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Picture, PictureCompleteVm>>();
 
             //this.categoryModelMapper = new CategoryModelMapper();
             //this.productModelMapper = new ProductModelMapper();
@@ -36,9 +36,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 
         // TODO not used, because can not auto bind services in Ninject
         public BuildingModelMapper(ICategoryModelMapper categoryModelMapper,
-            IGenericModelMapper<Product, ProductCompleteViewModel> productModelMapper,
-            IGenericModelMapper<Material, MaterialCompleteViewModel> materialModelMapper,
-            IGenericModelMapper<Picture, PictureCompleteViewModel> pictureModelMapper)
+            IGenericModelMapper<Product, ProductCompleteVm> productModelMapper,
+            IGenericModelMapper<Material, MaterialCompleteVm> materialModelMapper,
+            IGenericModelMapper<Picture, PictureCompleteVm> pictureModelMapper)
         {
             // Todo insert validation
             this.categoryModelMapper = categoryModelMapper;
@@ -47,11 +47,11 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
             this.pictureModelMapper = pictureModelMapper;
         }
 
-        public BuildingCompleteViewModel Model2ViewModel(Building model)
+        public BuildingCompleteVm Model2ViewModel(Building model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
-            var viewModelToReturn = new BuildingCompleteViewModel();
+            var viewModelToReturn = new BuildingCompleteVm();
             
             viewModelToReturn.Id = model.Id;
             viewModelToReturn.Name = model.Name;
@@ -68,8 +68,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
             viewModelToReturn.ProductId = model.ProductId;
             viewModelToReturn.Product = this.productModelMapper.Model2ViewModel(model.Product);
 
-            viewModelToReturn.Materials = new List<MaterialCompleteViewModel>();
-            viewModelToReturn.Pictures = new List<PictureCompleteViewModel>();
+            viewModelToReturn.Materials = new List<MaterialCompleteVm>();
+            viewModelToReturn.Pictures = new List<PictureCompleteVm>();
 
             // TODO Add better validation
             if (model.Materials != null)
@@ -100,7 +100,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
             return viewModelToReturn;
         }
 
-        public Building ViewModel2Model(BuildingCompleteViewModel viewModel)
+        public Building ViewModel2Model(BuildingCompleteVm viewModel)
         {
             Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 

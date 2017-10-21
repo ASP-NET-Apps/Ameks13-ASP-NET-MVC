@@ -8,10 +8,12 @@ namespace MyWoodenHouse.Data.Provider.Contracts
 {
     public interface IEfCrudOperatons<T> where T : class
     {
+        IQueryable<T> All { get; }
+
+        IQueryable<T> AllAndDeleted { get; }
+
         T SelectById(int? id);
 
-        IQueryable<T> All { get; }
-        
         IEnumerable<T> SelectAll();
 
         IEnumerable<T> SelectAll(Expression<Func<T, bool>> filterExpression);
@@ -32,5 +34,7 @@ namespace MyWoodenHouse.Data.Provider.Contracts
         void Delete(T entity);
 
         void Delete(int? id);
+
+        void DeletePermanent(T entity);
     }
 }

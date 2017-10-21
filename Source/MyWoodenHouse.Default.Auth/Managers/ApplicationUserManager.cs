@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using MyWoodenHouse.Data.Provider;
 using MyWoodenHouse.Default.Auth.Contracts;
 using MyWoodenHouse.Default.Auth.Services;
-using MyWoodenHouse.Ef.Models.Models;
+using MyWoodenHouse.Models.Models;
 using System;
 
 namespace MyWoodenHouse.Default.Auth.Managers

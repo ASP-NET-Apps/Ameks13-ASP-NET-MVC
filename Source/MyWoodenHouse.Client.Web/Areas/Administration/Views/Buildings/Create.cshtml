@@ -1,4 +1,4 @@
-﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCreateEditViewModel
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings.BuildingCreateEditVm
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -51,11 +51,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Name, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.Name, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Name, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.Name, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.Name, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         @*********************@
@@ -63,11 +63,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Description, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.Description, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Description, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.Description, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.Description, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
 
@@ -76,11 +76,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.UsableArea, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.UsableArea, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.UsableArea, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.UsableArea, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.UsableArea, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.UsableArea, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         @*********************@
@@ -88,11 +88,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.BuiltUpArea, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.BuiltUpArea, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.BuiltUpArea, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.BuiltUpArea, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.BuiltUpArea, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.BuiltUpArea, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         @*********************@
@@ -100,11 +100,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.RoomsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.RoomsCount, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.RoomsCount, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.RoomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.RoomsCount, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.RoomsCount, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         @*********************@
@@ -112,11 +112,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.FloorsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.FloorsCount, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.FloorsCount, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.FloorsCount, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.FloorsCount, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.FloorsCount, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         @*********************@
@@ -124,11 +124,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.BathroomsCount, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.BathroomsCount, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.BathroomsCount, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.BuildingCompleteViewModel.BathroomsCount, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.BathroomsCount, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.BuildingCompleteVm.BathroomsCount, new { htmlAttributes = new { @class = "form-control" } })
                             </td>
                         </tr>
                         
@@ -137,11 +137,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Category, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.Category, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Category, "", new { @class = "text-danger" })
-                                @Html.DropDownListFor(model=> model.BuildingCompleteViewModel.CategoryId, Model.CategoryList, "--Select Category--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.Category, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(model=> model.BuildingCompleteVm.CategoryId, Model.CategoryList, "--Select Category--", new { @class = "form-control" })
                             </td>
                         </tr>
                         @*********************@
@@ -149,11 +149,11 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Product, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.Product, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Product, "", new { @class = "text-danger" })
-                                @Html.DropDownListFor(model => model.BuildingCompleteViewModel.ProductId, Model.ProductList, "--Select Product--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.Product, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(model => model.BuildingCompleteVm.ProductId, Model.ProductList, "--Select Product--", new { @class = "form-control" })
                             </td>
                         </tr>
 
@@ -162,10 +162,10 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Materials, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.Materials, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Materials, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.Materials, "", new { @class = "text-danger" })
                                 @Html.ListBoxFor(model => model.SelectedMaterialIdList, Model.MaterialList, new { @class = "form-control" })
                             </td>
                         </tr>
@@ -175,10 +175,10 @@
                         *@
                         <tr>
                             <td>
-                                @Html.LabelFor(model => model.BuildingCompleteViewModel.Pictures, htmlAttributes: new { @class = "control-label pull-right" })
+                                @Html.LabelFor(model => model.BuildingCompleteVm.Pictures, htmlAttributes: new { @class = "control-label pull-right" })
                             </td>
                             <td>
-                                @Html.ValidationMessageFor(model => model.BuildingCompleteViewModel.Pictures, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.BuildingCompleteVm.Pictures, "", new { @class = "text-danger" })
                                 @Html.ListBoxFor(model => model.SelectedPictureIdList, Model.PictureList, new { @class = "form-control" })
                             </td>
                         </tr>
@@ -247,33 +247,33 @@
         }
 
         $(document).ready(function () {
-            $('#BuildingCompleteViewModel_Name').on("input", function () {
+            $('#BuildingCompleteVm_Name').on("input", function () {
                 validateForm();
             });
-            $('#BuildingCompleteViewModel_Description').on("input", function () {
-                validateForm();
-            });
-
-            $('#BuildingCompleteViewModel_UsableArea').on("input", function () {
-                validateForm();
-            });
-            $('#BuildingCompleteViewModel_BuiltUpArea').on("input", function () {
-                validateForm();
-            });
-            $('#BuildingCompleteViewModel_RoomsCount').on("input", function () {
-                validateForm();
-            });
-            $('#BuildingCompleteViewModel_FloorsCount').on("input", function () {
-                validateForm();
-            });
-            $('#BuildingCompleteViewModel_BathroomsCount').on("input", function () {
+            $('#BuildingCompleteVm_Description').on("input", function () {
                 validateForm();
             });
 
-            $('#BuildingCompleteViewModel_CategoryId').on("change", function () {
+            $('#BuildingCompleteVm_UsableArea').on("input", function () {
                 validateForm();
             });
-            $('#BuildingCompleteViewModel_ProductId').on("change", function () {
+            $('#BuildingCompleteVm_BuiltUpArea').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteVm_RoomsCount').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteVm_FloorsCount').on("input", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteVm_BathroomsCount').on("input", function () {
+                validateForm();
+            });
+
+            $('#BuildingCompleteVm_CategoryId').on("change", function () {
+                validateForm();
+            });
+            $('#BuildingCompleteVm_ProductId').on("change", function () {
                 validateForm();
             });
         });

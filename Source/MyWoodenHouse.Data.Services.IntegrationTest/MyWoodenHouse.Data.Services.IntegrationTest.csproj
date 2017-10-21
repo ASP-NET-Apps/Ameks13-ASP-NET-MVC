@@ -116,9 +116,9 @@
       <Project>{639CC1E7-B4B4-4B7F-9A54-4BFEC88F7B36}</Project>
       <Name>MyWoodenHouse.Data.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyWoodenHouse.Ef.Models\MyWoodenHouse.Ef.Models.csproj">
-      <Project>{6f34d14e-273a-4b8e-a909-870b57336d95}</Project>
-      <Name>MyWoodenHouse.Ef.Models</Name>
+    <ProjectReference Include="..\MyWoodenHouse.Models\MyWoodenHouse.Models.csproj">
+      <Project>{6F34D14E-273A-4B8E-A909-870B57336D95}</Project>
+      <Name>MyWoodenHouse.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

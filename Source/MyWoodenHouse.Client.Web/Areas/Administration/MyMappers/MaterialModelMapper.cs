@@ -1,27 +1,29 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Materials;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
-    public class MaterialModelMapper : IGenericModelMapper<Material, MaterialCompleteViewModel>
+    public class MaterialModelMapper : IGenericModelMapper<Material, MaterialCompleteVm>
     {
         public MaterialModelMapper()
         {
         }
 
-        public MaterialCompleteViewModel Model2ViewModel(Material model)
+        public MaterialCompleteVm Model2ViewModel(Material model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
-            // TODO use no parameter constructor and map properties here
-            var viewModelToReturn = new MaterialCompleteViewModel(model);
+            var viewModelToReturn = new MaterialCompleteVm();
+            viewModelToReturn.Id = model.Id;
+            viewModelToReturn.Name = model.Name;
+            viewModelToReturn.Description = model.Description;
 
             return viewModelToReturn;
         }
 
-        public Material ViewModel2Model(MaterialCompleteViewModel viewModel)
+        public Material ViewModel2Model(MaterialCompleteVm viewModel)
         {
             Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 

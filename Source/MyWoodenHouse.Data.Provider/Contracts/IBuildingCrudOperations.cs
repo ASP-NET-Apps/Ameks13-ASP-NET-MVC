@@ -1,5 +1,5 @@
 ﻿using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Data.Provider.Operations.Contracts
 {

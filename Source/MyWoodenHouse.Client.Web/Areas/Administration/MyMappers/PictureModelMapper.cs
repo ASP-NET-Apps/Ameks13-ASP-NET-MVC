@@ -1,27 +1,34 @@
 ﻿using Bytes2you.Validation;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Pictures;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Data.Services.Enums;
+using MyWoodenHouse.Models;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.MyMappers
 {
-    public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteViewModel>
+    public class PictureModelMapper : IGenericModelMapper<Picture, PictureCompleteVm>
     {
         public PictureModelMapper()
         {
         }
 
-        public PictureCompleteViewModel Model2ViewModel(Picture model)
+        public PictureCompleteVm Model2ViewModel(Picture model)
         {
             Guard.WhenArgument(model, nameof(model)).IsNull().Throw();
 
-            // TODO use no parameter constructor and map properties here
-            var viewModelToReturn = new PictureCompleteViewModel(model);
+            var viewModelToReturn = new PictureCompleteVm();
+            viewModelToReturn.Id = model.Id;
+            viewModelToReturn.Name = model.Name;
+            viewModelToReturn.Width = model.Width;
+            viewModelToReturn.Height = model.Height;
+            viewModelToReturn.FileContent = model.FileContent;
+            viewModelToReturn.Url = model.Url;
+            viewModelToReturn.GetFrom = (GetPictureContentFrom)model.GetFrom;
 
             return viewModelToReturn;
         }
 
-        public Picture ViewModel2Model(PictureCompleteViewModel viewModel)
+        public Picture ViewModel2Model(PictureCompleteVm viewModel)
         {
             Guard.WhenArgument(viewModel, nameof(viewModel)).IsNull().Throw();
 

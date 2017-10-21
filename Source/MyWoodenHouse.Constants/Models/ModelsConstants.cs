@@ -1,13 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyWoodenHouse.Constants.Models
+﻿namespace MyWoodenHouse.Constants.Models
 {
     public static partial class Consts
     {
+        public struct DataModel
+        {
+            public struct Id
+            {
+                public const int MaxValue = int.MaxValue;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "DataModel Id value should be positive integer number.";
+            }
+
+            public struct CreatedBy
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "DataModel CreatedBy length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "DataModel CreatedBy length should be more than " + "2" + " symbols.";
+            }
+
+            public struct ModifiedBy
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "DataModel ModifiedBy length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "DataModel ModifiedBy length should be more than " + "2" + " symbols.";
+            }
+        };
+
         public struct Building
         {
             public struct Id

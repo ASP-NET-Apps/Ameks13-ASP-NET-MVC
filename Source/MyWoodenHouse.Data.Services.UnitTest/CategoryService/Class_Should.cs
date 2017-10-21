@@ -2,7 +2,7 @@
 //using Moq;
 //using MyWoodenHouse.Data.Provider.Contracts;
 //using MyWoodenHouse.Data.Services.Contracts;
-//using MyWoodenHouse.Ef.Models;
+//using MyWoodenHouse.Models;
 
 //namespace MyWoodenHouse.Data.Services.UnitTest.CategoryServiceTests
 //{

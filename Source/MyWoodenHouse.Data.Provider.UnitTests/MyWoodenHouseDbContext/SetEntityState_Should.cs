@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MyWoodenHouse.Data.Provider.Contracts;
-using MyWoodenHouse.Ef.Models;
+using MyWoodenHouse.Models;
 using System.Data.Entity;
 
 namespace MyWoodenHouse.Data.Provider.UnitTests.MyWoodenHouseDbContextTests
