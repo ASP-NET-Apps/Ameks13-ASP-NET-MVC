@@ -86,9 +86,20 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             {
                 string fileName = Path.GetFileNameWithoutExtension(completeFileName);   //getting file name without extension  
                 string myFileName = fileName + "_" + fileExt;                           //appending the name with id  
-                                                                            // store the file inside ~/project folder(Img)  
-                var path = Path.Combine(Server.MapPath("~/Images"), myFileName);
-                postedFile.SaveAs(path);
+
+                //string relativePath = "..\\Assets\\Images";
+                //string baseDirectory = "C:\\blah\\";
+                //string absolutePath = Path.GetFullPath(baseDirectory + relativePath);
+
+                //// store the file inside ~/project folder(Img)  
+                //var logo = Server.MapPath("../Assets/Images/Upload/" + myFileName);
+            
+
+                //var path = Path.Combine(Server.MapPath("~/Images"), myFileName);
+
+                string dirPath = Server.MapPath("~") + "/Assets/" + myFileName;
+                postedFile.SaveAs(dirPath);
+
             }
             else
             {
