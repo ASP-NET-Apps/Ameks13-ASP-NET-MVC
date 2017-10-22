@@ -1,45 +1,204 @@
-﻿@{
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PictureCreateEditVm
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm", enctype = "multipart/form-data"}))
-{ 
-    @Html.AntiForgeryToken()
+<!DOCTYPE html>
 
-    <div>
-        <img id="user_img" height="100" width="90" style="border:solid" />
-    </div>
-    <div>
-        <input type="file" title="search image" id="postedFile" name="postedFile" onchange="show(this)" />
-    </div>
-    <div>
-        UserId
-    </div>
-    <div>
-        <input type="text" id="txt_id" name="id" />
-    </div>
-    <div>
-        UserName
-    </div>
-    <div>
-        <input type="text" id="txt_name" name="Name" />
-    </div>
-    <div>
-        <input type="submit" title="save" />
-    </div>
-}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-2">
+                <a href="@Url.Action("Index", "Pictures", new { area="Administration" })" class="btn btn-default">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                    Pictures
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h2 class="red-fg">Add picture</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <table class="table form-horizontal" style="margin-top:20px;">
+                        <colgroup>
+                            <col class="col-md-3">
+                            <col class="col-md-9">
+                        </colgroup>
+                        <tbody class="form-group">
+                            <tr>
+                                <th style="background-color:lightsteelblue; color: white;">
+                                    @Html.DisplayNameFor(model => model.ModelName)
+                                </th>
+                                <th style="background-color:lightsteelblue;"></th>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <img id="previewImgFromFile" style="border:solid" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="control-label pull-right">Upload Image</span>
+                                </td>
+                                <td>
+                                    <input type="file" title="Browse" id="httpPostedFileBase" name="httpPostedFileBase" onchange="showImageFromFile(this)" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <img id="previewImgFromWebUrl" style="border:solid" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.PictureCompleteVm.Url, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.PictureCompleteVm.Url, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.PictureCompleteVm.Url, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.PictureCompleteVm.Name, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.PictureCompleteVm.Name, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.PictureCompleteVm.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                            </tr>
 
 
-<script src="~/Scripts/jquery-1.7.1.min.js"></script>
-<script type="text/javascript">
+                            @*********************@
+                            @* UploadSourcesList
+                            *@
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.UploadSourcesList, htmlAttributes: new { @class = "control-label pull-right" })
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.SelectedUploadSource, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(model => model.SelectedUploadSource, Model.UploadSourcesList, new { @class = "form-control" })
+                                </td>
+                            </tr>
 
-   function show(input) {
-      if (input.files && input.files[0]) {
-        var filerdr = new FileReader();
-        filerdr.onload = function (e) {
-            $('#user_img').attr('src', e.target.result);
+                            <tr>
+                                <td style="background-color:lightsteelblue"></td>
+                                <td style="background-color:lightsteelblue">
+                                    <button type="reset"
+                                            id="resetButton"
+                                            onclick="location.href='@Url.Action("Index","Pictures")'"
+                                            class="btn btn-default">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        Cancel
+                                    </button>
+                                    <button type="submit"
+                                            id="saveButton"
+                                            value="Create"
+                                            onclick="location.href='@Url.Action("Create","Pictures")'"
+                                            class="btn btn-default disabled">
+                                        <span class="glyphicon glyphicon-floppy-save"></span>
+                                        Save
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+
+    <script type="text/javascript">
+        
+        function showImageFromFile(input) {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#previewImgFromFile').attr('src', e.target.result).attr('height', '100px');
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
         }
-        filerdr.readAsDataURL(input.files[0]);
-   }
-}
-</script>
+        //function OnChangeUrl(evt) {
+        //    alert(evt.value);
+        //    var val = $('#Url').val();
+        //    $('#previewImg').attr('src', val).attr('height', '100px');
+        //}
+        $('#PictureCompleteVm_Url').change(function (evt) {
+            // alert(evt.target.value);
+            $('#previewImgFromWebUrl').attr('src', evt.target.value).attr('height', '100px');
+        });
+
+
+        function enableSaveButton(){
+            var saveButton = $('#saveButton');
+
+            saveButton.removeClass('disabled');
+            saveButton.removeClass('btn-default');
+            saveButton.addClass('enabled');
+            saveButton.addClass('btn-primary');
+        }
+
+        function disableSaveButton(){
+            var saveButton = $('#saveButton');
+            saveButton.removeClass('enabled')
+            saveButton.removeClass('btn-primary')
+            saveButton.addClass('disabled');
+            saveButton.addClass('btn-default');
+        }
+
+        function validateForm() {
+            var createForm = $('#createForm');
+            var validator = createForm.validate();
+            validator.form();
+
+            if (createForm.valid()) {
+                console.log(createForm.valid());
+                enableSaveButton();
+            } else {
+                console.log(createForm.valid());
+                disableSaveButton();
+            }
+        }
+
+        $(document).ready(function () {
+            $('#PictureCompleteVm_Name').on("input", function () {
+                validateForm();
+            });
+            $('#PictureCompleteVm_Url').on("input", function () {
+                validateForm();
+            });
+            $('#SelectedUploadSource').on("input", function () {
+                validateForm();
+            });
+            $('#httpPostedFileBase').on("change", function () {
+                validateForm();
+            });
+
+        });
+
+    </script>
+</body>
+</html>

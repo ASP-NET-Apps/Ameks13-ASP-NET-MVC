@@ -2,7 +2,8 @@
 {
     public enum GetPictureContentFrom
     {
-        Url = 1,
-        File = 2
+        WebServerUrl = 1,
+        LocalServerUrl = 2,
+        Database = 3
     }
 }

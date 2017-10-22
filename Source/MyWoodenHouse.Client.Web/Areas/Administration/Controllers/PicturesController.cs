@@ -4,24 +4,35 @@ using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Client.Web.CustomAttributes;
+using MyWoodenHouse.Common;
+using MyWoodenHouse.Constants;
 using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Data.Services.Enums;
 using MyWoodenHouse.Models;
 using Ninject;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
+
+
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
+    
+
     public class PicturesController : Controller
     {
+        // TODO extract to config
+        private const string ImageUploadPath = "/Assets/Upload/Images/";
+
         private readonly IMapper mapper;
         private readonly IBaseGenericService<Picture> pictureService;
+        private string dirPath;
 
         //public PicturesController()
         //{
@@ -53,7 +64,15 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Create()
         {
-            return View();
+            var pictureCreateEditVm = new PictureCreateEditVm(new PictureCompleteVm());
+
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem() { Text = "File", Value = "1", Selected = true });
+            selectListItems.Add(new SelectListItem() { Text = "Url", Value = "2", Selected = false });
+
+            pictureCreateEditVm.UploadSourcesList = new SelectList(selectListItems, "Value", "Text");
+
+            return View(pictureCreateEditVm);
         }
 
         // POST: Administration/Pictures/Create
@@ -62,70 +81,63 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
-        public ActionResult Create(FormCollection formCollection, HttpPostedFileBase postedFile)
+        public ActionResult Create(HttpPostedFileBase httpPostedFileBase, PictureCreateEditVm pictureCreateEditVm)
         {
-            // TODO refactoring later and use the actual picture parameters
-            //pictureComleteVm.Width = 150;
-            //pictureComleteVm.Height = 100;
 
-            // TODO refactoring later and use picture url or content
-            //pictureComleteVm.FileContent = null;
-            //pictureComleteVm.GetFrom = GetPictureContentFrom.Url;
-
-            var allowedPictureExtensions = new[] {
-                ".Jpg", ".png", ".jpg", "jpeg"
-            };
-            var pictureComleteVm = new PictureCompleteVm();
-
-
-            var Image_url = postedFile.ToString();                  //getting complete url  
-            var completeFileName = Path.GetFileName(postedFile.FileName);   //getting only file name(ex-
-
-            var fileExt = Path.GetExtension(postedFile.FileName);       //getting the extension(ex-.jpg)  
-            if (allowedPictureExtensions.Contains(fileExt))             //check what type of extension  
+            if (pictureCreateEditVm.SelectedUploadSource == 1)
             {
-                string fileName = Path.GetFileNameWithoutExtension(completeFileName);   //getting file name without extension  
-                string myFileName = fileName + "_" + fileExt;                           //appending the name with id  
+                bool isImage = true;
+                string uploadedWithfileName = string.Empty;
+                var fileUploadHelper = new FileUploadHelper(httpPostedFileBase, ImageUploadConfiguration.AllowedPictureExtensions, ImageUploadConfiguration.MaxSizeInBytes, isImage);
+                try
+                {
+                    fileUploadHelper.ValidateFile();
 
-                //string relativePath = "..\\Assets\\Images";
-                //string baseDirectory = "C:\\blah\\";
-                //string absolutePath = Path.GetFullPath(baseDirectory + relativePath);
+                    var path = Path.Combine(Server.MapPath("~" + ImageUploadPath), httpPostedFileBase.FileName);
 
-                //// store the file inside ~/project folder(Img)  
-                //var logo = Server.MapPath("../Assets/Images/Upload/" + myFileName);
-            
+                    string folderPath = Server.MapPath("~" + ImageUploadPath);
+                    uploadedWithfileName = fileUploadHelper.UploadFileToLocalServer(folderPath);
+                }
+                catch
+                {
+                    ViewBag.errorMessage = "error";
+                }
 
-                //var path = Path.Combine(Server.MapPath("~/Images"), myFileName);
-
-                string dirPath = Server.MapPath("~") + "/Assets/" + myFileName;
-                postedFile.SaveAs(dirPath);
-
+                var imageDimensions = fileUploadHelper.GetImageDimension();
+                pictureCreateEditVm.PictureCompleteVm.Width = imageDimensions.Item1;
+                pictureCreateEditVm.PictureCompleteVm.Height = imageDimensions.Item2;
+                pictureCreateEditVm.PictureCompleteVm.GetFrom = GetPictureContentFrom.LocalServerUrl;
+                pictureCreateEditVm.PictureCompleteVm.Url = uploadedWithfileName;
             }
             else
             {
-                ViewBag.message = "Please choose only Image file";
+                pictureCreateEditVm.PictureCompleteVm.GetFrom = GetPictureContentFrom.WebServerUrl;
+
             }
 
+            pictureCreateEditVm.PictureCompleteVm.FileContent = null;
+
             // TODO optimize if possible
-            //if (ModelState["Id"] != null)
-            //{
-            //    if (ModelState["Id"].Errors.Count > 0)
-            //    {
-            //        ModelState["Id"].Errors.Clear();
-            //    }
-            //}
+            var modelStateId = ModelState["PictureCompleteVm.Id"];
+            if (modelStateId != null)
+            {
+                if (modelStateId.Errors.Count > 0)
+                {
+                    modelStateId.Errors.Clear();
+                }
+            }
 
-            //if (ModelState.IsValid)
-            //{
-            //    var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureComleteVm);
-            //    picture.CreatedBy = User.Identity.Name;
+            if (ModelState.IsValid)
+            {
+                var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureCreateEditVm.PictureCompleteVm);
+                picture.CreatedBy = User.Identity.Name;
 
-            //    this.pictureService.Insert(picture);
+                this.pictureService.Insert(picture);
 
-            //    return RedirectToAction("Index");
-            //}
+                return RedirectToAction("Index");
+            }
 
-            return View(pictureComleteVm);
+            return View(pictureCreateEditVm);
         }
 
         // GET: Administration/Pictures/Edit/5

@@ -32,7 +32,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels
         [Display(Name = "File Content")]
         public byte[] FileContent { get; set; }
 
-        [Required]
         [Display(Name = "Url")]
         [MaxLength(Consts.Picture.Url.MaxLength, ErrorMessage = Consts.Picture.Url.ErrorMessageMaxLength)]
         [MinLength(Consts.Picture.Url.MinLength, ErrorMessage = Consts.Picture.Url.ErrorMessageMinLength)]

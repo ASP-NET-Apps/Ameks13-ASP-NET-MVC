@@ -212,6 +212,8 @@
     <Compile Include="Areas\Administration\MyMappers\PictureModelMapper.cs" />
     <Compile Include="Areas\Administration\MyMappers\CategoryModelMapper.cs" />
     <Compile Include="Areas\Administration\ViewModels\Abstract\DataModelVm.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Contracts\IPictureCreateEditVm.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PictureCreateEditVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCreateEditVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\CategoryCompleteVm.cs" />
@@ -293,12 +295,12 @@
     <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\_DeleteConfirm.cshtml" />
-    <Content Include="Areas\Administration\Views\Pictures\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Buildings\_DeleteConfirm.cshtml" />
     <Content Include="Areas\Administration\Views\Buildings\Create.cshtml" />
     <Content Include="Areas\Administration\Views\Buildings\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Buildings\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Pictures\Create.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />
@@ -357,7 +359,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Images\" />
+    <Folder Include="Assets\Upload\Images\" />
     <Folder Include="ViewModels\Material\" />
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +371,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyWoodenHouse.Common\MyWoodenHouse.Common.csproj">
+      <Project>{0DE424EC-A5C9-46C4-8AD6-C2AB40945A3C}</Project>
+      <Name>MyWoodenHouse.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyWoodenHouse.Constants\MyWoodenHouse.Constants.csproj">
       <Project>{65a0937f-62e5-4f3a-83da-2fb48b1215dd}</Project>
       <Name>MyWoodenHouse.Constants</Name>

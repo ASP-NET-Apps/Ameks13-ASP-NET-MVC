@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Models
 {
     [MetadataType(typeof(PictureMetaData))]
-    public partial class Picture : DataModel, IPicture
+    public partial class Picture : IHasIntId, IAuditable, IDeletable, IPicture
     {
     }
 }
