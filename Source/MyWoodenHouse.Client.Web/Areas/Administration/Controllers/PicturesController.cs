@@ -89,19 +89,17 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 bool isImage = true;
                 string uploadedWithfileName = string.Empty;
                 var fileUploadHelper = new FileUploadHelper(httpPostedFileBase, ImageUploadConfiguration.AllowedPictureExtensions, ImageUploadConfiguration.MaxSizeInBytes, isImage);
-                try
-                {
-                    fileUploadHelper.ValidateFile();
-
+                //try
+                //{
                     var path = Path.Combine(Server.MapPath("~" + ImageUploadPath), httpPostedFileBase.FileName);
 
                     string folderPath = Server.MapPath("~" + ImageUploadPath);
                     uploadedWithfileName = fileUploadHelper.UploadFileToLocalServer(folderPath);
-                }
-                catch
-                {
-                    ViewBag.errorMessage = "error";
-                }
+                //}
+                //catch
+                //{
+                //    ViewBag.errorMessage = "error";
+                //}
 
                 var imageDimensions = fileUploadHelper.GetImageDimension();
                 pictureCreateEditVm.PictureCompleteVm.Width = imageDimensions.Item1;

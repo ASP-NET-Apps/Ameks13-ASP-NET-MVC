@@ -149,16 +149,16 @@
 
             public struct Width
             {
-                public const int MaxValue = 5000;
+                public const int MaxValue = 10000;
                 public const int MinValue = 0;
-                public const string ErrorMessage = "Picture Width value should be positive integer number and not more than 5000 px.";
+                public const string ErrorMessage = "Picture Width value should be positive integer number and not more than 10000 px.";
             }
 
             public struct Height
             {
-                public const int MaxValue = 5000;
+                public const int MaxValue = 10000;
                 public const int MinValue = 0;
-                public const string ErrorMessage = "Picture Height value should be positive integer number and not more than 5000 px.";
+                public const string ErrorMessage = "Picture Height value should be positive integer number and not more than 10000 px.";
             }
 
             public struct Url
