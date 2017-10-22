@@ -357,6 +357,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Images\" />
     <Folder Include="ViewModels\Material\" />
   </ItemGroup>
   <ItemGroup>

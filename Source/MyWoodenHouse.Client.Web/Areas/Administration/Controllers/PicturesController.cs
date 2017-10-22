@@ -10,8 +10,10 @@ using MyWoodenHouse.Data.Services.Enums;
 using MyWoodenHouse.Models;
 using Ninject;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
@@ -47,6 +49,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Pictures/Create
+        [HttpGet]
         [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Create()
         {
@@ -58,34 +61,58 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
+        //public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
+        public ActionResult Create(FormCollection formCollection, HttpPostedFileBase postedFile)
         {
             // TODO refactoring later and use the actual picture parameters
-            pictureComleteVm.Width = 150;
-            pictureComleteVm.Height = 100;
+            //pictureComleteVm.Width = 150;
+            //pictureComleteVm.Height = 100;
 
             // TODO refactoring later and use picture url or content
-            pictureComleteVm.FileContent = null;
-            pictureComleteVm.GetFrom = GetPictureContentFrom.Url;
+            //pictureComleteVm.FileContent = null;
+            //pictureComleteVm.GetFrom = GetPictureContentFrom.Url;
+
+            var allowedPictureExtensions = new[] {
+                ".Jpg", ".png", ".jpg", "jpeg"
+            };
+            var pictureComleteVm = new PictureCompleteVm();
+
+
+            var Image_url = postedFile.ToString();                  //getting complete url  
+            var completeFileName = Path.GetFileName(postedFile.FileName);   //getting only file name(ex-
+
+            var fileExt = Path.GetExtension(postedFile.FileName);       //getting the extension(ex-.jpg)  
+            if (allowedPictureExtensions.Contains(fileExt))             //check what type of extension  
+            {
+                string fileName = Path.GetFileNameWithoutExtension(completeFileName);   //getting file name without extension  
+                string myFileName = fileName + "_" + fileExt;                           //appending the name with id  
+                                                                            // store the file inside ~/project folder(Img)  
+                var path = Path.Combine(Server.MapPath("~/Images"), myFileName);
+                postedFile.SaveAs(path);
+            }
+            else
+            {
+                ViewBag.message = "Please choose only Image file";
+            }
 
             // TODO optimize if possible
-            if (ModelState["Id"] != null)
-            {
-                if (ModelState["Id"].Errors.Count > 0)
-                {
-                    ModelState["Id"].Errors.Clear();
-                }
-            }
+            //if (ModelState["Id"] != null)
+            //{
+            //    if (ModelState["Id"].Errors.Count > 0)
+            //    {
+            //        ModelState["Id"].Errors.Clear();
+            //    }
+            //}
 
-            if (ModelState.IsValid)
-            {
-                var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureComleteVm);
-                picture.CreatedBy = User.Identity.Name;
+            //if (ModelState.IsValid)
+            //{
+            //    var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureComleteVm);
+            //    picture.CreatedBy = User.Identity.Name;
 
-                this.pictureService.Insert(picture);
+            //    this.pictureService.Insert(picture);
 
-                return RedirectToAction("Index");
-            }
+            //    return RedirectToAction("Index");
+            //}
 
             return View(pictureComleteVm);
         }
