@@ -53,8 +53,6 @@ namespace MyWoodenHouse.Data.Services
 
             return picturesToReturn;
         }
-
-
-
+        
     }
 }

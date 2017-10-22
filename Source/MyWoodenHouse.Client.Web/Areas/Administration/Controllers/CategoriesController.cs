@@ -74,7 +74,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 var category = this.mapper.Map<CategoryCompleteVm, Category>(categoryCompleteVm);
                 category.CreatedBy = User.Identity.Name;
 
-                this.categoryService.Insert((Category)category);
+                this.categoryService.Insert(category);
 
                 return RedirectToAction("Index");
             }

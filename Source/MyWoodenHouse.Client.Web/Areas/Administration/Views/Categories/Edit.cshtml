@@ -12,54 +12,6 @@
     <title>Edit</title>
 </head>
 <body>
-    @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/jqueryval")*@
-
-    <script type="text/javascript">
-
-        function enableSaveButton(){
-            var saveButton = $('#saveButton');
-
-            saveButton.removeClass('disabled');
-            saveButton.removeClass('btn-default');
-            saveButton.addClass('enabled');
-            saveButton.addClass('btn-primary');
-        }
-
-        function disableSaveButton(){
-            var saveButton = $('#saveButton');
-            saveButton.removeClass('enabled')
-            saveButton.removeClass('btn-primary')
-            saveButton.addClass('disabled');
-            saveButton.addClass('btn-default');
-        }
-
-        function validateForm() {
-            var editForm = $('#editForm');
-            var validator = editForm.validate();
-            validator.form();
-
-            if (editForm.valid()) {
-                console.log(editForm.valid());
-                enableSaveButton();
-            } else {
-                console.log(editForm.valid());
-                disableSaveButton();
-            }
-        }
-
-        // Enable save button on load, assume you are going to edit a valid item
-        $(document).ready(function(){
-            enableSaveButton();
-        });
-
-        $(document).ready(function () {
-            $('#Name').on("input", function () {
-                validateForm();
-            });
-        });
-    </script>
-
 
     <div class="container">
         <div class="row" style="margin-top: 20px;">
@@ -75,59 +27,10 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-
-                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                    <table class="table form-horizontal" style="margin-top:20px;">
-                        <colgroup>
-                            <col class="col-md-3">
-                            <col class="col-md-9">
-                        </colgroup>
-                        <tbody class="form-group">
-                            <tr>
-                                <th style="background-color:lightsteelblue; color: white;">
-                                    @Html.DisplayNameFor(model => model.ModelName)
-                                </th>
-                                <th style="background-color:lightsteelblue;"></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label pull-right" })
-                                </td>
-                                <td>
-                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="background-color:lightsteelblue">&nbsp;</td>
-                                <td style="background-color:lightsteelblue">
-                                    <button type="reset"
-                                            id="resetButton"
-                                            onclick="location.href='@Url.Action("Index","Categories")'"
-                                            class="btn btn-default">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                        Cancel
-                                    </button>
-                                    <button type="submit"
-                                            id="saveButton"
-                                            value="Edit"
-                                            onclick="location.href='@Url.Action("Edit","Categories")'"                                            
-                                            class="btn btn-default disabled">
-                                        <span class="glyphicon glyphicon-floppy-save"></span>
-                                        Save
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                }
+                @Html.Partial("_CreateEditPartial", Model);
             </div>
         </div>
     </div>
-</body>
 
+</body>
 </html>

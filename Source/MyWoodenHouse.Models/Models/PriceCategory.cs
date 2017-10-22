@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Models
 {
     [MetadataType(typeof(PriceCategoryMetaData))]
-    public partial class PriceCategory : DataModel, IPriceCategory
+    public partial class PriceCategory : IHasIntId, IAuditable, IDeletable, IPriceCategory
     {
     }
 }

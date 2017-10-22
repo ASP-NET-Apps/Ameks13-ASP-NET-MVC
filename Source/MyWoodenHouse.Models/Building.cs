@@ -31,7 +31,7 @@ namespace MyWoodenHouse.Models
         public Nullable<int> BathroomsCount { get; set; }
         public int ProductId { get; set; }
         public int CategoryId { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }

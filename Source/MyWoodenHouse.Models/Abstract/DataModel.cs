@@ -9,10 +9,12 @@ namespace MyWoodenHouse.Models.Abstract
     public abstract class DataModel : IHasIntId, IAuditable, IDeletable
     {
         [Key]
+        [Required]
         [Range(Consts.DataModel.Id.MinValue, Consts.DataModel.Id.MaxValue, ErrorMessage = Consts.DataModel.Id.ErrorMessage)]
         public int Id { get; set; }
 
         [Index]
+        [Required]
         public bool IsDeleted { get; set; }
 
         [DataType(DataType.DateTime)]

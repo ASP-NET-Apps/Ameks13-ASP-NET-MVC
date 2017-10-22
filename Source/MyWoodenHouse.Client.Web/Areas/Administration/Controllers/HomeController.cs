@@ -18,7 +18,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
             if (!(hasAdministratorRole || hasAdminRole))
             {
-                return RedirectToAction("Index", "Home", new { area = "" });
+                // TODO done for presentation, remove for prod.
+                return View("NoPermission");
+
+                //return RedirectToAction("Index", "Home", new { area = "" });
             }
             
             return View();

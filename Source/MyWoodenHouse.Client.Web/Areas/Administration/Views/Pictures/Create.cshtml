@@ -27,8 +27,8 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-
-                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm", enctype = "multipart/form-data" }))
+                @Html.Partial("_CreateEditPartial", Model);
+                @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm", enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -90,6 +90,7 @@
                             @*********************@
                             @* UploadSourcesList
                             *@
+                @*
                             <tr>
                                 <td>
                                     @Html.LabelFor(model => model.UploadSourcesList, htmlAttributes: new { @class = "control-label pull-right" })
@@ -122,83 +123,10 @@
                             </tr>
                         </tbody>
                     </table>
-                }
+                }*@
             </div>
         </div>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/jqueryval")*@
-
-    <script type="text/javascript">
-        
-        function showImageFromFile(input) {
-            if (input.files && input.files[0]) {
-                var filerdr = new FileReader();
-                filerdr.onload = function (e) {
-                    $('#previewImgFromFile').attr('src', e.target.result).attr('height', '100px');
-                }
-                filerdr.readAsDataURL(input.files[0]);
-            }
-        }
-        //function OnChangeUrl(evt) {
-        //    alert(evt.value);
-        //    var val = $('#Url').val();
-        //    $('#previewImg').attr('src', val).attr('height', '100px');
-        //}
-        $('#PictureCompleteVm_Url').change(function (evt) {
-            // alert(evt.target.value);
-            $('#previewImgFromWebUrl').attr('src', evt.target.value).attr('height', '100px');
-        });
-
-
-        function enableSaveButton(){
-            var saveButton = $('#saveButton');
-
-            saveButton.removeClass('disabled');
-            saveButton.removeClass('btn-default');
-            saveButton.addClass('enabled');
-            saveButton.addClass('btn-primary');
-        }
-
-        function disableSaveButton(){
-            var saveButton = $('#saveButton');
-            saveButton.removeClass('enabled')
-            saveButton.removeClass('btn-primary')
-            saveButton.addClass('disabled');
-            saveButton.addClass('btn-default');
-        }
-
-        function validateForm() {
-            var createForm = $('#createForm');
-            var validator = createForm.validate();
-            validator.form();
-
-            if (createForm.valid()) {
-                console.log(createForm.valid());
-                enableSaveButton();
-            } else {
-                console.log(createForm.valid());
-                disableSaveButton();
-            }
-        }
-
-        $(document).ready(function () {
-            $('#PictureCompleteVm_Name').on("input", function () {
-                validateForm();
-            });
-            $('#PictureCompleteVm_Url').on("input", function () {
-                validateForm();
-            });
-            $('#SelectedUploadSource').on("input", function () {
-                validateForm();
-            });
-            $('#httpPostedFileBase').on("change", function () {
-                validateForm();
-            });
-
-        });
-
-    </script>
+       
 </body>
 </html>

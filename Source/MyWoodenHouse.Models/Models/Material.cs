@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Models
 {
     [MetadataType(typeof(MaterialMetaData))]
-    public partial class Material : DataModel, IMaterial
+    public partial class Material : IHasIntId, IAuditable, IDeletable, IMaterial
     {
     }
 }

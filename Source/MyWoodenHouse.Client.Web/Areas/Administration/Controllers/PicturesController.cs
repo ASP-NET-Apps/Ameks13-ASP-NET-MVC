@@ -27,12 +27,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 
     public class PicturesController : Controller
     {
-        // TODO extract to config
-        private const string ImageUploadPath = "/Assets/Upload/Images/";
-
         private readonly IMapper mapper;
         private readonly IBaseGenericService<Picture> pictureService;
-        private string dirPath;
 
         //public PicturesController()
         //{
@@ -50,12 +46,36 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         }
 
         // GET: Administration/Pictures
+        [HttpGet]
         [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Index()
         {
             var pictures = this.pictureService.GetAll();
-            var picturesCompleteVm = pictures.Select(x => this.mapper.Map<Picture, PictureCompleteVm>(x));
+            var picturesCompleteVm = pictures.Select(x => this.mapper.Map<Picture, PictureCompleteVm>(x)).ToList();
 
+            var appBaseUrl = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+
+            var len = picturesCompleteVm.Count();
+            for (int i = 0; i < len; i++)
+            {
+                var pictureCompleteVm = picturesCompleteVm[i];
+                if (pictureCompleteVm.GetFrom == GetPictureContentFrom.LocalServerUrl)
+                {
+                    // TODO cash this path
+                    var localServerPath = string.Empty;
+                    if (String.IsNullOrEmpty(pictureCompleteVm.Url))
+                    {
+                        localServerPath = appBaseUrl + GlobalConsts.Image.Paths.LocalResource;
+                        picturesCompleteVm[i].Url = localServerPath + GlobalConsts.Image.FileNames.NoImage;
+                    }
+                    else
+                    {
+                        localServerPath = appBaseUrl + GlobalConsts.Image.UploadConfiguration.ImageUploadPath;
+                        picturesCompleteVm[i].Url = localServerPath + pictureCompleteVm.Url;
+                    }
+                }
+            }
+           
             return View(picturesCompleteVm);
         }
 
@@ -66,11 +86,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         {
             var pictureCreateEditVm = new PictureCreateEditVm(new PictureCompleteVm());
 
-            List<SelectListItem> selectListItems = new List<SelectListItem>();
-            selectListItems.Add(new SelectListItem() { Text = "File", Value = "1", Selected = true });
-            selectListItems.Add(new SelectListItem() { Text = "Url", Value = "2", Selected = false });
-
-            pictureCreateEditVm.UploadSourcesList = new SelectList(selectListItems, "Value", "Text");
+            pictureCreateEditVm.UploadSourcesList = CreateEditUploadSourcesList();
 
             return View(pictureCreateEditVm);
         }
@@ -80,40 +96,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
         public ActionResult Create(HttpPostedFileBase httpPostedFileBase, PictureCreateEditVm pictureCreateEditVm)
         {
 
-            if (pictureCreateEditVm.SelectedUploadSource == 1)
-            {
-                bool isImage = true;
-                string uploadedWithfileName = string.Empty;
-                var fileUploadHelper = new FileUploadHelper(httpPostedFileBase, ImageUploadConfiguration.AllowedPictureExtensions, ImageUploadConfiguration.MaxSizeInBytes, isImage);
-                //try
-                //{
-                    var path = Path.Combine(Server.MapPath("~" + ImageUploadPath), httpPostedFileBase.FileName);
-
-                    string folderPath = Server.MapPath("~" + ImageUploadPath);
-                    uploadedWithfileName = fileUploadHelper.UploadFileToLocalServer(folderPath);
-                //}
-                //catch
-                //{
-                //    ViewBag.errorMessage = "error";
-                //}
-
-                var imageDimensions = fileUploadHelper.GetImageDimension();
-                pictureCreateEditVm.PictureCompleteVm.Width = imageDimensions.Item1;
-                pictureCreateEditVm.PictureCompleteVm.Height = imageDimensions.Item2;
-                pictureCreateEditVm.PictureCompleteVm.GetFrom = GetPictureContentFrom.LocalServerUrl;
-                pictureCreateEditVm.PictureCompleteVm.Url = uploadedWithfileName;
-            }
-            else
-            {
-                pictureCreateEditVm.PictureCompleteVm.GetFrom = GetPictureContentFrom.WebServerUrl;
-
-            }
-
-            pictureCreateEditVm.PictureCompleteVm.FileContent = null;
+            this.CreateEditUploadPicture(httpPostedFileBase, pictureCreateEditVm);
 
             // TODO optimize if possible
             var modelStateId = ModelState["PictureCompleteVm.Id"];
@@ -123,7 +109,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 {
                     modelStateId.Errors.Clear();
                 }
-            }
+            }                       
 
             if (ModelState.IsValid)
             {
@@ -154,25 +140,40 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             }
 
             var pictureCompleteVm = this.mapper.Map<Picture, PictureCompleteVm>(picture);
+            var pictureCreateEditVm = new PictureCreateEditVm(pictureCompleteVm);
+            pictureCreateEditVm.UploadSourcesList = CreateEditUploadSourcesList();
 
-            return View(pictureCompleteVm);
+            return View(pictureCreateEditVm);
         }
 
         // POST: Administration/Pictures/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Name, Url")] PictureCompleteVm pictureComleteVm)
+        public ActionResult Edit(HttpPostedFileBase httpPostedFileBase, PictureCreateEditVm pictureCreateEditVm)
         {
+            this.CreateEditUploadPicture(httpPostedFileBase, pictureCreateEditVm);
+
+            // TODO optimize if possible
+            var modelStateId = ModelState["PictureCompleteVm.Id"];
+            if (modelStateId != null)
+            {
+                if (modelStateId.Errors.Count > 0)
+                {
+                    modelStateId.Errors.Clear();
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureComleteVm);
+                var picture = this.mapper.Map<PictureCompleteVm, Picture>(pictureCreateEditVm.PictureCompleteVm);
                 picture.ModifiedBy = User.Identity.Name;
 
                 this.pictureService.Update(picture);
 
                 return RedirectToAction("Index");
             }
-            return View(pictureComleteVm);
+
+            return View(pictureCreateEditVm);
         }
 
         // GET: Administration/Pictures/Delete/5
@@ -224,6 +225,54 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             this.pictureService.Delete(id, username);
 
             return RedirectToAction("Index");
+        }
+
+        private SelectList CreateEditUploadSourcesList()
+        {
+            // TODO extract enum
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem() { Text = "File", Value = "1", Selected = true });
+            selectListItems.Add(new SelectListItem() { Text = "Url", Value = "2", Selected = false });
+
+            var ploadSourcesListToReturn = new SelectList(selectListItems, "Value", "Text");
+
+            return ploadSourcesListToReturn;
+        }
+
+        private PictureCreateEditVm CreateEditUploadPicture(HttpPostedFileBase httpPostedFileBase, PictureCreateEditVm pictureCreateEditVm)
+        {
+            if (pictureCreateEditVm.SelectedUploadSource == 1)
+            {
+                bool isImage = true;
+                string uploadedWithfileName = string.Empty;
+                var fileUploadHelper = new FileUploadHelper(httpPostedFileBase, GlobalConsts.Image.UploadConfiguration.AllowedPictureExtensions, GlobalConsts.Image.UploadConfiguration.MaxSizeInBytes, isImage);
+
+                // TODO process error and go to error page;
+                //try
+                //{
+                // TODO cash this path
+                var localServerImageUploadPath = Server.MapPath("~" + GlobalConsts.Image.UploadConfiguration.ImageUploadPath);
+                uploadedWithfileName = fileUploadHelper.UploadFileToLocalServer(localServerImageUploadPath);
+                //}
+                //catch
+                //{
+                //    ViewBag.errorMessage = "error";
+                //}
+
+                var imageDimensions = fileUploadHelper.GetImageDimension();
+                pictureCreateEditVm.PictureCompleteVm.Width = imageDimensions.Item1;
+                pictureCreateEditVm.PictureCompleteVm.Height = imageDimensions.Item2;
+                pictureCreateEditVm.PictureCompleteVm.GetFrom = GetPictureContentFrom.LocalServerUrl;
+                pictureCreateEditVm.PictureCompleteVm.Url = uploadedWithfileName;
+            }
+            else
+            {
+                pictureCreateEditVm.PictureCompleteVm.GetFrom = GetPictureContentFrom.WebServerUrl;
+            }
+
+            pictureCreateEditVm.PictureCompleteVm.FileContent = null;
+
+            return pictureCreateEditVm;
         }
     }
 }

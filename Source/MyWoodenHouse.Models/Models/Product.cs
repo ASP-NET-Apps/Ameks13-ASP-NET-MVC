@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MyWoodenHouse.Models
 {
     [MetadataType(typeof(ProductMetaData))]
-    public partial class Product : DataModel, IProduct 
+    public partial class Product : IHasIntId, IAuditable, IDeletable, IProduct 
     {
     }
 }

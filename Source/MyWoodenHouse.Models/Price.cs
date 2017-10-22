@@ -25,7 +25,7 @@ namespace MyWoodenHouse.Models
         public string Currency { get; set; }
         public float PerSquareMeter { get; set; }
         public int PriceCategoryId { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }

@@ -260,6 +260,7 @@
   <ItemGroup>
     <Content Include="Assets\Images\logo.png" />
     <Content Include="Assets\Images\modern-wooden-house-small.jpg" />
+    <Content Include="Assets\Images\no-image-1-600x6004-600x500.png" />
     <Content Include="Assets\Images\pexels-photo.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -301,6 +302,10 @@
     <Content Include="Areas\Administration\Views\Buildings\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Buildings\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Pictures\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Pictures\_CreateEditPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Materials\_CreateEditPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Products\_CreateEditPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Categories\_CreateEditPartial.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />
@@ -355,12 +360,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\FileNotFound.cshtml" />
+    <Content Include="Views\Shared\NoPermission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Assets\Upload\Images\" />
-    <Folder Include="ViewModels\Material\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
