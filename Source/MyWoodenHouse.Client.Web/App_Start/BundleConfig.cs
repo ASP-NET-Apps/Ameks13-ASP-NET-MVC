@@ -10,7 +10,8 @@ namespace MyWoodenHouse.Client.Web.App_Start
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate*", 
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
             //            "~/Scripts/jquery.validate*"));

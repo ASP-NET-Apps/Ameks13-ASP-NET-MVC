@@ -59,11 +59,11 @@
                             <li class="dropdown">
                                 <a class="dropdown-toggle hvr-grow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
                                 <ul class="dropdown-menu my-dropdown-menu">
-                                    <li>@Html.ActionLink("See all", "Index", "Home", new { area = "" })</li>
-                                    <li>@Html.ActionLink("Bungalows", "Index", "Home", new { area = "" })</li>
-                                    <li>@Html.ActionLink("Houses", "Index", "Home", new { area = "" })</li>
-                                    <li>@Html.ActionLink("Cabins", "Index", "Home", new { area = "" })</li>
-                                    <li>@Html.ActionLink("Garages", "Index", "Home", new { area = "" })</li>
+                                    <li>@Html.ActionLink("See all", "Index", "Gallery", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Bungalows", "Index", "Gallery", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Houses", "Index", "Gallery", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Cabins", "Index", "Gallery", new { area = "" })</li>
+                                    <li>@Html.ActionLink("Garages", "Index", "Gallery", new { area = "" })</li>
                                 </ul>
                             </li>
 
@@ -102,7 +102,7 @@
         @Html.Partial("_FooterPartial")
     </div>
 
-        @*
+    @*
         jquery validate method not found error on mvc4
         source:
         http://stackoverflow.com/questions/12151609/jquery-validate-method-not-found-error-on-mvc4
