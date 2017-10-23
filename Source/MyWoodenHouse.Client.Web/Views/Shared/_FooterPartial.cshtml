@@ -1,0 +1,30 @@
+﻿<div class="footer-content clearfix">
+    <footer>
+        <div class="navbar navbar-inverse">
+            <div class="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand hvr-grow" })
+                        </li>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Administrator"))
+                        {
+                            <li>
+                                @Html.ActionLink("Admin", "Index", "Home", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })
+                            </li>
+                        }
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
