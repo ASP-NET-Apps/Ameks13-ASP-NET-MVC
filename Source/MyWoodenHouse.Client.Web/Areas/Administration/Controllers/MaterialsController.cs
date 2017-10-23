@@ -94,7 +94,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             var material = this.materialService.GetById(id);
             if (material == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return this.View("NotFound");
             }
 
             var materialComleteVm = this.mapper.Map<Material, MaterialCompleteVm>(material);

@@ -4,29 +4,24 @@
     ViewBag.Title = "Galery";
 }
 
-Gallery is working
+<h2>Gallery</h2>
 
-@using (Ajax.BeginForm("GetNextPicture", "Gallery", null, new AjaxOptions
+@Html.Partial("_PictureDetailPartial", Model)
+
+@using (Ajax.BeginForm("GetNextPicture", "Gallery", new { PreviewId = Model.Id }, new AjaxOptions
 {
     InsertionMode = InsertionMode.Replace,
     UpdateTargetId = "picturePreview",
     LoadingElementId = "loader",
-    HttpMethod = "PUT",
+    HttpMethod = "GET",
 }))
 {
-    <div>@Model.Id</div>
-
-    @Html.Partial("_PictureNextPreviewPartial", Model)
-
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => Model.Id)
-    <button type="submit" class="btn btn-default">Next >></button>
+    <button type="submit" class="btn btn-default">Next</button>
 }
 
 @* ... *@
 <div id="loader" class=" aletr" style="display:none">
     Loading...<img src="~/Images/ajax-loader.gif" />
 </div>
-
-
-@Scripts.Render("~/bundles/jquery")

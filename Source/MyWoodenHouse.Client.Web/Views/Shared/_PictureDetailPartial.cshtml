@@ -1,0 +1,10 @@
+﻿@using MyWoodenHouse.Client.Web.ViewModels.Gallery
+
+@model PictureGalleryVm
+
+<div id="picturePreview">
+    <img src="@Model.Url" alt="@Model.Name" height="400px" />
+    <br/>
+    @Html.DisplayFor(modelName => Model.Name)
+    <br />
+</div>

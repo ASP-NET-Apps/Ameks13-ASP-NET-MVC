@@ -95,7 +95,8 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             var category = this.categoryService.GetById(id);
             if (category == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return this.View("NotFound");
             }
 
             var categoryCompleteVm = this.mapper.Map<Category, CategoryCompleteVm>(category);
