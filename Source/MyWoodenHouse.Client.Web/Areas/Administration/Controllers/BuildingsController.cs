@@ -1,4 +1,6 @@
-﻿using MyWoodenHouse.Client.Web.App_Start;
+﻿using AutoMapper;
+using Bytes2you.Validation;
+using MyWoodenHouse.Client.Web.App_Start;
 using MyWoodenHouse.Client.Web.Areas.Administration.MyMappers.Contracts;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
@@ -22,62 +24,58 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         private const string Products = "Products";
         private const string Materials = "Materials";
         private const string Pictures = "Pictures";
-        
+
+        private readonly IMapper mapper;
         private readonly IBaseGenericService<Building> buildingService;
         private readonly IBaseGenericService<Category> categoryService;
         private readonly IBaseGenericService<Product> productService;
         private readonly IBaseGenericService<Material> materialService;
         private readonly IBaseGenericService<Picture> pictureService;
-        private readonly IGenericModelMapper<Building, BuildingCompleteVm> buildingModelMapper;
+        //private readonly IGenericModelMapper<Building, BuildingCompleteVm> buildingModelMapper;
 
-        public BuildingsController()
-        {
-            this.categoryService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Category>>();
-            this.buildingService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Building>>();
-            this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
-            this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
-            this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
+        //public BuildingsController()
+        //{
+        //    this.categoryService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Category>>();
+        //    this.buildingService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Building>>();
+        //    this.productService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Product>>();
+        //    this.materialService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Material>>();
+        //    this.pictureService = NinjectWebCommon.Kernel.Get<IBaseGenericService<Picture>>();
 
-            // TODO binding not working
-            this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteVm>>();
-            //this.buildingModelMapper = new BuildingModelMapper();
-        }
+        //    // TODO binding not working
+        //    this.buildingModelMapper = NinjectWebCommon.Kernel.Get<IGenericModelMapper<Building, BuildingCompleteVm>>();
+        //    //this.buildingModelMapper = new BuildingModelMapper();
+        //}
 
-        // TODO not used, because can not auto bind services in Ninject
-        public BuildingsController(IBaseGenericService<Building> buildingService,
+        public BuildingsController(IMapper mapper, 
+            IBaseGenericService<Building> buildingService,
             IBaseGenericService<Category> categoryService, 
             IBaseGenericService<Product> productService, 
             IBaseGenericService<Material> materialService, 
-            IBaseGenericService<Picture> pictureService,
-            IGenericModelMapper<Building, BuildingCompleteVm> buildingModelMapper)
+            IBaseGenericService<Picture> pictureService)
         {
-            // Todo insert validation
+            Guard.WhenArgument(mapper, nameof(mapper)).IsNull().Throw();
+            Guard.WhenArgument(buildingService, nameof(buildingService)).IsNull().Throw();
+            Guard.WhenArgument(categoryService, nameof(categoryService)).IsNull().Throw();
+            Guard.WhenArgument(productService, nameof(productService)).IsNull().Throw();
+            Guard.WhenArgument(materialService, nameof(materialService)).IsNull().Throw();
+            Guard.WhenArgument(pictureService, nameof(pictureService)).IsNull().Throw();
+
+            this.mapper = mapper;
             this.buildingService = buildingService;
             this.categoryService = categoryService;
             this.productService = productService;
             this.materialService = materialService;
             this.pictureService = pictureService;
-
-            this.buildingModelMapper = buildingModelMapper;
         }
 
         // GET: Administration/AdminBuildings
         [AuthorizeRoles(Consts.Role.Administrator, Consts.Role.Admin)]
         public ActionResult Index()
         {
-            // TODO used for testing and debug
-            //var buildingsComleteViewModel = new List<BuildingCompleteVm>();
-            //var buildings = this.buildingService.GetAll();
-            //foreach(var building in buildings)
-            //{
-            //    var bcvm = this.buildingModelMapper.Model2ViewModel(building);
-            //    buildingsComleteViewModel.Add(bcvm);
-            //}
-
             var buildings = this.buildingService.GetAll();
-            var buildingsComleteViewModel = buildings.Select(x => this.buildingModelMapper.Model2ViewModel(x));
+            var buildingsComleteVm = buildings.Select(x => this.mapper.Map<Building, BuildingCompleteVm>(x));
 
-            return View(buildingsComleteViewModel);
+            return View(buildingsComleteVm);
         }
 
         // GET: Administration/AdminBuildings/Create
@@ -87,28 +85,10 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             // Todo extract to factory
             var buildingCreateEditVm = new BuildingCreateEditVm(new BuildingCompleteVm());
 
-            // TODO Use TempData transferring later
-            //var categories = this.categoryService.GetAllCategoriesSortedByName();
-            //SelectList categoriesSelectList = new SelectList(categories, "Id", "Name");
-            //buildingCreateEditVm.CategoryList = categoriesSelectList;
+            // TODO Use TempData transferring later don't get model again from db
             //TempData[Categories] = categories.ToList();
-
-            // TODO Use TempData transferring later
-            //var products = this.productService.GetAll().OrderBy(p => p.Name);
-            //SelectList productSelectList = new SelectList(products, "Id", "Name");
-            //buildingCreateEditVm.ProductList = productSelectList;
             //TempData[Products] = products.ToList();
-
-            // TODO Use TempData transferring later
-            //var materials = this.materialService.GetAll().OrderBy(m => m.Name);
-            //SelectList materialSelectList = new SelectList(materials, "Id", "Name");
-            //buildingCreateEditVm.MaterialList = materialSelectList;
             //TempData[Materials] = materials.ToList();
-
-            // TODO Use TempData transferring later
-            //var pictures = this.pictureService.GetAll().OrderBy(m => m.Id);
-            //SelectList pictureSelectList = new SelectList(pictures, "Id", "Url");
-            //buildingCreateEditVm.PictureList = pictureSelectList;
             //TempData[Materials] = pictures.ToList();
 
             buildingCreateEditVm.CategoryList = this.CategorySelectListPreparer();
@@ -127,9 +107,6 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         //public ActionResult Create([Bind(Include = "BuildingCompleteVm.Id, BuildingCompleteVm.Name, BuildingCompleteVm.Description, BuildingCompleteVm.UsableArea, BuildingCompleteVm.BuiltUpArea, BuildingCompleteVm.RoomsCount, BuildingCompleteVm.FloorsCount, BuildingCompleteVm.BathroomsCount, BuildingCompleteVm.CategoryId, BuildingCompleteVm.Category, BuildingCompleteVm.ProductId, BuildingCompleteVm.Product, BuildingCompleteVm.Materials, BuildingCompleteVm.Pictures")] BuildingCreateEditVm buildingCreateEditVm)
         public ActionResult Create(BuildingCreateEditVm buildingCreateEditVm)
         {
-            IBuildingCompleteVm buildingCompleteVm = new BuildingCompleteVm();
-            buildingCompleteVm = buildingCreateEditVm.BuildingCompleteVm;
-
             //var allCategories = (List<Category>)TempData[Categories];
             //buildingCompleteVm.Category = allCategories.SingleOrDefault(c => c.Id == buildingCompleteVm.CategoryId);
 
@@ -153,7 +130,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
 
-                var building = this.buildingModelMapper.ViewModel2Model((BuildingCompleteVm)buildingCompleteVm);
+                var building = this.mapper.Map<BuildingCompleteVm, Building>(buildingCreateEditVm.BuildingCompleteVm);
 
                 // TODO think out how to make it better. Probably using TempData transferring objects
                 // Categories and Products should be present before inserting new building
@@ -182,6 +159,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 building.Product = this.FromViewResolver<Product>();
                 building.Materials = this.SelectedMaterialListResolver(buildingCreateEditVm.SelectedMaterialIdList);
                 building.Pictures = this.SelectedPictureListResolver(buildingCreateEditVm.SelectedPictureIdList);
+                building.CreatedBy = User.Identity.Name;
 
                 this.buildingService.Insert(building);
 
@@ -206,7 +184,7 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 return HttpNotFound();
             }
 
-            var buildingCompleteVm = this.buildingModelMapper.Model2ViewModel((Building)building);
+            var buildingCompleteVm = this.mapper.Map<Building, BuildingCompleteVm>(building);
             var buildingCreateEditVm = new BuildingCreateEditVm(buildingCompleteVm);
 
             buildingCreateEditVm.CategoryList = this.CategorySelectListPreparer();
@@ -220,15 +198,14 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
         // POST: Administration/AdminBuildings/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteVm buildingComleteViewModel)
+        //public ActionResult Edit([Bind(Include = "Id, Name, Description, UsableArea, BuiltUpArea, RoomsCount, FloorsCount, BathroomsCount, CategoryId, Category, ProductId, Product, Materials, Pictures")] BuildingCompleteVm buildingCompleteVm)
         public ActionResult Edit(BuildingCreateEditVm buildingCreateEditVm)
         {
-            var buildingCompleteVm = new BuildingCompleteVm();
-            buildingCompleteVm = buildingCreateEditVm.BuildingCompleteVm;
-
             if (ModelState.IsValid)
             {
-                var building = this.buildingModelMapper.ViewModel2Model(buildingCompleteVm);
+                var building = this.mapper.Map<BuildingCompleteVm, Building>(buildingCreateEditVm.BuildingCompleteVm);
+                building.ModifiedBy = User.Identity.Name;
+
                 this.buildingService.Update(building);
 
                 return RedirectToAction("Index");
@@ -260,9 +237,9 @@ namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
                 string errorMessage = string.Format(Consts.SelectData.ErrorMessage.NoItemFoundByTheGivenId, "Building", id);
                 throw new ArgumentNullException(errorMessage);
             }
-            var buildingComleteViewModel = this.buildingModelMapper.Model2ViewModel(building);
+            var buildingCompleteVm = this.mapper.Map<Building, BuildingCompleteVm>(building);
 
-            return PartialView("_DeleteConfirm", buildingComleteViewModel);
+            return PartialView("_DeleteConfirm", buildingCompleteVm);
         }
 
 

@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MyWoodenHouse.Models
 {
     [MetadataType(typeof(BuildingMetaData))]
-    public partial class Building : DataModel, IBuilding
+    public partial class Building : IHasIntId, IAuditable, IDeletable, IBuilding
     {
     }
 }

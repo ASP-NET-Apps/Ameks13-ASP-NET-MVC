@@ -89,7 +89,9 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="DeletedOn" Type="datetime" />
           <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -586,6 +588,8 @@
           <NavigationProperty Name="Product" Relationship="MyWoodenHouseModel.FK_Building_Products" FromRole="Building" ToRole="Product" />
           <NavigationProperty Name="Materials" Relationship="MyWoodenHouseModel.BuildingMaterials" FromRole="Building" ToRole="Material" />
           <NavigationProperty Name="Pictures" Relationship="MyWoodenHouseModel.BuildingPictures" FromRole="Building" ToRole="Picture" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -793,6 +797,8 @@
           <EntitySetMapping Name="Buildings">
             <EntityTypeMapping TypeName="MyWoodenHouseModel.Building">
               <MappingFragment StoreEntitySet="Buildings">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />

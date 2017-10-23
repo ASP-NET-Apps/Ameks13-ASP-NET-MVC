@@ -35,6 +35,8 @@ namespace MyWoodenHouse.Models
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Product Product { get; set; }

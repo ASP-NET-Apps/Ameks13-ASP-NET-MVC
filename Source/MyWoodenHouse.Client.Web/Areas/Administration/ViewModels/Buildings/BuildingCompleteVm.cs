@@ -1,11 +1,12 @@
-﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
+﻿using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Abstract;
+using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Contracts;
 using MyWoodenHouse.Constants.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings
 {
-    public class BuildingCompleteVm : IBuildingCompleteVm
+    public class BuildingCompleteVm : DataModelVm, IBuildingCompleteVm
     {
         public BuildingCompleteVm()
         {
