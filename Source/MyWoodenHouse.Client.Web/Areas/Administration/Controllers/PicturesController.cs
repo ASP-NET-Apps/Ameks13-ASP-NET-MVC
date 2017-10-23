@@ -19,12 +19,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-
-
 namespace MyWoodenHouse.Client.Web.Areas.Administration.Controllers
 {
-    
-
     public class PicturesController : Controller
     {
         private readonly IMapper mapper;
