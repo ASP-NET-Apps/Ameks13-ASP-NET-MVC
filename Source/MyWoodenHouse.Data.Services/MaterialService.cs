@@ -1,5 +1,6 @@
 ﻿using MyWoodenHouse.Constants.Models;
 using MyWoodenHouse.Data.Provider.Contracts;
+using MyWoodenHouse.Data.Services.Contracts;
 using MyWoodenHouse.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class MaterialService : BaseGenericService<Material> //, IDataService
+    public class MaterialService : BaseGenericService<Material>, IMaterialService //, IDataService
     {
         private readonly IEfCrudOperatons<Material> materialBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;

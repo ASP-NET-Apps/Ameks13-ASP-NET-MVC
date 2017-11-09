@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="BaseGenericService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="Contracts\IPageService.cs" />
+    <Compile Include="Contracts\IProductService.cs" />
     <Compile Include="Contracts\IPictureService.cs" />
     <Compile Include="Contracts\IMaterialService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Helpers\EntityIdOperations.cs" />
     <Compile Include="BuildingService.cs" />
     <Compile Include="PictureService.cs" />
+    <Compile Include="PageService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="MaterialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

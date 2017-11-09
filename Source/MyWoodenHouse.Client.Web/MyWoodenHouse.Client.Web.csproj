@@ -198,6 +198,7 @@
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Administration\Controllers\MaterialsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\PagesController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Administration\Controllers\BuildingsController.cs" />
     <Compile Include="Areas\Administration\Controllers\PicturesController.cs" />
@@ -212,7 +213,9 @@
     <Compile Include="Areas\Administration\MyMappers\PictureModelMapper.cs" />
     <Compile Include="Areas\Administration\MyMappers\CategoryModelMapper.cs" />
     <Compile Include="Areas\Administration\ViewModels\Abstract\DataModelVm.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Contracts\IPictureCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IPictureCreateEditVm.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PageCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\PictureCreateEditVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCreateEditVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Buildings\BuildingCompleteVm.cs" />
@@ -223,7 +226,7 @@
     <Compile Include="Areas\Administration\ViewModels\Contracts\ICategoryCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IAdminCategoryMainVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IPriceCompleteVm.cs" />
-    <Compile Include="Areas\Administration\ViewModels\Contracts\IPictureCompleteVm.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Contracts\IPageCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\MaterialCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\PictureCompleteVm.cs" />
     <Compile Include="Areas\Administration\ViewModels\PriceCategoryCompleteVm.cs" />
@@ -240,7 +243,6 @@
     <Compile Include="Infrastructure\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\IMapFrom.cs" />
     <Compile Include="Infrastructure\MappingProfiles.cs" />
-    <Compile Include="Infrastructure\MappingProfile.cs" />
     <Compile Include="Infrastructure\QueryableExtensions.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Areas\Administration\ViewModels\Contracts\IProductCompleteVm.cs" />
@@ -305,6 +307,11 @@
     <Content Include="Areas\Administration\Views\Materials\_CreateEditPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Products\_CreateEditPartial.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\_CreateEditPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Pages\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Pages\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Pages\_CreateEditPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Pages\_DeleteConfirm.cshtml" />
+    <Content Include="Areas\Administration\Views\Pages\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\mywoodenhouse.pubxml" />

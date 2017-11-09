@@ -260,5 +260,38 @@
             }
 
         };
+
+        public struct Page
+        {
+            public struct Id
+            {
+                public const int MaxValue = int.MaxValue;
+                public const int MinValue = 1;
+                public const string ErrorMessage = "Page Id value should be positive integer number.";
+            }
+
+            public struct Name
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "Page name length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "Page name length should be more than " + "2" + " symbols.";
+            }
+
+            public struct Description
+            {
+                public const int MaxLength = 500;
+                public const string ErrorMessageMaxLength = "Page description length should be less than " + "500" + " symbols.";
+            }
+
+            public struct LanguageCultureName
+            {
+                public const int MaxLength = 50;
+                public const int MinLength = 2;
+                public const string ErrorMessageMaxLength = "Page language length should be less than " + "50" + " symbols.";
+                public const string ErrorMessageMinLength = "Page language length should be more than " + "2" + " symbols.";
+            }
+
+        };
     }
 }

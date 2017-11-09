@@ -15,6 +15,7 @@ namespace MyWoodenHouse.Data.Provider
         private const string PriceCategoriesT = "PriceCategories";
         private const string PricesT = "Prices";
         private const string ProductsT = "Products";
+        private const string PagesT = "Pages";
         private const string BuildingsT = "Buildings";
         private const string MaterialBuildingsT = "MaterialBuildings";
         private const string PictureBuildingsT = "PictureBuildings";
@@ -51,6 +52,8 @@ namespace MyWoodenHouse.Data.Provider
         public IDbSet<Price> Prices { get; set; }
 
         public IDbSet<Product> Products { get; set; }
+
+        public IDbSet<Page> Pages { get; set; }
 
         public IDbSet<Building> Buildings { get; set; }
 
@@ -132,6 +135,13 @@ namespace MyWoodenHouse.Data.Provider
                 .Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Product>().ToTable(ProductsT);
+
+            //Pages
+            modelBuilder.Entity<Page>()
+                .HasKey(c => c.Id)
+                .Property(p => p.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Page>().ToTable(PagesT);
 
             // ***************** Many to many configurations *******************
             modelBuilder.Entity<MaterialBuilding>()

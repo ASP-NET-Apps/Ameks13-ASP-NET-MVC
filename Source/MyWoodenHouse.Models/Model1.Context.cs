@@ -36,5 +36,6 @@ namespace MyWoodenHouse.Models
         public virtual DbSet<PriceCategory> PriceCategories { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Page> Pages { get; set; }
     }
 }

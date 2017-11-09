@@ -16,6 +16,7 @@ namespace MyWoodenHouse.Client.Web.Infrastructure
             CreateMap<Picture, PictureCompleteVm>().ReverseMap();
             CreateMap<Price, PriceCompleteVm>().ReverseMap();
             CreateMap<Product, ProductCompleteVm>().ReverseMap();
+            CreateMap<Page, PageCompleteVm>().ReverseMap();
 
             CreateMap<Picture, PictureGalleryVm>().ReverseMap();
 

@@ -59,6 +59,12 @@
                             </a>
                             @*@Html.ActionLink("Pictures", "Index", "Pictures", new { area = "Administration" }, new { @class = "navbar-brand hvr-grow" })*@
                         </li>
+                        <li style="margin-right:30px">
+                            <a href="@Url.Action("Index", "Pages", new { area = "Administration" })" class="btn btn-default">
+                                <span class="glyphicon glyphicon glyphicon-home" aria-hidden="true"></span>
+                                Pages
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 

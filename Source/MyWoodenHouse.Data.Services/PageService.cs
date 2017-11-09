@@ -8,29 +8,29 @@ using System.Linq;
 
 namespace MyWoodenHouse.Data.Services
 {
-    public class ProductService : BaseGenericService<Product>, IProductService//, IDataService
+    public class PageService : BaseGenericService<Page>, IPageService//, IDataService
     {
-        private readonly IEfCrudOperatons<Product> productBaseOperatonsProvider;
+        private readonly IEfCrudOperatons<Page> productBaseOperatonsProvider;
         private readonly IEfDbContextSaveChanges dbContextSaveChanges;
 
-        public ProductService(IEfCrudOperatons<Product> productBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
+        public PageService(IEfCrudOperatons<Page> productBaseOperatonsProvider, IEfDbContextSaveChanges dbContextSaveChanges)
             :  base(productBaseOperatonsProvider, dbContextSaveChanges)
         {
             if (productBaseOperatonsProvider == null && dbContextSaveChanges == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Product> and EfDbContextSaveChanges", "ProductService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Page> and EfDbContextSaveChanges", "PageService");
                 throw new ArgumentNullException(errorMessage);
             }
 
             if (productBaseOperatonsProvider == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Product>", "ProductService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfCrudOperatons<Page>", "PageService");
                 throw new ArgumentNullException(errorMessage);
             }
 
             if (dbContextSaveChanges == null)
             {
-                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfDbContextSaveChanges", "ProductService");
+                string errorMessage = string.Format(Consts.Constuctor.ErrorMessage.AnInstanceOfObjectIsRequiredToConstructClass, "EfDbContextSaveChanges", "PageService");
                 throw new ArgumentNullException(errorMessage);
             }
 
@@ -38,18 +38,18 @@ namespace MyWoodenHouse.Data.Services
             this.dbContextSaveChanges = dbContextSaveChanges;
         }
 
-        public IEnumerable<Product> GetAllSortedById()
+        public IEnumerable<Page> GetAllSortedById()
         {
             // TODO refactoring to use All IQueriable from the service
-            IEnumerable<Product> productsToReturn = this.GetAll().OrderBy(x => x.Id);
+            IEnumerable<Page> productsToReturn = this.GetAll().OrderBy(x => x.Id);
 
             return productsToReturn;
         }
 
-        public IEnumerable<Product> GetAllSortedByName()
+        public IEnumerable<Page> GetAllSortedByName()
         {
             // TODO refactoring to use All IQueriable from the service
-            IEnumerable<Product> productsToReturn = this.GetAll().OrderBy(x => x.Name);
+            IEnumerable<Page> productsToReturn = this.GetAll().OrderBy(x => x.Name);
 
             return productsToReturn;
         }

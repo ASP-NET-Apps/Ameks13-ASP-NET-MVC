@@ -25,6 +25,7 @@
         <AssociationConnector Association="MyWoodenHouseModel.BuildingMaterials" />
         <AssociationConnector Association="MyWoodenHouseModel.BuildingPictures" />
         <AssociationConnector Association="MyWoodenHouseModel.ProductsPrices" />
+        <EntityTypeShape EntityType="MyWoodenHouseModel.Page" Width="2" PointX="8.25" PointY="0.625" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

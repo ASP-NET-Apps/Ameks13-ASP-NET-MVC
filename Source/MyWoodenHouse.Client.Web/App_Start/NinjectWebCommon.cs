@@ -88,6 +88,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
+                      
 
             // Data DbContext
             kernel.Bind(typeof(DbContext), typeof(MyWoodenHouseDbContext)).To<MyWoodenHouseDbContext>().InRequestScope();
@@ -122,6 +123,7 @@ namespace MyWoodenHouse.Client.Web.App_Start
             kernel.Bind(typeof(IBaseGenericService<Material>)).To<MaterialService>();
             kernel.Bind(typeof(IBaseGenericService<Picture>)).To<PictureService>();
             kernel.Bind(typeof(IBaseGenericService<Product>)).To<ProductService>();
+            kernel.Bind(typeof(IBaseGenericService<Page>)).To<PageService>();
             kernel.Bind<IBaseGenericService<Building>>().To<BuildingService>();
 
         }

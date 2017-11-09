@@ -1,0 +1,36 @@
+﻿@model MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.PageCompleteVm
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-2">
+                <a href="@Url.Action("Index", "Pages", null)" class="btn btn-default">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                    Pages
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h2 class="red-fg">Edit Page</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                @Html.Partial("_CreateEditPartial", Model);
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
