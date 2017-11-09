@@ -47,7 +47,16 @@
                 </td>
                 <td>
                     @Html.ValidationMessageFor(model => model.HtmlContent, "", new { @class = "text-danger" })
-                    @Html.EditorFor(model => model.HtmlContent, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.HtmlContent, new { htmlAttributes = new { @class = "form-control ckeditor" } })
+                    <textarea name="editor1" id="editor1" rows="10" cols="80">
+                        This is my textarea to be replaced with CKEditor.
+                    </textarea>
+                    <script>
+                        // Replace the <textarea id="editor1"> with a CKEditor
+                        // instance, using default configuration.
+                        CKEDITOR.replace('HtmlContent');
+                    </script>
+
                 </td>
             </tr>
 
