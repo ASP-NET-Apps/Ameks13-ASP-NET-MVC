@@ -48,15 +48,9 @@
                 <td>
                     @Html.ValidationMessageFor(model => model.HtmlContent, "", new { @class = "text-danger" })
                     @Html.TextAreaFor(model => model.HtmlContent, new { htmlAttributes = new { @class = "form-control ckeditor" } })
-                    <textarea name="editor1" id="editor1" rows="10" cols="80">
-                        This is my textarea to be replaced with CKEditor.
-                    </textarea>
                     <script>
-                        // Replace the <textarea id="editor1"> with a CKEditor
-                        // instance, using default configuration.
                         CKEDITOR.replace('HtmlContent');
                     </script>
-
                 </td>
             </tr>
 
@@ -84,7 +78,7 @@
                             id="saveButton"
                             value="Create"
                             onclick="location.href='@Url.Action("Create","Pages")'"
-                            class="btn btn-default disabled">
+                            class="btn btn-primary enabled">
                         <span class="glyphicon glyphicon-floppy-save"></span>
                         Save
                     </button>

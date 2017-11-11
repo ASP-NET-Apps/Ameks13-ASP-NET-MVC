@@ -3,6 +3,7 @@ using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels;
 using MyWoodenHouse.Client.Web.Areas.Administration.ViewModels.Buildings;
 using MyWoodenHouse.Client.Web.ViewModels.Gallery;
 using MyWoodenHouse.Models;
+using MyWoodenHouse.ViewModels.Page;
 
 namespace MyWoodenHouse.Client.Web.Infrastructure
 {
@@ -10,6 +11,7 @@ namespace MyWoodenHouse.Client.Web.Infrastructure
     {
         public MappingProfiles()
         {
+            // Administration area
             CreateMap<Building, BuildingCompleteVm>().ReverseMap();
             CreateMap<Category, CategoryCompleteVm>().ReverseMap();
             CreateMap<Material, MaterialCompleteVm>().ReverseMap();
@@ -18,8 +20,9 @@ namespace MyWoodenHouse.Client.Web.Infrastructure
             CreateMap<Product, ProductCompleteVm>().ReverseMap();
             CreateMap<Page, PageCompleteVm>().ReverseMap();
 
+            // Main Area
             CreateMap<Picture, PictureGalleryVm>().ReverseMap();
-
+            CreateMap<Page, PageVm>().ReverseMap();
         }
     }
 }

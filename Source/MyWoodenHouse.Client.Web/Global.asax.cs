@@ -1,4 +1,6 @@
-﻿using MyWoodenHouse.Client.Web.App_Start;
+﻿using CKSource.CKFinder.Connector.Config;
+using CKSource.FileSystem.Local;
+using MyWoodenHouse.Client.Web.App_Start;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -17,6 +19,7 @@ namespace MyWoodenHouse
 
             //var mapper = new AutoMapperConfig();
             //mapper.Execute(Assembly.GetExecutingAssembly());
+            
         }
     }
 }

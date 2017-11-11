@@ -1,7 +1,9 @@
-﻿@{
+﻿@model MyWoodenHouse.ViewModels.Page.PageVm
+
+@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
+@*<h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <address>
@@ -14,4 +16,17 @@
 <address>
     <strong>Support:</strong>   <a href="mailto:Support@example.com">alex@alex.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">alex.marketing@alex.com</a>
-</address>
+</address>*@
+
+<h3>
+    @Html.DisplayFor(model => model.Name)
+</h3>
+
+<div>
+    @Html.DisplayFor(model => model.Description)
+</div>
+
+<div style="height:500px">
+    @Html.Raw(Model.HtmlContent)
+</div>
+
